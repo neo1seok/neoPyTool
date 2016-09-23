@@ -1,0 +1,3775 @@
+====================================
+MS승인D2A
+====================================
+0	MS승인	D2A	STX	1			HEX		02				
+1	MS승인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인	D2A	Message Type	4			ASCII		0900		0		
+3	MS승인	D2A	거래구분코드	2			ASCII		10		0		
+4	MS승인	D2A	부가정보코드	2			ASCII				0		
+5	MS승인	D2A	단말기Type	2			ASCII				0		
+6	MS승인	D2A	FS	1			HEX		1C				
+7	MS승인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인	D2A	FS	1			HEX		1C				
+9	MS승인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인	D2A	FS	1			HEX		1C				
+11	MS승인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	MS승인	D2A	FS	1			HEX		1C				
+13	MS승인	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	MS승인	D2A	FS	1			HEX		1C				
+15	MS승인	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+16	MS승인	D2A	FS	1			HEX		1C				
+17	MS승인	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	MS승인	D2A	FS	1			HEX		1C				
+19	MS승인	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	MS승인	D2A	FS	1			HEX		1C				
+21	MS승인	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	MS승인	D2A	FS	1			HEX		1C				
+23	MS승인	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+24	MS승인	D2A	FS	1			HEX		1C				
+25	MS승인	D2A	부가세요율	2			ASCII			CALCL_ENGTH	0		
+26	MS승인	D2A	FS	1			HEX		1C				
+27	MS승인	D2A	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+28	MS승인	D2A	FS	1			HEX		1C				
+29	MS승인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+30	MS승인	D2A	FS	1			HEX		1C				
+31	MS승인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+32	MS승인	D2A	FS	1			HEX		1C				
+33	MS승인	D2A	사인이미지정보	6			ASCII			CALCL_ENGTH	0		
+34	MS승인	D2A	FS	1			HEX		1C				
+35	MS승인	D2A	사인이미지데이터	1540			ASCII			CALCL_ENGTH	0		
+36	MS승인	D2A	FS	1			HEX		1C				
+37	MS승인	D2A	사인패드기기정보	16			ASCII			CALCL_ENGTH	0		
+38	MS승인	D2A	FS	1			HEX		1C				
+39	MS승인	D2A	해쉬코드	32			ASCII			CALCL_ENGTH	0		
+40	MS승인	D2A	SI	1			HEX		0F				
+41	MS승인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+42	MS승인	D2A	SI	1			HEX		0F				
+43	MS승인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+44	MS승인	D2A	SI	1			HEX		0F				
+45	MS승인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+46	MS승인	D2A	SI	1			HEX		0F				
+47	MS승인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+48	MS승인	D2A	ETX	1			HEX		03				
+49	MS승인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인A2D
+====================================
+0	MS승인	A2D	STX	1			HEX		02				
+1	MS승인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인	A2D	Message Type	4			ASCII		0910		0		
+3	MS승인	A2D	거래구분코드	2			ASCII		10		0		
+4	MS승인	A2D	부가정보코드	2			ASCII				0		
+5	MS승인	A2D	단말기Type	2			ASCII				0		
+6	MS승인	A2D	FS	1			HEX		1C				
+7	MS승인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인	A2D	FS	1			HEX		1C				
+9	MS승인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인	A2D	FS	1			HEX		1C				
+11	MS승인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	MS승인	A2D	FS	1			HEX		1C				
+13	MS승인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	MS승인	A2D	FS	1			HEX		1C				
+15	MS승인	A2D	응답업무구분코드	1			ASCII			CALCL_ENGTH	0		
+16	MS승인	A2D	FS	1			HEX		1C				
+17	MS승인	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+18	MS승인	A2D	FS	1			HEX		1C				
+19	MS승인	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	MS승인	A2D	FS	1			HEX		1C				
+21	MS승인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+22	MS승인	A2D	FS	1			HEX		1C				
+23	MS승인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	MS승인	A2D	FS	1			HEX		1C				
+25	MS승인	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+26	MS승인	A2D	FS	1			HEX		1C				
+27	MS승인	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+28	MS승인	A2D	FS	1			HEX		1C				
+29	MS승인	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+30	MS승인	A2D	FS	1			HEX		1C				
+31	MS승인	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+32	MS승인	A2D	FS	1			HEX		1C				
+33	MS승인	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+34	MS승인	A2D	FS	1			HEX		1C				
+35	MS승인	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+36	MS승인	A2D	FS	1			HEX		1C				
+37	MS승인	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+38	MS승인	A2D	FS	1			HEX		1C				
+39	MS승인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+40	MS승인	A2D	FS	1			HEX		1C				
+41	MS승인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+42	MS승인	A2D	FS	1			HEX		1C				
+43	MS승인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+44	MS승인	A2D	FS	1			HEX		1C				
+45	MS승인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+46	MS승인	A2D	FS	1			HEX		1C				
+47	MS승인	A2D	국민로열티선할인서비스적용	1			ASCII			CALCL_ENGTH	0		
+48	MS승인	A2D	FS	1			HEX		1C				
+49	MS승인	A2D	선할인적용후승인금액	12	V		ASCII			CALCL_ENGTH	0		
+50	MS승인	A2D	FS	1			HEX		1C				
+51	MS승인	A2D	선할인적용후부가세	12	V		ASCII			CALCL_ENGTH	0		
+52	MS승인	A2D	FS	1			HEX		1C				
+53	MS승인	A2D	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+54	MS승인	A2D	FS	1			HEX		1C				
+55	MS승인	A2D	DCC카드정보	10	V		ASCII			CALCL_ENGTH	0		
+56	MS승인	A2D	ETX	1			HEX		03				
+57	MS승인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인취소D2A
+====================================
+0	MS승인취소	D2A	STX	1			HEX		02				
+1	MS승인취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인취소	D2A	Message Type	4			ASCII		0900		0		
+3	MS승인취소	D2A	거래구분코드	2			ASCII		11		0		
+4	MS승인취소	D2A	부가정보코드	2			ASCII				0		
+5	MS승인취소	D2A	단말기Type	2			ASCII				0		
+6	MS승인취소	D2A	FS	1			HEX		1C				
+7	MS승인취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인취소	D2A	FS	1			HEX		1C				
+9	MS승인취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인취소	D2A	FS	1			HEX		1C				
+11	MS승인취소	D2A	원거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	MS승인취소	D2A	FS	1			HEX		1C				
+13	MS승인취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	MS승인취소	D2A	FS	1			HEX		1C				
+15	MS승인취소	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	MS승인취소	D2A	FS	1			HEX		1C				
+17	MS승인취소	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+18	MS승인취소	D2A	FS	1			HEX		1C				
+19	MS승인취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	MS승인취소	D2A	FS	1			HEX		1C				
+21	MS승인취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+22	MS승인취소	D2A	FS	1			HEX		1C				
+23	MS승인취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+24	MS승인취소	D2A	FS	1			HEX		1C				
+25	MS승인취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+26	MS승인취소	D2A	FS	1			HEX		1C				
+27	MS승인취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	MS승인취소	D2A	FS	1			HEX		1C				
+29	MS승인취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+30	MS승인취소	D2A	FS	1			HEX		1C				
+31	MS승인취소	D2A	부가세요율	2			ASCII			CALCL_ENGTH	0		
+32	MS승인취소	D2A	FS	1			HEX		1C				
+33	MS승인취소	D2A	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+34	MS승인취소	D2A	FS	1			HEX		1C				
+35	MS승인취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+36	MS승인취소	D2A	FS	1			HEX		1C				
+37	MS승인취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+38	MS승인취소	D2A	FS	1			HEX		1C				
+39	MS승인취소	D2A	사인이미지정보	6			ASCII			CALCL_ENGTH	0		
+40	MS승인취소	D2A	FS	1			HEX		1C				
+41	MS승인취소	D2A	사인이미지데이터	1540			ASCII			CALCL_ENGTH	0		
+42	MS승인취소	D2A	FS	1			HEX		1C				
+43	MS승인취소	D2A	사인패드기기정보	16			ASCII			CALCL_ENGTH	0		
+44	MS승인취소	D2A	FS	1			HEX		1C				
+45	MS승인취소	D2A	해쉬코드	32			ASCII			CALCL_ENGTH	0		
+46	MS승인취소	D2A	SI	1			HEX		0F				
+47	MS승인취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+48	MS승인취소	D2A	SI	1			HEX		0F				
+49	MS승인취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+50	MS승인취소	D2A	SI	1			HEX		0F				
+51	MS승인취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+52	MS승인취소	D2A	SI	1			HEX		0F				
+53	MS승인취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+54	MS승인취소	D2A	ETX	1			HEX		03				
+55	MS승인취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인취소A2D
+====================================
+0	MS승인취소	A2D	STX	1			HEX		02				
+1	MS승인취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인취소	A2D	Message Type	4			ASCII		0910		0		
+3	MS승인취소	A2D	거래구분코드	2			ASCII		11		0		
+4	MS승인취소	A2D	부가정보코드	2			ASCII				0		
+5	MS승인취소	A2D	단말기Type	2			ASCII				0		
+6	MS승인취소	A2D	FS	1			HEX		1C				
+7	MS승인취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인취소	A2D	FS	1			HEX		1C				
+9	MS승인취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인취소	A2D	FS	1			HEX		1C				
+11	MS승인취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	MS승인취소	A2D	FS	1			HEX		1C				
+13	MS승인취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	MS승인취소	A2D	FS	1			HEX		1C				
+15	MS승인취소	A2D	응답업무구분코드	1			ASCII			CALCL_ENGTH	0		
+16	MS승인취소	A2D	FS	1			HEX		1C				
+17	MS승인취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+18	MS승인취소	A2D	FS	1			HEX		1C				
+19	MS승인취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	MS승인취소	A2D	FS	1			HEX		1C				
+21	MS승인취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	MS승인취소	A2D	FS	1			HEX		1C				
+23	MS승인취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	MS승인취소	A2D	FS	1			HEX		1C				
+25	MS승인취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	MS승인취소	A2D	FS	1			HEX		1C				
+27	MS승인취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	MS승인취소	A2D	FS	1			HEX		1C				
+29	MS승인취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+30	MS승인취소	A2D	FS	1			HEX		1C				
+31	MS승인취소	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+32	MS승인취소	A2D	FS	1			HEX		1C				
+33	MS승인취소	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+34	MS승인취소	A2D	FS	1			HEX		1C				
+35	MS승인취소	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+36	MS승인취소	A2D	FS	1			HEX		1C				
+37	MS승인취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+38	MS승인취소	A2D	FS	1			HEX		1C				
+39	MS승인취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+40	MS승인취소	A2D	FS	1			HEX		1C				
+41	MS승인취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+42	MS승인취소	A2D	FS	1			HEX		1C				
+43	MS승인취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+44	MS승인취소	A2D	FS	1			HEX		1C				
+45	MS승인취소	A2D	국민로열티선할인서비스적용	1			ASCII			CALCL_ENGTH	0		
+46	MS승인취소	A2D	FS	1			HEX		1C				
+47	MS승인취소	A2D	선할인적용후승인금액	12	V		ASCII			CALCL_ENGTH	0		
+48	MS승인취소	A2D	FS	1			HEX		1C				
+49	MS승인취소	A2D	선할인적용후부가세	12	V		ASCII			CALCL_ENGTH	0		
+50	MS승인취소	A2D	FS	1			HEX		1C				
+51	MS승인취소	A2D	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+52	MS승인취소	A2D	ETX	1			HEX		03				
+53	MS승인취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+전화승인등록D2A
+====================================
+0	전화승인등록	D2A	STX	1			HEX		02				
+1	전화승인등록	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	전화승인등록	D2A	Message Type	4			ASCII		0900		0		
+3	전화승인등록	D2A	거래구분코드	2			ASCII		12		0		
+4	전화승인등록	D2A	부가정보코드	2			ASCII				0		
+5	전화승인등록	D2A	단말기Type	2			ASCII				0		
+6	전화승인등록	D2A	FS	1			HEX		1C				
+7	전화승인등록	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	전화승인등록	D2A	FS	1			HEX		1C				
+9	전화승인등록	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	전화승인등록	D2A	FS	1			HEX		1C				
+11	전화승인등록	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	전화승인등록	D2A	FS	1			HEX		1C				
+13	전화승인등록	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	전화승인등록	D2A	FS	1			HEX		1C				
+15	전화승인등록	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+16	전화승인등록	D2A	FS	1			HEX		1C				
+17	전화승인등록	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	전화승인등록	D2A	FS	1			HEX		1C				
+19	전화승인등록	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	전화승인등록	D2A	FS	1			HEX		1C				
+21	전화승인등록	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	전화승인등록	D2A	FS	1			HEX		1C				
+23	전화승인등록	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+24	전화승인등록	D2A	FS	1			HEX		1C				
+25	전화승인등록	D2A	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	전화승인등록	D2A	FS	1			HEX		1C				
+27	전화승인등록	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+28	전화승인등록	D2A	FS	1			HEX		1C				
+29	전화승인등록	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+30	전화승인등록	D2A	SI	1			HEX		0F				
+31	전화승인등록	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+32	전화승인등록	D2A	SI	1			HEX		0F				
+33	전화승인등록	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+34	전화승인등록	D2A	SI	1			HEX		0F				
+35	전화승인등록	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+36	전화승인등록	D2A	SI	1			HEX		0F				
+37	전화승인등록	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+38	전화승인등록	D2A	ETX	1			HEX		03				
+39	전화승인등록	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+전화승인등록A2D
+====================================
+0	전화승인등록	A2D	STX	1			HEX		02				
+1	전화승인등록	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	전화승인등록	A2D	Message Type	4			ASCII		0910		0		
+3	전화승인등록	A2D	거래구분코드	2			ASCII		12		0		
+4	전화승인등록	A2D	부가정보코드	2			ASCII				0		
+5	전화승인등록	A2D	단말기Type	2			ASCII				0		
+6	전화승인등록	A2D	FS	1			HEX		1C				
+7	전화승인등록	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	전화승인등록	A2D	FS	1			HEX		1C				
+9	전화승인등록	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	전화승인등록	A2D	FS	1			HEX		1C				
+11	전화승인등록	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	전화승인등록	A2D	FS	1			HEX		1C				
+13	전화승인등록	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	전화승인등록	A2D	FS	1			HEX		1C				
+15	전화승인등록	A2D	응답업무구분코드	1			ASCII			CALCL_ENGTH	0		
+16	전화승인등록	A2D	FS	1			HEX		1C				
+17	전화승인등록	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+18	전화승인등록	A2D	FS	1			HEX		1C				
+19	전화승인등록	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	전화승인등록	A2D	FS	1			HEX		1C				
+21	전화승인등록	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+22	전화승인등록	A2D	FS	1			HEX		1C				
+23	전화승인등록	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	전화승인등록	A2D	FS	1			HEX		1C				
+25	전화승인등록	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+26	전화승인등록	A2D	FS	1			HEX		1C				
+27	전화승인등록	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+28	전화승인등록	A2D	FS	1			HEX		1C				
+29	전화승인등록	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+30	전화승인등록	A2D	FS	1			HEX		1C				
+31	전화승인등록	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+32	전화승인등록	A2D	FS	1			HEX		1C				
+33	전화승인등록	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	전화승인등록	A2D	FS	1			HEX		1C				
+35	전화승인등록	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	전화승인등록	A2D	FS	1			HEX		1C				
+37	전화승인등록	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	전화승인등록	A2D	FS	1			HEX		1C				
+39	전화승인등록	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	전화승인등록	A2D	ETX	1			HEX		03				
+41	전화승인등록	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인/보너스누적D2A
+====================================
+0	MS승인/보너스누적	D2A	STX	1			HEX		02				
+1	MS승인/보너스누적	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인/보너스누적	D2A	Message Type	4			ASCII		0900		0		
+3	MS승인/보너스누적	D2A	거래구분코드	2			ASCII		16		0		
+4	MS승인/보너스누적	D2A	부가정보코드	2			ASCII				0		
+5	MS승인/보너스누적	D2A	단말기Type	2			ASCII				0		
+6	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+7	MS승인/보너스누적	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+9	MS승인/보너스누적	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+11	MS승인/보너스누적	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+13	MS승인/보너스누적	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+15	MS승인/보너스누적	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+17	MS승인/보너스누적	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+18	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+19	MS승인/보너스누적	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+21	MS승인/보너스누적	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+22	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+23	MS승인/보너스누적	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+24	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+25	MS승인/보너스누적	D2A	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+26	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+27	MS승인/보너스누적	D2A	제품코드	4	V		ASCII			CALCL_ENGTH	0		
+28	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+29	MS승인/보너스누적	D2A	제품단가	8	V		ASCII			CALCL_ENGTH	0		
+30	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+31	MS승인/보너스누적	D2A	제품수량	8	V		ASCII			CALCL_ENGTH	0		
+32	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+33	MS승인/보너스누적	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+34	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+35	MS승인/보너스누적	D2A	거래자구분	1	V		ASCII			CALCL_ENGTH	0		
+36	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+37	MS승인/보너스누적	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+38	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+39	MS승인/보너스누적	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+40	MS승인/보너스누적	D2A	FS	1			HEX		1C				
+41	MS승인/보너스누적	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+42	MS승인/보너스누적	D2A	SI	1			HEX		0F				
+43	MS승인/보너스누적	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+44	MS승인/보너스누적	D2A	SI	1			HEX		0F				
+45	MS승인/보너스누적	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+46	MS승인/보너스누적	D2A	SI	1			HEX		0F				
+47	MS승인/보너스누적	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+48	MS승인/보너스누적	D2A	SI	1			HEX		0F				
+49	MS승인/보너스누적	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+50	MS승인/보너스누적	D2A	ETX	1			HEX		03				
+51	MS승인/보너스누적	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인/보너스누적A2D
+====================================
+0	MS승인/보너스누적	A2D	STX	1			HEX		02				
+1	MS승인/보너스누적	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인/보너스누적	A2D	Message Type	4			ASCII		0910		0		
+3	MS승인/보너스누적	A2D	거래구분코드	2			ASCII		16		0		
+4	MS승인/보너스누적	A2D	부가정보코드	2			ASCII				0		
+5	MS승인/보너스누적	A2D	단말기Type	2			ASCII				0		
+6	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+7	MS승인/보너스누적	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+9	MS승인/보너스누적	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+11	MS승인/보너스누적	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+13	MS승인/보너스누적	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+15	MS승인/보너스누적	A2D	응답업무구분코드	1			ASCII			CALCL_ENGTH	0		
+16	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+17	MS승인/보너스누적	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+18	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+19	MS승인/보너스누적	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+21	MS승인/보너스누적	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+22	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+23	MS승인/보너스누적	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+25	MS승인/보너스누적	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+26	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+27	MS승인/보너스누적	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+28	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+29	MS승인/보너스누적	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+30	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+31	MS승인/보너스누적	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+32	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+33	MS승인/보너스누적	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+34	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+35	MS승인/보너스누적	A2D	유효기간(보너스)	4			ASCII			CALCL_ENGTH	0		
+36	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+37	MS승인/보너스누적	A2D	응답코드(보너스)	2			ASCII			CALCL_ENGTH	0		
+38	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+39	MS승인/보너스누적	A2D	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+40	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+41	MS승인/보너스누적	A2D	발급사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+42	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+43	MS승인/보너스누적	A2D	매입사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+44	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+45	MS승인/보너스누적	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+46	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+47	MS승인/보너스누적	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+48	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+49	MS승인/보너스누적	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+50	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+51	MS승인/보너스누적	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+52	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+53	MS승인/보너스누적	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+54	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+55	MS승인/보너스누적	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+56	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+57	MS승인/보너스누적	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+58	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+59	MS승인/보너스누적	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+60	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+61	MS승인/보너스누적	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+62	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+63	MS승인/보너스누적	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+64	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+65	MS승인/보너스누적	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+66	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+67	MS승인/보너스누적	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+68	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+69	MS승인/보너스누적	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+70	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+71	MS승인/보너스누적	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+72	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+73	MS승인/보너스누적	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+74	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+75	MS승인/보너스누적	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+76	MS승인/보너스누적	A2D	FS	1			HEX		1C				
+77	MS승인/보너스누적	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+78	MS승인/보너스누적	A2D	ETX	1			HEX		03				
+79	MS승인/보너스누적	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인취소/보너스누적취소D2A
+====================================
+0	MS승인취소/보너스누적취소	D2A	STX	1			HEX		02				
+1	MS승인취소/보너스누적취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인취소/보너스누적취소	D2A	Message Type	4			ASCII		0900		0		
+3	MS승인취소/보너스누적취소	D2A	거래구분코드	2			ASCII		17		0		
+4	MS승인취소/보너스누적취소	D2A	부가정보코드	2			ASCII				0		
+5	MS승인취소/보너스누적취소	D2A	단말기Type	2			ASCII				0		
+6	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+7	MS승인취소/보너스누적취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+9	MS승인취소/보너스누적취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+11	MS승인취소/보너스누적취소	D2A	원거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+13	MS승인취소/보너스누적취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+15	MS승인취소/보너스누적취소	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+17	MS승인취소/보너스누적취소	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+19	MS승인취소/보너스누적취소	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+20	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+21	MS승인취소/보너스누적취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+22	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+23	MS승인취소/보너스누적취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+24	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+25	MS승인취소/보너스누적취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+26	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+27	MS승인취소/보너스누적취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+28	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+29	MS승인취소/보너스누적취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+30	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+31	MS승인취소/보너스누적취소	D2A	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+32	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+33	MS승인취소/보너스누적취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+34	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+35	MS승인취소/보너스누적취소	D2A	거래자구분	1	V		ASCII			CALCL_ENGTH	0		
+36	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+37	MS승인취소/보너스누적취소	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+38	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+39	MS승인취소/보너스누적취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+40	MS승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+41	MS승인취소/보너스누적취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+42	MS승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+43	MS승인취소/보너스누적취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+44	MS승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+45	MS승인취소/보너스누적취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+46	MS승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+47	MS승인취소/보너스누적취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+48	MS승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+49	MS승인취소/보너스누적취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+50	MS승인취소/보너스누적취소	D2A	ETX	1			HEX		03				
+51	MS승인취소/보너스누적취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+MS승인취소/보너스누적취소A2D
+====================================
+0	MS승인취소/보너스누적취소	A2D	STX	1			HEX		02				
+1	MS승인취소/보너스누적취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	MS승인취소/보너스누적취소	A2D	Message Type	4			ASCII		0910		0		
+3	MS승인취소/보너스누적취소	A2D	거래구분코드	2			ASCII		17		0		
+4	MS승인취소/보너스누적취소	A2D	부가정보코드	2			ASCII				0		
+5	MS승인취소/보너스누적취소	A2D	단말기Type	2			ASCII				0		
+6	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+7	MS승인취소/보너스누적취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+9	MS승인취소/보너스누적취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+11	MS승인취소/보너스누적취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+13	MS승인취소/보너스누적취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+15	MS승인취소/보너스누적취소	A2D	응답업무구분코드	1			ASCII			CALCL_ENGTH	0		
+16	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+17	MS승인취소/보너스누적취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+18	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+19	MS승인취소/보너스누적취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+21	MS승인취소/보너스누적취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+23	MS승인취소/보너스누적취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+25	MS승인취소/보너스누적취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+27	MS승인취소/보너스누적취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+29	MS승인취소/보너스누적취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+30	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+31	MS승인취소/보너스누적취소	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+32	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+33	MS승인취소/보너스누적취소	A2D	유효기간(보너스)	4			ASCII			CALCL_ENGTH	0		
+34	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+35	MS승인취소/보너스누적취소	A2D	응답코드(보너스)	2			ASCII			CALCL_ENGTH	0		
+36	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+37	MS승인취소/보너스누적취소	A2D	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+38	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+39	MS승인취소/보너스누적취소	A2D	발급사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+40	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+41	MS승인취소/보너스누적취소	A2D	매입사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+42	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+43	MS승인취소/보너스누적취소	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+44	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+45	MS승인취소/보너스누적취소	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+46	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+47	MS승인취소/보너스누적취소	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+48	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+49	MS승인취소/보너스누적취소	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+50	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+51	MS승인취소/보너스누적취소	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+52	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+53	MS승인취소/보너스누적취소	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+54	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+55	MS승인취소/보너스누적취소	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+56	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+57	MS승인취소/보너스누적취소	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+58	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+59	MS승인취소/보너스누적취소	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+60	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+61	MS승인취소/보너스누적취소	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+62	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+63	MS승인취소/보너스누적취소	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+64	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+65	MS승인취소/보너스누적취소	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+66	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+67	MS승인취소/보너스누적취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+68	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+69	MS승인취소/보너스누적취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+70	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+71	MS승인취소/보너스누적취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+72	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+73	MS승인취소/보너스누적취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+74	MS승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+75	MS승인취소/보너스누적취소	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+76	MS승인취소/보너스누적취소	A2D	ETX	1			HEX		03				
+77	MS승인취소/보너스누적취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+신용카드확인D2A
+====================================
+0	신용카드확인	D2A	STX	1			HEX		02				
+1	신용카드확인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	신용카드확인	D2A	Message Type	4			ASCII		0900		0		
+3	신용카드확인	D2A	거래구분코드	2			ASCII		19		0		
+4	신용카드확인	D2A	부가정보코드	2			ASCII				0		
+5	신용카드확인	D2A	단말기Type	2			ASCII				0		
+6	신용카드확인	D2A	FS	1			HEX		1C				
+7	신용카드확인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	신용카드확인	D2A	FS	1			HEX		1C				
+9	신용카드확인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	신용카드확인	D2A	FS	1			HEX		1C				
+11	신용카드확인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	신용카드확인	D2A	FS	1			HEX		1C				
+13	신용카드확인	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	신용카드확인	D2A	FS	1			HEX		1C				
+15	신용카드확인	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+16	신용카드확인	D2A	FS	1			HEX		1C				
+17	신용카드확인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+18	신용카드확인	D2A	FS	1			HEX		1C				
+19	신용카드확인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+20	신용카드확인	D2A	SI	1			HEX		0F				
+21	신용카드확인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+22	신용카드확인	D2A	SI	1			HEX		0F				
+23	신용카드확인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+24	신용카드확인	D2A	SI	1			HEX		0F				
+25	신용카드확인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	신용카드확인	D2A	SI	1			HEX		0F				
+27	신용카드확인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	신용카드확인	D2A	ETX	1			HEX		03				
+29	신용카드확인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+신용카드확인A2D
+====================================
+0	신용카드확인	A2D	STX	1			HEX		02				
+1	신용카드확인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	신용카드확인	A2D	Message Type	4			ASCII		0910		0		
+3	신용카드확인	A2D	거래구분코드	2			ASCII		19		0		
+4	신용카드확인	A2D	부가정보코드	2			ASCII				0		
+5	신용카드확인	A2D	단말기Type	2			ASCII				0		
+6	신용카드확인	A2D	FS	1			HEX		1C				
+7	신용카드확인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	신용카드확인	A2D	FS	1			HEX		1C				
+9	신용카드확인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	신용카드확인	A2D	FS	1			HEX		1C				
+11	신용카드확인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	신용카드확인	A2D	FS	1			HEX		1C				
+13	신용카드확인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	신용카드확인	A2D	FS	1			HEX		1C				
+15	신용카드확인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	신용카드확인	A2D	FS	1			HEX		1C				
+17	신용카드확인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+18	신용카드확인	A2D	FS	1			HEX		1C				
+19	신용카드확인	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+20	신용카드확인	A2D	FS	1			HEX		1C				
+21	신용카드확인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+22	신용카드확인	A2D	FS	1			HEX		1C				
+23	신용카드확인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+24	신용카드확인	A2D	FS	1			HEX		1C				
+25	신용카드확인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+26	신용카드확인	A2D	FS	1			HEX		1C				
+27	신용카드확인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+28	신용카드확인	A2D	ETX	1			HEX		03				
+29	신용카드확인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+직불승인D2A
+====================================
+0	직불승인	D2A	STX	1			HEX		02				
+1	직불승인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불승인	D2A	Message Type	4			ASCII		0900		0		
+3	직불승인	D2A	거래구분코드	2			ASCII		20		0		
+4	직불승인	D2A	부가정보코드	2			ASCII				0		
+5	직불승인	D2A	단말기Type	2			ASCII				0		
+6	직불승인	D2A	FS	1			HEX		1C				
+7	직불승인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불승인	D2A	FS	1			HEX		1C				
+9	직불승인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불승인	D2A	FS	1			HEX		1C				
+11	직불승인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	직불승인	D2A	FS	1			HEX		1C				
+13	직불승인	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	직불승인	D2A	FS	1			HEX		1C				
+15	직불승인	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+16	직불승인	D2A	FS	1			HEX		1C				
+17	직불승인	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+18	직불승인	D2A	FS	1			HEX		1C				
+19	직불승인	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+20	직불승인	D2A	FS	1			HEX		1C				
+21	직불승인	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+22	직불승인	D2A	FS	1			HEX		1C				
+23	직불승인	D2A	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+24	직불승인	D2A	FS	1			HEX		1C				
+25	직불승인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+26	직불승인	D2A	FS	1			HEX		1C				
+27	직불승인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+28	직불승인	D2A	SI	1			HEX		0F				
+29	직불승인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+30	직불승인	D2A	SI	1			HEX		0F				
+31	직불승인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+32	직불승인	D2A	SI	1			HEX		0F				
+33	직불승인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+34	직불승인	D2A	SI	1			HEX		0F				
+35	직불승인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+36	직불승인	D2A	ETX	1			HEX		03				
+37	직불승인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+직불승인A2D
+====================================
+0	직불승인	A2D	STX	1			HEX		02				
+1	직불승인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불승인	A2D	Message Type	4			ASCII		0910		0		
+3	직불승인	A2D	거래구분코드	2			ASCII		20		0		
+4	직불승인	A2D	부가정보코드	2			ASCII				0		
+5	직불승인	A2D	단말기Type	2			ASCII				0		
+6	직불승인	A2D	FS	1			HEX		1C				
+7	직불승인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불승인	A2D	FS	1			HEX		1C				
+9	직불승인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불승인	A2D	FS	1			HEX		1C				
+11	직불승인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	직불승인	A2D	FS	1			HEX		1C				
+13	직불승인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	직불승인	A2D	FS	1			HEX		1C				
+15	직불승인	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	직불승인	A2D	FS	1			HEX		1C				
+17	직불승인	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	직불승인	A2D	FS	1			HEX		1C				
+19	직불승인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	직불승인	A2D	FS	1			HEX		1C				
+21	직불승인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	직불승인	A2D	FS	1			HEX		1C				
+23	직불승인	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	직불승인	A2D	FS	1			HEX		1C				
+25	직불승인	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	직불승인	A2D	FS	1			HEX		1C				
+27	직불승인	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	직불승인	A2D	FS	1			HEX		1C				
+29	직불승인	A2D	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+30	직불승인	A2D	FS	1			HEX		1C				
+31	직불승인	A2D	WORKING KEY	16			ASCII			CALCL_ENGTH	0		
+32	직불승인	A2D	FS	1			HEX		1C				
+33	직불승인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	직불승인	A2D	FS	1			HEX		1C				
+35	직불승인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	직불승인	A2D	FS	1			HEX		1C				
+37	직불승인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	직불승인	A2D	FS	1			HEX		1C				
+39	직불승인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	직불승인	A2D	ETX	1			HEX		03				
+41	직불승인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+직불승인취소D2A
+====================================
+0	직불승인취소	D2A	STX	1			HEX		02				
+1	직불승인취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불승인취소	D2A	Message Type	4			ASCII		0900		0		
+3	직불승인취소	D2A	거래구분코드	2			ASCII		21		0		
+4	직불승인취소	D2A	부가정보코드	2			ASCII				0		
+5	직불승인취소	D2A	단말기Type	2			ASCII				0		
+6	직불승인취소	D2A	FS	1			HEX		1C				
+7	직불승인취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불승인취소	D2A	FS	1			HEX		1C				
+9	직불승인취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불승인취소	D2A	FS	1			HEX		1C				
+11	직불승인취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	직불승인취소	D2A	FS	1			HEX		1C				
+13	직불승인취소	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	직불승인취소	D2A	FS	1			HEX		1C				
+15	직불승인취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+16	직불승인취소	D2A	FS	1			HEX		1C				
+17	직불승인취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+18	직불승인취소	D2A	FS	1			HEX		1C				
+19	직불승인취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+20	직불승인취소	D2A	FS	1			HEX		1C				
+21	직불승인취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+22	직불승인취소	D2A	FS	1			HEX		1C				
+23	직불승인취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	직불승인취소	D2A	FS	1			HEX		1C				
+25	직불승인취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+26	직불승인취소	D2A	FS	1			HEX		1C				
+27	직불승인취소	D2A	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+28	직불승인취소	D2A	FS	1			HEX		1C				
+29	직불승인취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+30	직불승인취소	D2A	FS	1			HEX		1C				
+31	직불승인취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+32	직불승인취소	D2A	SI	1			HEX		0F				
+33	직불승인취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+34	직불승인취소	D2A	SI	1			HEX		0F				
+35	직불승인취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+36	직불승인취소	D2A	SI	1			HEX		0F				
+37	직불승인취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+38	직불승인취소	D2A	SI	1			HEX		0F				
+39	직불승인취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	직불승인취소	D2A	ETX	1			HEX		03				
+41	직불승인취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+직불승인취소A2D
+====================================
+0	직불승인취소	A2D	STX	1			HEX		02				
+1	직불승인취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불승인취소	A2D	Message Type	4			ASCII		0910		0		
+3	직불승인취소	A2D	거래구분코드	2			ASCII		21		0		
+4	직불승인취소	A2D	부가정보코드	2			ASCII				0		
+5	직불승인취소	A2D	단말기Type	2			ASCII				0		
+6	직불승인취소	A2D	FS	1			HEX		1C				
+7	직불승인취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불승인취소	A2D	FS	1			HEX		1C				
+9	직불승인취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불승인취소	A2D	FS	1			HEX		1C				
+11	직불승인취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	직불승인취소	A2D	FS	1			HEX		1C				
+13	직불승인취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	직불승인취소	A2D	FS	1			HEX		1C				
+15	직불승인취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	직불승인취소	A2D	FS	1			HEX		1C				
+17	직불승인취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	직불승인취소	A2D	FS	1			HEX		1C				
+19	직불승인취소	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	직불승인취소	A2D	FS	1			HEX		1C				
+21	직불승인취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	직불승인취소	A2D	FS	1			HEX		1C				
+23	직불승인취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	직불승인취소	A2D	FS	1			HEX		1C				
+25	직불승인취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	직불승인취소	A2D	FS	1			HEX		1C				
+27	직불승인취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	직불승인취소	A2D	FS	1			HEX		1C				
+29	직불승인취소	A2D	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+30	직불승인취소	A2D	FS	1			HEX		1C				
+31	직불승인취소	A2D	WORKING KEY	16			ASCII			CALCL_ENGTH	0		
+32	직불승인취소	A2D	FS	1			HEX		1C				
+33	직불승인취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	직불승인취소	A2D	FS	1			HEX		1C				
+35	직불승인취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	직불승인취소	A2D	FS	1			HEX		1C				
+37	직불승인취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	직불승인취소	A2D	FS	1			HEX		1C				
+39	직불승인취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	직불승인취소	A2D	ETX	1			HEX		03				
+41	직불승인취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+직불잔액조회D2A
+====================================
+0	직불잔액조회	D2A	STX	1			HEX		02				
+1	직불잔액조회	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불잔액조회	D2A	Message Type	4			ASCII		0900		0		
+3	직불잔액조회	D2A	거래구분코드	2			ASCII		22		0		
+4	직불잔액조회	D2A	부가정보코드	2			ASCII				0		
+5	직불잔액조회	D2A	단말기Type	2			ASCII				0		
+6	직불잔액조회	D2A	FS	1			HEX		1C				
+7	직불잔액조회	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불잔액조회	D2A	FS	1			HEX		1C				
+9	직불잔액조회	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불잔액조회	D2A	FS	1			HEX		1C				
+11	직불잔액조회	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	직불잔액조회	D2A	FS	1			HEX		1C				
+13	직불잔액조회	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	직불잔액조회	D2A	FS	1			HEX		1C				
+15	직불잔액조회	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+16	직불잔액조회	D2A	FS	1			HEX		1C				
+17	직불잔액조회	D2A	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+18	직불잔액조회	D2A	FS	1			HEX		1C				
+19	직불잔액조회	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+20	직불잔액조회	D2A	FS	1			HEX		1C				
+21	직불잔액조회	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+22	직불잔액조회	D2A	SI	1			HEX		0F				
+23	직불잔액조회	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+24	직불잔액조회	D2A	SI	1			HEX		0F				
+25	직불잔액조회	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+26	직불잔액조회	D2A	SI	1			HEX		0F				
+27	직불잔액조회	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	직불잔액조회	D2A	SI	1			HEX		0F				
+29	직불잔액조회	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+30	직불잔액조회	D2A	ETX	1			HEX		03				
+31	직불잔액조회	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+직불잔액조회A2D
+====================================
+0	직불잔액조회	A2D	STX	1			HEX		02				
+1	직불잔액조회	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불잔액조회	A2D	Message Type	4			ASCII		0910		0		
+3	직불잔액조회	A2D	거래구분코드	2			ASCII		22		0		
+4	직불잔액조회	A2D	부가정보코드	2			ASCII				0		
+5	직불잔액조회	A2D	단말기Type	2			ASCII				0		
+6	직불잔액조회	A2D	FS	1			HEX		1C				
+7	직불잔액조회	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불잔액조회	A2D	FS	1			HEX		1C				
+9	직불잔액조회	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불잔액조회	A2D	FS	1			HEX		1C				
+11	직불잔액조회	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	직불잔액조회	A2D	FS	1			HEX		1C				
+13	직불잔액조회	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	직불잔액조회	A2D	FS	1			HEX		1C				
+15	직불잔액조회	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	직불잔액조회	A2D	FS	1			HEX		1C				
+17	직불잔액조회	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	직불잔액조회	A2D	FS	1			HEX		1C				
+19	직불잔액조회	A2D	원장금액	12	V		ASCII			CALCL_ENGTH	0		
+20	직불잔액조회	A2D	FS	1			HEX		1C				
+21	직불잔액조회	A2D	지불가능금액	12	V		ASCII			CALCL_ENGTH	0		
+22	직불잔액조회	A2D	FS	1			HEX		1C				
+23	직불잔액조회	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	직불잔액조회	A2D	FS	1			HEX		1C				
+25	직불잔액조회	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	직불잔액조회	A2D	FS	1			HEX		1C				
+27	직불잔액조회	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	직불잔액조회	A2D	FS	1			HEX		1C				
+29	직불잔액조회	A2D	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+30	직불잔액조회	A2D	FS	1			HEX		1C				
+31	직불잔액조회	A2D	WORKING KEY	16			ASCII			CALCL_ENGTH	0		
+32	직불잔액조회	A2D	FS	1			HEX		1C				
+33	직불잔액조회	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	직불잔액조회	A2D	FS	1			HEX		1C				
+35	직불잔액조회	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	직불잔액조회	A2D	FS	1			HEX		1C				
+37	직불잔액조회	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	직불잔액조회	A2D	FS	1			HEX		1C				
+39	직불잔액조회	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	직불잔액조회	A2D	ETX	1			HEX		03				
+41	직불잔액조회	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+직불거래확인D2A
+====================================
+0	직불거래확인	D2A	STX	1			HEX		02				
+1	직불거래확인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불거래확인	D2A	Message Type	4			ASCII		0900		0		
+3	직불거래확인	D2A	거래구분코드	2			ASCII		23		0		
+4	직불거래확인	D2A	부가정보코드	2			ASCII				0		
+5	직불거래확인	D2A	단말기Type	2			ASCII				0		
+6	직불거래확인	D2A	FS	1			HEX		1C				
+7	직불거래확인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불거래확인	D2A	FS	1			HEX		1C				
+9	직불거래확인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불거래확인	D2A	FS	1			HEX		1C				
+11	직불거래확인	D2A	원거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	직불거래확인	D2A	FS	1			HEX		1C				
+13	직불거래확인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	직불거래확인	D2A	FS	1			HEX		1C				
+15	직불거래확인	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	직불거래확인	D2A	FS	1			HEX		1C				
+17	직불거래확인	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	직불거래확인	D2A	FS	1			HEX		1C				
+19	직불거래확인	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	직불거래확인	D2A	FS	1			HEX		1C				
+21	직불거래확인	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	직불거래확인	D2A	FS	1			HEX		1C				
+23	직불거래확인	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+24	직불거래확인	D2A	FS	1			HEX		1C				
+25	직불거래확인	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	직불거래확인	D2A	FS	1			HEX		1C				
+27	직불거래확인	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+28	직불거래확인	D2A	FS	1			HEX		1C				
+29	직불거래확인	D2A	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+30	직불거래확인	D2A	FS	1			HEX		1C				
+31	직불거래확인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+32	직불거래확인	D2A	FS	1			HEX		1C				
+33	직불거래확인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+34	직불거래확인	D2A	SI	1			HEX		0F				
+35	직불거래확인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+36	직불거래확인	D2A	SI	1			HEX		0F				
+37	직불거래확인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+38	직불거래확인	D2A	SI	1			HEX		0F				
+39	직불거래확인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	직불거래확인	D2A	SI	1			HEX		0F				
+41	직불거래확인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+42	직불거래확인	D2A	ETX	1			HEX		03				
+43	직불거래확인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+직불거래확인A2D
+====================================
+0	직불거래확인	A2D	STX	1			HEX		02				
+1	직불거래확인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	직불거래확인	A2D	Message Type	4			ASCII		0910		0		
+3	직불거래확인	A2D	거래구분코드	2			ASCII		23		0		
+4	직불거래확인	A2D	부가정보코드	2			ASCII				0		
+5	직불거래확인	A2D	단말기Type	2			ASCII				0		
+6	직불거래확인	A2D	FS	1			HEX		1C				
+7	직불거래확인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	직불거래확인	A2D	FS	1			HEX		1C				
+9	직불거래확인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	직불거래확인	A2D	FS	1			HEX		1C				
+11	직불거래확인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	직불거래확인	A2D	FS	1			HEX		1C				
+13	직불거래확인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	직불거래확인	A2D	FS	1			HEX		1C				
+15	직불거래확인	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	직불거래확인	A2D	FS	1			HEX		1C				
+17	직불거래확인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	직불거래확인	A2D	FS	1			HEX		1C				
+19	직불거래확인	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	직불거래확인	A2D	FS	1			HEX		1C				
+21	직불거래확인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	직불거래확인	A2D	FS	1			HEX		1C				
+23	직불거래확인	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	직불거래확인	A2D	FS	1			HEX		1C				
+25	직불거래확인	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	직불거래확인	A2D	FS	1			HEX		1C				
+27	직불거래확인	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	직불거래확인	A2D	FS	1			HEX		1C				
+29	직불거래확인	A2D	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+30	직불거래확인	A2D	FS	1			HEX		1C				
+31	직불거래확인	A2D	WORKING KEY	16			ASCII			CALCL_ENGTH	0		
+32	직불거래확인	A2D	FS	1			HEX		1C				
+33	직불거래확인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	직불거래확인	A2D	FS	1			HEX		1C				
+35	직불거래확인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	직불거래확인	A2D	FS	1			HEX		1C				
+37	직불거래확인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	직불거래확인	A2D	FS	1			HEX		1C				
+39	직불거래확인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	직불거래확인	A2D	ETX	1			HEX		03				
+41	직불거래확인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+수표조회D2A
+====================================
+0	수표조회	D2A	STX	1			HEX		02				
+1	수표조회	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	수표조회	D2A	Message Type	4			ASCII		0900		0		
+3	수표조회	D2A	거래구분코드	2			ASCII		30		0		
+4	수표조회	D2A	부가정보코드	2			ASCII				0		
+5	수표조회	D2A	단말기Type	2			ASCII				0		
+6	수표조회	D2A	FS	1			HEX		1C				
+7	수표조회	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	수표조회	D2A	FS	1			HEX		1C				
+9	수표조회	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	수표조회	D2A	FS	1			HEX		1C				
+11	수표조회	D2A	수표종류	2			ASCII			CALCL_ENGTH	0		
+12	수표조회	D2A	FS	1			HEX		1C				
+13	수표조회	D2A	수표번호	14			ASCII			CALCL_ENGTH	0		
+14	수표조회	D2A	FS	1			HEX		1C				
+15	수표조회	D2A	권종코드	2			ASCII			CALCL_ENGTH	0		
+16	수표조회	D2A	FS	1			HEX		1C				
+17	수표조회	D2A	수표금액	12	V		ASCII			CALCL_ENGTH	0		
+18	수표조회	D2A	FS	1			HEX		1C				
+19	수표조회	D2A	수표발행일자	6			ASCII			CALCL_ENGTH	0		
+20	수표조회	D2A	FS	1			HEX		1C				
+21	수표조회	D2A	수표계좌번호	6	V		ASCII			CALCL_ENGTH	0		
+22	수표조회	D2A	FS	1			HEX		1C				
+23	수표조회	D2A	주민등록번호	13	V		ASCII			CALCL_ENGTH	0		
+24	수표조회	D2A	FS	1			HEX		1C				
+25	수표조회	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+26	수표조회	D2A	FS	1			HEX		1C				
+27	수표조회	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+28	수표조회	D2A	SI	1			HEX		0F				
+29	수표조회	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+30	수표조회	D2A	SI	1			HEX		0F				
+31	수표조회	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+32	수표조회	D2A	SI	1			HEX		0F				
+33	수표조회	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+34	수표조회	D2A	SI	1			HEX		0F				
+35	수표조회	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+36	수표조회	D2A	ETX	1			HEX		03				
+37	수표조회	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+수표조회A2D
+====================================
+0	수표조회	A2D	STX	1			HEX		02				
+1	수표조회	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	수표조회	A2D	Message Type	4			ASCII		0910		0		
+3	수표조회	A2D	거래구분코드	2			ASCII		30		0		
+4	수표조회	A2D	부가정보코드	2			ASCII				0		
+5	수표조회	A2D	단말기Type	2			ASCII				0		
+6	수표조회	A2D	FS	1			HEX		1C				
+7	수표조회	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	수표조회	A2D	FS	1			HEX		1C				
+9	수표조회	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	수표조회	A2D	FS	1			HEX		1C				
+11	수표조회	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	수표조회	A2D	FS	1			HEX		1C				
+13	수표조회	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	수표조회	A2D	FS	1			HEX		1C				
+15	수표조회	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	수표조회	A2D	FS	1			HEX		1C				
+17	수표조회	A2D	정상수표응답시간	8	V		ASCII			CALCL_ENGTH	0		
+18	수표조회	A2D	FS	1			HEX		1C				
+19	수표조회	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+20	수표조회	A2D	FS	1			HEX		1C				
+21	수표조회	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+22	수표조회	A2D	FS	1			HEX		1C				
+23	수표조회	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+24	수표조회	A2D	FS	1			HEX		1C				
+25	수표조회	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+26	수표조회	A2D	ETX	1			HEX		03				
+27	수표조회	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+보너스누적D2A
+====================================
+0	보너스누적	D2A	STX	1			HEX		02				
+1	보너스누적	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스누적	D2A	Message Type	4			ASCII		0900		0		
+3	보너스누적	D2A	거래구분코드	2			ASCII		40		0		
+4	보너스누적	D2A	부가정보코드	2			ASCII				0		
+5	보너스누적	D2A	단말기Type	2			ASCII				0		
+6	보너스누적	D2A	FS	1			HEX		1C				
+7	보너스누적	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스누적	D2A	FS	1			HEX		1C				
+9	보너스누적	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스누적	D2A	FS	1			HEX		1C				
+11	보너스누적	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	보너스누적	D2A	FS	1			HEX		1C				
+13	보너스누적	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	보너스누적	D2A	FS	1			HEX		1C				
+15	보너스누적	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	보너스누적	D2A	FS	1			HEX		1C				
+17	보너스누적	D2A	사용구분	2			ASCII			CALCL_ENGTH	0		
+18	보너스누적	D2A	FS	1			HEX		1C				
+19	보너스누적	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	보너스누적	D2A	FS	1			HEX		1C				
+21	보너스누적	D2A	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+22	보너스누적	D2A	FS	1			HEX		1C				
+23	보너스누적	D2A	제품코드	4	V		ASCII			CALCL_ENGTH	0		
+24	보너스누적	D2A	FS	1			HEX		1C				
+25	보너스누적	D2A	제품단가	8	V		ASCII			CALCL_ENGTH	0		
+26	보너스누적	D2A	FS	1			HEX		1C				
+27	보너스누적	D2A	제품수량	8	V		ASCII			CALCL_ENGTH	0		
+28	보너스누적	D2A	FS	1			HEX		1C				
+29	보너스누적	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+30	보너스누적	D2A	FS	1			HEX		1C				
+31	보너스누적	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+32	보너스누적	D2A	FS	1			HEX		1C				
+33	보너스누적	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+34	보너스누적	D2A	SI	1			HEX		0F				
+35	보너스누적	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+36	보너스누적	D2A	SI	1			HEX		0F				
+37	보너스누적	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+38	보너스누적	D2A	SI	1			HEX		0F				
+39	보너스누적	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스누적	D2A	SI	1			HEX		0F				
+41	보너스누적	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+42	보너스누적	D2A	ETX	1			HEX		03				
+43	보너스누적	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+보너스누적A2D
+====================================
+0	보너스누적	A2D	STX	1			HEX		02				
+1	보너스누적	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스누적	A2D	Message Type	4			ASCII		0910		0		
+3	보너스누적	A2D	거래구분코드	2			ASCII		40		0		
+4	보너스누적	A2D	부가정보코드	2			ASCII				0		
+5	보너스누적	A2D	단말기Type	2			ASCII				0		
+6	보너스누적	A2D	FS	1			HEX		1C				
+7	보너스누적	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스누적	A2D	FS	1			HEX		1C				
+9	보너스누적	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스누적	A2D	FS	1			HEX		1C				
+11	보너스누적	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	보너스누적	A2D	FS	1			HEX		1C				
+13	보너스누적	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	보너스누적	A2D	FS	1			HEX		1C				
+15	보너스누적	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	보너스누적	A2D	FS	1			HEX		1C				
+17	보너스누적	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	보너스누적	A2D	FS	1			HEX		1C				
+19	보너스누적	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	보너스누적	A2D	FS	1			HEX		1C				
+21	보너스누적	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+22	보너스누적	A2D	FS	1			HEX		1C				
+23	보너스누적	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+24	보너스누적	A2D	FS	1			HEX		1C				
+25	보너스누적	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	보너스누적	A2D	FS	1			HEX		1C				
+27	보너스누적	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+28	보너스누적	A2D	FS	1			HEX		1C				
+29	보너스누적	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+30	보너스누적	A2D	FS	1			HEX		1C				
+31	보너스누적	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+32	보너스누적	A2D	FS	1			HEX		1C				
+33	보너스누적	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+34	보너스누적	A2D	FS	1			HEX		1C				
+35	보너스누적	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+36	보너스누적	A2D	FS	1			HEX		1C				
+37	보너스누적	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스누적	A2D	FS	1			HEX		1C				
+39	보너스누적	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스누적	A2D	FS	1			HEX		1C				
+41	보너스누적	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+42	보너스누적	A2D	FS	1			HEX		1C				
+43	보너스누적	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+44	보너스누적	A2D	FS	1			HEX		1C				
+45	보너스누적	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+46	보너스누적	A2D	FS	1			HEX		1C				
+47	보너스누적	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+48	보너스누적	A2D	FS	1			HEX		1C				
+49	보너스누적	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+50	보너스누적	A2D	FS	1			HEX		1C				
+51	보너스누적	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+52	보너스누적	A2D	FS	1			HEX		1C				
+53	보너스누적	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+54	보너스누적	A2D	FS	1			HEX		1C				
+55	보너스누적	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+56	보너스누적	A2D	FS	1			HEX		1C				
+57	보너스누적	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+58	보너스누적	A2D	FS	1			HEX		1C				
+59	보너스누적	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+60	보너스누적	A2D	FS	1			HEX		1C				
+61	보너스누적	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+62	보너스누적	A2D	FS	1			HEX		1C				
+63	보너스누적	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+64	보너스누적	A2D	ETX	1			HEX		03				
+65	보너스누적	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+보너스누적취소D2A
+====================================
+0	보너스누적취소	D2A	STX	1			HEX		02				
+1	보너스누적취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스누적취소	D2A	Message Type	4			ASCII		0900		0		
+3	보너스누적취소	D2A	거래구분코드	2			ASCII		41		0		
+4	보너스누적취소	D2A	부가정보코드	2			ASCII				0		
+5	보너스누적취소	D2A	단말기Type	2			ASCII				0		
+6	보너스누적취소	D2A	FS	1			HEX		1C				
+7	보너스누적취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스누적취소	D2A	FS	1			HEX		1C				
+9	보너스누적취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스누적취소	D2A	FS	1			HEX		1C				
+11	보너스누적취소	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	보너스누적취소	D2A	FS	1			HEX		1C				
+13	보너스누적취소	D2A	원거래고유번호	12			ASCII			CALCL_ENGTH	0		
+14	보너스누적취소	D2A	FS	1			HEX		1C				
+15	보너스누적취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+16	보너스누적취소	D2A	FS	1			HEX		1C				
+17	보너스누적취소	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	보너스누적취소	D2A	FS	1			HEX		1C				
+19	보너스누적취소	D2A	사용구분	2			ASCII			CALCL_ENGTH	0		
+20	보너스누적취소	D2A	FS	1			HEX		1C				
+21	보너스누적취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+22	보너스누적취소	D2A	FS	1			HEX		1C				
+23	보너스누적취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+24	보너스누적취소	D2A	FS	1			HEX		1C				
+25	보너스누적취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	보너스누적취소	D2A	FS	1			HEX		1C				
+27	보너스누적취소	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+28	보너스누적취소	D2A	FS	1			HEX		1C				
+29	보너스누적취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+30	보너스누적취소	D2A	FS	1			HEX		1C				
+31	보너스누적취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+32	보너스누적취소	D2A	SI	1			HEX		0F				
+33	보너스누적취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+34	보너스누적취소	D2A	SI	1			HEX		0F				
+35	보너스누적취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+36	보너스누적취소	D2A	SI	1			HEX		0F				
+37	보너스누적취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스누적취소	D2A	SI	1			HEX		0F				
+39	보너스누적취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스누적취소	D2A	ETX	1			HEX		03				
+41	보너스누적취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+보너스누적취소A2D
+====================================
+0	보너스누적취소	A2D	STX	1			HEX		02				
+1	보너스누적취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스누적취소	A2D	Message Type	4			ASCII		0910		0		
+3	보너스누적취소	A2D	거래구분코드	2			ASCII		41		0		
+4	보너스누적취소	A2D	부가정보코드	2			ASCII				0		
+5	보너스누적취소	A2D	단말기Type	2			ASCII				0		
+6	보너스누적취소	A2D	FS	1			HEX		1C				
+7	보너스누적취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스누적취소	A2D	FS	1			HEX		1C				
+9	보너스누적취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스누적취소	A2D	FS	1			HEX		1C				
+11	보너스누적취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	보너스누적취소	A2D	FS	1			HEX		1C				
+13	보너스누적취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	보너스누적취소	A2D	FS	1			HEX		1C				
+15	보너스누적취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	보너스누적취소	A2D	FS	1			HEX		1C				
+17	보너스누적취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	보너스누적취소	A2D	FS	1			HEX		1C				
+19	보너스누적취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	보너스누적취소	A2D	FS	1			HEX		1C				
+21	보너스누적취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+22	보너스누적취소	A2D	FS	1			HEX		1C				
+23	보너스누적취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+24	보너스누적취소	A2D	FS	1			HEX		1C				
+25	보너스누적취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	보너스누적취소	A2D	FS	1			HEX		1C				
+27	보너스누적취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+28	보너스누적취소	A2D	FS	1			HEX		1C				
+29	보너스누적취소	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+30	보너스누적취소	A2D	FS	1			HEX		1C				
+31	보너스누적취소	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+32	보너스누적취소	A2D	FS	1			HEX		1C				
+33	보너스누적취소	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+34	보너스누적취소	A2D	FS	1			HEX		1C				
+35	보너스누적취소	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+36	보너스누적취소	A2D	FS	1			HEX		1C				
+37	보너스누적취소	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스누적취소	A2D	FS	1			HEX		1C				
+39	보너스누적취소	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스누적취소	A2D	FS	1			HEX		1C				
+41	보너스누적취소	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+42	보너스누적취소	A2D	FS	1			HEX		1C				
+43	보너스누적취소	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+44	보너스누적취소	A2D	FS	1			HEX		1C				
+45	보너스누적취소	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+46	보너스누적취소	A2D	FS	1			HEX		1C				
+47	보너스누적취소	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+48	보너스누적취소	A2D	FS	1			HEX		1C				
+49	보너스누적취소	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+50	보너스누적취소	A2D	FS	1			HEX		1C				
+51	보너스누적취소	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+52	보너스누적취소	A2D	FS	1			HEX		1C				
+53	보너스누적취소	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+54	보너스누적취소	A2D	FS	1			HEX		1C				
+55	보너스누적취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+56	보너스누적취소	A2D	FS	1			HEX		1C				
+57	보너스누적취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+58	보너스누적취소	A2D	FS	1			HEX		1C				
+59	보너스누적취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+60	보너스누적취소	A2D	FS	1			HEX		1C				
+61	보너스누적취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+62	보너스누적취소	A2D	FS	1			HEX		1C				
+63	보너스누적취소	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+64	보너스누적취소	A2D	ETX	1			HEX		03				
+65	보너스누적취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+보너스이용D2A
+====================================
+0	보너스이용	D2A	STX	1			HEX		02				
+1	보너스이용	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스이용	D2A	Message Type	4			ASCII		0900		0		
+3	보너스이용	D2A	거래구분코드	2			ASCII		42		0		
+4	보너스이용	D2A	부가정보코드	2			ASCII				0		
+5	보너스이용	D2A	단말기Type	2			ASCII				0		
+6	보너스이용	D2A	FS	1			HEX		1C				
+7	보너스이용	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스이용	D2A	FS	1			HEX		1C				
+9	보너스이용	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스이용	D2A	FS	1			HEX		1C				
+11	보너스이용	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	보너스이용	D2A	FS	1			HEX		1C				
+13	보너스이용	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	보너스이용	D2A	FS	1			HEX		1C				
+15	보너스이용	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	보너스이용	D2A	FS	1			HEX		1C				
+17	보너스이용	D2A	보너스이용점수	12	V		ASCII			CALCL_ENGTH	0		
+18	보너스이용	D2A	FS	1			HEX		1C				
+19	보너스이용	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+20	보너스이용	D2A	FS	1			HEX		1C				
+21	보너스이용	D2A	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+22	보너스이용	D2A	FS	1			HEX		1C				
+23	보너스이용	D2A	제품코드	4	V		ASCII			CALCL_ENGTH	0		
+24	보너스이용	D2A	FS	1			HEX		1C				
+25	보너스이용	D2A	제품단가	8	V		ASCII			CALCL_ENGTH	0		
+26	보너스이용	D2A	FS	1			HEX		1C				
+27	보너스이용	D2A	제품수량	8	V		ASCII			CALCL_ENGTH	0		
+28	보너스이용	D2A	FS	1			HEX		1C				
+29	보너스이용	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+30	보너스이용	D2A	FS	1			HEX		1C				
+31	보너스이용	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+32	보너스이용	D2A	FS	1			HEX		1C				
+33	보너스이용	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+34	보너스이용	D2A	SI	1			HEX		0F				
+35	보너스이용	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+36	보너스이용	D2A	SI	1			HEX		0F				
+37	보너스이용	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+38	보너스이용	D2A	SI	1			HEX		0F				
+39	보너스이용	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스이용	D2A	SI	1			HEX		0F				
+41	보너스이용	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+42	보너스이용	D2A	ETX	1			HEX		03				
+43	보너스이용	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+보너스이용A2D
+====================================
+0	보너스이용	A2D	STX	1			HEX		02				
+1	보너스이용	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스이용	A2D	Message Type	4			ASCII		0910		0		
+3	보너스이용	A2D	거래구분코드	2			ASCII		42		0		
+4	보너스이용	A2D	부가정보코드	2			ASCII				0		
+5	보너스이용	A2D	단말기Type	2			ASCII				0		
+6	보너스이용	A2D	FS	1			HEX		1C				
+7	보너스이용	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스이용	A2D	FS	1			HEX		1C				
+9	보너스이용	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스이용	A2D	FS	1			HEX		1C				
+11	보너스이용	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	보너스이용	A2D	FS	1			HEX		1C				
+13	보너스이용	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	보너스이용	A2D	FS	1			HEX		1C				
+15	보너스이용	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	보너스이용	A2D	FS	1			HEX		1C				
+17	보너스이용	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	보너스이용	A2D	FS	1			HEX		1C				
+19	보너스이용	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	보너스이용	A2D	FS	1			HEX		1C				
+21	보너스이용	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	보너스이용	A2D	FS	1			HEX		1C				
+23	보너스이용	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	보너스이용	A2D	FS	1			HEX		1C				
+25	보너스이용	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	보너스이용	A2D	FS	1			HEX		1C				
+27	보너스이용	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	보너스이용	A2D	FS	1			HEX		1C				
+29	보너스이용	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+30	보너스이용	A2D	FS	1			HEX		1C				
+31	보너스이용	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+32	보너스이용	A2D	FS	1			HEX		1C				
+33	보너스이용	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+34	보너스이용	A2D	FS	1			HEX		1C				
+35	보너스이용	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+36	보너스이용	A2D	FS	1			HEX		1C				
+37	보너스이용	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스이용	A2D	FS	1			HEX		1C				
+39	보너스이용	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스이용	A2D	FS	1			HEX		1C				
+41	보너스이용	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+42	보너스이용	A2D	FS	1			HEX		1C				
+43	보너스이용	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+44	보너스이용	A2D	FS	1			HEX		1C				
+45	보너스이용	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+46	보너스이용	A2D	FS	1			HEX		1C				
+47	보너스이용	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+48	보너스이용	A2D	FS	1			HEX		1C				
+49	보너스이용	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+50	보너스이용	A2D	FS	1			HEX		1C				
+51	보너스이용	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+52	보너스이용	A2D	FS	1			HEX		1C				
+53	보너스이용	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+54	보너스이용	A2D	FS	1			HEX		1C				
+55	보너스이용	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+56	보너스이용	A2D	FS	1			HEX		1C				
+57	보너스이용	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+58	보너스이용	A2D	FS	1			HEX		1C				
+59	보너스이용	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+60	보너스이용	A2D	FS	1			HEX		1C				
+61	보너스이용	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+62	보너스이용	A2D	ETX	1			HEX		03				
+63	보너스이용	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+보너스이용취소D2A
+====================================
+0	보너스이용취소	D2A	STX	1			HEX		02				
+1	보너스이용취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스이용취소	D2A	Message Type	4			ASCII		0900		0		
+3	보너스이용취소	D2A	거래구분코드	2			ASCII		43		0		
+4	보너스이용취소	D2A	부가정보코드	2			ASCII				0		
+5	보너스이용취소	D2A	단말기Type	2			ASCII				0		
+6	보너스이용취소	D2A	FS	1			HEX		1C				
+7	보너스이용취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스이용취소	D2A	FS	1			HEX		1C				
+9	보너스이용취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스이용취소	D2A	FS	1			HEX		1C				
+11	보너스이용취소	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	보너스이용취소	D2A	FS	1			HEX		1C				
+13	보너스이용취소	D2A	원거래고유번호	12			ASCII			CALCL_ENGTH	0		
+14	보너스이용취소	D2A	FS	1			HEX		1C				
+15	보너스이용취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+16	보너스이용취소	D2A	FS	1			HEX		1C				
+17	보너스이용취소	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	보너스이용취소	D2A	FS	1			HEX		1C				
+19	보너스이용취소	D2A	보너스취소점수	12	V		ASCII			CALCL_ENGTH	0		
+20	보너스이용취소	D2A	FS	1			HEX		1C				
+21	보너스이용취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+22	보너스이용취소	D2A	FS	1			HEX		1C				
+23	보너스이용취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	보너스이용취소	D2A	FS	1			HEX		1C				
+25	보너스이용취소	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+26	보너스이용취소	D2A	FS	1			HEX		1C				
+27	보너스이용취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+28	보너스이용취소	D2A	FS	1			HEX		1C				
+29	보너스이용취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+30	보너스이용취소	D2A	SI	1			HEX		0F				
+31	보너스이용취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+32	보너스이용취소	D2A	SI	1			HEX		0F				
+33	보너스이용취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+34	보너스이용취소	D2A	SI	1			HEX		0F				
+35	보너스이용취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+36	보너스이용취소	D2A	SI	1			HEX		0F				
+37	보너스이용취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스이용취소	D2A	ETX	1			HEX		03				
+39	보너스이용취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+보너스이용취소A2D
+====================================
+0	보너스이용취소	A2D	STX	1			HEX		02				
+1	보너스이용취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스이용취소	A2D	Message Type	4			ASCII		0910		0		
+3	보너스이용취소	A2D	거래구분코드	2			ASCII		43		0		
+4	보너스이용취소	A2D	부가정보코드	2			ASCII				0		
+5	보너스이용취소	A2D	단말기Type	2			ASCII				0		
+6	보너스이용취소	A2D	FS	1			HEX		1C				
+7	보너스이용취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스이용취소	A2D	FS	1			HEX		1C				
+9	보너스이용취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스이용취소	A2D	FS	1			HEX		1C				
+11	보너스이용취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	보너스이용취소	A2D	FS	1			HEX		1C				
+13	보너스이용취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	보너스이용취소	A2D	FS	1			HEX		1C				
+15	보너스이용취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	보너스이용취소	A2D	FS	1			HEX		1C				
+17	보너스이용취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	보너스이용취소	A2D	FS	1			HEX		1C				
+19	보너스이용취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	보너스이용취소	A2D	FS	1			HEX		1C				
+21	보너스이용취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+22	보너스이용취소	A2D	FS	1			HEX		1C				
+23	보너스이용취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+24	보너스이용취소	A2D	FS	1			HEX		1C				
+25	보너스이용취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	보너스이용취소	A2D	FS	1			HEX		1C				
+27	보너스이용취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+28	보너스이용취소	A2D	FS	1			HEX		1C				
+29	보너스이용취소	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+30	보너스이용취소	A2D	FS	1			HEX		1C				
+31	보너스이용취소	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+32	보너스이용취소	A2D	FS	1			HEX		1C				
+33	보너스이용취소	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+34	보너스이용취소	A2D	FS	1			HEX		1C				
+35	보너스이용취소	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+36	보너스이용취소	A2D	FS	1			HEX		1C				
+37	보너스이용취소	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스이용취소	A2D	FS	1			HEX		1C				
+39	보너스이용취소	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+40	보너스이용취소	A2D	FS	1			HEX		1C				
+41	보너스이용취소	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+42	보너스이용취소	A2D	FS	1			HEX		1C				
+43	보너스이용취소	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+44	보너스이용취소	A2D	FS	1			HEX		1C				
+45	보너스이용취소	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+46	보너스이용취소	A2D	FS	1			HEX		1C				
+47	보너스이용취소	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+48	보너스이용취소	A2D	FS	1			HEX		1C				
+49	보너스이용취소	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+50	보너스이용취소	A2D	FS	1			HEX		1C				
+51	보너스이용취소	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+52	보너스이용취소	A2D	FS	1			HEX		1C				
+53	보너스이용취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+54	보너스이용취소	A2D	FS	1			HEX		1C				
+55	보너스이용취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+56	보너스이용취소	A2D	FS	1			HEX		1C				
+57	보너스이용취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+58	보너스이용취소	A2D	FS	1			HEX		1C				
+59	보너스이용취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+60	보너스이용취소	A2D	ETX	1			HEX		03				
+61	보너스이용취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+보너스조회D2A
+====================================
+0	보너스조회	D2A	STX	1			HEX		02				
+1	보너스조회	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스조회	D2A	Message Type	4			ASCII		0900		0		
+3	보너스조회	D2A	거래구분코드	2			ASCII		44		0		
+4	보너스조회	D2A	부가정보코드	2			ASCII				0		
+5	보너스조회	D2A	단말기Type	2			ASCII				0		
+6	보너스조회	D2A	FS	1			HEX		1C				
+7	보너스조회	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스조회	D2A	FS	1			HEX		1C				
+9	보너스조회	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스조회	D2A	FS	1			HEX		1C				
+11	보너스조회	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	보너스조회	D2A	FS	1			HEX		1C				
+13	보너스조회	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	보너스조회	D2A	FS	1			HEX		1C				
+15	보너스조회	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	보너스조회	D2A	FS	1			HEX		1C				
+17	보너스조회	D2A	비밀번호O	16	V		ASCII			CALCL_ENGTH	0		
+18	보너스조회	D2A	FS	1			HEX		1C				
+19	보너스조회	D2A	주유소코드0	10	V		ASCII			CALCL_ENGTH	0		
+20	보너스조회	D2A	FS	1			HEX		1C				
+21	보너스조회	D2A	출력효과가능코드	1	V		ASCII			CALCL_ENGTH	0		
+22	보너스조회	D2A	FS	1			HEX		1C				
+23	보너스조회	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+24	보너스조회	D2A	FS	1			HEX		1C				
+25	보너스조회	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+26	보너스조회	D2A	SI	1			HEX		0F				
+27	보너스조회	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+28	보너스조회	D2A	SI	1			HEX		0F				
+29	보너스조회	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+30	보너스조회	D2A	SI	1			HEX		0F				
+31	보너스조회	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+32	보너스조회	D2A	SI	1			HEX		0F				
+33	보너스조회	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+34	보너스조회	D2A	ETX	1			HEX		03				
+35	보너스조회	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+보너스조회A2D
+====================================
+0	보너스조회	A2D	STX	1			HEX		02				
+1	보너스조회	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스조회	A2D	Message Type	4			ASCII		0910		0		
+3	보너스조회	A2D	거래구분코드	2			ASCII		44		0		
+4	보너스조회	A2D	부가정보코드	2			ASCII				0		
+5	보너스조회	A2D	단말기Type	2			ASCII				0		
+6	보너스조회	A2D	FS	1			HEX		1C				
+7	보너스조회	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스조회	A2D	FS	1			HEX		1C				
+9	보너스조회	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스조회	A2D	FS	1			HEX		1C				
+11	보너스조회	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	보너스조회	A2D	FS	1			HEX		1C				
+13	보너스조회	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	보너스조회	A2D	FS	1			HEX		1C				
+15	보너스조회	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	보너스조회	A2D	FS	1			HEX		1C				
+17	보너스조회	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	보너스조회	A2D	FS	1			HEX		1C				
+19	보너스조회	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+20	보너스조회	A2D	FS	1			HEX		1C				
+21	보너스조회	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+22	보너스조회	A2D	FS	1			HEX		1C				
+23	보너스조회	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+24	보너스조회	A2D	FS	1			HEX		1C				
+25	보너스조회	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+26	보너스조회	A2D	FS	1			HEX		1C				
+27	보너스조회	A2D	일반포인트	12	V		ASCII			CALCL_ENGTH	0		
+28	보너스조회	A2D	FS	1			HEX		1C				
+29	보너스조회	A2D	특별포인트	12	V		ASCII			CALCL_ENGTH	0		
+30	보너스조회	A2D	FS	1			HEX		1C				
+31	보너스조회	A2D	제휴포인트	12	V		ASCII			CALCL_ENGTH	0		
+32	보너스조회	A2D	FS	1			HEX		1C				
+33	보너스조회	A2D	총사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+34	보너스조회	A2D	FS	1			HEX		1C				
+35	보너스조회	A2D	총이관수신누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+36	보너스조회	A2D	FS	1			HEX		1C				
+37	보너스조회	A2D	총이관사용누적포인트	12	V		ASCII			CALCL_ENGTH	0		
+38	보너스조회	A2D	FS	1			HEX		1C				
+39	보너스조회	A2D	고객명	16	V		ASCII			CALCL_ENGTH	0		
+40	보너스조회	A2D	FS	1			HEX		1C				
+41	보너스조회	A2D	등록여부	1	V		ASCII			CALCL_ENGTH	0		
+42	보너스조회	A2D	FS	1			HEX		1C				
+43	보너스조회	A2D	GSC부가정보	60	V		ASCII			CALCL_ENGTH	0		
+44	보너스조회	A2D	FS	1			HEX		1C				
+45	보너스조회	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+46	보너스조회	A2D	FS	1			HEX		1C				
+47	보너스조회	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+48	보너스조회	A2D	FS	1			HEX		1C				
+49	보너스조회	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+50	보너스조회	A2D	FS	1			HEX		1C				
+51	보너스조회	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+52	보너스조회	A2D	FS	1			HEX		1C				
+53	보너스조회	A2D	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+54	보너스조회	A2D	ETX	1			HEX		03				
+55	보너스조회	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+보너스클럽회원등록D2A
+====================================
+0	보너스클럽회원등록	D2A	STX	1			HEX		02				
+1	보너스클럽회원등록	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스클럽회원등록	D2A	Message Type	4			ASCII		0900		0		
+3	보너스클럽회원등록	D2A	거래구분코드	2			ASCII		49		0		
+4	보너스클럽회원등록	D2A	부가정보코드	2			ASCII				0		
+5	보너스클럽회원등록	D2A	단말기Type	2			ASCII				0		
+6	보너스클럽회원등록	D2A	FS	1			HEX		1C				
+7	보너스클럽회원등록	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스클럽회원등록	D2A	FS	1			HEX		1C				
+9	보너스클럽회원등록	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스클럽회원등록	D2A	FS	1			HEX		1C				
+11	보너스클럽회원등록	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	보너스클럽회원등록	D2A	FS	1			HEX		1C				
+13	보너스클럽회원등록	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	보너스클럽회원등록	D2A	FS	1			HEX		1C				
+15	보너스클럽회원등록	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+16	보너스클럽회원등록	D2A	FS	1			HEX		1C				
+17	보너스클럽회원등록	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+18	보너스클럽회원등록	D2A	SI	1			HEX		0F				
+19	보너스클럽회원등록	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+20	보너스클럽회원등록	D2A	SI	1			HEX		0F				
+21	보너스클럽회원등록	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+22	보너스클럽회원등록	D2A	SI	1			HEX		0F				
+23	보너스클럽회원등록	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	보너스클럽회원등록	D2A	SI	1			HEX		0F				
+25	보너스클럽회원등록	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	보너스클럽회원등록	D2A	ETX	1			HEX		03				
+27	보너스클럽회원등록	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+보너스클럽회원등록A2D
+====================================
+0	보너스클럽회원등록	A2D	STX	1			HEX		02				
+1	보너스클럽회원등록	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	보너스클럽회원등록	A2D	Message Type	4			ASCII		0910		0		
+3	보너스클럽회원등록	A2D	거래구분코드	2			ASCII		49		0		
+4	보너스클럽회원등록	A2D	부가정보코드	2			ASCII				0		
+5	보너스클럽회원등록	A2D	단말기Type	2			ASCII				0		
+6	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+7	보너스클럽회원등록	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+9	보너스클럽회원등록	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+11	보너스클럽회원등록	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+13	보너스클럽회원등록	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+15	보너스클럽회원등록	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+17	보너스클럽회원등록	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+19	보너스클럽회원등록	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+20	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+21	보너스클럽회원등록	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+22	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+23	보너스클럽회원등록	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+24	보너스클럽회원등록	A2D	FS	1			HEX		1C				
+25	보너스클럽회원등록	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+26	보너스클럽회원등록	A2D	ETX	1			HEX		03				
+27	보너스클럽회원등록	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인D2A
+====================================
+0	현금영수증승인	D2A	STX	1			HEX		02				
+1	현금영수증승인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인	D2A	Message Type	4			ASCII		0900		0		
+3	현금영수증승인	D2A	거래구분코드	2			ASCII		01		0		
+4	현금영수증승인	D2A	부가정보코드	2			ASCII				0		
+5	현금영수증승인	D2A	단말기Type	2			ASCII				0		
+6	현금영수증승인	D2A	FS	1			HEX		1C				
+7	현금영수증승인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인	D2A	FS	1			HEX		1C				
+9	현금영수증승인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인	D2A	FS	1			HEX		1C				
+11	현금영수증승인	D2A	거래자구분	1			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인	D2A	FS	1			HEX		1C				
+13	현금영수증승인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	현금영수증승인	D2A	FS	1			HEX		1C				
+15	현금영수증승인	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	현금영수증승인	D2A	FS	1			HEX		1C				
+17	현금영수증승인	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인	D2A	FS	1			HEX		1C				
+19	현금영수증승인	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	현금영수증승인	D2A	FS	1			HEX		1C				
+21	현금영수증승인	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	현금영수증승인	D2A	FS	1			HEX		1C				
+23	현금영수증승인	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+24	현금영수증승인	D2A	FS	1			HEX		1C				
+25	현금영수증승인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+26	현금영수증승인	D2A	FS	1			HEX		1C				
+27	현금영수증승인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+28	현금영수증승인	D2A	SI	1			HEX		0F				
+29	현금영수증승인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인	D2A	SI	1			HEX		0F				
+31	현금영수증승인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+32	현금영수증승인	D2A	SI	1			HEX		0F				
+33	현금영수증승인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+34	현금영수증승인	D2A	SI	1			HEX		0F				
+35	현금영수증승인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+36	현금영수증승인	D2A	ETX	1			HEX		03				
+37	현금영수증승인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인A2D
+====================================
+0	현금영수증승인	A2D	STX	1			HEX		02				
+1	현금영수증승인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인	A2D	Message Type	4			ASCII		0910		0		
+3	현금영수증승인	A2D	거래구분코드	2			ASCII		01		0		
+4	현금영수증승인	A2D	부가정보코드	2			ASCII				0		
+5	현금영수증승인	A2D	단말기Type	2			ASCII				0		
+6	현금영수증승인	A2D	FS	1			HEX		1C				
+7	현금영수증승인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인	A2D	FS	1			HEX		1C				
+9	현금영수증승인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인	A2D	FS	1			HEX		1C				
+11	현금영수증승인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인	A2D	FS	1			HEX		1C				
+13	현금영수증승인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금영수증승인	A2D	FS	1			HEX		1C				
+15	현금영수증승인	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	현금영수증승인	A2D	FS	1			HEX		1C				
+17	현금영수증승인	A2D	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인	A2D	FS	1			HEX		1C				
+19	현금영수증승인	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	현금영수증승인	A2D	FS	1			HEX		1C				
+21	현금영수증승인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+22	현금영수증승인	A2D	FS	1			HEX		1C				
+23	현금영수증승인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	현금영수증승인	A2D	FS	1			HEX		1C				
+25	현금영수증승인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+26	현금영수증승인	A2D	FS	1			HEX		1C				
+27	현금영수증승인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+28	현금영수증승인	A2D	FS	1			HEX		1C				
+29	현금영수증승인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인	A2D	FS	1			HEX		1C				
+31	현금영수증승인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+32	현금영수증승인	A2D	ETX	1			HEX		03				
+33	현금영수증승인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인취소D2A
+====================================
+0	현금영수증승인취소	D2A	STX	1			HEX		02				
+1	현금영수증승인취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인취소	D2A	Message Type	4			ASCII		0900		0		
+3	현금영수증승인취소	D2A	거래구분코드	2			ASCII		02		0		
+4	현금영수증승인취소	D2A	부가정보코드	2			ASCII				0		
+5	현금영수증승인취소	D2A	단말기Type	2			ASCII				0		
+6	현금영수증승인취소	D2A	FS	1			HEX		1C				
+7	현금영수증승인취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인취소	D2A	FS	1			HEX		1C				
+9	현금영수증승인취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인취소	D2A	FS	1			HEX		1C				
+11	현금영수증승인취소	D2A	거래자구분	1			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인취소	D2A	FS	1			HEX		1C				
+13	현금영수증승인취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	현금영수증승인취소	D2A	FS	1			HEX		1C				
+15	현금영수증승인취소	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	현금영수증승인취소	D2A	FS	1			HEX		1C				
+17	현금영수증승인취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인취소	D2A	FS	1			HEX		1C				
+19	현금영수증승인취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	현금영수증승인취소	D2A	FS	1			HEX		1C				
+21	현금영수증승인취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	현금영수증승인취소	D2A	FS	1			HEX		1C				
+23	현금영수증승인취소	D2A	원거래일자0	6			ASCII			CALCL_ENGTH	0		
+24	현금영수증승인취소	D2A	FS	1			HEX		1C				
+25	현금영수증승인취소	D2A	원승인번호0	12	V		ASCII			CALCL_ENGTH	0		
+26	현금영수증승인취소	D2A	FS	1			HEX		1C				
+27	현금영수증승인취소	D2A	취소사유	1			ASCII			CALCL_ENGTH	0		
+28	현금영수증승인취소	D2A	FS	1			HEX		1C				
+29	현금영수증승인취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인취소	D2A	FS	1			HEX		1C				
+31	현금영수증승인취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+32	현금영수증승인취소	D2A	FS	1			HEX		1C				
+33	현금영수증승인취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+34	현금영수증승인취소	D2A	SI	1			HEX		0F				
+35	현금영수증승인취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+36	현금영수증승인취소	D2A	SI	1			HEX		0F				
+37	현금영수증승인취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+38	현금영수증승인취소	D2A	SI	1			HEX		0F				
+39	현금영수증승인취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	현금영수증승인취소	D2A	SI	1			HEX		0F				
+41	현금영수증승인취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+42	현금영수증승인취소	D2A	ETX	1			HEX		03				
+43	현금영수증승인취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인취소A2D
+====================================
+0	현금영수증승인취소	A2D	STX	1			HEX		02				
+1	현금영수증승인취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인취소	A2D	Message Type	4			ASCII		0910		0		
+3	현금영수증승인취소	A2D	거래구분코드	2			ASCII		02		0		
+4	현금영수증승인취소	A2D	부가정보코드	2			ASCII				0		
+5	현금영수증승인취소	A2D	단말기Type	2			ASCII				0		
+6	현금영수증승인취소	A2D	FS	1			HEX		1C				
+7	현금영수증승인취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인취소	A2D	FS	1			HEX		1C				
+9	현금영수증승인취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인취소	A2D	FS	1			HEX		1C				
+11	현금영수증승인취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인취소	A2D	FS	1			HEX		1C				
+13	현금영수증승인취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금영수증승인취소	A2D	FS	1			HEX		1C				
+15	현금영수증승인취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	현금영수증승인취소	A2D	FS	1			HEX		1C				
+17	현금영수증승인취소	A2D	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인취소	A2D	FS	1			HEX		1C				
+19	현금영수증승인취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	현금영수증승인취소	A2D	FS	1			HEX		1C				
+21	현금영수증승인취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	현금영수증승인취소	A2D	FS	1			HEX		1C				
+23	현금영수증승인취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+24	현금영수증승인취소	A2D	FS	1			HEX		1C				
+25	현금영수증승인취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+26	현금영수증승인취소	A2D	FS	1			HEX		1C				
+27	현금영수증승인취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+28	현금영수증승인취소	A2D	FS	1			HEX		1C				
+29	현금영수증승인취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인취소	A2D	ETX	1			HEX		03				
+31	현금영수증승인취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인/보너스누적D2A
+====================================
+0	현금영수증승인/보너스누적	D2A	STX	1			HEX		02				
+1	현금영수증승인/보너스누적	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인/보너스누적	D2A	Message Type	4			ASCII		0900		0		
+3	현금영수증승인/보너스누적	D2A	거래구분코드	2			ASCII		03		0		
+4	현금영수증승인/보너스누적	D2A	부가정보코드	2			ASCII				0		
+5	현금영수증승인/보너스누적	D2A	단말기Type	2			ASCII				0		
+6	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+7	현금영수증승인/보너스누적	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+9	현금영수증승인/보너스누적	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+11	현금영수증승인/보너스누적	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+13	현금영수증승인/보너스누적	D2A	거래자구분	1			ASCII			CALCL_ENGTH	0		
+14	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+15	현금영수증승인/보너스누적	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+16	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+17	현금영수증승인/보너스누적	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+19	현금영수증승인/보너스누적	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+21	현금영수증승인/보너스누적	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+22	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+23	현금영수증승인/보너스누적	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+24	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+25	현금영수증승인/보너스누적	D2A	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+26	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+27	현금영수증승인/보너스누적	D2A	제품코드	4	V		ASCII			CALCL_ENGTH	0		
+28	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+29	현금영수증승인/보너스누적	D2A	제품단가	8	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+31	현금영수증승인/보너스누적	D2A	제품수량	8	V		ASCII			CALCL_ENGTH	0		
+32	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+33	현금영수증승인/보너스누적	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+34	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+35	현금영수증승인/보너스누적	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+36	현금영수증승인/보너스누적	D2A	FS	1			HEX		1C				
+37	현금영수증승인/보너스누적	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+38	현금영수증승인/보너스누적	D2A	SI	1			HEX		0F				
+39	현금영수증승인/보너스누적	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+40	현금영수증승인/보너스누적	D2A	SI	1			HEX		0F				
+41	현금영수증승인/보너스누적	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+42	현금영수증승인/보너스누적	D2A	SI	1			HEX		0F				
+43	현금영수증승인/보너스누적	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+44	현금영수증승인/보너스누적	D2A	SI	1			HEX		0F				
+45	현금영수증승인/보너스누적	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+46	현금영수증승인/보너스누적	D2A	ETX	1			HEX		03				
+47	현금영수증승인/보너스누적	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인/보너스누적A2D
+====================================
+0	현금영수증승인/보너스누적	A2D	STX	1			HEX		02				
+1	현금영수증승인/보너스누적	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인/보너스누적	A2D	Message Type	4			ASCII		0910		0		
+3	현금영수증승인/보너스누적	A2D	거래구분코드	2			ASCII		03		0		
+4	현금영수증승인/보너스누적	A2D	부가정보코드	2			ASCII				0		
+5	현금영수증승인/보너스누적	A2D	단말기Type	2			ASCII				0		
+6	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+7	현금영수증승인/보너스누적	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+9	현금영수증승인/보너스누적	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+11	현금영수증승인/보너스누적	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+13	현금영수증승인/보너스누적	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+15	현금영수증승인/보너스누적	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+16	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+17	현금영수증승인/보너스누적	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+19	현금영수증승인/보너스누적	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+21	현금영수증승인/보너스누적	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+22	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+23	현금영수증승인/보너스누적	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+24	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+25	현금영수증승인/보너스누적	A2D	유효기간(보너스)	4			ASCII			CALCL_ENGTH	0		
+26	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+27	현금영수증승인/보너스누적	A2D	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+28	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+29	현금영수증승인/보너스누적	A2D	응답코드(보너스)	2			ASCII			CALCL_ENGTH	0		
+30	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+31	현금영수증승인/보너스누적	A2D	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+32	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+33	현금영수증승인/보너스누적	A2D	발급사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+34	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+35	현금영수증승인/보너스누적	A2D	매입사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+36	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+37	현금영수증승인/보너스누적	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+38	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+39	현금영수증승인/보너스누적	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+40	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+41	현금영수증승인/보너스누적	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+42	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+43	현금영수증승인/보너스누적	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+44	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+45	현금영수증승인/보너스누적	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+46	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+47	현금영수증승인/보너스누적	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+48	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+49	현금영수증승인/보너스누적	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+50	현금영수증승인/보너스누적	A2D	FS	1			HEX		1C				
+51	현금영수증승인/보너스누적	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+52	현금영수증승인/보너스누적	A2D	ETX	1			HEX		03				
+53	현금영수증승인/보너스누적	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인취소/보너스누적취소D2A
+====================================
+0	현금영수증승인취소/보너스누적취소	D2A	STX	1			HEX		02				
+1	현금영수증승인취소/보너스누적취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인취소/보너스누적취소	D2A	Message Type	4			ASCII		0900		0		
+3	현금영수증승인취소/보너스누적취소	D2A	거래구분코드	2			ASCII		04		0		
+4	현금영수증승인취소/보너스누적취소	D2A	부가정보코드	2			ASCII				0		
+5	현금영수증승인취소/보너스누적취소	D2A	단말기Type	2			ASCII				0		
+6	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+7	현금영수증승인취소/보너스누적취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+9	현금영수증승인취소/보너스누적취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+11	현금영수증승인취소/보너스누적취소	D2A	보너스구분	1			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+13	현금영수증승인취소/보너스누적취소	D2A	거래자구분	1			ASCII			CALCL_ENGTH	0		
+14	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+15	현금영수증승인취소/보너스누적취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+16	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+17	현금영수증승인취소/보너스누적취소	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+19	현금영수증승인취소/보너스누적취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+21	현금영수증승인취소/보너스누적취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+22	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+23	현금영수증승인취소/보너스누적취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+24	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+25	현금영수증승인취소/보너스누적취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+26	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+27	현금영수증승인취소/보너스누적취소	D2A	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+28	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+29	현금영수증승인취소/보너스누적취소	D2A	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+31	현금영수증승인취소/보너스누적취소	D2A	제품코드	4	V		ASCII			CALCL_ENGTH	0		
+32	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+33	현금영수증승인취소/보너스누적취소	D2A	제품단가	8	V		ASCII			CALCL_ENGTH	0		
+34	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+35	현금영수증승인취소/보너스누적취소	D2A	제품수량	8	V		ASCII			CALCL_ENGTH	0		
+36	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+37	현금영수증승인취소/보너스누적취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+38	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+39	현금영수증승인취소/보너스누적취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+40	현금영수증승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+41	현금영수증승인취소/보너스누적취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+42	현금영수증승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+43	현금영수증승인취소/보너스누적취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+44	현금영수증승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+45	현금영수증승인취소/보너스누적취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+46	현금영수증승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+47	현금영수증승인취소/보너스누적취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+48	현금영수증승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+49	현금영수증승인취소/보너스누적취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+50	현금영수증승인취소/보너스누적취소	D2A	ETX	1			HEX		03				
+51	현금영수증승인취소/보너스누적취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금영수증승인취소/보너스누적취소A2D
+====================================
+0	현금영수증승인취소/보너스누적취소	A2D	STX	1			HEX		02				
+1	현금영수증승인취소/보너스누적취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금영수증승인취소/보너스누적취소	A2D	Message Type	4			ASCII		0910		0		
+3	현금영수증승인취소/보너스누적취소	A2D	거래구분코드	2			ASCII		04		0		
+4	현금영수증승인취소/보너스누적취소	A2D	부가정보코드	2			ASCII				0		
+5	현금영수증승인취소/보너스누적취소	A2D	단말기Type	2			ASCII				0		
+6	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+7	현금영수증승인취소/보너스누적취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+9	현금영수증승인취소/보너스누적취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+11	현금영수증승인취소/보너스누적취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+13	현금영수증승인취소/보너스누적취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+15	현금영수증승인취소/보너스누적취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+17	현금영수증승인취소/보너스누적취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+18	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+19	현금영수증승인취소/보너스누적취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+20	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+21	현금영수증승인취소/보너스누적취소	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+22	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+23	현금영수증승인취소/보너스누적취소	A2D	유효기간(보너스)	4			ASCII			CALCL_ENGTH	0		
+24	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+25	현금영수증승인취소/보너스누적취소	A2D	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+26	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+27	현금영수증승인취소/보너스누적취소	A2D	응답코드(보너스)	2			ASCII			CALCL_ENGTH	0		
+28	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+29	현금영수증승인취소/보너스누적취소	A2D	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+30	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+31	현금영수증승인취소/보너스누적취소	A2D	발급사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+32	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+33	현금영수증승인취소/보너스누적취소	A2D	매입사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+34	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+35	현금영수증승인취소/보너스누적취소	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+36	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+37	현금영수증승인취소/보너스누적취소	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+38	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+39	현금영수증승인취소/보너스누적취소	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+40	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+41	현금영수증승인취소/보너스누적취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+42	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+43	현금영수증승인취소/보너스누적취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+44	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+45	현금영수증승인취소/보너스누적취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+46	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+47	현금영수증승인취소/보너스누적취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+48	현금영수증승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+49	현금영수증승인취소/보너스누적취소	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+50	현금영수증승인취소/보너스누적취소	A2D	ETX	1			HEX		03				
+51	현금영수증승인취소/보너스누적취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인D2A
+====================================
+0	IC승인	D2A	STX	1			HEX		02				
+1	IC승인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인	D2A	Message Type	4			ASCII		0920		0		
+3	IC승인	D2A	거래구분코드	2			ASCII		60		0		
+4	IC승인	D2A	부가정보코드	2			ASCII				0		
+5	IC승인	D2A	단말기Type	2			ASCII				0		
+6	IC승인	D2A	FS	1			HEX		1C				
+7	IC승인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인	D2A	FS	1			HEX		1C				
+9	IC승인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인	D2A	FS	1			HEX		1C				
+11	IC승인	D2A	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인	D2A	FS	1			HEX		1C				
+13	IC승인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	IC승인	D2A	FS	1			HEX		1C				
+15	IC승인	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	IC승인	D2A	FS	1			HEX		1C				
+17	IC승인	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+18	IC승인	D2A	FS	1			HEX		1C				
+19	IC승인	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	IC승인	D2A	FS	1			HEX		1C				
+21	IC승인	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+22	IC승인	D2A	FS	1			HEX		1C				
+23	IC승인	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+24	IC승인	D2A	FS	1			HEX		1C				
+25	IC승인	D2A	단말기일자	6			ASCII			CALCL_ENGTH	0		
+26	IC승인	D2A	FS	1			HEX		1C				
+27	IC승인	D2A	IC단말유형	1			ASCII			CALCL_ENGTH	0		
+28	IC승인	D2A	FS	1			HEX		1C				
+29	IC승인	D2A	PAN Sequence	2			ASCII			CALCL_ENGTH	0		
+30	IC승인	D2A	FS	1			HEX		1C				
+31	IC승인	D2A	Additional POS Info	8			ASCII			CALCL_ENGTH	0		
+32	IC승인	D2A	FS	1			HEX		1C				
+33	IC승인	D2A	Terminal Cryptogram Data	184	V		ASCII			CALCL_ENGTH	0		
+34	IC승인	D2A	FS	1			HEX		1C				
+35	IC승인	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+36	IC승인	D2A	FS	1			HEX		1C				
+37	IC승인	D2A	부가세요율	2			ASCII			CALCL_ENGTH	0		
+38	IC승인	D2A	FS	1			HEX		1C				
+39	IC승인	D2A	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+40	IC승인	D2A	FS	1			HEX		1C				
+41	IC승인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+42	IC승인	D2A	FS	1			HEX		1C				
+43	IC승인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+44	IC승인	D2A	FS	1			HEX		1C				
+45	IC승인	D2A	사인이미지정보	6			ASCII			CALCL_ENGTH	0		
+46	IC승인	D2A	FS	1			HEX		1C				
+47	IC승인	D2A	사인이미지데이터	1540			ASCII			CALCL_ENGTH	0		
+48	IC승인	D2A	FS	1			HEX		1C				
+49	IC승인	D2A	사인패드기기정보	16			ASCII			CALCL_ENGTH	0		
+50	IC승인	D2A	FS	1			HEX		1C				
+51	IC승인	D2A	해쉬코드	32			ASCII			CALCL_ENGTH	0		
+52	IC승인	D2A	SI	1			HEX		0F				
+53	IC승인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+54	IC승인	D2A	SI	1			HEX		0F				
+55	IC승인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+56	IC승인	D2A	SI	1			HEX		0F				
+57	IC승인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+58	IC승인	D2A	SI	1			HEX		0F				
+59	IC승인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+60	IC승인	D2A	ETX	1			HEX		03				
+61	IC승인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인A2D
+====================================
+0	IC승인	A2D	STX	1			HEX		02				
+1	IC승인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인	A2D	Message Type	4			ASCII		0930		0		
+3	IC승인	A2D	거래구분코드	2			ASCII		60		0		
+4	IC승인	A2D	부가정보코드	2			ASCII				0		
+5	IC승인	A2D	단말기Type	2			ASCII				0		
+6	IC승인	A2D	FS	1			HEX		1C				
+7	IC승인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인	A2D	FS	1			HEX		1C				
+9	IC승인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인	A2D	FS	1			HEX		1C				
+11	IC승인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인	A2D	FS	1			HEX		1C				
+13	IC승인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	IC승인	A2D	FS	1			HEX		1C				
+15	IC승인	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	IC승인	A2D	FS	1			HEX		1C				
+17	IC승인	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	IC승인	A2D	FS	1			HEX		1C				
+19	IC승인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	IC승인	A2D	FS	1			HEX		1C				
+21	IC승인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	IC승인	A2D	FS	1			HEX		1C				
+23	IC승인	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	IC승인	A2D	FS	1			HEX		1C				
+25	IC승인	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	IC승인	A2D	FS	1			HEX		1C				
+27	IC승인	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	IC승인	A2D	FS	1			HEX		1C				
+29	IC승인	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+30	IC승인	A2D	FS	1			HEX		1C				
+31	IC승인	A2D	IC카드응답	2			ASCII			CALCL_ENGTH	0		
+32	IC승인	A2D	FS	1			HEX		1C				
+33	IC승인	A2D	Additional Response Data	8			ASCII			CALCL_ENGTH	0		
+34	IC승인	A2D	FS	1			HEX		1C				
+35	IC승인	A2D	IAD	32	V		ASCII			CALCL_ENGTH	0		
+36	IC승인	A2D	FS	1			HEX		1C				
+37	IC승인	A2D	Issuer Script	510	V		ASCII			CALCL_ENGTH	0		
+38	IC승인	A2D	FS	1			HEX		1C				
+39	IC승인	A2D	MS전환코드	1	V		ASCII			CALCL_ENGTH	0		
+40	IC승인	A2D	FS	1			HEX		1C				
+41	IC승인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+42	IC승인	A2D	FS	1			HEX		1C				
+43	IC승인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+44	IC승인	A2D	FS	1			HEX		1C				
+45	IC승인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+46	IC승인	A2D	FS	1			HEX		1C				
+47	IC승인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+48	IC승인	A2D	FS	1			HEX		1C				
+49	IC승인	A2D	국민로열티선할인서비스적용	1			ASCII			CALCL_ENGTH	0		
+50	IC승인	A2D	FS	1			HEX		1C				
+51	IC승인	A2D	선할인적용후승인금액	12	V		ASCII			CALCL_ENGTH	0		
+52	IC승인	A2D	FS	1			HEX		1C				
+53	IC승인	A2D	선할인적용후부가세	12	V		ASCII			CALCL_ENGTH	0		
+54	IC승인	A2D	FS	1			HEX		1C				
+55	IC승인	A2D	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+56	IC승인	A2D	FS	1			HEX		1C				
+57	IC승인	A2D	DCC카드정보	10	V		ASCII			CALCL_ENGTH	0		
+58	IC승인	A2D	ETX	1			HEX		03				
+59	IC승인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인취소D2A
+====================================
+0	IC승인취소	D2A	STX	1			HEX		02				
+1	IC승인취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인취소	D2A	Message Type	4			ASCII		0920		0		
+3	IC승인취소	D2A	거래구분코드	2			ASCII		64		0		
+4	IC승인취소	D2A	부가정보코드	2			ASCII				0		
+5	IC승인취소	D2A	단말기Type	2			ASCII				0		
+6	IC승인취소	D2A	FS	1			HEX		1C				
+7	IC승인취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인취소	D2A	FS	1			HEX		1C				
+9	IC승인취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인취소	D2A	FS	1			HEX		1C				
+11	IC승인취소	D2A	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인취소	D2A	FS	1			HEX		1C				
+13	IC승인취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	IC승인취소	D2A	FS	1			HEX		1C				
+15	IC승인취소	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	IC승인취소	D2A	FS	1			HEX		1C				
+17	IC승인취소	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+18	IC승인취소	D2A	FS	1			HEX		1C				
+19	IC승인취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+20	IC승인취소	D2A	FS	1			HEX		1C				
+21	IC승인취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+22	IC승인취소	D2A	FS	1			HEX		1C				
+23	IC승인취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+24	IC승인취소	D2A	FS	1			HEX		1C				
+25	IC승인취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+26	IC승인취소	D2A	FS	1			HEX		1C				
+27	IC승인취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	IC승인취소	D2A	FS	1			HEX		1C				
+29	IC승인취소	D2A	단말기일자	6			ASCII			CALCL_ENGTH	0		
+30	IC승인취소	D2A	FS	1			HEX		1C				
+31	IC승인취소	D2A	IC단말유형	1			ASCII			CALCL_ENGTH	0		
+32	IC승인취소	D2A	FS	1			HEX		1C				
+33	IC승인취소	D2A	PEM	4			ASCII			CALCL_ENGTH	0		
+34	IC승인취소	D2A	FS	1			HEX		1C				
+35	IC승인취소	D2A	Issuer script Result	40	V		ASCII			CALCL_ENGTH	0		
+36	IC승인취소	D2A	FS	1			HEX		1C				
+37	IC승인취소	D2A	ATC	4			ASCII			CALCL_ENGTH	0		
+38	IC승인취소	D2A	FS	1			HEX		1C				
+39	IC승인취소	D2A	PAN Sequence	2			ASCII			CALCL_ENGTH	0		
+40	IC승인취소	D2A	FS	1			HEX		1C				
+41	IC승인취소	D2A	Additional POS Info	8			ASCII			CALCL_ENGTH	0		
+42	IC승인취소	D2A	FS	1			HEX		1C				
+43	IC승인취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+44	IC승인취소	D2A	FS	1			HEX		1C				
+45	IC승인취소	D2A	부가세요율	2			ASCII			CALCL_ENGTH	0		
+46	IC승인취소	D2A	FS	1			HEX		1C				
+47	IC승인취소	D2A	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+48	IC승인취소	D2A	FS	1			HEX		1C				
+49	IC승인취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+50	IC승인취소	D2A	FS	1			HEX		1C				
+51	IC승인취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+52	IC승인취소	D2A	FS	1			HEX		1C				
+53	IC승인취소	D2A	사인이미지정보	6			ASCII			CALCL_ENGTH	0		
+54	IC승인취소	D2A	FS	1			HEX		1C				
+55	IC승인취소	D2A	사인이미지데이터	1540			ASCII			CALCL_ENGTH	0		
+56	IC승인취소	D2A	FS	1			HEX		1C				
+57	IC승인취소	D2A	사인패드기기정보	16			ASCII			CALCL_ENGTH	0		
+58	IC승인취소	D2A	FS	1			HEX		1C				
+59	IC승인취소	D2A	해쉬코드	32			ASCII			CALCL_ENGTH	0		
+60	IC승인취소	D2A	SI	1			HEX		0F				
+61	IC승인취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+62	IC승인취소	D2A	SI	1			HEX		0F				
+63	IC승인취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+64	IC승인취소	D2A	SI	1			HEX		0F				
+65	IC승인취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+66	IC승인취소	D2A	SI	1			HEX		0F				
+67	IC승인취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+68	IC승인취소	D2A	ETX	1			HEX		03				
+69	IC승인취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인취소A2D
+====================================
+0	IC승인취소	A2D	STX	1			HEX		02				
+1	IC승인취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인취소	A2D	Message Type	4			ASCII		0930		0		
+3	IC승인취소	A2D	거래구분코드	2			ASCII		64		0		
+4	IC승인취소	A2D	부가정보코드	2			ASCII				0		
+5	IC승인취소	A2D	단말기Type	2			ASCII				0		
+6	IC승인취소	A2D	FS	1			HEX		1C				
+7	IC승인취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인취소	A2D	FS	1			HEX		1C				
+9	IC승인취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인취소	A2D	FS	1			HEX		1C				
+11	IC승인취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인취소	A2D	FS	1			HEX		1C				
+13	IC승인취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	IC승인취소	A2D	FS	1			HEX		1C				
+15	IC승인취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	IC승인취소	A2D	FS	1			HEX		1C				
+17	IC승인취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	IC승인취소	A2D	FS	1			HEX		1C				
+19	IC승인취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	IC승인취소	A2D	FS	1			HEX		1C				
+21	IC승인취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+22	IC승인취소	A2D	FS	1			HEX		1C				
+23	IC승인취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+24	IC승인취소	A2D	FS	1			HEX		1C				
+25	IC승인취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	IC승인취소	A2D	FS	1			HEX		1C				
+27	IC승인취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+28	IC승인취소	A2D	FS	1			HEX		1C				
+29	IC승인취소	A2D	IC카드응답	2			ASCII			CALCL_ENGTH	0		
+30	IC승인취소	A2D	FS	1			HEX		1C				
+31	IC승인취소	A2D	MS전환코드	1	V		ASCII			CALCL_ENGTH	0		
+32	IC승인취소	A2D	FS	1			HEX		1C				
+33	IC승인취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	IC승인취소	A2D	FS	1			HEX		1C				
+35	IC승인취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	IC승인취소	A2D	FS	1			HEX		1C				
+37	IC승인취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	IC승인취소	A2D	FS	1			HEX		1C				
+39	IC승인취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	IC승인취소	A2D	FS	1			HEX		1C				
+41	IC승인취소	A2D	국민로열티선할인서비스적용	1			ASCII			CALCL_ENGTH	0		
+42	IC승인취소	A2D	FS	1			HEX		1C				
+43	IC승인취소	A2D	선할인적용후승인금액	12	V		ASCII			CALCL_ENGTH	0		
+44	IC승인취소	A2D	FS	1			HEX		1C				
+45	IC승인취소	A2D	선할인적용후부가세	12	V		ASCII			CALCL_ENGTH	0		
+46	IC승인취소	A2D	FS	1			HEX		1C				
+47	IC승인취소	A2D	로열티정보	1024	V		ASCII			CALCL_ENGTH	0		
+48	IC승인취소	A2D	ETX	1			HEX		03				
+49	IC승인취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인/보너스누적D2A
+====================================
+0	IC승인/보너스누적	D2A	STX	1			HEX		02				
+1	IC승인/보너스누적	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인/보너스누적	D2A	Message Type	4			ASCII		0920		0		
+3	IC승인/보너스누적	D2A	거래구분코드	2			ASCII		61		0		
+4	IC승인/보너스누적	D2A	부가정보코드	2			ASCII				0		
+5	IC승인/보너스누적	D2A	단말기Type	2			ASCII				0		
+6	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+7	IC승인/보너스누적	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+9	IC승인/보너스누적	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+11	IC승인/보너스누적	D2A	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+13	IC승인/보너스누적	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+15	IC승인/보너스누적	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+17	IC승인/보너스누적	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+19	IC승인/보너스누적	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+20	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+21	IC승인/보너스누적	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+22	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+23	IC승인/보너스누적	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+24	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+25	IC승인/보너스누적	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+26	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+27	IC승인/보너스누적	D2A	단말기일자	6			ASCII			CALCL_ENGTH	0		
+28	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+29	IC승인/보너스누적	D2A	IC단말유형	1			ASCII			CALCL_ENGTH	0		
+30	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+31	IC승인/보너스누적	D2A	PAN Sequence	2			ASCII			CALCL_ENGTH	0		
+32	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+33	IC승인/보너스누적	D2A	Additional POS Info	8			ASCII			CALCL_ENGTH	0		
+34	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+35	IC승인/보너스누적	D2A	Terminal Cryptogram Data	184	V		ASCII			CALCL_ENGTH	0		
+36	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+37	IC승인/보너스누적	D2A	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+38	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+39	IC승인/보너스누적	D2A	제품코드	4	V		ASCII			CALCL_ENGTH	0		
+40	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+41	IC승인/보너스누적	D2A	제품단가	8	V		ASCII			CALCL_ENGTH	0		
+42	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+43	IC승인/보너스누적	D2A	제품수량	8	V		ASCII			CALCL_ENGTH	0		
+44	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+45	IC승인/보너스누적	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+46	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+47	IC승인/보너스누적	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+48	IC승인/보너스누적	D2A	FS	1			HEX		1C				
+49	IC승인/보너스누적	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+50	IC승인/보너스누적	D2A	SI	1			HEX		0F				
+51	IC승인/보너스누적	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+52	IC승인/보너스누적	D2A	SI	1			HEX		0F				
+53	IC승인/보너스누적	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+54	IC승인/보너스누적	D2A	SI	1			HEX		0F				
+55	IC승인/보너스누적	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+56	IC승인/보너스누적	D2A	SI	1			HEX		0F				
+57	IC승인/보너스누적	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+58	IC승인/보너스누적	D2A	ETX	1			HEX		03				
+59	IC승인/보너스누적	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인/보너스누적A2D
+====================================
+0	IC승인/보너스누적	A2D	STX	1			HEX		02				
+1	IC승인/보너스누적	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인/보너스누적	A2D	Message Type	4			ASCII		0930		0		
+3	IC승인/보너스누적	A2D	거래구분코드	2			ASCII		61		0		
+4	IC승인/보너스누적	A2D	부가정보코드	2			ASCII				0		
+5	IC승인/보너스누적	A2D	단말기Type	2			ASCII				0		
+6	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+7	IC승인/보너스누적	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+9	IC승인/보너스누적	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+11	IC승인/보너스누적	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+13	IC승인/보너스누적	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+15	IC승인/보너스누적	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+17	IC승인/보너스누적	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+19	IC승인/보너스누적	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+20	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+21	IC승인/보너스누적	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+23	IC승인/보너스누적	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+24	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+25	IC승인/보너스누적	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+26	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+27	IC승인/보너스누적	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+28	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+29	IC승인/보너스누적	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+30	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+31	IC승인/보너스누적	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+32	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+33	IC승인/보너스누적	A2D	유효기간(보너스)	4			ASCII			CALCL_ENGTH	0		
+34	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+35	IC승인/보너스누적	A2D	응답코드(보너스)	2			ASCII			CALCL_ENGTH	0		
+36	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+37	IC승인/보너스누적	A2D	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+38	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+39	IC승인/보너스누적	A2D	발급사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+40	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+41	IC승인/보너스누적	A2D	매입사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+42	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+43	IC승인/보너스누적	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+44	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+45	IC승인/보너스누적	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+46	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+47	IC승인/보너스누적	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+48	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+49	IC승인/보너스누적	A2D	IC카드응답	2			ASCII			CALCL_ENGTH	0		
+50	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+51	IC승인/보너스누적	A2D	Additional Response Data	8			ASCII			CALCL_ENGTH	0		
+52	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+53	IC승인/보너스누적	A2D	IAD	32	V		ASCII			CALCL_ENGTH	0		
+54	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+55	IC승인/보너스누적	A2D	Issuer Script	510	V		ASCII			CALCL_ENGTH	0		
+56	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+57	IC승인/보너스누적	A2D	MS전환코드	1	V		ASCII			CALCL_ENGTH	0		
+58	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+59	IC승인/보너스누적	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+60	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+61	IC승인/보너스누적	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+62	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+63	IC승인/보너스누적	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+64	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+65	IC승인/보너스누적	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+66	IC승인/보너스누적	A2D	FS	1			HEX		1C				
+67	IC승인/보너스누적	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+68	IC승인/보너스누적	A2D	ETX	1			HEX		03				
+69	IC승인/보너스누적	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인취소/보너스누적취소D2A
+====================================
+0	IC승인취소/보너스누적취소	D2A	STX	1			HEX		02				
+1	IC승인취소/보너스누적취소	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인취소/보너스누적취소	D2A	Message Type	4			ASCII		0920		0		
+3	IC승인취소/보너스누적취소	D2A	거래구분코드	2			ASCII		65		0		
+4	IC승인취소/보너스누적취소	D2A	부가정보코드	2			ASCII				0		
+5	IC승인취소/보너스누적취소	D2A	단말기Type	2			ASCII				0		
+6	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+7	IC승인취소/보너스누적취소	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+9	IC승인취소/보너스누적취소	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+11	IC승인취소/보너스누적취소	D2A	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+13	IC승인취소/보너스누적취소	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+14	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+15	IC승인취소/보너스누적취소	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+16	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+17	IC승인취소/보너스누적취소	D2A	보너스Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+18	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+19	IC승인취소/보너스누적취소	D2A	할부개월	2	V		ASCII			CALCL_ENGTH	0		
+20	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+21	IC승인취소/보너스누적취소	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+22	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+23	IC승인취소/보너스누적취소	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+24	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+25	IC승인취소/보너스누적취소	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+26	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+27	IC승인취소/보너스누적취소	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+28	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+29	IC승인취소/보너스누적취소	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+30	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+31	IC승인취소/보너스누적취소	D2A	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+32	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+33	IC승인취소/보너스누적취소	D2A	단말기일자	6			ASCII			CALCL_ENGTH	0		
+34	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+35	IC승인취소/보너스누적취소	D2A	IC단말유형	1			ASCII			CALCL_ENGTH	0		
+36	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+37	IC승인취소/보너스누적취소	D2A	PEM	4			ASCII			CALCL_ENGTH	0		
+38	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+39	IC승인취소/보너스누적취소	D2A	Issuer script Result	40	V		ASCII			CALCL_ENGTH	0		
+40	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+41	IC승인취소/보너스누적취소	D2A	ATC	4			ASCII			CALCL_ENGTH	0		
+42	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+43	IC승인취소/보너스누적취소	D2A	PAN Sequence	2			ASCII			CALCL_ENGTH	0		
+44	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+45	IC승인취소/보너스누적취소	D2A	Additional POS Info	8			ASCII			CALCL_ENGTH	0		
+46	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+47	IC승인취소/보너스누적취소	D2A	비밀번호	32	V		ASCII			CALCL_ENGTH	0		
+48	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+49	IC승인취소/보너스누적취소	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+50	IC승인취소/보너스누적취소	D2A	FS	1			HEX		1C				
+51	IC승인취소/보너스누적취소	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+52	IC승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+53	IC승인취소/보너스누적취소	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+54	IC승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+55	IC승인취소/보너스누적취소	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+56	IC승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+57	IC승인취소/보너스누적취소	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+58	IC승인취소/보너스누적취소	D2A	SI	1			HEX		0F				
+59	IC승인취소/보너스누적취소	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+60	IC승인취소/보너스누적취소	D2A	ETX	1			HEX		03				
+61	IC승인취소/보너스누적취소	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+IC승인취소/보너스누적취소A2D
+====================================
+0	IC승인취소/보너스누적취소	A2D	STX	1			HEX		02				
+1	IC승인취소/보너스누적취소	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	IC승인취소/보너스누적취소	A2D	Message Type	4			ASCII		0930		0		
+3	IC승인취소/보너스누적취소	A2D	거래구분코드	2			ASCII		65		0		
+4	IC승인취소/보너스누적취소	A2D	부가정보코드	2			ASCII				0		
+5	IC승인취소/보너스누적취소	A2D	단말기Type	2			ASCII				0		
+6	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+7	IC승인취소/보너스누적취소	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+9	IC승인취소/보너스누적취소	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+11	IC승인취소/보너스누적취소	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+13	IC승인취소/보너스누적취소	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+15	IC승인취소/보너스누적취소	A2D	유효기간	4			ASCII			CALCL_ENGTH	0		
+16	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+17	IC승인취소/보너스누적취소	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+18	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+19	IC승인취소/보너스누적취소	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+21	IC승인취소/보너스누적취소	A2D	발급사	20	V		ASCII			CALCL_ENGTH	0		
+22	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+23	IC승인취소/보너스누적취소	A2D	매입사	20	V		ASCII			CALCL_ENGTH	0		
+24	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+25	IC승인취소/보너스누적취소	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+27	IC승인취소/보너스누적취소	A2D	DDC코드	1			ASCII			CALCL_ENGTH	0		
+28	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+29	IC승인취소/보너스누적취소	A2D	주유소코드	10	V		ASCII			CALCL_ENGTH	0		
+30	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+31	IC승인취소/보너스누적취소	A2D	유효기간(보너스)	4			ASCII			CALCL_ENGTH	0		
+32	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+33	IC승인취소/보너스누적취소	A2D	응답코드(보너스)	2			ASCII			CALCL_ENGTH	0		
+34	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+35	IC승인취소/보너스누적취소	A2D	승인번호(보너스)	12	V		ASCII			CALCL_ENGTH	0		
+36	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+37	IC승인취소/보너스누적취소	A2D	발급사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+38	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+39	IC승인취소/보너스누적취소	A2D	매입사(보너스)	20	V		ASCII			CALCL_ENGTH	0		
+40	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+41	IC승인취소/보너스누적취소	A2D	보너스발생점수	12	V		ASCII			CALCL_ENGTH	0		
+42	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+43	IC승인취소/보너스누적취소	A2D	보너스누적점수	12	V		ASCII			CALCL_ENGTH	0		
+44	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+45	IC승인취소/보너스누적취소	A2D	보너스가용점수	12	V		ASCII			CALCL_ENGTH	0		
+46	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+47	IC승인취소/보너스누적취소	A2D	IC카드응답	2			ASCII			CALCL_ENGTH	0		
+48	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+49	IC승인취소/보너스누적취소	A2D	MS전환코드	1	V		ASCII			CALCL_ENGTH	0		
+50	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+51	IC승인취소/보너스누적취소	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+52	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+53	IC승인취소/보너스누적취소	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+54	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+55	IC승인취소/보너스누적취소	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+56	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+57	IC승인취소/보너스누적취소	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+58	IC승인취소/보너스누적취소	A2D	FS	1			HEX		1C				
+59	IC승인취소/보너스누적취소	A2D	보너스출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+60	IC승인취소/보너스누적취소	A2D	ETX	1			HEX		03				
+61	IC승인취소/보너스누적취소	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기개시거래D2A
+====================================
+0	단말기개시거래	D2A	STX	1			HEX		02				
+1	단말기개시거래	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기개시거래	D2A	Message Type	4			ASCII		0940		0		
+3	단말기개시거래	D2A	거래구분코드	2			ASCII		90		0		
+4	단말기개시거래	D2A	부가정보코드	2			ASCII				0		
+5	단말기개시거래	D2A	단말기Type	2			ASCII				0		
+6	단말기개시거래	D2A	FS	1			HEX		1C				
+7	단말기개시거래	D2A	단말기일련번호(CRNTNO)	10			ASCII			CALCL_ENGTH	0		
+8	단말기개시거래	D2A	FS	1			HEX		1C				
+9	단말기개시거래	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기개시거래	D2A	FS	1			HEX		1C				
+11	단말기개시거래	D2A	단말기버전	15	V		ASCII			CALCL_ENGTH	0		
+12	단말기개시거래	D2A	FS	1			HEX		1C				
+13	단말기개시거래	D2A	지역번호	4	V		ASCII			CALCL_ENGTH	0		
+14	단말기개시거래	D2A	FS	1			HEX		1C				
+15	단말기개시거래	D2A	사업자번호	10			ASCII			CALCL_ENGTH	0		
+16	단말기개시거래	D2A	FS	1			HEX		1C				
+17	단말기개시거래	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+18	단말기개시거래	D2A	FS	1			HEX		1C				
+19	단말기개시거래	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+20	단말기개시거래	D2A	SI	1			HEX		0F				
+21	단말기개시거래	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+22	단말기개시거래	D2A	SI	1			HEX		0F				
+23	단말기개시거래	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+24	단말기개시거래	D2A	SI	1			HEX		0F				
+25	단말기개시거래	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	단말기개시거래	D2A	SI	1			HEX		0F				
+27	단말기개시거래	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	단말기개시거래	D2A	ETX	1			HEX		03				
+29	단말기개시거래	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기개시거래A2D
+====================================
+0	단말기개시거래	A2D	STX	1			HEX		02				
+1	단말기개시거래	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기개시거래	A2D	Message Type	4			ASCII		0950		0		
+3	단말기개시거래	A2D	거래구분코드	2			ASCII		90		0		
+4	단말기개시거래	A2D	부가정보코드	2			ASCII				0		
+5	단말기개시거래	A2D	단말기Type	2			ASCII				0		
+6	단말기개시거래	A2D	FS	1			HEX		1C				
+7	단말기개시거래	A2D	단말기일련번호(CRNTNO)	10			ASCII			CALCL_ENGTH	0		
+8	단말기개시거래	A2D	FS	1			HEX		1C				
+9	단말기개시거래	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기개시거래	A2D	FS	1			HEX		1C				
+11	단말기개시거래	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	단말기개시거래	A2D	FS	1			HEX		1C				
+13	단말기개시거래	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	단말기개시거래	A2D	FS	1			HEX		1C				
+15	단말기개시거래	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	단말기개시거래	A2D	FS	1			HEX		1C				
+17	단말기개시거래	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+18	단말기개시거래	A2D	FS	1			HEX		1C				
+19	단말기개시거래	A2D	사업자번호	10			ASCII			CALCL_ENGTH	0		
+20	단말기개시거래	A2D	FS	1			HEX		1C				
+21	단말기개시거래	A2D	가맹점명	30	V		ASCII			CALCL_ENGTH	0		
+22	단말기개시거래	A2D	FS	1			HEX		1C				
+23	단말기개시거래	A2D	대표자명	12	V		ASCII			CALCL_ENGTH	0		
+24	단말기개시거래	A2D	FS	1			HEX		1C				
+25	단말기개시거래	A2D	가맹점전화	16	V		ASCII			CALCL_ENGTH	0		
+26	단말기개시거래	A2D	FS	1			HEX		1C				
+27	단말기개시거래	A2D	가맹점주소	50	V		ASCII			CALCL_ENGTH	0		
+28	단말기개시거래	A2D	FS	1			HEX		1C				
+29	단말기개시거래	A2D	정산방식	3			ASCII			CALCL_ENGTH	0		
+30	단말기개시거래	A2D	FS	1			HEX		1C				
+31	단말기개시거래	A2D	MASTER KEY INDEX	2			ASCII			CALCL_ENGTH	0		
+32	단말기개시거래	A2D	FS	1			HEX		1C				
+33	단말기개시거래	A2D	WORKING KEY	16			ASCII			CALCL_ENGTH	0		
+34	단말기개시거래	A2D	FS	1			HEX		1C				
+35	단말기개시거래	A2D	서비스접속정보	303	V		ASCII			CALCL_ENGTH	0		
+36	단말기개시거래	A2D	FS	1			HEX		1C				
+37	단말기개시거래	A2D	관리지사전화번호	20	V		ASCII			CALCL_ENGTH	0		
+38	단말기개시거래	A2D	FS	1			HEX		1C				
+39	단말기개시거래	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+40	단말기개시거래	A2D	FS	1			HEX		1C				
+41	단말기개시거래	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+42	단말기개시거래	A2D	FS	1			HEX		1C				
+43	단말기개시거래	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+44	단말기개시거래	A2D	FS	1			HEX		1C				
+45	단말기개시거래	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+46	단말기개시거래	A2D	ETX	1			HEX		03				
+47	단말기개시거래	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기DownloadD2A
+====================================
+0	단말기Download	D2A	STX	1			HEX		02				
+1	단말기Download	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기Download	D2A	Message Type	4			ASCII		0940		0		
+3	단말기Download	D2A	거래구분코드	2			ASCII		91		0		
+4	단말기Download	D2A	부가정보코드	2			ASCII				0		
+5	단말기Download	D2A	단말기Type	2			ASCII				0		
+6	단말기Download	D2A	FS	1			HEX		1C				
+7	단말기Download	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기Download	D2A	FS	1			HEX		1C				
+9	단말기Download	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기Download	D2A	FS	1			HEX		1C				
+11	단말기Download	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+12	단말기Download	D2A	FS	1			HEX		1C				
+13	단말기Download	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+14	단말기Download	D2A	SI	1			HEX		0F				
+15	단말기Download	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+16	단말기Download	D2A	SI	1			HEX		0F				
+17	단말기Download	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+18	단말기Download	D2A	SI	1			HEX		0F				
+19	단말기Download	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	단말기Download	D2A	SI	1			HEX		0F				
+21	단말기Download	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	단말기Download	D2A	ETX	1			HEX		03				
+23	단말기Download	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기DownloadA2D
+====================================
+0	단말기Download	A2D	STX	1			HEX		02				
+1	단말기Download	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기Download	A2D	Message Type	4			ASCII		0950		0		
+3	단말기Download	A2D	거래구분코드	2			ASCII		91		0		
+4	단말기Download	A2D	부가정보코드	2			ASCII				0		
+5	단말기Download	A2D	단말기Type	2			ASCII				0		
+6	단말기Download	A2D	FS	1			HEX		1C				
+7	단말기Download	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기Download	A2D	FS	1			HEX		1C				
+9	단말기Download	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기Download	A2D	FS	1			HEX		1C				
+11	단말기Download	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	단말기Download	A2D	FS	1			HEX		1C				
+13	단말기Download	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	단말기Download	A2D	FS	1			HEX		1C				
+15	단말기Download	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	단말기Download	A2D	FS	1			HEX		1C				
+17	단말기Download	A2D	상품명정보	189	V		ASCII			CALCL_ENGTH	0		
+18	단말기Download	A2D	FS	1			HEX		1C				
+19	단말기Download	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+20	단말기Download	A2D	FS	1			HEX		1C				
+21	단말기Download	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+22	단말기Download	A2D	FS	1			HEX		1C				
+23	단말기Download	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+24	단말기Download	A2D	FS	1			HEX		1C				
+25	단말기Download	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+26	단말기Download	A2D	ETX	1			HEX		03				
+27	단말기Download	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기상품명DownloadD2A
+====================================
+0	단말기상품명Download	D2A	STX	1			HEX		02				
+1	단말기상품명Download	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기상품명Download	D2A	Message Type	4			ASCII		0940		0		
+3	단말기상품명Download	D2A	거래구분코드	2			ASCII		92		0		
+4	단말기상품명Download	D2A	부가정보코드	2			ASCII				0		
+5	단말기상품명Download	D2A	단말기Type	2			ASCII				0		
+6	단말기상품명Download	D2A	FS	1			HEX		1C				
+7	단말기상품명Download	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기상품명Download	D2A	FS	1			HEX		1C				
+9	단말기상품명Download	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기상품명Download	D2A	FS	1			HEX		1C				
+11	단말기상품명Download	D2A	거래형태구분	2			ASCII			CALCL_ENGTH	0		
+12	단말기상품명Download	D2A	FS	1			HEX		1C				
+13	단말기상품명Download	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+14	단말기상품명Download	D2A	FS	1			HEX		1C				
+15	단말기상품명Download	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+16	단말기상품명Download	D2A	SI	1			HEX		0F				
+17	단말기상품명Download	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+18	단말기상품명Download	D2A	SI	1			HEX		0F				
+19	단말기상품명Download	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+20	단말기상품명Download	D2A	SI	1			HEX		0F				
+21	단말기상품명Download	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	단말기상품명Download	D2A	SI	1			HEX		0F				
+23	단말기상품명Download	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	단말기상품명Download	D2A	ETX	1			HEX		03				
+25	단말기상품명Download	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기상품명DownloadA2D
+====================================
+0	단말기상품명Download	A2D	STX	1			HEX		02				
+1	단말기상품명Download	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기상품명Download	A2D	Message Type	4			ASCII		0950		0		
+3	단말기상품명Download	A2D	거래구분코드	2			ASCII		92		0		
+4	단말기상품명Download	A2D	부가정보코드	2			ASCII				0		
+5	단말기상품명Download	A2D	단말기Type	2			ASCII				0		
+6	단말기상품명Download	A2D	FS	1			HEX		1C				
+7	단말기상품명Download	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기상품명Download	A2D	FS	1			HEX		1C				
+9	단말기상품명Download	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기상품명Download	A2D	FS	1			HEX		1C				
+11	단말기상품명Download	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	단말기상품명Download	A2D	FS	1			HEX		1C				
+13	단말기상품명Download	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	단말기상품명Download	A2D	FS	1			HEX		1C				
+15	단말기상품명Download	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	단말기상품명Download	A2D	FS	1			HEX		1C				
+17	단말기상품명Download	A2D	상품명정보	189	V		ASCII			CALCL_ENGTH	0		
+18	단말기상품명Download	A2D	FS	1			HEX		1C				
+19	단말기상품명Download	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+20	단말기상품명Download	A2D	FS	1			HEX		1C				
+21	단말기상품명Download	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+22	단말기상품명Download	A2D	FS	1			HEX		1C				
+23	단말기상품명Download	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+24	단말기상품명Download	A2D	FS	1			HEX		1C				
+25	단말기상품명Download	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+26	단말기상품명Download	A2D	ETX	1			HEX		03				
+27	단말기상품명Download	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+LOGON/DESC개시D2A
+====================================
+0	LOGON/DESC개시	D2A	STX	1			HEX		02				
+1	LOGON/DESC개시	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	LOGON/DESC개시	D2A	Message Type	4			ASCII		0940		0		
+3	LOGON/DESC개시	D2A	거래구분코드	2			ASCII		94		0		
+4	LOGON/DESC개시	D2A	부가정보코드	2			ASCII				0		
+5	LOGON/DESC개시	D2A	단말기Type	2			ASCII				0		
+6	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+7	LOGON/DESC개시	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+9	LOGON/DESC개시	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+11	LOGON/DESC개시	D2A	부가장비코드	2			ASCII			CALCL_ENGTH	0		
+12	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+13	LOGON/DESC개시	D2A	기기일련번호	16	V		ASCII			CALCL_ENGTH	0		
+14	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+15	LOGON/DESC개시	D2A	SW버전	2			ASCII			CALCL_ENGTH	0		
+16	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+17	LOGON/DESC개시	D2A	SAM ID	16			ASCII			CALCL_ENGTH	0		
+18	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+19	LOGON/DESC개시	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+20	LOGON/DESC개시	D2A	FS	1			HEX		1C				
+21	LOGON/DESC개시	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+22	LOGON/DESC개시	D2A	SI	1			HEX		0F				
+23	LOGON/DESC개시	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+24	LOGON/DESC개시	D2A	SI	1			HEX		0F				
+25	LOGON/DESC개시	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+26	LOGON/DESC개시	D2A	SI	1			HEX		0F				
+27	LOGON/DESC개시	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	LOGON/DESC개시	D2A	SI	1			HEX		0F				
+29	LOGON/DESC개시	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+30	LOGON/DESC개시	D2A	ETX	1			HEX		03				
+31	LOGON/DESC개시	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+LOGON/DESC개시A2D
+====================================
+0	LOGON/DESC개시	A2D	STX	1			HEX		02				
+1	LOGON/DESC개시	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	LOGON/DESC개시	A2D	Message Type	4			ASCII		0950		0		
+3	LOGON/DESC개시	A2D	거래구분코드	2			ASCII		94		0		
+4	LOGON/DESC개시	A2D	부가정보코드	2			ASCII				0		
+5	LOGON/DESC개시	A2D	단말기Type	2			ASCII				0		
+6	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+7	LOGON/DESC개시	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+9	LOGON/DESC개시	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+11	LOGON/DESC개시	A2D	부가장비코드	2			ASCII			CALCL_ENGTH	0		
+12	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+13	LOGON/DESC개시	A2D	기기일련번호	16	V		ASCII			CALCL_ENGTH	0		
+14	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+15	LOGON/DESC개시	A2D	SW버전	2			ASCII			CALCL_ENGTH	0		
+16	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+17	LOGON/DESC개시	A2D	SAM ID	16			ASCII			CALCL_ENGTH	0		
+18	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+19	LOGON/DESC개시	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+20	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+21	LOGON/DESC개시	A2D	서비스접속정보	303	V		ASCII			CALCL_ENGTH	0		
+22	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+23	LOGON/DESC개시	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+24	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+25	LOGON/DESC개시	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+26	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+27	LOGON/DESC개시	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+28	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+29	LOGON/DESC개시	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+30	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+31	LOGON/DESC개시	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+32	LOGON/DESC개시	A2D	FS	1			HEX		1C				
+33	LOGON/DESC개시	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+34	LOGON/DESC개시	A2D	ETX	1			HEX		03				
+35	LOGON/DESC개시	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기정산방식변경D2A
+====================================
+0	단말기정산방식변경	D2A	STX	1			HEX		02				
+1	단말기정산방식변경	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기정산방식변경	D2A	Message Type	4			ASCII		0940		0		
+3	단말기정산방식변경	D2A	거래구분코드	2			ASCII		98		0		
+4	단말기정산방식변경	D2A	부가정보코드	2			ASCII				0		
+5	단말기정산방식변경	D2A	단말기Type	2			ASCII				0		
+6	단말기정산방식변경	D2A	FS	1			HEX		1C				
+7	단말기정산방식변경	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기정산방식변경	D2A	FS	1			HEX		1C				
+9	단말기정산방식변경	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기정산방식변경	D2A	FS	1			HEX		1C				
+11	단말기정산방식변경	D2A	정산방식	3			ASCII			CALCL_ENGTH	0		
+12	단말기정산방식변경	D2A	FS	1			HEX		1C				
+13	단말기정산방식변경	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+14	단말기정산방식변경	D2A	FS	1			HEX		1C				
+15	단말기정산방식변경	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+16	단말기정산방식변경	D2A	SI	1			HEX		0F				
+17	단말기정산방식변경	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+18	단말기정산방식변경	D2A	SI	1			HEX		0F				
+19	단말기정산방식변경	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+20	단말기정산방식변경	D2A	SI	1			HEX		0F				
+21	단말기정산방식변경	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	단말기정산방식변경	D2A	SI	1			HEX		0F				
+23	단말기정산방식변경	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	단말기정산방식변경	D2A	ETX	1			HEX		03				
+25	단말기정산방식변경	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기정산방식변경A2D
+====================================
+0	단말기정산방식변경	A2D	STX	1			HEX		02				
+1	단말기정산방식변경	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기정산방식변경	A2D	Message Type	4			ASCII		0950		0		
+3	단말기정산방식변경	A2D	거래구분코드	2			ASCII		98		0		
+4	단말기정산방식변경	A2D	부가정보코드	2			ASCII				0		
+5	단말기정산방식변경	A2D	단말기Type	2			ASCII				0		
+6	단말기정산방식변경	A2D	FS	1			HEX		1C				
+7	단말기정산방식변경	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기정산방식변경	A2D	FS	1			HEX		1C				
+9	단말기정산방식변경	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기정산방식변경	A2D	FS	1			HEX		1C				
+11	단말기정산방식변경	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	단말기정산방식변경	A2D	FS	1			HEX		1C				
+13	단말기정산방식변경	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	단말기정산방식변경	A2D	FS	1			HEX		1C				
+15	단말기정산방식변경	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	단말기정산방식변경	A2D	FS	1			HEX		1C				
+17	단말기정산방식변경	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+18	단말기정산방식변경	A2D	FS	1			HEX		1C				
+19	단말기정산방식변경	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+20	단말기정산방식변경	A2D	FS	1			HEX		1C				
+21	단말기정산방식변경	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+22	단말기정산방식변경	A2D	FS	1			HEX		1C				
+23	단말기정산방식변경	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+24	단말기정산방식변경	A2D	ETX	1			HEX		03				
+25	단말기정산방식변경	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기정산D2A
+====================================
+0	단말기정산	D2A	STX	1			HEX		02				
+1	단말기정산	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기정산	D2A	Message Type	4			ASCII		0960		0		
+3	단말기정산	D2A	거래구분코드	2			ASCII		96		0		
+4	단말기정산	D2A	부가정보코드	2			ASCII				0		
+5	단말기정산	D2A	단말기Type	2			ASCII				0		
+6	단말기정산	D2A	FS	1			HEX		1C				
+7	단말기정산	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기정산	D2A	FS	1			HEX		1C				
+9	단말기정산	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기정산	D2A	FS	1			HEX		1C				
+11	단말기정산	D2A	현재일자	8			ASCII			CALCL_ENGTH	0		
+12	단말기정산	D2A	FS	1			HEX		1C				
+13	단말기정산	D2A	현재시간	6			ASCII			CALCL_ENGTH	0		
+14	단말기정산	D2A	FS	1			HEX		1C				
+15	단말기정산	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+16	단말기정산	D2A	FS	1			HEX		1C				
+17	단말기정산	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+18	단말기정산	D2A	SI	1			HEX		0F				
+19	단말기정산	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+20	단말기정산	D2A	SI	1			HEX		0F				
+21	단말기정산	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+22	단말기정산	D2A	SI	1			HEX		0F				
+23	단말기정산	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	단말기정산	D2A	SI	1			HEX		0F				
+25	단말기정산	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	단말기정산	D2A	ETX	1			HEX		03				
+27	단말기정산	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기정산A2D
+====================================
+0	단말기정산	A2D	STX	1			HEX		02				
+1	단말기정산	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기정산	A2D	Message Type	4			ASCII		0970		0		
+3	단말기정산	A2D	거래구분코드	2			ASCII		96		0		
+4	단말기정산	A2D	부가정보코드	2			ASCII				0		
+5	단말기정산	A2D	단말기Type	2			ASCII				0		
+6	단말기정산	A2D	FS	1			HEX		1C				
+7	단말기정산	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기정산	A2D	FS	1			HEX		1C				
+9	단말기정산	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기정산	A2D	FS	1			HEX		1C				
+11	단말기정산	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	단말기정산	A2D	FS	1			HEX		1C				
+13	단말기정산	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	단말기정산	A2D	FS	1			HEX		1C				
+15	단말기정산	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	단말기정산	A2D	FS	1			HEX		1C				
+17	단말기정산	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+18	단말기정산	A2D	FS	1			HEX		1C				
+19	단말기정산	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+20	단말기정산	A2D	FS	1			HEX		1C				
+21	단말기정산	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+22	단말기정산	A2D	FS	1			HEX		1C				
+23	단말기정산	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+24	단말기정산	A2D	ETX	1			HEX		03				
+25	단말기정산	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기조회D2A
+====================================
+0	단말기조회	D2A	STX	1			HEX		02				
+1	단말기조회	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기조회	D2A	Message Type	4			ASCII		0980		0		
+3	단말기조회	D2A	거래구분코드	2			ASCII		82		0		
+4	단말기조회	D2A	부가정보코드	2			ASCII				0		
+5	단말기조회	D2A	단말기Type	2			ASCII				0		
+6	단말기조회	D2A	FS	1			HEX		1C				
+7	단말기조회	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기조회	D2A	FS	1			HEX		1C				
+9	단말기조회	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기조회	D2A	FS	1			HEX		1C				
+11	단말기조회	D2A	사업자번호	10			ASCII			CALCL_ENGTH	0		
+12	단말기조회	D2A	FS	1			HEX		1C				
+13	단말기조회	D2A	조회일자	8			ASCII			CALCL_ENGTH	0		
+14	단말기조회	D2A	FS	1			HEX		1C				
+15	단말기조회	D2A	처리기준	1			ASCII			CALCL_ENGTH	0		
+16	단말기조회	D2A	FS	1			HEX		1C				
+17	단말기조회	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+18	단말기조회	D2A	FS	1			HEX		1C				
+19	단말기조회	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+20	단말기조회	D2A	SI	1			HEX		0F				
+21	단말기조회	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+22	단말기조회	D2A	SI	1			HEX		0F				
+23	단말기조회	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+24	단말기조회	D2A	SI	1			HEX		0F				
+25	단말기조회	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	단말기조회	D2A	SI	1			HEX		0F				
+27	단말기조회	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+28	단말기조회	D2A	ETX	1			HEX		03				
+29	단말기조회	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기조회A2D
+====================================
+0	단말기조회	A2D	STX	1			HEX		02				
+1	단말기조회	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기조회	A2D	Message Type	4			ASCII		0990		0		
+3	단말기조회	A2D	거래구분코드	2			ASCII		82		0		
+4	단말기조회	A2D	부가정보코드	2			ASCII				0		
+5	단말기조회	A2D	단말기Type	2			ASCII				0		
+6	단말기조회	A2D	FS	1			HEX		1C				
+7	단말기조회	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	단말기조회	A2D	FS	1			HEX		1C				
+9	단말기조회	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	단말기조회	A2D	FS	1			HEX		1C				
+11	단말기조회	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	단말기조회	A2D	FS	1			HEX		1C				
+13	단말기조회	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	단말기조회	A2D	FS	1			HEX		1C				
+15	단말기조회	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	단말기조회	A2D	FS	1			HEX		1C				
+17	단말기조회	A2D	조회구분	1			ASCII			CALCL_ENGTH	0		
+18	단말기조회	A2D	FS	1			HEX		1C				
+19	단말기조회	A2D	데이터	995	V		ASCII			CALCL_ENGTH	0		
+20	단말기조회	A2D	FS	1			HEX		1C				
+21	단말기조회	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+22	단말기조회	A2D	FS	1			HEX		1C				
+23	단말기조회	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+24	단말기조회	A2D	FS	1			HEX		1C				
+25	단말기조회	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+26	단말기조회	A2D	FS	1			HEX		1C				
+27	단말기조회	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+28	단말기조회	A2D	ETX	1			HEX		03				
+29	단말기조회	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+전자상품권거래내역D2A
+====================================
+0	전자상품권거래내역	D2A	STX	1			HEX		02				
+1	전자상품권거래내역	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	전자상품권거래내역	D2A	Message Type	4			ASCII		0980		0		
+3	전자상품권거래내역	D2A	거래구분코드	2			ASCII		83		0		
+4	전자상품권거래내역	D2A	부가정보코드	2			ASCII				0		
+5	전자상품권거래내역	D2A	단말기Type	2			ASCII				0		
+6	전자상품권거래내역	D2A	FS	1			HEX		1C				
+7	전자상품권거래내역	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	전자상품권거래내역	D2A	FS	1			HEX		1C				
+9	전자상품권거래내역	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	전자상품권거래내역	D2A	FS	1			HEX		1C				
+11	전자상품권거래내역	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	전자상품권거래내역	D2A	FS	1			HEX		1C				
+13	전자상품권거래내역	D2A	Track II Data	220	V		ASCII			CALCL_ENGTH	0		
+14	전자상품권거래내역	D2A	FS	1			HEX		1C				
+15	전자상품권거래내역	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+16	전자상품권거래내역	D2A	FS	1			HEX		1C				
+17	전자상품권거래내역	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+18	전자상품권거래내역	D2A	SI	1			HEX		0F				
+19	전자상품권거래내역	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+20	전자상품권거래내역	D2A	SI	1			HEX		0F				
+21	전자상품권거래내역	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+22	전자상품권거래내역	D2A	SI	1			HEX		0F				
+23	전자상품권거래내역	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	전자상품권거래내역	D2A	SI	1			HEX		0F				
+25	전자상품권거래내역	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	전자상품권거래내역	D2A	ETX	1			HEX		03				
+27	전자상품권거래내역	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+전자상품권거래내역A2D
+====================================
+0	전자상품권거래내역	A2D	STX	1			HEX		02				
+1	전자상품권거래내역	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	전자상품권거래내역	A2D	Message Type	4			ASCII		0990		0		
+3	전자상품권거래내역	A2D	거래구분코드	2			ASCII		83		0		
+4	전자상품권거래내역	A2D	부가정보코드	2			ASCII				0		
+5	전자상품권거래내역	A2D	단말기Type	2			ASCII				0		
+6	전자상품권거래내역	A2D	FS	1			HEX		1C				
+7	전자상품권거래내역	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	전자상품권거래내역	A2D	FS	1			HEX		1C				
+9	전자상품권거래내역	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	전자상품권거래내역	A2D	FS	1			HEX		1C				
+11	전자상품권거래내역	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	전자상품권거래내역	A2D	FS	1			HEX		1C				
+13	전자상품권거래내역	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	전자상품권거래내역	A2D	FS	1			HEX		1C				
+15	전자상품권거래내역	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	전자상품권거래내역	A2D	FS	1			HEX		1C				
+17	전자상품권거래내역	A2D	조회카드번호	16			ASCII			CALCL_ENGTH	0		
+18	전자상품권거래내역	A2D	FS	1			HEX		1C				
+19	전자상품권거래내역	A2D	조회카드잔액	8	V		ASCII			CALCL_ENGTH	0		
+20	전자상품권거래내역	A2D	FS	1			HEX		1C				
+21	전자상품권거래내역	A2D	데이터	995	V		ASCII			CALCL_ENGTH	0		
+22	전자상품권거래내역	A2D	FS	1			HEX		1C				
+23	전자상품권거래내역	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+24	전자상품권거래내역	A2D	FS	1			HEX		1C				
+25	전자상품권거래내역	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+26	전자상품권거래내역	A2D	FS	1			HEX		1C				
+27	전자상품권거래내역	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+28	전자상품권거래내역	A2D	FS	1			HEX		1C				
+29	전자상품권거래내역	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+30	전자상품권거래내역	A2D	ETX	1			HEX		03				
+31	전자상품권거래내역	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+단말기R단독거래D2A
+====================================
+0	단말기R단독거래	D2A	STX	1			HEX		02				
+1	단말기R단독거래	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기R단독거래	D2A	Message Type	4			ASCII		9999		0		
+3	단말기R단독거래	D2A	거래구분코드	2			ASCII		99		0		
+4	단말기R단독거래	D2A	부가정보코드	2			ASCII				0		
+5	단말기R단독거래	D2A	단말기Type	2			ASCII				0		
+6	단말기R단독거래	D2A	SI	1			HEX		0F				
+7	단말기R단독거래	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+8	단말기R단독거래	D2A	SI	1			HEX		0F				
+9	단말기R단독거래	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+10	단말기R단독거래	D2A	SI	1			HEX		0F				
+11	단말기R단독거래	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+12	단말기R단독거래	D2A	SI	1			HEX		0F				
+13	단말기R단독거래	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+14	단말기R단독거래	D2A	ETX	1			HEX		03				
+15	단말기R단독거래	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+단말기R단독거래A2D
+====================================
+0	단말기R단독거래	A2D	STX	1			HEX		02				
+1	단말기R단독거래	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	단말기R단독거래	A2D	Message Type	4			ASCII		9999		0		
+3	단말기R단독거래	A2D	거래구분코드	2			ASCII		99		0		
+4	단말기R단독거래	A2D	부가정보코드	2			ASCII				0		
+5	단말기R단독거래	A2D	단말기Type	2			ASCII				0		
+6	단말기R단독거래	A2D	FS	1			HEX		1C				
+7	단말기R단독거래	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+8	단말기R단독거래	A2D	ETX	1			HEX		03				
+9	단말기R단독거래	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/ALIVED2A
+====================================
+0	STMS/ALIVE	D2A	STX	1			HEX		02				
+1	STMS/ALIVE	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/ALIVE	D2A	Message Type	4			ASCII		7100		0		
+3	STMS/ALIVE	D2A	단말기ID	10			ASCII				0		
+4	STMS/ALIVE	D2A	TrCodeNumber	6			ASCII				0		
+5	STMS/ALIVE	D2A	VersionInfo	343			ASCII				0		
+6	STMS/ALIVE	D2A	ETX	1			HEX		03				
+7	STMS/ALIVE	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/ALIVEA2D
+====================================
+0	STMS/ALIVE	A2D	STX	1			HEX		02				
+1	STMS/ALIVE	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/ALIVE	A2D	Message Type	4			ASCII		7110		0		
+3	STMS/ALIVE	A2D	단말기ID	10			ASCII				0		
+4	STMS/ALIVE	A2D	TrCodeNumber	6			ASCII				0		
+5	STMS/ALIVE	A2D	응답Code	2			ASCII				0		
+6	STMS/ALIVE	A2D	응답Message	30			ASCII				0		
+7	STMS/ALIVE	A2D	Alive주기	2			ASCII				0		
+8	STMS/ALIVE	A2D	Download접속시간	6			ASCII				0		
+9	STMS/ALIVE	A2D	Backup접속시간	6			ASCII				0		
+10	STMS/ALIVE	A2D	KeyCount	2			ASCII				0		
+11	STMS/ALIVE	A2D	ExtAuthKey	34			ASCII				0		
+12	STMS/ALIVE	A2D	Filler	102			ASCII				0		
+13	STMS/ALIVE	A2D	ETX	1			HEX		03				
+14	STMS/ALIVE	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/DownloadD2A
+====================================
+0	STMS/Download	D2A	STX	1			HEX		02				
+1	STMS/Download	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download	D2A	Message Type	4			ASCII		7200		0		
+3	STMS/Download	D2A	단말기ID	10			ASCII				0		
+4	STMS/Download	D2A	TrCodeNumber	6			ASCII				0		
+5	STMS/Download	D2A	VersionInfo	343			ASCII				0		
+6	STMS/Download	D2A	ETX	1			HEX		03				
+7	STMS/Download	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/DownloadA2D
+====================================
+0	STMS/Download	A2D	STX	1			HEX		02				
+1	STMS/Download	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download	A2D	Message Type	4			ASCII		7210		0		
+3	STMS/Download	A2D	단말기ID	10			ASCII				0		
+4	STMS/Download	A2D	TrCodeNumber	6			ASCII				0		
+5	STMS/Download	A2D	응답Code	2			ASCII				0		
+6	STMS/Download	A2D	응답Message	30			ASCII				0		
+7	STMS/Download	A2D	Download파일개수	2			ASCII				0		
+8	STMS/Download	A2D	전송할항목	83			ASCII				0		
+9	STMS/Download	A2D	ETX	1			HEX		03				
+10	STMS/Download	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/Download2D2A
+====================================
+0	STMS/Download2	D2A	STX	1			HEX		02				
+1	STMS/Download2	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download2	D2A	Message Type	4			ASCII		7219		0		
+3	STMS/Download2	D2A	단말기ID	10			ASCII				0		
+4	STMS/Download2	D2A	ETX	1			HEX		03				
+5	STMS/Download2	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/Download2A2D
+====================================
+0	STMS/Download2	A2D	STX	1			HEX		02				
+1	STMS/Download2	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download2	A2D	Message Type	4			ASCII		7220		0		
+3	STMS/Download2	A2D	단말기ID	10			ASCII				0		
+4	STMS/Download2	A2D	TrCodeNumber	6			ASCII				0		
+5	STMS/Download2	A2D	Download항목	4			ASCII				0		
+6	STMS/Download2	A2D	FileName	20			ASCII				0		
+7	STMS/Download2	A2D	NewPosition	8			ASCII				0		
+8	STMS/Download2	A2D	StreamLength	4			ASCII				0		
+9	STMS/Download2	A2D	DataStream	1024			ASCII				0		
+10	STMS/Download2	A2D	ETX	1			HEX		03				
+11	STMS/Download2	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/Download3D2A
+====================================
+0	STMS/Download3	D2A	STX	1			HEX		02				
+1	STMS/Download3	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download3	D2A	Message Type	4			ASCII		7299		0		
+3	STMS/Download3	D2A	단말기ID	10			ASCII				0		
+4	STMS/Download3	D2A	ETX	1			HEX		03				
+5	STMS/Download3	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/Download3A2D
+====================================
+0	STMS/Download3	A2D	STX	1			HEX		02				
+1	STMS/Download3	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download3	A2D	Message Type	4			ASCII		7300		0		
+3	STMS/Download3	A2D	단말기ID	10			ASCII				0		
+4	STMS/Download3	A2D	TrCodeNumber	6			ASCII				0		
+5	STMS/Download3	A2D	현재Download한개수	2			ASCII				0		
+6	STMS/Download3	A2D	최종전송종료한항목	4			ASCII				0		
+7	STMS/Download3	A2D	최종전송한파일버전	13			ASCII				0		
+8	STMS/Download3	A2D	최종BlockNumber	4			ASCII				0		
+9	STMS/Download3	A2D	최종전송한FileSize	8			ASCII				0		
+10	STMS/Download3	A2D	남은Download개수	2			ASCII				0		
+11	STMS/Download3	A2D	다음전송할항목	4			ASCII				0		
+12	STMS/Download3	A2D	전송할FileName	20			ASCII				0		
+13	STMS/Download3	A2D	ETX	1			HEX		03				
+14	STMS/Download3	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/Download4D2A
+====================================
+0	STMS/Download4	D2A	STX	1			HEX		02				
+1	STMS/Download4	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download4	D2A	Message Type	4			ASCII		7310		0		
+3	STMS/Download4	D2A	단말기ID	10			ASCII				0		
+4	STMS/Download4	D2A	TrCodeNumber	6			ASCII				0		
+5	STMS/Download4	D2A	응답Code	2			ASCII				0		
+6	STMS/Download4	D2A	다음수신받을항목	4			ASCII				0		
+7	STMS/Download4	D2A	다음수신FileName	20			ASCII				0		
+8	STMS/Download4	D2A	ETX	1			HEX		03				
+9	STMS/Download4	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+STMS/Download4A2D
+====================================
+0	STMS/Download4	A2D	STX	1			HEX		02				
+1	STMS/Download4	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	STMS/Download4	A2D	Message Type	4			ASCII		7400		0		
+3	STMS/Download4	A2D	단말기ID	10			ASCII				0		
+4	STMS/Download4	A2D	TrCodeNumber	6			ASCII				0		
+5	STMS/Download4	A2D	Download한개수	2			ASCII				0		
+6	STMS/Download4	A2D	Download완료한항목	83			ASCII				0		
+7	STMS/Download4	A2D	Alive주기	2			ASCII				0		
+8	STMS/Download4	A2D	ETX	1			HEX		03				
+9	STMS/Download4	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+NULLD2A
+====================================
+0	NULL	D2A	STX	1			HEX		02				
+1	NULL	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	NULL	D2A	Message Type	4			ASCII		0000		0		
+3	NULL	D2A	거래구분코드	2			ASCII		00		0		
+4	NULL	D2A	ETX	1			HEX		03				
+5	NULL	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+NULLA2D
+====================================
+0	NULL	A2D	STX	1			HEX		02				
+1	NULL	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	NULL	A2D	Message Type	4			ASCII		0000		0		
+3	NULL	A2D	거래구분코드	2			ASCII		00		0		
+4	NULL	A2D	ETX	1			HEX		03				
+5	NULL	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드구매D2A
+====================================
+0	현금IC카드구매	D2A	STX	1			HEX		02				
+1	현금IC카드구매	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드구매	D2A	Message Type	4			ASCII		0700		0		
+3	현금IC카드구매	D2A	거래구분코드	2			ASCII		20		0		
+4	현금IC카드구매	D2A	부가정보코드	2			ASCII				0		
+5	현금IC카드구매	D2A	단말기Type	2			ASCII				0		
+6	현금IC카드구매	D2A	FS	1			HEX		1C				
+7	현금IC카드구매	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드구매	D2A	FS	1			HEX		1C				
+9	현금IC카드구매	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드구매	D2A	FS	1			HEX		1C				
+11	현금IC카드구매	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	현금IC카드구매	D2A	FS	1			HEX		1C				
+13	현금IC카드구매	D2A	Track III Data	30	V		ASCII			CALCL_ENGTH	0		
+14	현금IC카드구매	D2A	FS	1			HEX		1C				
+15	현금IC카드구매	D2A	IC카드일련번호	16			ASCII			CALCL_ENGTH	0		
+16	현금IC카드구매	D2A	FS	1			HEX		1C				
+17	현금IC카드구매	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드구매	D2A	FS	1			HEX		1C				
+19	현금IC카드구매	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드구매	D2A	FS	1			HEX		1C				
+21	현금IC카드구매	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드구매	D2A	FS	1			HEX		1C				
+23	현금IC카드구매	D2A	암호화정보	132	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드구매	D2A	FS	1			HEX		1C				
+25	현금IC카드구매	D2A	기관코드	3			ASCII			CALCL_ENGTH	0		
+26	현금IC카드구매	D2A	FS	1			HEX		1C				
+27	현금IC카드구매	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+28	현금IC카드구매	D2A	FS	1			HEX		1C				
+29	현금IC카드구매	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+30	현금IC카드구매	D2A	SI	1			HEX		0F				
+31	현금IC카드구매	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드구매	D2A	SI	1			HEX		0F				
+33	현금IC카드구매	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+34	현금IC카드구매	D2A	SI	1			HEX		0F				
+35	현금IC카드구매	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+36	현금IC카드구매	D2A	SI	1			HEX		0F				
+37	현금IC카드구매	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+38	현금IC카드구매	D2A	ETX	1			HEX		03				
+39	현금IC카드구매	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드구매A2D
+====================================
+0	현금IC카드구매	A2D	STX	1			HEX		02				
+1	현금IC카드구매	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드구매	A2D	Message Type	4			ASCII		0710		0		
+3	현금IC카드구매	A2D	거래구분코드	2			ASCII		20		0		
+4	현금IC카드구매	A2D	부가정보코드	2			ASCII				0		
+5	현금IC카드구매	A2D	단말기Type	2			ASCII				0		
+6	현금IC카드구매	A2D	FS	1			HEX		1C				
+7	현금IC카드구매	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드구매	A2D	FS	1			HEX		1C				
+9	현금IC카드구매	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드구매	A2D	FS	1			HEX		1C				
+11	현금IC카드구매	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금IC카드구매	A2D	FS	1			HEX		1C				
+13	현금IC카드구매	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금IC카드구매	A2D	FS	1			HEX		1C				
+15	현금IC카드구매	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	현금IC카드구매	A2D	FS	1			HEX		1C				
+17	현금IC카드구매	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드구매	A2D	FS	1			HEX		1C				
+19	현금IC카드구매	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드구매	A2D	FS	1			HEX		1C				
+21	현금IC카드구매	A2D	발급기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드구매	A2D	FS	1			HEX		1C				
+23	현금IC카드구매	A2D	매입기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드구매	A2D	FS	1			HEX		1C				
+25	현금IC카드구매	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드구매	A2D	FS	1			HEX		1C				
+27	현금IC카드구매	A2D	잔액	12	V		ASCII			CALCL_ENGTH	0		
+28	현금IC카드구매	A2D	FS	1			HEX		1C				
+29	현금IC카드구매	A2D	출금가능액	12	V		ASCII			CALCL_ENGTH	0		
+30	현금IC카드구매	A2D	FS	1			HEX		1C				
+31	현금IC카드구매	A2D	출력용출금계좌번호	20	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드구매	A2D	FS	1			HEX		1C				
+33	현금IC카드구매	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	현금IC카드구매	A2D	FS	1			HEX		1C				
+35	현금IC카드구매	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	현금IC카드구매	A2D	FS	1			HEX		1C				
+37	현금IC카드구매	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	현금IC카드구매	A2D	FS	1			HEX		1C				
+39	현금IC카드구매	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	현금IC카드구매	A2D	ETX	1			HEX		03				
+41	현금IC카드구매	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드환불D2A
+====================================
+0	현금IC카드환불	D2A	STX	1			HEX		02				
+1	현금IC카드환불	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드환불	D2A	Message Type	4			ASCII		0700		0		
+3	현금IC카드환불	D2A	거래구분코드	2			ASCII		21		0		
+4	현금IC카드환불	D2A	부가정보코드	2			ASCII				0		
+5	현금IC카드환불	D2A	단말기Type	2			ASCII				0		
+6	현금IC카드환불	D2A	FS	1			HEX		1C				
+7	현금IC카드환불	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드환불	D2A	FS	1			HEX		1C				
+9	현금IC카드환불	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드환불	D2A	FS	1			HEX		1C				
+11	현금IC카드환불	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	현금IC카드환불	D2A	FS	1			HEX		1C				
+13	현금IC카드환불	D2A	Track III Data	30	V		ASCII			CALCL_ENGTH	0		
+14	현금IC카드환불	D2A	FS	1			HEX		1C				
+15	현금IC카드환불	D2A	IC카드일련번호	16			ASCII			CALCL_ENGTH	0		
+16	현금IC카드환불	D2A	FS	1			HEX		1C				
+17	현금IC카드환불	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드환불	D2A	FS	1			HEX		1C				
+19	현금IC카드환불	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드환불	D2A	FS	1			HEX		1C				
+21	현금IC카드환불	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드환불	D2A	FS	1			HEX		1C				
+23	현금IC카드환불	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드환불	D2A	FS	1			HEX		1C				
+25	현금IC카드환불	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드환불	D2A	FS	1			HEX		1C				
+27	현금IC카드환불	D2A	암호화정보	132	V		ASCII			CALCL_ENGTH	0		
+28	현금IC카드환불	D2A	FS	1			HEX		1C				
+29	현금IC카드환불	D2A	기관코드	3			ASCII			CALCL_ENGTH	0		
+30	현금IC카드환불	D2A	FS	1			HEX		1C				
+31	현금IC카드환불	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드환불	D2A	FS	1			HEX		1C				
+33	현금IC카드환불	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+34	현금IC카드환불	D2A	SI	1			HEX		0F				
+35	현금IC카드환불	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+36	현금IC카드환불	D2A	SI	1			HEX		0F				
+37	현금IC카드환불	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+38	현금IC카드환불	D2A	SI	1			HEX		0F				
+39	현금IC카드환불	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	현금IC카드환불	D2A	SI	1			HEX		0F				
+41	현금IC카드환불	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+42	현금IC카드환불	D2A	ETX	1			HEX		03				
+43	현금IC카드환불	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드환불A2D
+====================================
+0	현금IC카드환불	A2D	STX	1			HEX		02				
+1	현금IC카드환불	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드환불	A2D	Message Type	4			ASCII		0710		0		
+3	현금IC카드환불	A2D	거래구분코드	2			ASCII		21		0		
+4	현금IC카드환불	A2D	부가정보코드	2			ASCII				0		
+5	현금IC카드환불	A2D	단말기Type	2			ASCII				0		
+6	현금IC카드환불	A2D	FS	1			HEX		1C				
+7	현금IC카드환불	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드환불	A2D	FS	1			HEX		1C				
+9	현금IC카드환불	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드환불	A2D	FS	1			HEX		1C				
+11	현금IC카드환불	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금IC카드환불	A2D	FS	1			HEX		1C				
+13	현금IC카드환불	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금IC카드환불	A2D	FS	1			HEX		1C				
+15	현금IC카드환불	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	현금IC카드환불	A2D	FS	1			HEX		1C				
+17	현금IC카드환불	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드환불	A2D	FS	1			HEX		1C				
+19	현금IC카드환불	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드환불	A2D	FS	1			HEX		1C				
+21	현금IC카드환불	A2D	발급기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드환불	A2D	FS	1			HEX		1C				
+23	현금IC카드환불	A2D	매입기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드환불	A2D	FS	1			HEX		1C				
+25	현금IC카드환불	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드환불	A2D	FS	1			HEX		1C				
+27	현금IC카드환불	A2D	잔액	12	V		ASCII			CALCL_ENGTH	0		
+28	현금IC카드환불	A2D	FS	1			HEX		1C				
+29	현금IC카드환불	A2D	출금가능액	12	V		ASCII			CALCL_ENGTH	0		
+30	현금IC카드환불	A2D	FS	1			HEX		1C				
+31	현금IC카드환불	A2D	출력용출금계좌번호	20	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드환불	A2D	FS	1			HEX		1C				
+33	현금IC카드환불	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+34	현금IC카드환불	A2D	FS	1			HEX		1C				
+35	현금IC카드환불	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+36	현금IC카드환불	A2D	FS	1			HEX		1C				
+37	현금IC카드환불	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+38	현금IC카드환불	A2D	FS	1			HEX		1C				
+39	현금IC카드환불	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+40	현금IC카드환불	A2D	ETX	1			HEX		03				
+41	현금IC카드환불	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드잔액조회D2A
+====================================
+0	현금IC카드잔액조회	D2A	STX	1			HEX		02				
+1	현금IC카드잔액조회	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드잔액조회	D2A	Message Type	4			ASCII		0700		0		
+3	현금IC카드잔액조회	D2A	거래구분코드	2			ASCII		22		0		
+4	현금IC카드잔액조회	D2A	부가정보코드	2			ASCII				0		
+5	현금IC카드잔액조회	D2A	단말기Type	2			ASCII				0		
+6	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+7	현금IC카드잔액조회	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+9	현금IC카드잔액조회	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+11	현금IC카드잔액조회	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+13	현금IC카드잔액조회	D2A	Track III Data	30	V		ASCII			CALCL_ENGTH	0		
+14	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+15	현금IC카드잔액조회	D2A	IC카드일련번호	16			ASCII			CALCL_ENGTH	0		
+16	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+17	현금IC카드잔액조회	D2A	암호화정보	132	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+19	현금IC카드잔액조회	D2A	기관코드	3			ASCII			CALCL_ENGTH	0		
+20	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+21	현금IC카드잔액조회	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드잔액조회	D2A	FS	1			HEX		1C				
+23	현금IC카드잔액조회	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드잔액조회	D2A	SI	1			HEX		0F				
+25	현금IC카드잔액조회	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드잔액조회	D2A	SI	1			HEX		0F				
+27	현금IC카드잔액조회	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+28	현금IC카드잔액조회	D2A	SI	1			HEX		0F				
+29	현금IC카드잔액조회	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+30	현금IC카드잔액조회	D2A	SI	1			HEX		0F				
+31	현금IC카드잔액조회	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드잔액조회	D2A	ETX	1			HEX		03				
+33	현금IC카드잔액조회	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드잔액조회A2D
+====================================
+0	현금IC카드잔액조회	A2D	STX	1			HEX		02				
+1	현금IC카드잔액조회	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드잔액조회	A2D	Message Type	4			ASCII		0710		0		
+3	현금IC카드잔액조회	A2D	거래구분코드	2			ASCII		22		0		
+4	현금IC카드잔액조회	A2D	부가정보코드	2			ASCII				0		
+5	현금IC카드잔액조회	A2D	단말기Type	2			ASCII				0		
+6	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+7	현금IC카드잔액조회	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+9	현금IC카드잔액조회	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+11	현금IC카드잔액조회	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+13	현금IC카드잔액조회	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+15	현금IC카드잔액조회	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+17	현금IC카드잔액조회	A2D	잔액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+19	현금IC카드잔액조회	A2D	출금가능액	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+21	현금IC카드잔액조회	A2D	발급기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+23	현금IC카드잔액조회	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+25	현금IC카드잔액조회	A2D	출력용출금계좌번호	20	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+27	현금IC카드잔액조회	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+28	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+29	현금IC카드잔액조회	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+30	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+31	현금IC카드잔액조회	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드잔액조회	A2D	FS	1			HEX		1C				
+33	현금IC카드잔액조회	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+34	현금IC카드잔액조회	A2D	ETX	1			HEX		03				
+35	현금IC카드잔액조회	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드거래확인D2A
+====================================
+0	현금IC카드거래확인	D2A	STX	1			HEX		02				
+1	현금IC카드거래확인	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드거래확인	D2A	Message Type	4			ASCII		0700		0		
+3	현금IC카드거래확인	D2A	거래구분코드	2			ASCII		23		0		
+4	현금IC카드거래확인	D2A	부가정보코드	2			ASCII				0		
+5	현금IC카드거래확인	D2A	단말기Type	2			ASCII				0		
+6	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+7	현금IC카드거래확인	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+9	현금IC카드거래확인	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+11	현금IC카드거래확인	D2A	Pos Entry Mode	3	V		ASCII			CALCL_ENGTH	0		
+12	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+13	현금IC카드거래확인	D2A	Track III Data	30	V		ASCII			CALCL_ENGTH	0		
+14	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+15	현금IC카드거래확인	D2A	IC카드일련번호	16			ASCII			CALCL_ENGTH	0		
+16	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+17	현금IC카드거래확인	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+19	현금IC카드거래확인	D2A	봉사료	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+21	현금IC카드거래확인	D2A	부가세	12	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+23	현금IC카드거래확인	D2A	원거래일자	6	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+25	현금IC카드거래확인	D2A	원승인번호	12	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+27	현금IC카드거래확인	D2A	기관코드	3			ASCII			CALCL_ENGTH	0		
+28	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+29	현금IC카드거래확인	D2A	확인거래종류	1			ASCII			CALCL_ENGTH	0		
+30	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+31	현금IC카드거래확인	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드거래확인	D2A	FS	1			HEX		1C				
+33	현금IC카드거래확인	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+34	현금IC카드거래확인	D2A	SI	1			HEX		0F				
+35	현금IC카드거래확인	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+36	현금IC카드거래확인	D2A	SI	1			HEX		0F				
+37	현금IC카드거래확인	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+38	현금IC카드거래확인	D2A	SI	1			HEX		0F				
+39	현금IC카드거래확인	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+40	현금IC카드거래확인	D2A	SI	1			HEX		0F				
+41	현금IC카드거래확인	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+42	현금IC카드거래확인	D2A	ETX	1			HEX		03				
+43	현금IC카드거래확인	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+현금IC카드거래확인A2D
+====================================
+0	현금IC카드거래확인	A2D	STX	1			HEX		02				
+1	현금IC카드거래확인	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	현금IC카드거래확인	A2D	Message Type	4			ASCII		0710		0		
+3	현금IC카드거래확인	A2D	거래구분코드	2			ASCII		23		0		
+4	현금IC카드거래확인	A2D	부가정보코드	2			ASCII				0		
+5	현금IC카드거래확인	A2D	단말기Type	2			ASCII				0		
+6	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+7	현금IC카드거래확인	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+9	현금IC카드거래확인	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+11	현금IC카드거래확인	A2D	거래고유번호	12			ASCII			CALCL_ENGTH	0		
+12	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+13	현금IC카드거래확인	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+14	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+15	현금IC카드거래확인	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+16	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+17	현금IC카드거래확인	A2D	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+18	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+19	현금IC카드거래확인	A2D	승인번호	12	V		ASCII			CALCL_ENGTH	0		
+20	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+21	현금IC카드거래확인	A2D	발급기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+22	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+23	현금IC카드거래확인	A2D	매입기관대표코드	20	V		ASCII			CALCL_ENGTH	0		
+24	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+25	현금IC카드거래확인	A2D	가맹점번호	15	V		ASCII			CALCL_ENGTH	0		
+26	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+27	현금IC카드거래확인	A2D	출력용출금계좌번호	20	V		ASCII			CALCL_ENGTH	0		
+28	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+29	현금IC카드거래확인	A2D	확인거래종류	1			ASCII			CALCL_ENGTH	0		
+30	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+31	현금IC카드거래확인	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+32	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+33	현금IC카드거래확인	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+34	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+35	현금IC카드거래확인	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+36	현금IC카드거래확인	A2D	FS	1			HEX		1C				
+37	현금IC카드거래확인	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+38	현금IC카드거래확인	A2D	ETX	1			HEX		03				
+39	현금IC카드거래확인	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+점포관리전문D2A
+====================================
+0	점포관리전문	D2A	STX	1			HEX		02				
+1	점포관리전문	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	점포관리전문	D2A	Message Type	4			ASCII		0980		0		
+3	점포관리전문	D2A	거래구분코드	2			ASCII		82		0		
+4	점포관리전문	D2A	부가정보코드	2			ASCII				0		
+5	점포관리전문	D2A	단말기Type	2			ASCII				0		
+6	점포관리전문	D2A	FS	1			HEX		1C				
+7	점포관리전문	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	점포관리전문	D2A	FS	1			HEX		1C				
+9	점포관리전문	D2A	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	점포관리전문	D2A	FS	1			HEX		1C				
+11	점포관리전문	D2A	승인금액	12	V		ASCII			CALCL_ENGTH	0		
+12	점포관리전문	D2A	FS	1			HEX		1C				
+13	점포관리전문	D2A	추가항목1	679	V		ASCII			CALCL_ENGTH	0		
+14	점포관리전문	D2A	FS	1			HEX		1C				
+15	점포관리전문	D2A	추가항목2	512	V		ASCII			CALCL_ENGTH	0		
+16	점포관리전문	D2A	SI	1			HEX		0F				
+17	점포관리전문	D2A	직전거래전문	65535	V		ASCII			CALCL_ENGTH	0		
+18	점포관리전문	D2A	SI	1			HEX		0F				
+19	점포관리전문	D2A	직전거래거래일자	8			ASCII			CALCL_ENGTH	0		
+20	점포관리전문	D2A	SI	1			HEX		0F				
+21	점포관리전문	D2A	직전거래승인번호	12	V		ASCII			CALCL_ENGTH	0		
+22	점포관리전문	D2A	SI	1			HEX		0F				
+23	점포관리전문	D2A	직전거래보너스승인번호	12	V		ASCII			CALCL_ENGTH	0		
+24	점포관리전문	D2A	ETX	1			HEX		03				
+25	점포관리전문	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+점포관리전문A2D
+====================================
+0	점포관리전문	A2D	STX	1			HEX		02				
+1	점포관리전문	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	점포관리전문	A2D	Message Type	4			ASCII		0990		0		
+3	점포관리전문	A2D	거래구분코드	2			ASCII		82		0		
+4	점포관리전문	A2D	부가정보코드	2			ASCII				0		
+5	점포관리전문	A2D	단말기Type	2			ASCII				0		
+6	점포관리전문	A2D	FS	1			HEX		1C				
+7	점포관리전문	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	점포관리전문	A2D	FS	1			HEX		1C				
+9	점포관리전문	A2D	전문추적번호	4			ASCII			CALCL_ENGTH	0		
+10	점포관리전문	A2D	FS	1			HEX		1C				
+11	점포관리전문	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+12	점포관리전문	A2D	FS	1			HEX		1C				
+13	점포관리전문	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+14	점포관리전문	A2D	FS	1			HEX		1C				
+15	점포관리전문	A2D	화면메시지	200	V		ASCII			CALCL_ENGTH	0		
+16	점포관리전문	A2D	FS	1			HEX		1C				
+17	점포관리전문	A2D	출력제어코드	1			ASCII			CALCL_ENGTH	0		
+18	점포관리전문	A2D	FS	1			HEX		1C				
+19	점포관리전문	A2D	전표타이틀	32	V		ASCII			CALCL_ENGTH	0		
+20	점포관리전문	A2D	FS	1			HEX		1C				
+21	점포관리전문	A2D	부가세자료출력	1024	V		ASCII			CALCL_ENGTH	0		
+22	점포관리전문	A2D	FS	1			HEX		1C				
+23	점포관리전문	A2D	출력메시지	500	V		ASCII			CALCL_ENGTH	0		
+24	점포관리전문	A2D	ETX	1			HEX		03				
+25	점포관리전문	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+키교환D2A
+====================================
+0	키교환	D2A	STX	1			HEX		02				
+1	키교환	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	키교환	D2A	Message Type	4			ASCII		0100		0		
+3	키교환	D2A	거래구분코드	2			ASCII		90		0		
+4	키교환	D2A	부가정보코드	2			ASCII				0		
+5	키교환	D2A	단말기Type	2			ASCII				0		
+6	키교환	D2A	FS	1			HEX		1C				
+7	키교환	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	키교환	D2A	FS	1			HEX		1C				
+9	키교환	D2A	단말기일련번호(CRNTNO)	10			ASCII			CALCL_ENGTH	0		
+10	키교환	D2A	FS	1			HEX		1C				
+11	키교환	D2A	인증정보	300	V		ASCII			CALCL_ENGTH	0		
+12	키교환	D2A	ETX	1			HEX		03				
+13	키교환	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+키교환A2D
+====================================
+0	키교환	A2D	STX	1			HEX		02				
+1	키교환	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	키교환	A2D	Message Type	4			ASCII		0110		0		
+3	키교환	A2D	거래구분코드	2			ASCII		90		0		
+4	키교환	A2D	부가정보코드	2			ASCII				0		
+5	키교환	A2D	단말기Type	2			ASCII				0		
+6	키교환	A2D	FS	1			HEX		1C				
+7	키교환	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	키교환	A2D	FS	1			HEX		1C				
+9	키교환	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+10	키교환	A2D	FS	1			HEX		1C				
+11	키교환	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+12	키교환	A2D	FS	1			HEX		1C				
+13	키교환	A2D	인증정보	300	V		ASCII			CALCL_ENGTH	0		
+14	키교환	A2D	FS	1			HEX		1C				
+15	키교환	A2D	응답메시지	200	V		ASCII			CALCL_ENGTH	0		
+16	키교환	A2D	ETX	1			HEX		03				
+17	키교환	A2D	CRC	2			HEX			CALC_CRC			
+====================================
+키검증D2A
+====================================
+0	키검증	D2A	STX	1			HEX		02				
+1	키검증	D2A	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	키검증	D2A	Message Type	4			ASCII		0100		0		
+3	키검증	D2A	거래구분코드	2			ASCII		91		0		
+4	키검증	D2A	부가정보코드	2			ASCII				0		
+5	키검증	D2A	단말기Type	2			ASCII				0		
+6	키검증	D2A	FS	1			HEX		1C				
+7	키검증	D2A	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	키검증	D2A	FS	1			HEX		1C				
+9	키검증	D2A	단말기일련번호(CRNTNO)	10			ASCII			CALCL_ENGTH	0		
+10	키검증	D2A	FS	1			HEX		1C				
+11	키검증	D2A	인증정보	300	V		ASCII			CALCL_ENGTH	0		
+12	키검증	D2A	ETX	1			HEX		03				
+13	키검증	D2A	CRC	2			HEX			CALC_CRC			
+====================================
+키검증A2D
+====================================
+0	키검증	A2D	STX	1			HEX		02				
+1	키검증	A2D	전문길이	4			ASCII			MAKE_PACKET_LENGTH	1		
+2	키검증	A2D	Message Type	4			ASCII		0110		0		
+3	키검증	A2D	거래구분코드	2			ASCII		91		0		
+4	키검증	A2D	부가정보코드	2			ASCII				0		
+5	키검증	A2D	단말기Type	2			ASCII				0		
+6	키검증	A2D	FS	1			HEX		1C				
+7	키검증	A2D	단말기번호	10			ASCII			CALCL_ENGTH	0		
+8	키검증	A2D	FS	1			HEX		1C				
+9	키검증	A2D	거래일시	15			ASCII			CALCL_ENGTH	0		
+10	키검증	A2D	FS	1			HEX		1C				
+11	키검증	A2D	응답코드	2			ASCII			CALCL_ENGTH	0		
+12	키검증	A2D	FS	1			HEX		1C				
+13	키검증	A2D	인증정보	300	V		ASCII			CALCL_ENGTH	0		
+14	키검증	A2D	FS	1			HEX		1C				
+15	키검증	A2D	응답메시지	200	V		ASCII			CALCL_ENGTH	0		
+16	키검증	A2D	ETX	1			HEX		03				
+17	키검증	A2D	CRC	2			HEX			CALC_CRC			

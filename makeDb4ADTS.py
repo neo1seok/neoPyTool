@@ -150,98 +150,6 @@ class BaseMySQLRunnable(neolib.NeoRunnableClasss):
 
 
 
-class MakePacketInfoFromMySQL(BaseMySQLRunnable):
-
-
-	def mainProcess(self):
-		self.strlines = ''
-		self.cols = ['index','protocol','direction','name','length','var','key_index','encoding','char_range','value','script','order','regexp']
-
-		row = self.newmapprotocol["MS승인D2A"]
-
-
-		self.maplist = collections.OrderedDict()
-		for key,value in self.newmapprotocol.items():
-			self.listmap = []
-			self.checkPacketForm(value)
-			self.maplist[key] = self.listmap
-
-		for key, value in self.maplist.items():
-			self.append('====================================')
-			self.append(key)
-			self.append('====================================')
-
-			for mapresult in value:
-				#self.append('====================================')
-				for tmpcol in self.cols:
-					self.strlines += "{0}\t".format(mapresult[tmpcol])
-
-				self.strlines += "\r\n"
-
-
-
-		#self.makeNewTypeScripFromNotAcqured()
-
-		None
-
-	def checkPacketForm(self, row):
-
-		self.index = 0;
-		datas = row['data']
-		self.servicecode = row['servicecode']
-		self.protocol = row['protocol']
-		self.direction = row['direction']
-
-		# self.append('KEY: {0} {1}'.format(self.protocol,self.direction))
-
-
-		self.appendLine(name="STX", length="1", encoding='HEX', value="02")
-		for tmpindex in datas.split('|'):
-			self.processDataTypes(self.newmap[tmpindex])
-		self.appendLine(name="ETX", length="1", encoding='HEX', value="03")
-		self.appendLine(name="CRC", length="2", encoding='HEX', script='CALC_CRC')
-
-		# neolib.SetClipBoard(self.strlines)
-
-
-
-
-
-		# print(row['protocol'] + "\n" + self.strlines)
-
-		None
-
-	def processDataTypes(self, datamap):
-		name = datamap['name']
-		length = datamap['length']
-		options = datamap['options']
-		chartype = datamap['chartype']
-
-		types = options.split('|')
-		strv = ''
-		if 'V' in types:                strv = 'V'
-		strscript = ''
-
-		order = '0'
-		value = ''
-		if name == '전문길이':
-			order = '1'
-			strscript = 'MAKE_PACKET_LENGTH'
-
-		elif name == 'Message Type':
-			value = self.servicecode[0:4]
-			None
-		elif name == '거래구분코드':
-			value = self.servicecode[4:6]
-			None
-
-		if 'F' in types:
-			self.appendLine(name="FS", length="1", encoding='HEX', value="1C")
-			strscript = 'CALCL_ENGTH'
-
-		self.appendLine(name=name, length=length, var=strv, encoding='ASCII', chartype=chartype, value=value,
-						script=strscript, order=order)
-
 
 
 class MakeScriptSentenceFromMySQL(BaseMySQLRunnable):
@@ -346,6 +254,146 @@ class MakeScriptSentenceFromMySQL(BaseMySQLRunnable):
 		#strline = "{0}\t{1}\t{2}\t\t{3}\t{4}\t{5}\t{6}\t{7}".format(name, length, strv, encoding, chartype, value,	script, order)
 		#self.strlines += strline
 		#self.strlines += "\n"
+
+
+class MakePacketInfoFromMySQL(MakeScriptSentenceFromMySQL):
+
+
+	def mainProcess(self):
+		self.strlines = ''
+		self.cols = ['index','protocol','direction','name','length','var','key_index','encoding','char_range','value','script','order','regexp']
+
+		row = self.newmapprotocol["MS승인D2A"]
+
+
+		self.maplist = collections.OrderedDict()
+		for key,value in self.newmapprotocol.items():
+			self.listmap = []
+			self.checkPacketForm(value)
+			self.maplist[key] = self.listmap
+
+		for key, value in self.maplist.items():
+			self.append('====================================')
+			self.append(key)
+			self.append('====================================')
+
+			for mapresult in value:
+				#self.append('====================================')
+				str =''
+				for tmpcol in self.cols:
+					str += "{0}\t".format(mapresult[tmpcol])
+#					self.append("{0}\t".format(mapresult[tmpcol]))
+				self.append(str)
+
+
+
+
+		#self.makeNewTypeScripFromNotAcqured()
+
+		None
+	def getValue(self,key,maps):
+		if key not in maps: return ''
+		return maps[key]
+
+
+	# def appendLine(self, **kwargs):
+	# 	#self.initResultMap()
+	#
+	# 	name = self.getValue('name', kwargs)
+	# 	length = self.getValue('length', kwargs)
+	# 	strv = self.getValue('strv', kwargs)
+	# 	encoding = self.getValue('encoding', kwargs)
+	# 	chartype = self.getValue('chartype', kwargs)
+	# 	value = self.getValue('value', kwargs)
+	# 	script = self.getValue('script', kwargs)
+	# 	order = self.getValue('order', kwargs)
+	#
+	# 	strline = "{0}\t{1}\t{2}\t\t{3}\t{4}\t{5}\t{6}\t{7}".format(name, length, strv, encoding, chartype, value,
+	# 																script, order)
+	# 	self.strlines += strline
+	#
+	# 	# for key, value in kwargs.items():
+	# 	# 	self.mapresult[key] = value
+	#
+	# 	self.strlines += "\n"
+	#
+	# 	#self.listmap.append(self.mapresult)
+
+	# strline = "{0}\t{1}\t{2}\t\t{3}\t{4}\t{5}\t{6}\t{7}".format(name, length, strv, encoding, chartype, value,	script, order)
+	# self.strlines += strline
+	# self.strlines += "\n"
+
+	def checkPacketForm(self, row):
+
+		self.index = 0;
+		datas = row['data']
+		self.servicecode = row['servicecode']
+		self.protocol = row['protocol']
+		self.direction = row['direction']
+
+		# self.append('KEY: {0} {1}'.format(self.protocol,self.direction))
+
+
+		self.appendLine(name="STX", length="1", encoding='HEX', value="02")
+		for tmpindex in datas.split('|'):
+			self.processDataTypes(self.newmap[tmpindex])
+		self.appendLine(name="ETX", length="1", encoding='HEX', value="03")
+		self.appendLine(name="CRC", length="2", encoding='HEX', script='CALC_CRC')
+
+		# neolib.SetClipBoard(self.strlines)
+
+
+
+
+
+		# print(row['protocol'] + "\n" + self.strlines)
+
+		None
+
+	def processDataTypes(self, datamap):
+		name = datamap['name']
+		length = datamap['length']
+		options = datamap['options']
+		chartype = datamap['chartype']
+
+		types = options.split('|')
+		strv = ''
+		if 'V' in types:                strv = 'V'
+		strscript = ''
+
+		order = '0'
+		value = ''
+		if name == '전문길이':
+			order = '1'
+			strscript = 'MAKE_PACKET_LENGTH'
+
+		elif name == 'Message Type':
+			value = self.servicecode[0:4]
+			None
+		elif name == '거래구분코드':
+			value = self.servicecode[4:6]
+			None
+
+		option = ''
+		if 'O' not in types:
+			option = 'OPTION'
+			None
+
+		if 'F' not in types:
+			if 'SI' not in types:
+				self.appendLine(name="FS", length="1", encoding='HEX', value="1C")
+			strscript = 'CALCL_ENGTH'
+
+		if 'SI' in types:
+			self.appendLine(name="SI", length="1", encoding='HEX', value="0F")
+
+		self.appendLine(name=name, length=length, var=strv, encoding='ASCII', chartype=chartype, value=value,
+						script=strscript, order=order)
+
+
+
+
+
 
 class countProfileFromMySQL(BaseMySQLRunnable):
 
@@ -1090,7 +1138,8 @@ class MakeProfileToScenario(MakeScenarioDBFromOldDB):
 #checkInitProfilecountProfileFromMySQL().Run()
 #adjustProfileConfigFromMySQL().Run()
 #ProfileSettings().Run()
-MakeScenarioDBFromOldDB().Run()
 MakePacketInfoFromMySQL().Run()
+MakeScenarioDBFromOldDB().Run()
+
 
 exit()
