@@ -32,6 +32,7 @@ import requests
 import  simplejson as json
 import collections
 
+import neolib4Win
 
 
 class BaseMySQLRunnable(neolib.NeoRunnableClasss):
@@ -60,7 +61,7 @@ class BaseMySQLRunnable(neolib.NeoRunnableClasss):
 		fb.write(self.strlines.encode())
 		fb.close()
 
-		neolib.SetClipBoard(self.strlines)
+		neolib4Win.SetClipBoard(self.strlines)
 
 
 		conn.close()

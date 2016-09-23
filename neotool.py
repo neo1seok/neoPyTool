@@ -43,9 +43,7 @@ import win32api
 
 import subprocess
 
-
-
-
+import neolib4Win
 
 
 class BaseRunClass(neolib.NeoRunnableClasss):
@@ -73,7 +71,7 @@ class SetClipBoard(BaseRunClass):
 	def doRun(self):
 		#	win32api.MessageBox(0, dststr, "NEOPYTHONSHELL")
 		print("set clipboard:\n" + self.dststr)
-		neolib.SetClipBoard(self.dststr)
+		neolib4Win.SetClipBoard(self.dststr)
 
 	def InitValue(self):
 		try:
@@ -99,11 +97,11 @@ class ConvertBaseClipboard(BaseRunClass):
 	def convContents(self):
 		None
 	def doRun(self):
-		self.dststr = neolib.GetClipBoard()
+		self.dststr = neolib4Win.GetClipBoard()
 		print("get clipboard:\n" + self.dststr,"\n")
 		self.convContents()
 		print("set clipboard:\n" , self.dststr,"\n")
-		neolib.SetClipBoard(self.dststr)
+		neolib4Win.SetClipBoard(self.dststr)
 
 
 class ConvertMapCs2Java(ConvertBaseClipboard):

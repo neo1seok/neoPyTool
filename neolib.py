@@ -1,6 +1,6 @@
 
 
-import win32clipboard
+
 import  re
 import subprocess
 
@@ -56,25 +56,6 @@ def listarg2Map(list):
 		i=i+1
 	return maparg
 
-def GetClipBoard():
-	try:
-		win32clipboard.OpenClipboard()
-		strret = win32clipboard.GetClipboardData( win32clipboard.CF_UNICODETEXT)  # set clipboard data
-		win32clipboard.CloseClipboard()
-
-	except TypeError:
-		pass
-
-	return strret
-
-def SetClipBoard(str):
-	try:
-		win32clipboard.OpenClipboard()
-		win32clipboard.EmptyClipboard()
-		win32clipboard.SetClipboardData( win32clipboard.CF_UNICODETEXT,str)  # set clipboard data
-		win32clipboard.CloseClipboard()
-	except TypeError:
-		pass
 
 def HexString2ByteArray(hexstr) :
 	return bytes.fromhex(hexstr)

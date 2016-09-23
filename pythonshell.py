@@ -1,5 +1,6 @@
 import sys
 import neolib
+import neolib4Win
 import win32api
 import win32gui
 
@@ -58,4 +59,4 @@ except:
 dststr = pffile(value)
 
 win32api.MessageBox(0,dststr,"NEOPYTHONSHELL")
-neolib.SetClipBoard(dststr)
+neolib4Win.SetClipBoard(dststr)
