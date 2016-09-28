@@ -633,19 +633,34 @@ class Runnable369Profile(neolib.NeoRunnableClasss):
 
 
 
-
-
-
-
-
-
-
-
-
 for root, dirs, files in os.walk("C:\TMP\test"):
 	for basename in files:
 		print(basename)
 
+
+listMapOldDBMainProtocol = collections.OrderedDict([('aa1','bb1')])
+listMapOldDBMainProtocol['aa'] ='bb'
+listMapOldDBMainProtocol['a2'] ='bb'
+listMapOldDBMainProtocol['a3'] ='bb'
+print(listMapOldDBMainProtocol)
+
+
+maprow = {"test":"vale","test1":"vale",}
+
+
+
+arraycol = { tmp:maprow[tmp] for tmp in maprow}
+print(maprow)
+print(arraycol)
+
+arraycol = collections.OrderedDict([('aa1','bb1') for key,value in maprow.items()])
+print(arraycol)
+
+arraycol = list(map(lambda tmp:tmp[0],maprow.items()))
+#arraycol = list(map(lambda key:key.key,maprow))
+print(arraycol)
+
+exit()
 Runnable369Profile().Run()
 #TestLogExtract().Run()
 

@@ -55,6 +55,8 @@ class BaseRunClass(neolib.NeoRunnableClasss):
 		self.maparg = maparg
 		self.InitValue()
 
+	def InitValue(self):
+		None
 	#
 	# def doRun(self):
 	# 	print('a')

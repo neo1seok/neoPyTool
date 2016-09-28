@@ -5,10 +5,12 @@ import  re
 import subprocess
 
 class NeoRunnableClasss:
+	isJustRunThisClass = True
 	def __init__(self):
 		None
 
-	def Run(self):
+	def Run(self,isJustRunThisClass = True):
+		self.isJustRunThisClass = isJustRunThisClass
 		self.InitRun()
 		#try:
 		self.doRun()
@@ -27,7 +29,7 @@ class NeoRunnableClasss:
 		None
 
 	def endRun(self):
-		exit()
+		if self.isJustRunThisClass :exit()
 
 
 def executeAsync( cmd):
