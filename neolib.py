@@ -6,11 +6,30 @@ import subprocess
 
 class NeoRunnableClasss:
 	isJustRunThisClass = True
-	def __init__(self):
-		None
 
-	def Run(self,isJustRunThisClass = True):
-		self.isJustRunThisClass = isJustRunThisClass
+	def __init__(self,**kwargs):
+		self.mapArgs = {}
+		self.setDefArges()
+
+		print("__init__",self.__class__)
+
+		self.mapArgs.update(self.defMapArgs)
+		for key,vlaue in kwargs.items():
+			self.mapArgs[key] = vlaue
+	# def __init__(self):
+	# 	None
+	def setDefArges(self):
+		self.defMapArgs = {
+			'exit': True,
+		}
+
+	def Run(self):
+
+		try:
+			self.exit = self.mapArgs['exit']
+		except:
+			self.exit = True
+
 		self.InitRun()
 		#try:
 		self.doRun()
@@ -22,6 +41,7 @@ class NeoRunnableClasss:
 
 
 
+
 	def InitRun(self):
 		None
 
@@ -29,7 +49,7 @@ class NeoRunnableClasss:
 		None
 
 	def endRun(self):
-		if self.isJustRunThisClass :exit()
+		if self.exit :exit()
 
 
 def executeAsync( cmd):

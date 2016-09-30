@@ -1,5 +1,6 @@
 import win32clipboard
-
+import win32process
+import win32api
 
 def GetClipBoard():
 	try:
@@ -20,3 +21,19 @@ def SetClipBoard(str):
 		win32clipboard.CloseClipboard()
 	except TypeError:
 		pass
+
+def	ProcIDFromWnd(hwnd):
+	thdID,prdID = win32process.GetWindowThreadProcessId(hwnd)
+	return prdID
+
+def KillProcess( uID):
+
+	hProcess = win32api.OpenProcess(0x1fffff, False, uID);
+	if hProcess != None:
+		ret = win32api.TerminateProcess(hProcess, 0)
+		win32process.GetExitCodeProcess(hProcess)
+		win32api.CloseHandle(hProcess);
+
+def KillProcessFromHandle( hwnd):
+	pid = ProcIDFromWnd(hwnd)
+	KillProcess(pid)

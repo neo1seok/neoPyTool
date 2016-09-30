@@ -1,48 +1,10 @@
 import re
-import sys
-import neolib
-import win32api
-import time
-import os
-import datetime
-import os
-import re
-import shutil
-import socket
-import win32api
 import win32gui
-##import win32con
 import time
 import datetime
-import sys
-import glob
-
-#import json
-
-import win32clipboard
 import neolib
-import base64
-import pymysql
-import http.client
-
-import hashlib
-import gzip
-import random
-import ssl
-import string
-
-import pymysql
 import sys
-
-import requests
-
-import  simplejson as json
-import collections
-import algorithms
 import win32api
-
-import subprocess
-
 import neolib4Win
 
 
@@ -393,13 +355,6 @@ class PuttyRunNMove(BaseRunClass):
 
 
 	def doRun(self):
-
-
-
-
-
-
-
 		#win32gui.EnumWindows(lambda n, m: print(n), 0)
 		while True:
 			print('Enum Windows')
@@ -425,28 +380,19 @@ class PuttyRunNMove(BaseRunClass):
 		print('move puttys')
 
 		self.reArrangePuttyWindows(puttyHwnds)
-		count = 0
-		# print(startX, startY)
-		# for hwd in self.nums:
-		#
-		# 	realheight = unitheight
-		# 	if count == 5:
-		# 		realheight = 2*unitheight
-		# 	xindex = count % 3;
-		# 	yindex = int(count / 3);
-		#
-		# 	relativeX = unitwidth * xindex;
-		# 	relativeY = unitheight * yindex;
-		#
-		#
-		# 	print(relativeX,relativeY)
-		#
-		# 	win32gui.MoveWindow(hwd,startX + relativeX, startY + relativeY, unitwidth, realheight, 1);
-		#
-		# 	count+=1
-		#
-		# print(nums)
 
+
+
+class PuttyKIll(PuttyRunNMove):
+
+	def doRun(self):
+		for hWnd in self.getExitedPuttyHandle():
+			neolib4Win.KillProcessFromHandle(hWnd)
+			time.sleep(0.5)
+
+
+
+		None
 
 
 
@@ -454,13 +400,19 @@ class PuttyRunNMove(BaseRunClass):
 if __name__ != '__main__':
 	exit()
 
+
+
 maparg = neolib.listarg2Map(sys.argv)
+
+
+
 mapfunction = {"strcpy": SetClipBoard(maparg),
 			   "conv2java": ConvertMapCs2Java(maparg),
 			   "makeNormalTxt": MakeNormalTxtInClipBoard(maparg),
 				"convuplow": ConvUpperLowInClipBoard(maparg),
 			   "convdeftype":ConvDefineStringClipBoard(maparg),
-				"puttyrun":PuttyRunNMove(maparg)
+				"puttyrun":PuttyRunNMove(maparg),
+			   "puttykill":PuttyKIll(maparg)
 
 			   }
 

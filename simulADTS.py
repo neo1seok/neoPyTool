@@ -1127,6 +1127,209 @@ class MakePacketInfoFromMySQLOld(MakePacketDateType):
 
 		None
 
+	class MakeScenarioDBFromOldDB(BaseMySQLRunnable):
+
+		def init(self):
+			list = ['STC.A.001.0z', 'STC.A.002.zz', 'STC.A.003.00', 'STC.A.004.00', 'STC.A.005.00', 'STC.A.006.0z',
+					'STC.A.007.0z', 'STC.A.008.00', 'STC.A.009.00', 'STC.A.010.00', 'STC.A.014.zz', 'STC.A.015.00',
+					'STC.A.016.00', 'STC.A.017.00', 'STC.A.018.00', 'STC.A.019.00', 'STC.A.020.00', 'STC.A.021.00',
+					'STC.A.024.0z', 'STC.A.201.zz', 'STC.A.202.zz', 'STC.A.501.0z', 'STC.A.502.0z', 'STC.A.503.00',
+					'STC.A.504.00', 'STC.A.505.00', 'STC.A.506.0z', 'STC.A.507.0z', 'STC.A.508.00', 'STC.A.509.00',
+					'STC.A.510.00', 'STC.A.601.00', 'STC.A.602.00', 'STC.A.603.0z', 'STC.A.604.0z', 'STC.A.605.0z',
+					'STC.A.606.0z', 'STC.A.607.0z', 'STC.A.608.0z', 'STC.A.609.00', 'STC.A.610.00', 'STC.A.611.00',
+					'STC.A.612.00', 'STC.A.613.00', 'STC.A.614.00', 'STC.A.701.00', 'STC.A.702.00', 'STC.B.001.0z',
+					'STC.B.002.0z', 'STC.B.003.00', 'STC.B.004.00', 'STC.B.005.00', 'STC.B.006.0z', 'STC.B.007.0z',
+					'STC.B.008.00', 'STC.B.009.00', 'STC.B.010.00', 'STC.B.011.00', 'STC.B.012.00', 'STC.B.013.00',
+					'STC.B.014.00', 'STC.B.015.00', 'STC.B.016.00', 'STC.B.017.00', 'STC.B.018.00', 'STC.B.501.0z',
+					'STC.B.502.0z', 'STC.B.503.00', 'STC.B.504.00', 'STC.B.505.00', 'STC.B.506.0z', 'STC.B.507.0z',
+					'STC.B.508.00', 'STC.B.509.00', 'STC.B.510.00', 'STC.B.701.00', 'STC.B.702.00', 'STC.D.001.00',
+					'STC.D.002.00', 'STC.D.003.00', 'STC.D.004.00', 'STC.D.005.00', 'STC.D.006.00', 'STC.D.501.00',
+					'STC.D.502.00', 'STC.D.503.00', 'STC.D.504.00', 'STC.D.505.00', 'STC.D.601.00', 'STC.D.701.00',
+					'STC.D.702.00']
+			listwithzero = []
+			for tmp in list:
+				str = tmp.replace('z', '0')
+				listwithzero.append("'{0}'".format(str))
+
+			strarrayform = ",".join(listwithzero)
+
+		def makeMapCmdFromInputSrc(self):
+			mapret = {}
+			strmenu = neolib.StrFromFile('rsc/cmdmappingTable.txt')
+			mapobj = map(lambda x: tuple(x.split('\t')), strmenu.split('\r\n'))
+			listmenu = list(filter(lambda x: len(x) > 4, mapobj))
+			for cond, inst, newinst, title, param, param_ext, input_value in listmenu:
+				mapret[inst] = cond, newinst, title, param, param_ext, input_value
+			return mapret
+
+		def ConvertValue(self, value, mapRows, input_value):
+			arrayparam = json.loads(input_value)
+			newarrayparam = []
+			for tmp in arrayparam:
+				newarrayparam.append(mapRows[tmp])
+
+			return value.format(*newarrayparam)
+
+		def makeMapScriptPerScenarioAndMethodLineFromOldDB(self):
+			lastseq = self.dstdbHD.lastSeq('scenario')
+			lastseq += 1
+
+			mapret = self.makeMapCmdFromInputSrc()
+			self.listmapcript = self.select(
+				"SELECT A.scriptid, instruction, delay, protocol, sentence, etc, direction,B.caseid,B.objective,A.devtype,B.profilename,C.description FROM test_smartro.script_maininfo A,test_smartro.script_sublist B,test_smartro.profile_profile_sublist C where A.devtype = B.devtype and A.devtype = C.devtype and A.scriptid = B.scriptid and A.devtype = 'V100_EN07' and B.profilename = C.profilename and category in ('00.UTILITY','01.신용')")
+
+			self.listmapcriptsub = self.select(
+				"SELECT B.scriptid, title, script, objective, category, subcategory, caseid, testcase, B.profilename,  C.description "
+				"FROM test_smartro.script_sublist B,test_smartro.profile_profile_sublist C where B.devtype = C.devtype and B.devtype = 'V100_EN07' and B.profilename = C.profilename and category in ('00.UTILITY','01.신용');")
+
+			listmapmethodline = self.dstdbHD.select(
+				"SELECT seq, pck_uid, name, type, discription, script_file, make_class, confirm_class, updt_date, reg_date, comment FROM adts.packet;")
+
+			mapmapmethodline = {}
+			for maprow in listmapmethodline:
+				mapmapmethodline[maprow['name']] = maprow
+
+			for tmprow in self.listmapcriptsub:
+				# print(tmprow['scriptid'],tmprow['title'],tmprow['caseid'])
+				None
+
+			prevscriptid = ''
+			curuid = ''
+
+			mapScriptPerScenarioAndMethodLine = {}
+
+			for tmprow in self.listmapcript:
+				pck_uid = ''
+				instruction = tmprow['instruction']
+				scriptid = tmprow['scriptid']
+				profilename = tmprow['profilename']
+				objective = tmprow['objective']
+				description = tmprow['description']
+				protocol = tmprow['protocol']
+				if scriptid != prevscriptid:
+					mapScriptPerScenarioAndMethodLine[scriptid] = {}
+
+					mapScriptPerScenarioAndMethodLine[scriptid]['scenario'] = (
+						scriptid, description, '', '', 'smatro_sc.py',
+						'SMARTRO_SC', profilename,
+						objective)  # ( 'name', 'discription', 'profile_sc', 'profile_reset_sc', 'script_file', 'classname')
+					mapScriptPerScenarioAndMethodLine[scriptid]['method_line'] = []
+
+				arrayMethodLine = mapScriptPerScenarioAndMethodLine[scriptid]['method_line']
+
+				prevscriptid = scriptid
+				if instruction not in mapret: continue
+
+				cond, newinst, title, param, param_ext, input_value = mapret[instruction]
+				title = self.ConvertValue(title, tmprow, input_value)
+				param = self.ConvertValue(param, tmprow, input_value)
+
+				if "전문" in instruction:
+					map = self.ConvertFromSentence({}, param)[0]
+					param = json.dumps(map, ensure_ascii=False)
+
+					if "수신" in instruction:
+						packetname = protocol + " 수신"
+						pck_uid = mapmapmethodline[packetname]['pck_uid']
+						arrayMethodLine.append(('RECV', '수신', '$PORT00', '', ''));
+						arrayMethodLine.append(('CONFIRM_PACKET', title, param, '', pck_uid));
+						# self.appendA('RECV', '수신', '$PORT00')
+						# self.appendA('CONFIRM_PACKET', title, param, '{"TYPE":"MAIN","PAKCET":"%s"}' % tmprow['protocol'])
+
+						None
+					elif "송신" in instruction:
+						packetname = protocol + " 송신"
+						pck_uid = mapmapmethodline[packetname]['pck_uid']
+
+						arrayMethodLine.append(('MAKE_PACKET', title, param, '', pck_uid));
+						arrayMethodLine.append(('SEND', '송신', '$PORT00', '', ''));
+						# self.appendA('MAKE_PACKET', title, param, '{"TYPE":"MAIN","PAKCET":"%s"}' % tmprow['protocol'])
+						# self.appendA('SEND', '송신', '$PORT00')
+						None
+
+					continue
+				arrayMethodLine.append((newinst, title, param, '', ''));
+			# self.appendA(newinst, title, param)
+			# self.appendA("================================================")
+
+
+			return mapScriptPerScenarioAndMethodLine
+
+		def makeJsonFile(self):
+			mapScriptPerScenarioAndMethodLine = self.makeMapScriptPerScenarioAndMethodLineFromOldDB()
+			strjson = json.dumps(mapScriptPerScenarioAndMethodLine, ensure_ascii=False)
+
+			neolib.StrToFile(strjson, 'rsc/mapScriptPerScenarioAndMethodLine.json')
+
+		def deleteScenarioAndMethodLine(self):
+			self.dstdbHD.select("DELETE FROM scenario ;DELETE FROM method_line")
+
+		def InsertScenarioAndMethodLine(self, mapScriptPerScenarioAndMethodLine):
+
+			lastseq = self.dstdbHD.lastSeq('scenario')
+			lastseq += 1
+
+			lastseqMethodLine = self.dstdbHD.lastSeq('method_line')
+			lastseqMethodLine += 1
+
+			sqldstfmt = "INSERT INTO scenario(   seq  ,sce_uid  ,scg_uid  ,name  ,discription  ,profile_sc  ,profile_reset_sc  ,script_file  ,classname  ,updt_date  ,reg_date  ,comment) " \
+						"VALUES (%d  ,'%s','%s','%s','%s','%s','%s','%s','%s',now(),now(),'%s')"
+
+			sqldstfmtMethodLine = "INSERT INTO method_line(" \
+								  " seq  ,mtd_uid  ,sce_uid  ,`index`  ,method  ,title  ,param  ,param_ext ,pck_uid ,updt_date  ,reg_date  ,comment )" \
+								  "VALUES (%d,'%s','%s',%d,'%s','%s','%s','%s','%s',now(),now(),'%s')"
+
+			for scriptid, values in mapScriptPerScenarioAndMethodLine.items():
+				scriptid, description, profile_sc, profile_reset_sc, script_file, classname, profilename, objective = \
+					values['scenario']
+
+				self.appendA("================================================")
+				self.appendA("================================================")
+				self.appendA("시나리오명", scriptid)
+				self.appendA("사용프로파일", profilename)
+				self.appendA("사전세팅", description)
+				self.appendA("목적", objective)
+				self.appendA("================================================")
+				self.appendA('CMD', 'TITLE', 'PARAM', 'PARAM_EXT')
+				self.appendA("================================================")
+
+				curuid = 'sce_' + str(lastseq)
+				objective = objective.replace("'", "\\'")
+				sql = sqldstfmt % (
+					lastseq, curuid, '', scriptid, objective, '', '', 'smatro_sc.py', 'SMARTRO_SC', '')
+				print(sql)
+				lastseq += 1
+				self.dstdbHD.excute(sql)
+
+				index = 0
+				for method, title, param, param_ext, pck_uid in values['method_line']:
+					self.appendA(method, title, param, param_ext)
+					curuidMethodLine = 'mtd_' + str(lastseqMethodLine)
+					param = param.replace("'", "\\'")
+					param_ext = param_ext.replace("'", "\\'")
+					sql = sqldstfmtMethodLine % (
+						lastseqMethodLine, curuidMethodLine, curuid, index, method, title, param, param_ext, pck_uid,
+						'')
+
+					print(sql)
+					self.dstdbHD.excute(sql)
+					# seq  ,mtd_uid  ,sce_uid  ,`index`  ,method  ,title  ,param  ,param_ext  ,updt_date  ,reg_date  ,comment
+					index += 1
+					lastseqMethodLine += 1
+
+				self.appendA("================================================")
+
+		def mainProcess(self):
+
+			self.deleteScenarioAndMethodLine()
+			# return
+
+
+			self.makeJsonFile()
+			strjson = neolib.StrFromFile('rsc/mapScriptPerScenarioAndMethodLine.json')
+			mapScriptPerScenarioAndMethodLine = json.loads(strjson);
+
+			self.InsertScenarioAndMethodLine(mapScriptPerScenarioAndMethodLine)
 #MakeScriptSentenceFromMySQL().Run()
 #MakeScriptSentenceFromMySQL().Run()
 #countProfileFromMySQL().Run()
