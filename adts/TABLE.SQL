@@ -45,9 +45,8 @@ CREATE TABLE `SCENARIO` (
 		`scg_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
 		`name` varchar(64) NOT NULL COMMENT '시나리오 이름',
 		`discription` text DEFAULT NULL COMMENT '설명',
-		`profile_sc` varchar(20) DEFAULT NULL COMMENT '프로파일 설정 시나리오 uid',
-		`profile_reset_sc` varchar(20) DEFAULT NULL COMMENT '프로파일 리셋 설정 시나리오 uid',
-		`script_file` varchar(64) NOT NULL COMMENT '스크립트 파일 이름',
+		`sce_uid_profile` varchar(20) DEFAULT NULL COMMENT '프로파일 설정 시나리오 uid',
+		`sce_uid_profile_reset` varchar(20) DEFAULT NULL COMMENT '프로파일 리셋 설정 시나리오 uid',
 		`classname` varchar(64) NOT NULL COMMENT '클래스 이름',
 		`type` varchar(10) DEFAULT NULL COMMENT '',
 		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
@@ -82,7 +81,6 @@ CREATE TABLE `PACKET` (
 		`name` varchar(64) NOT NULL COMMENT '패킷 이름',
 		`type` varchar(64) DEFAULT NULL COMMENT '패킷 종류',
 		`discription` text NOT NULL COMMENT '설명',
-		`script_file` varchar(64) NOT NULL COMMENT '스크립트 파일 이름',
 		`make_class` varchar(64) NOT NULL COMMENT '클래스 이름',
 		`confirm_class` varchar(64) NOT NULL COMMENT '클래스 이름',
 		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
@@ -139,6 +137,20 @@ CREATE TABLE `DATA_VALUE_TABLE` (
 		`reg_date` datetime NOT NULL COMMENT '등록일자',
 		`comment` text DEFAULT NULL COMMENT '기타정보',
 PRIMARY KEY (`seq`,`dvt_uid`) 
+ ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `MAIN_PROCESS` (
+		`seq` int(11) NOT NULL COMMENT '순번',
+		`mpr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`sce_uid` varchar(20) DEFAULT NULL COMMENT '',
+		`index` int(11) NOT NULL COMMENT '',
+		`type` varchar(10) DEFAULT NULL COMMENT '',
+		`name` varchar(64) NOT NULL COMMENT '시나리오 이름',
+		`discription` text DEFAULT NULL COMMENT '설명',
+		`method`   COMMENT '',
+PRIMARY KEY (`seq`,`mpr_uid`,`name`) 
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 

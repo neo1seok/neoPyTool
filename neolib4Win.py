@@ -1,6 +1,7 @@
 import win32clipboard
 import win32process
 import win32api
+import neolib
 
 def GetClipBoard():
 	try:
@@ -37,3 +38,8 @@ def KillProcess( uID):
 def KillProcessFromHandle( hwnd):
 	pid = ProcIDFromWnd(hwnd)
 	KillProcess(pid)
+
+class NeoAnalyzeClasss(neolib.NeoAnalyzeClasss):
+	def SetClopBoard(self):
+		SetClipBoard(self.strlines)
+		None

@@ -1,38 +1,17 @@
-import os
+
 import re
-import shutil
-import socket
-import win32api
-import win32gui
-import win32con
-import time
-import datetime
-import sys
-import glob
 
-#import json
 
-import win32clipboard
 import neolib
-import base64
-import pymysql
-import http.client
-
-import hashlib
-import gzip
-import random
-import ssl
-import string
 
 import pymysql
-import sys
-
-import requests
-
 import  simplejson as json
 import collections
 
 import neolib4Win
+import os
+import  shutil
+import ntpath
 
 class dbHandleing:
 	def __init__(self,**kwargs):
@@ -120,7 +99,7 @@ class dbHandleing:
 		self.cur.execute('DELETE FROM %s;'%table)
 
 
-class BaseMySQLRunnable(neolib.NeoRunnableClasss):
+class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 	ignorenames = ['Message Type', '거래구분코드']
 
 
@@ -152,11 +131,11 @@ class BaseMySQLRunnable(neolib.NeoRunnableClasss):
 
 
 	def endRun(self):
-		fb = open('out.txt', 'wb')
-		fb.write(self.strlines.encode())
-		fb.close()
-
-		neolib4Win.SetClipBoard(self.strlines)
+		# fb = open('out.txt', 'wb')
+		# fb.write(self.strlines.encode())
+		# fb.close()
+		#
+		# neolib4Win.SetClipBoard(self.strlines)
 
 		self.olddbHD.conn.close()
 		self.dstdbHD.conn.close()
@@ -322,6 +301,26 @@ class BaseTableInput(BaseMySQLRunnable):
 		self.dstdbHD.insertList(self.dsttable, self.prefix, self.listmap, lastseq)
 
 
+class MakeEnvSetting(BaseTableInput):
+	dsttable = "env_setting"
+	colline = "tsi_uid, item, value"
+	prefix = "ens"
+
+	def processInserValues(self):
+		mapEnv = collections.OrderedDict([
+			("DEVICE_TYPE", "V100_EN07"),
+			("DEVICE_MODEL", "v241"),
+			("script_file", "smatro_sc.py"),
+			("class_main_process", "mainprocess_smartro"),
+		])
+
+
+
+		for key,val in mapEnv.items():
+			self.appendLine(item=key,value = val)
+
+
+		None
 
 class MakePacketDateType(BaseTableInput):
 	dsttable = "packet_data_type"
@@ -394,7 +393,7 @@ class MakePacketDateType(BaseTableInput):
 class MakePacket(BaseTableInput):
 	dsttable = "packet";
 	prefix = "pck"
-	colline = "name, type, discription, script_file, make_class, confirm_class"
+	colline = "name, type, discription,  make_class, confirm_class"
 	def makePacketName(self,protocol,direction):
 		tail = '수신' if direction == 'D2A'  else '송신'
 
@@ -406,7 +405,7 @@ class MakePacket(BaseTableInput):
 			direction = value['direction']
 			name = self.makePacketName(protocol,direction)
 
-			self.appendLine(name=name,type="MAIN",script_file='smatro_sc.py',make_class="MAKE_PACKET_MAIN", confirm_class="CONFRIM_PACKET_MAIN")
+			self.appendLine(name=name,type="MAIN",make_class="MAKE_PACKET_MAIN", confirm_class="CONFRIM_PACKET_MAIN")
 
 		None
 
@@ -416,7 +415,7 @@ class MakePacketDataUnit(MakePacket):
 	prefix = "pdu"
 
 	def processInserValues(self):
-		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription, script_file, make_class, confirm_class FROM adts.packet;")
+		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription,  make_class, confirm_class FROM adts.packet;")
 		self.mapType = self.dstdbHD.selectToMap("name", "SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value, param, param_ext, updt_date, reg_date, comment FROM adts.packet_data_type;")
 		for key, row in self.mapOldDBMainProtocol.items():
 			index = 0;
@@ -467,13 +466,13 @@ class MakePacketDataUnit(MakePacket):
 
 #이 클래스는 스마트로의 스크립트 정보를 이용하여
 #새로운 커맨드 라인을 만드는 클래스이다.
-#rsc/cmdmappingTable.txt 에 instruction mapping 정보가
+#adts/cmdmappingTable.txt 에 instruction mapping 정보가
 #뉴라인 탭 형태의 테이블 정보로 들어 있다.
 
 class MakeScenario(BaseTableInput):
 	dsttable = "scenario"
 	prefix = "sce"
-	colline = "scg_uid, name, discription, profile_sc, profile_reset_sc, script_file, classname,comment"
+	colline = "scg_uid, name, discription, sce_uid_profile, sce_uid_profile_reset,  classname,comment"
 
 	def processInserValues(self):
 		listmapcriptsub = self.olddbHD.selectToMap('scriptid',
@@ -481,7 +480,7 @@ class MakeScenario(BaseTableInput):
 			"FROM script_sublist B,profile_profile_sublist C where B.devtype = C.devtype and B.devtype = 'V100_EN07' and B.profilename = C.profilename and category in ('00.UTILITY','01.신용');")
 
 		mapScenario = self.dstdbHD.selectToMap('name',
-											   "SELECT seq, sce_uid, scg_uid, name, discription, profile_sc, profile_reset_sc, script_file, classname, updt_date, reg_date, comment FROM adts.scenario where type = 'profile';")
+											   "SELECT * FROM adts.scenario where type = 'profile';")
 
 		for key,row in listmapcriptsub.items():
 			objective = row['objective']
@@ -491,7 +490,7 @@ class MakeScenario(BaseTableInput):
 			sce_uid_reset = mapScenario[profilename + " RESET"]['sce_uid'];
 
 
-			self.appendLine(name=key,discription=objective,script_file='smatro_sc.py',classname='SMARTRO_SC',profile_sc=sce_uid, profile_reset_sc=sce_uid_reset)
+			self.appendLine(name=key,discription=objective,classname='SMARTRO_SC',sce_uid_profile=sce_uid, sce_uid_profile_reset=sce_uid_reset)
 
 
 
@@ -505,11 +504,11 @@ class MakeScenarioLine(BaseTableInput):
 	def processInserValues(self):
 
 		#self.makeJsonFile()
-		strjson = neolib.StrFromFile('rsc/mapScriptPerScenarioAndMethodLine.json')
+		strjson = neolib.StrFromFile('adts/mapScriptPerScenarioAndMethodLine.json')
 		self.listmapcript = json.loads(strjson);
 
-		mapdstScenario = self.dstdbHD.selectToMap('name',"SELECT seq, sce_uid, scg_uid, name, discription, profile_sc, profile_reset_sc, script_file, classname, updt_date, reg_date, comment FROM adts.scenario;")
-		mapmapmethodline = self.dstdbHD.selectToMap('name',"SELECT seq, pck_uid, name, type, discription, script_file, make_class, confirm_class, updt_date, reg_date, comment FROM adts.packet;")
+		mapdstScenario = self.dstdbHD.selectToMap('name',"SELECT * FROM adts.scenario;")
+		mapmapmethodline = self.dstdbHD.selectToMap('name',"SELECT seq, pck_uid, name, type, discription,  make_class, confirm_class, updt_date, reg_date, comment FROM adts.packet;")
 
 
 		mapret =  self.makeMapCmdFromInputSrc()
@@ -576,8 +575,8 @@ class MakeScenarioLine(BaseTableInput):
 
 	def makeMapCmdFromInputSrc(self):
 		mapret = {}
-		#strmenu = neolib.StrFromFile('rsc/cmdmappingTable.txt')
-		mapobj =self. makeMapCmdFromTxt('rsc/cmdmappingTable.txt')
+		#strmenu = neolib.StrFromFile('adts/cmdmappingTable.txt')
+		mapobj =self. makeMapCmdFromTxt('adts/cmdmappingTable.txt')
 		#map(lambda x: tuple(x.split('\t')), strmenu.split('\r\n'))
 		listmenu = list(filter(lambda x: len(x)>4, mapobj))
 		for cond,inst,newinst,title,param,param_ext,input_value in listmenu:
@@ -601,7 +600,7 @@ class MakeScenarioLine(BaseTableInput):
 		#mapScriptPerScenarioAndMethodLine = self.makeMapScriptPerScenarioAndMethodLineFromOldDB()
 		strjson = json.dumps(self.listmapcript, ensure_ascii=False)
 
-		neolib.StrToFile(strjson, 'rsc/mapScriptPerScenarioAndMethodLine.json')
+		neolib.StrToFile(strjson, 'adts/mapScriptPerScenarioAndMethodLine.json')
 
 
 
@@ -618,7 +617,7 @@ class MakeDataValueTable(BaseTableInput):
 	colline = "scl_uid, pdt_uid, value, param, param_ext,comment"
 
 	def processInserValues(self):
-		listscl = self.dstdbHD.select("SELECT seq, scl_uid, sce_uid, `index`, method, title, param, param_ext, pck_uid, updt_date, reg_date, comment FROM adts.scenario_line where pck_uid != '';")
+		listscl = self.dstdbHD.select("SELECT * FROM adts.scenario_line where pck_uid != '';")
 		listpacketData = self.dstdbHD.selectToMap("name","SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value, param, param_ext, updt_date, reg_date, comment FROM adts.packet_data_type;")
 
 		for row in listscl:
@@ -644,7 +643,7 @@ class MakeDataValueTable(BaseTableInput):
 class MakeScenarioByProfile(MakeScenario):
 	#/"scg_uid, name, discription, profile_sc, profile_reset_sc, script_file, classname"
 	def processInserValues(self):
-		mapobj = self.makeMapCmdFromTxt('rsc/profile.txt')
+		mapobj = self.makeMapCmdFromTxt('adts/profile.txt')
 		mapobj = list(filter(lambda x: x[0] != '' and x[0] != '이름', mapobj))
 
 		#listProfileanme = self.olddbHD.select("SELECT seq, uid, profilename, description, devtype FROM test_smartro.profile_profile_sublist;")
@@ -652,8 +651,8 @@ class MakeScenarioByProfile(MakeScenario):
 			profileName = row[0];
 			discription = row[1];
 
-			self.appendLine(name=profileName,discription=discription,script_file='smatro_sc.py',classname='SMARTRO_SC',type="profile" )
-			self.appendLine(name=profileName+" RESET", discription=discription +" 기본값 복구", script_file='smatro_sc.py',	classname='SMARTRO_SC', type="profile")
+			self.appendLine(name=profileName,discription=discription,classname='SMARTRO_SC',type="profile" )
+			self.appendLine(name=profileName+" RESET", discription=discription +" 기본값 복구", classname='SMARTRO_SC', type="profile")
 		None
 
 
@@ -688,8 +687,8 @@ class MakeScenarioLineByProfile(MakeScenarioLine):
 
 		return strline
 	def processInserValues(self):
-		mapScenario = self.dstdbHD.selectToMap('name',"SELECT seq, sce_uid, scg_uid, name, discription, profile_sc, profile_reset_sc, script_file, classname, updt_date, reg_date, comment FROM adts.scenario where type = 'profile';")
-		mapobj = self.makeMapCmdFromTxt('rsc/profile.txt')
+		mapScenario = self.dstdbHD.selectToMap('name',"SELECT *  FROM adts.scenario where type = 'profile';")
+		mapobj = self.makeMapCmdFromTxt('adts/profile.txt')
 		mapobj = list(filter(lambda x:x[0] !='', mapobj))
 		for tmp in mapobj:
 			#print(tmp)
@@ -775,22 +774,313 @@ class DropAndCreateTable(BaseMySQLRunnable):
 		except Exception as e:
 			print(e)
 
-		sql = neolib.StrFromFile('rsc/TABLE.SQL',enc='euc-kr')
+		sql = neolib.StrFromFile('adts/TABLE.SQL',enc='euc-kr')
 		self.dstdbHD.excute(sql)
+
+		None
+
+"""
+MakeDataFieldsClass
+해당 클래스는 C# 프로젝트 내에 datafield 클래스 문자열 만들어 주는 클래스 이다.
+tableList.txt 파일 은 테이블 , 필드 이름과 타입 정보가 들어 있는데(이는 엑셀로 부터 뭍여 오기 한것임)
+여기서 클래스이름을 키로 하고 필드이름 과 타입정보를 한 튜플을 배열화 한 맵정보를 만들고
+이를 다시 C#에서 사용 가능한 클래스의 문자열로 만들어 out.txt와
+클립보드에 넣어 주는 클래스 이다.
+ """
+class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
+	fmtclassForm = "public class {0} {{\n{1} \n}}\n"
+	#0:classname 1:fields list
+
+	fmtfieldForm = "\tpublic {0} {1} {2};"
+	#0:typename 1:fieldname 2: initial
+
+	def makeMapFromTxt(self,strtxt):
+		ret = neolib.MakeDoubleListFromTxt(strtxt)
+		maplist = {}
+		listaa = []
+
+		for tmp in ret:
+			if tmp[0] != '':
+				listaa = []
+				maplist[tmp[0]] = listaa
+			print(tmp)
+			listaa.append((tmp[1],tmp[2]))
+		return maplist
+
+	def doRun(self):
+		def convType(row ):
+			name, type = row
+			newtype = 'string'
+			strinit = '= ""'
+			result = re.match(r'int\(\d+\)',type)
+			if result != None :
+				newtype = 'int'
+				strinit = ''
+
+
+			return "\tpublic %s %s %s;"% (newtype,name,strinit)
+		ret = self.makeMapFromTxt("adts/tableList.txt")
+		print(ret)
+		self.strlines = ''
+		classconv = neolib.ConvStringForm(intype='und', outtype='cam')
+		for key, fields in ret.items():
+			#listmethod = ["\tpublic string %s ;" % name for name,type in fields]
+			listmethod = list(map(convType,fields))
+			classname = classconv.ConvertString(key)
+			self.strlines += "public class {0} {{\n{1} \n}}\n".format(classname, "\n".join(listmethod))
+
+		# print(str)
+		# fb = open('out.txt', 'wb')
+		# fb.write(str.encode())
+		# fb.close()
+		#
+		# neolib4Win.SetClipBoard(str)
+
+
+
+'''
+이 클래스는
+modulelist4ADTS.txt로 부터 모듈 구분, 프리픽스,모듈 이름 등을 얻어온후
+TempLibrary란 프로젝트를 기반으로 그 밑에 파일 등을 변경하여
+새로운 프로젝트를 생성 한다.
+'''
+class MakeCSharpProject(neolib.NeoRunnableClasss):
+	orgname = "TempLibrary"
+	basepath = "D:/PROJECT/자동단말기검수/SRC/DeviceTesterSystemAA"
+	orgpath = basepath+"/"+orgname
+
+	availext = ['.csproj','.cs']
+
+
+	def getLists(self,orgpath):
+		retarray = []
+		for root, dirs, files in os.walk(self.orgpath):
+			for basename in files:
+				root = root.replace("\\", "/")
+				if self.isFilter2Skip(root,basename): continue
+				retarray.append((root,basename))
+				#self.processFiles(root, basename)
+
+		return retarray
+
+	def CopyProject(self):
+
+		for root,basename in self.arrayorgpath:
+			relparentDir = root.replace(self.orgpath, "")
+			dstdir = self.dstpath + "/" + relparentDir
+			fullpath = root + "/" + basename
+
+			if basename == self.orgname + ".csproj":
+				basename = self.dstprojname + ".csproj"
+
+			if basename == self.orgname + ".cs":
+				basename = self.dstprojname + ".cs"
+
+			dstfullpath = dstdir + "/" + basename
+
+			neolib.MakeDir(dstdir)
+
+			# print(ntpath.basename(fullpath))
+			# print(ntpath.dirname(fullpath))
+
+
+			print(fullpath, "\n", dstfullpath)
+			shutil.copy(fullpath, dstfullpath)
+
+
+		#for root, dirs, files in os.walk(self.orgpath):
+		#	for basename in files:
+	def ChangeContents(self):
+		def changeFunction(contents):
+			contents = contents.replace(self.orgname, self.dstprojname)
+			return contents
+
+		def changeAssemblyInfo(contents):
+			contents = contents.replace(self.orgname, self.dstprojname)
+			contents = re.sub(r'\[assembly:\s+Guid\("([\w\d-]+)"\)\]','[assembly: Guid("%s")]'%self.uuid,contents)
+			return contents
+
+		def changeCs(contents):
+			contents = contents.replace("NameSpaceTempLibrary", "%s.%s"%(self.process,self.name) )
+			contents = contents.replace("ClassTempLibrary", "%s : CommLib.BaseClass.Base%s"%(self.dstprojname,self.name))
+
+			return contents
+		self.changeContentsUnit("{0}/{1}.cs".format(self.dstpath, self.dstprojname),changeCs)
+		self.changeContentsUnit("{0}/{1}.csproj".format(self.dstpath, self.dstprojname),changeFunction)
+		self.changeContentsUnit("{0}/Properties/AssemblyInfo.cs".format(self.dstpath),changeAssemblyInfo)
+		# maincs = neolib.StrFromFile("{0}/{1}.cs".format(self.dstpath,self.dstprojname))
+		# maincsproj = neolib.StrFromFile("{0}/{1}.csproj".format(self.dstpath, self.dstprojname))
+		# AssemblyInfo = neolib.StrFromFile("{0}/Properties/AssemblyInfo.cs".format(self.dstpath))
+		#
+		# maincsproj = maincsproj.replace(self.orgname,self.dstprojname)
+		# AssemblyInfo = AssemblyInfo.replace(self.orgname,self.dstprojname)
+		#
+		# neolib.StrToFile(maincsproj,"{0}/{1}.cs".format(self.dstpath,self.dstprojname))
+		# neolib.StrToFile(AssemblyInfo,"{0}/Properties/AssemblyInfo.cs".format(self.dstpath))
+		#
+		# print(maincsproj)
+
+
+		None
+	def changeContentsUnit(self,filename,changeFunction):
+		contents = neolib.StrFromFile(filename)
+
+		contents = changeFunction(contents)
+
+		if contents == None : return
+
+
+		neolib.StrToFile(contents,filename)
+
+
+	def isFilter2Skip(self,root,basename):
+		ext = os.path.splitext(basename)[1]
+		if ext not in self.availext: return True
+		if "/obj/" in root: return True
+
+		return False
+	def doRun(self):
+		self.arrayorgpath = self.getLists(self.orgpath)
+
+		self.lista = neolib.MakeDoubleListFromTxt("adts/modulelist4ADTS")
+		print(self.lista)
+
+		def changeFunction(contents):
+			print(contents)
+			#contents = contents.replace(self.orgname, self.dstprojname)
+			return None
+
+		#self.changeContentsUnit("{0}/DeviceTesterSystem.sln".format(self.basepath), changeFunction)
+		#exit()
+		for row in self.lista:
+			self.process = row[0]
+			self.prefix = row[1]
+			self.name = row[2]
+			self.uuid = row[3]
+			projectname = self.prefix+self.name
+			self.dstpath = self.basepath + "/" + projectname
+			self.dstprojname = projectname
+
+			self.CopyProject()
+			self.ChangeContents()
+
+
+
+
+
+		# self.CopyProject("Temp2Library")
+		# self.CopyProject("Temp3Library")
+		# self.CopyProject("Temp4Library")
+
+
+
+
+
+
 
 		None
 
 
 
+class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
+	patterninterface = r'public\s+interface\s+([\w\d_<>]+)\s*(?::\s*([\w\d_<>]+)\s*)*\{([^{}]*)\}'
+	patternmethod = r'(\w+)\s*(\s|[\[\]]{2})\s*([\w\d_]+)\(([^\(\)]*)\);'
+	patternparam = r'(?:(params|ref)\s+)*([\w]+)(\s|[\[\]]{2})\s*([\w]+)'
+	patternReserve = r'\{\s*(get|set)\s*;\s*\}'
+	patternReserveReverse = r"TAG:(get|set)"
+	mapcount = {1:0,2:1,3:3}
+	def levelProc(self,str,level):
 
 
+		if level <= self.prevlevel:
+			count = self.mapcount[level]
+			self.strlines += "\n"
+			self.strlines += "\t" * (count)
+			None
+
+
+
+		#self.strlines += "(%d)" % (level)
+		self.strlines +=str
+		self.strlines += "\t"
+
+
+		self.prevlevel = level
+
+	def doRun(self):
+
+		mapinteface = collections.OrderedDict()
+		strorgtxt = neolib.StrFromFile("adts/interface.txt")
+
+		#strorgtxt = strorgtxt.replace("\r","")
+		#strorgtxt = strorgtxt.replace("\n", "")
+
+		strorgtxt = re.sub(self.patternReserve,r"TAG:\1",strorgtxt)
+
+		results = re.findall(self.patterninterface,strorgtxt)
+		print(results)
+		for name,parent,methods in results:
+			#print(name)
+			#print(methods)
+			mapinteface[name] = collections.OrderedDict()
+			for ret,pinter,methodname,params in re.findall(self.patternmethod,methods):
+				mapinteface[name][methodname] = (collections.OrderedDict(),ret+pinter)
+
+				#print(methodname)
+				for prefix, type, pt2, paramname in re.findall(self.patternparam, params):
+					mapinteface[name][methodname][0][paramname] =  (prefix, type, pt2)
+
+		self.strlines = ""
+		tables = []
+
+		level = 0
+		self.prevlevel = 0
+		for intefacename,methods in mapinteface.items():
+			level += 1
+
+			self.levelProc("{0}".format(intefacename),level)
+
+			for methodname, values in methods.items():
+				level += 1
+				params = values[0]
+				ret  = values[1]
+
+				self.levelProc("{0}\t{1}".format(methodname,ret),level)
+
+				for paramname, others in params.items():
+					level += 1
+					prefix =  others[0]
+					type = others[1]
+					pointer = others[2]
+					self.levelProc("{3}\t{0} {1} {2}".format(prefix,type,pointer, paramname),level)
+					level -= 1
+
+					None
+
+				level -= 1
+
+				#self.levelProc(level)
+			level -= 1
+					#self.strlines += "{0}\t{1}\t{2}\n".format(intefacename,methodname,paramname)
+			#tables.append(newline)
+			#self.strlines += "\n"
+
+
+
+
+		print(self.strlines)
+
+		#self.strlines =
 
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
 
+#AnalyzeInterface().Run()
 
+#MakeCSharpProject().Run()
 
+MakeDataFieldsClass().Run()
 
 #DropAndCreateTable(exit = False).Run()
 
@@ -805,6 +1095,9 @@ class DropAndCreateTable(BaseMySQLRunnable):
 # MakeScenarioLine(deleteTable = False,exit = False).Run()
 # exit()
 
+#DropAndCreateTable(exit = False).Run()
+
+MakeEnvSetting(exit = False).Run()
 MakePacketDateType(exit = False).Run()
 MakePacket(exit = False).Run()
 MakePacketDataUnit(exit = False).Run()

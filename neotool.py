@@ -120,17 +120,17 @@ class ConvDefineStringClipBoard(ConvertBaseClipboard):
 
 	def InitValue(self):
 
-		self.mapMakeArray = {
-			"und": self.makeListFromUnderLine,
-			"spc": self.makeListFromSpaceDiv,
-			"cam": self.makeListFromCamelForm,
-		}
-		self.mapMakeString = {
-			"und": self.convUnserLine,
-			"und_row": self.convUnserLineLower,
-			"cam": self.convCamelForm,
-
-		}
+		# self.mapMakeArray = {
+		# 	"und": self.makeListFromUnderLine,
+		# 	"spc": self.makeListFromSpaceDiv,
+		# 	"cam": self.makeListFromCamelForm,
+		# }
+		# self.mapMakeString = {
+		# 	"und": self.convUnserLine,
+		# 	"und_row": self.convUnserLineLower,
+		# 	"cam": self.convCamelForm,
+		#
+		# }
 		self.intype = ""
 		self.outtype = ""
 
@@ -144,52 +144,52 @@ class ConvDefineStringClipBoard(ConvertBaseClipboard):
 
 		None
 
-
-	def convCamelForm(self,listarray):
-		newarra = []
-		for tmp in listarray:
-			hd = tmp[0:1].upper()
-			boddy = tmp[1:].lower()
-			newarra.append(hd+boddy)
-		return "".join(newarra)
-
-	def convUnserLine(self, listarray):
-		newarra = []
-		for tmp in listarray:
-			newarra.append(tmp.upper())
-		return "_".join(newarra)
-
-	def convUnserLineLower(self, listarray):
-		return self.convUnserLine(listarray).lower()
-
-	def makeListFromUnderLine(self, orgstr):
-		return orgstr.split("_")
-
-	def makeListFromSpaceDiv(self, orgstr):
-		return orgstr.split(" ")
-
-	def makeListFromCamelForm(self, orgstr):
-		result = re.findall(self.pattcamel,orgstr)
-		for tmp in result:
-			print(tmp[1])
-			None
-		return  list(map((lambda n:n),result))
-	def test(self):
-		res = self.convCamelForm(['abc', 'def', 'ghi'])
-		print(res)
-		res = self.convUnserLine(['abc', 'def', 'ghi'])
-		print(res)
-
-		res = self.convUnserLineLower(['abc', 'def', 'ghi'])
-		print(res)
-
-		resarray = self.makeListFromSpaceDiv('AAA BBB CCC')
-		print(resarray)
-
-		resarray = self.makeListFromUnderLine('AAA_BBB_CCC')
-		print(resarray)
-		resarray = self.makeListFromCamelForm('aaaBbbCcc')
-		print(resarray)
+	#
+	# def convCamelForm(self,listarray):
+	# 	newarra = []
+	# 	for tmp in listarray:
+	# 		hd = tmp[0:1].upper()
+	# 		boddy = tmp[1:].lower()
+	# 		newarra.append(hd+boddy)
+	# 	return "".join(newarra)
+	#
+	# def convUnserLine(self, listarray):
+	# 	newarra = []
+	# 	for tmp in listarray:
+	# 		newarra.append(tmp.upper())
+	# 	return "_".join(newarra)
+	#
+	# def convUnserLineLower(self, listarray):
+	# 	return self.convUnserLine(listarray).lower()
+	#
+	# def makeListFromUnderLine(self, orgstr):
+	# 	return orgstr.split("_")
+	#
+	# def makeListFromSpaceDiv(self, orgstr):
+	# 	return orgstr.split(" ")
+	#
+	# def makeListFromCamelForm(self, orgstr):
+	# 	result = re.findall(self.pattcamel,orgstr)
+	# 	for tmp in result:
+	# 		print(tmp[1])
+	# 		None
+	# 	return  list(map((lambda n:n),result))
+	# def test(self):
+	# 	res = self.convCamelForm(['abc', 'def', 'ghi'])
+	# 	print(res)
+	# 	res = self.convUnserLine(['abc', 'def', 'ghi'])
+	# 	print(res)
+	#
+	# 	res = self.convUnserLineLower(['abc', 'def', 'ghi'])
+	# 	print(res)
+	#
+	# 	resarray = self.makeListFromSpaceDiv('AAA BBB CCC')
+	# 	print(resarray)
+	#
+	# 	resarray = self.makeListFromUnderLine('AAA_BBB_CCC')
+	# 	print(resarray)
+	# 	resarray = self.makeListFromCamelForm('aaaBbbCcc')
+	# 	print(resarray)
 	def inputOptions(self):
 
 		inindex = int((input("input type 1.space div form 2.under line form 3.camel form: ")))
@@ -237,16 +237,19 @@ class ConvDefineStringClipBoard(ConvertBaseClipboard):
 
 		if len(results) == 0 : exit()
 
-		arrfunc = self.mapMakeArray[self.intype]
-		strfunc =self.mapMakeString[self.outtype]
+		classconv = neolib.ConvStringForm(intype=self.intype,outtype=self.outtype)
+
+		# arrfunc = self.mapMakeArray[self.intype]
+		# strfunc =self.mapMakeString[self.outtype]
 
 		retarra = []
 		for tmp in results:
 			#print(tmp[0])
-			array = arrfunc(tmp[0])
+			#array = arrfunc(tmp[0])
 			#print(array)
-			resstr = strfunc(array )
+			#resstr = strfunc(array )
 			#print(resstr )
+			resstr = classconv.ConvertString(tmp[0])
 			retarra.append(resstr)
 		self.dststr = "\r\n".join(retarra)
 
@@ -345,10 +348,17 @@ class PuttyRunNMove(BaseRunClass):
 		print(mapRect)
 
 
-		for hwd,value in mapRect.items():
+		for hwnd,value in mapRect.items():
 			relativeX, relativeY, rwidth, rheight = value
+			print(hwnd)
+			win32gui.SetWindowPos(hwnd, 0,startX + relativeX, startY + relativeY, rwidth, rheight, 0x0040);
+			#HWND = win32gui.SetActiveWindow(hwnd)
+			print(hwnd)
+			#win32gui.SetForegroundWindow(hwnd)
 
-			win32gui.MoveWindow(hwd, startX + relativeX, startY + relativeY, rwidth, rheight, 1);
+
+			#win32gui.MoveWindow(hwd, startX + relativeX, startY + relativeY, rwidth, rheight, 1);
+			#win32gui.ShowWindow(hwd, 5)
 
 
 
@@ -396,6 +406,7 @@ class PuttyKIll(PuttyRunNMove):
 
 
 
+print("start")
 
 if __name__ != '__main__':
 	exit()

@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CommLib.Interface{
+    public interface IBase {
+        void SetParam(params object[] args);
+        object CmdETC(string cmd,params object[] args);
+        void Invoke();
+
+    }
+	public interface IScriptHandler : IBase
+	{
+		void SetScript(string script);
+
+	}
+    public interface IMainContrller : IBase
+    {
+
+        void InvokeAsync();
+        void RunAsync();
+
+    }
+	public interface IIOHandler : IBase
+	{
+		void Write(byte[] buffer);
+		byte[] Read(int readsize);
+	}
+
+    public interface IDeviceInputHandler : IBase
+    {
+        void SetInput();
+
+    }
+
+    public interface IDBHandler : IBase
+    {
+		ITableHandler[] getTables();
+        DataTable Select(string sql);
+        void Excute(string sql);
+        void Connect();
+
+
+    }
+
+    public interface ITableHandler : IBase
+    {
+    }
+    public interface ITableHandler<T> : ITableHandler
+    {
+        T [] Select(string where);
+		T SelectSingleline(string where);
+
+		DataTable SelectDataTable(string where);
+
+        void Insert(Dictionary<string,object> mapvalue);
+		void Update(int seq,Dictionary<string, object> mapvalue);
+		void Update(string uid, Dictionary<string, object> mapvalue);
+
+    }
+
+
+    public interface ILOGHandler : IBase
+    {
+        void Write();
+
+    }
+    public interface IPacketHandler : IBase
+    {
+        void SetBuffer(byte [] buffer);
+        byte[] GetBuffer();
+        void Analyze();
+        void Make();
+
+
+    }
+
+
+
+
+}

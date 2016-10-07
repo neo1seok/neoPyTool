@@ -1,0 +1,9 @@
+data_value_table	DATA_VALUE_TABLE	DataValueTable
+env_setting	ENV_SETTING	EnvSetting
+packet	PACKET	Packet
+packet_data_type	PACKET_DATA_TYPE	PacketDataType
+packet_data_unit	PACKET_DATA_UNIT	PacketDataUnit
+scenario	SCENARIO	Scenario
+scenario_group	SCENARIO_GROUP	ScenarioGroup
+scenario_line	SCENARIO_LINE	ScenarioLine
+testing_info	TESTING_INFO	TestingInfo

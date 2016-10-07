@@ -38,6 +38,8 @@ import win32con
 
 import neolib4Win
 
+#import test.sample
+import uuid
 
 class ChanageMp3Title(neolib.NeoRunnableClasss):
 	maptitle = {'데려다줄래': '01', 'L.I.E': '02', '알면서': '03', 'HELLO(하니SOLO)': '04', 'CREAM': '05', '3%(솔지SOLO)': '06',
@@ -632,10 +634,60 @@ class Runnable369Profile(neolib.NeoRunnableClasss):
 
 
 
+neolib.removeEmptyFolder("D:/내문서")
+exit()
+def deffilter(root,file):
+	ext = neolib.getExtNameFromPath(file)
+	if root in ['D:/내문서','D:/내문서/2015','D:/내문서/NEWDOC','D:/내문서/역량평가','D:/내문서/연말정산'] : return False
+	if ext in ['.doc','.docx'] : return  True
+	return  False
+lista =	neolib.listAllFile("D:/내문서",deffilter)
+for path in lista: print(path)
+exit()
+for root,file in lista:
+	dstfile = "D:/내문서/NEWDOC/" + file
+	newfile = file
+	ext = neolib.getExtNameFromPath(file)
+	while os.path.exists(dstfile):
+		newfile = "COPY "+newfile
+		dstfile = "D:/내문서/NEWDOC/" + newfile
 
-for root, dirs, files in os.walk("C:\TMP\test"):
+	print("%s=>\n%s"%(root+"/"+file,dstfile))
+	shutil.move(root+"/"+file,dstfile)
+
+#print(lista)
+exit()
+#os.rmdir('D:/내문서/test')
+#exit()
+#shutil.rmtree('D:/내문서/test')
+listaa = []
+for root, dirs, files in os.walk("D:/내문서"):
+	#print(root,len(files),len(dirs))
+	sublen = len(files)+ len(dirs)
+	if sublen == 0 : listaa.append(root)
 	for basename in files:
-		print(basename)
+		None
+if len(listaa) == 0: exit()
+
+for tmp in listaa:
+	#shutil.rmtree(tmp)
+	print(tmp)
+	os.rmdir(tmp)
+
+
+
+exit()
+for tmp in range(0,10):
+	print(str(uuid.uuid4()).upper())
+
+
+exit()
+test.sample.RunnableTmp().Run()
+print(sys.path)
+exit()
+
+
+
 
 
 listMapOldDBMainProtocol = collections.OrderedDict([('aa1','bb1')])
