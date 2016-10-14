@@ -633,7 +633,8 @@ class Runnable369Profile(neolib.NeoRunnableClasss):
 		print(mapProfile)
 
 
-
+print(b'aabb')
+exit()
 neolib.removeEmptyFolder("D:/내문서")
 exit()
 def deffilter(root,file):

@@ -149,8 +149,60 @@ CREATE TABLE `MAIN_PROCESS` (
 		`type` varchar(10) DEFAULT NULL COMMENT '',
 		`name` varchar(64) NOT NULL COMMENT '시나리오 이름',
 		`discription` text DEFAULT NULL COMMENT '설명',
-		`method`   COMMENT '',
+		`method` varchar(64) NOT NULL COMMENT '',
+		`param` text DEFAULT NULL COMMENT '메소드의 파라메터',
+		`param_ext` text DEFAULT NULL COMMENT '추가 파라메터',
+		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
+		`reg_date` datetime NOT NULL COMMENT '등록일자',
+		`comment` text DEFAULT NULL COMMENT '기타정보',
 PRIMARY KEY (`seq`,`mpr_uid`,`name`) 
+ ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `CHANNEL` (
+		`seq` int(11) NOT NULL COMMENT '순번',
+		`chn_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`name` varchar(10) NOT NULL COMMENT '시나리오 이름',
+		`type` varchar(10) NOT NULL COMMENT '',
+		`discription` text DEFAULT NULL COMMENT '설명',
+		`port` int(11) DEFAULT NULL COMMENT '',
+		`classname` varchar(64) DEFAULT NULL COMMENT '클래스 이름',
+		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
+		`reg_date` datetime NOT NULL COMMENT '등록일자',
+		`comment` text DEFAULT NULL COMMENT '기타정보',
+PRIMARY KEY (`seq`,`chn_uid`,`name`) 
+ ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `TEST_RESULT` (
+		`seq` int(11) NOT NULL COMMENT '순번',
+		`tsr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`tsi_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`title` varchar(64) DEFAULT NULL COMMENT '테스트 이름',
+		`data` text DEFAULT NULL COMMENT '테스트 목적',
+		`result` varchar(20) DEFAULT NULL COMMENT '',
+		`takentime` int(11) DEFAULT NULL COMMENT '',
+		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
+		`reg_date` datetime NOT NULL COMMENT '등록일자',
+		`comment` text DEFAULT NULL COMMENT '기타정보',
+PRIMARY KEY (`seq`,`tsr_uid`,`tsi_uid`) 
+ ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `DATA_RESULT` (
+		`seq` int(11) NOT NULL COMMENT '순번',
+		`dtr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`tsr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`pdt_uid` varchar(20) NOT NULL COMMENT '',
+		`value` text DEFAULT NULL COMMENT '',
+		`etc` text DEFAULT NULL COMMENT '',
+		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
+		`reg_date` datetime NOT NULL COMMENT '등록일자',
+		`comment` text DEFAULT NULL COMMENT '기타정보',
+PRIMARY KEY (`seq`,`dtr_uid`,`tsr_uid`) 
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 

@@ -190,6 +190,14 @@ class ConvStringForm:
 			newarra.append(hd+boddy)
 		return "".join(newarra)
 
+	def convCamelForm(self,listarray):
+		newarra = []
+		for tmp in listarray:
+			hd = tmp[0:1].upper()
+			boddy = tmp[1:].lower()
+			newarra.append(hd+boddy)
+		return "".join(newarra)
+
 	def convUnserLine(self, listarray):
 		newarra = []
 		for tmp in listarray:

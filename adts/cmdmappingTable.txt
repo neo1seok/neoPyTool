@@ -111,7 +111,7 @@ input	Smart Card Eject	INPUT_DEVICE	"{0}" 동작실행	{0}	N	["instruction","sen
 기타명령어	Image	CONFIRM_VIEW	{1}	N	N	["instruction","sentence"]
 기타명령어	PORT 끊기	RUN_SCRIPT	{0}	N	N	["instruction","sentence"]
 기타명령어	PORT 복구	RUN_SCRIPT	{0}	N	N	["instruction","sentence"]
-기타명령어	설정 초기화	INPUT_DIRECT,CALL_SCENARIO	{0}	N	N	["instruction","sentence"]
+기타명령어	설정 초기화	RESET_PROFILE	{0}	N	N	["instruction","sentence"]
 기타명령어	통신 선택	ETC_CMD	{0}	N	N	["instruction","sentence"]
 기타명령어	Profile 선택	INPUT_DIRECT,CALL_SCENARIO	{0}	N	N	["instruction","sentence"]
 기타명령어	FOR	LOOP	{0}	N	N	["instruction","sentence"]

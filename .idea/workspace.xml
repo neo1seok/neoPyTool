@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4612636-58be-42c2-ab2e-ee528cd652e6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adts/dbTableName.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adts/modulelist4ADTS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/adts/tableList.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rsc/interface.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/rsc/TABLE.SQL" afterPath="$PROJECT_DIR$/adts/TABLE.SQL" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/rsc/cmdmappingTable.txt" afterPath="$PROJECT_DIR$/adts/cmdmappingTable.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/rsc/mapScriptPerScenarioAndMethodLine.json" afterPath="$PROJECT_DIR$/adts/mapScriptPerScenarioAndMethodLine.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/rsc/profile.txt" afterPath="$PROJECT_DIR$/adts/profile.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adts/TABLE.SQL" afterPath="$PROJECT_DIR$/adts/TABLE.SQL" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adts/cmdmappingTable.txt" afterPath="$PROJECT_DIR$/adts/cmdmappingTable.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adts/modulelist4ADTS" afterPath="$PROJECT_DIR$/adts/modulelist4ADTS" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adts/tableList.txt" afterPath="$PROJECT_DIR$/adts/tableList.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/echoclient.py" afterPath="$PROJECT_DIR$/echoclient.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/makeDb4ADTS.py" afterPath="$PROJECT_DIR$/makeDb4ADTS.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neolib.py" afterPath="$PROJECT_DIR$/neolib.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neolib4Win.py" afterPath="$PROJECT_DIR$/neolib4Win.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neotool.py" afterPath="$PROJECT_DIR$/neotool.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.txt" afterPath="$PROJECT_DIR$/out.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
     </list>
@@ -39,27 +35,51 @@
       <file leaf-file-name="tableList.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/adts/tableList.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            <state relative-caret-position="95">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="makeDb4ADTS.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="makeDb4ADTS.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/makeDb4ADTS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="936" column="8" selection-start-line="936" selection-start-column="8" selection-end-line="936" selection-end-column="43" />
+            <state relative-caret-position="226">
+              <caret line="226" column="35" selection-start-line="226" selection-start-column="35" selection-end-line="226" selection-end-column="35" />
               <folding>
                 <element signature="e#1#10#0" expanded="true" />
-                <element signature="e#168#2235#0" expanded="false" />
-                <element signature="e#3692#4101#0" expanded="false" />
-                <element signature="e#15614#15776#0" expanded="false" />
-                <element signature="e#20684#21032#0" expanded="false" />
-                <marker date="1475802348779" expanded="false" signature="15803:16505" ph="..." />
-                <marker date="1475802348779" expanded="true" signature="29923:30043" ph="..." />
+                <element signature="e#180#2247#0" expanded="false" />
+                <element signature="e#3704#4113#0" expanded="false" />
+                <element signature="e#9791#10339#0" expanded="false" />
+                <element signature="e#10380#11893#0" expanded="false" />
+                <element signature="e#16139#16301#0" expanded="false" />
+                <element signature="e#21209#21557#0" expanded="false" />
+                <element signature="e#24099#27941#0" expanded="false" />
+                <element signature="e#27999#30258#0" expanded="false" />
+                <marker date="1476435498396" expanded="false" signature="16328:17030" ph="..." />
+                <marker date="1476435498396" expanded="true" signature="31232:31352" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="err.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../python35/Lib/site-packages/pymysql/err.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cursors.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../python35/Lib/site-packages/pymysql/cursors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -67,8 +87,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="634" column="0" selection-start-line="634" selection-start-column="0" selection-end-line="634" selection-end-column="0" />
+            <state relative-caret-position="178">
+              <caret line="635" column="12" selection-start-line="635" selection-start-column="12" selection-end-line="635" selection-end-column="12" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#560#1288#0" expanded="false" />
@@ -77,31 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shutil.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../python35/Lib/shutil.py">
+      <file leaf-file-name="TABLE.SQL" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/adts/TABLE.SQL">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cmdmappingTable.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/adts/cmdmappingTable.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inputMenu.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rsc/inputMenu.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="778">
+              <caret line="203" column="51" selection-start-line="203" selection-start-column="51" selection-end-line="203" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -110,8 +110,8 @@
       <file leaf-file-name="modulelist4ADTS" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/adts/modulelist4ADTS">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -127,8 +127,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/adts/profile.txt">
+      <file leaf-file-name="cmdmappingTable.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/adts/cmdmappingTable.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -137,18 +137,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="neolib.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/neolib.py">
+      <file leaf-file-name="dbTableName.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/adts/dbTableName.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="688">
-              <caret line="278" column="10" selection-start-line="278" selection-start-column="10" selection-end-line="278" selection-end-column="10" />
-              <folding>
-                <element signature="e#3#13#0" expanded="true" />
-                <element signature="e#68#761#0" expanded="false" />
-                <element signature="e#127#307#0" expanded="false" />
-                <element signature="e#808#1020#0" expanded="false" />
-                <element signature="e#1583#1611#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="171">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,7 +164,6 @@
       <list>
         <option value="$PROJECT_DIR$/NeoTestClasss.py" />
         <option value="$PROJECT_DIR$/echoserver.py" />
-        <option value="$PROJECT_DIR$/echoclient.py" />
         <option value="$PROJECT_DIR$/manpytool.py" />
         <option value="$PROJECT_DIR$/out.txt" />
         <option value="$PROJECT_DIR$/input.txt" />
@@ -188,7 +181,6 @@
         <option value="$PROJECT_DIR$/simulADTS.py" />
         <option value="$PROJECT_DIR$/rsc/profile.txt" />
         <option value="$PROJECT_DIR$/checkTestLog.py" />
-        <option value="$PROJECT_DIR$/rsc/TABLE.SQL" />
         <option value="$PROJECT_DIR$/rsc/tableList" />
         <option value="$PROJECT_DIR$/rsc/tableList.txt" />
         <option value="$PROJECT_DIR$/rsc/modulelist4ADTS" />
@@ -196,16 +188,23 @@
         <option value="$PROJECT_DIR$/rsc/interface.txt" />
         <option value="$PROJECT_DIR$/neotool.py" />
         <option value="$PROJECT_DIR$/adts/dbTableName.txt" />
-        <option value="$PROJECT_DIR$/makeDb4ADTS.py" />
         <option value="$PROJECT_DIR$/neolib.py" />
+        <option value="$PROJECT_DIR$/rsc/TABLE.SQL" />
+        <option value="$PROJECT_DIR$/adts/cmdmappingTable.txt" />
+        <option value="$PROJECT_DIR$/echoclient.py" />
+        <option value="$PROJECT_DIR$/adts/modulelist4ADTS" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/adts/tableList.txt" />
+        <option value="$PROJECT_DIR$/adts/TABLE.SQL" />
+        <option value="$PROJECT_DIR$/makeDb4ADTS.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1280" />
-    <option name="width" value="1280" />
-    <option name="height" value="1400" />
+    <option name="x" value="2552" />
+    <option name="y" value="387" />
+    <option name="width" value="2064" />
+    <option name="height" value="1168" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -251,12 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Changed Files">
@@ -291,6 +284,20 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="rsc">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="PYTOOL">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="adts">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
@@ -306,12 +313,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches">
+        <subPane />
+      </pane>
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/PROJECT/toolrnd/DeviceTesterSystem/script" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -330,7 +343,7 @@
       <recent name="C:\APP\PYTOOL" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.makeDb4ADTS">
     <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -382,23 +395,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="checkTestLog" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PYTOOL" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/checkTestLog.py" />
-      <option name="PARAMETERS" value="-path D:\PROJECT\IUST-100\SRC\IUST100_SVN\IUST-100\IUST-100Console\log.txt" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="neolib" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -412,6 +408,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PYTOOL" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/neolib.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="echoclient" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PYTOOL" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/echoclient.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -554,16 +567,16 @@
       <item index="0" class="java.lang.String" itemvalue="Python.test" />
       <item index="1" class="java.lang.String" itemvalue="Python.neotool" />
       <item index="2" class="java.lang.String" itemvalue="Python.makeDb4ADTS" />
-      <item index="3" class="java.lang.String" itemvalue="Python.checkTestLog" />
-      <item index="4" class="java.lang.String" itemvalue="Python.neolib" />
+      <item index="3" class="java.lang.String" itemvalue="Python.neolib" />
+      <item index="4" class="java.lang.String" itemvalue="Python.echoclient" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test" />
-        <item index="1" class="java.lang.String" itemvalue="Python.makeDb4ADTS" />
-        <item index="2" class="java.lang.String" itemvalue="Python.neotool" />
-        <item index="3" class="java.lang.String" itemvalue="Python.neolib" />
-        <item index="4" class="java.lang.String" itemvalue="Python.checkTestLog" />
+        <item index="0" class="java.lang.String" itemvalue="Python.makeDb4ADTS" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.echoclient" />
+        <item index="3" class="java.lang.String" itemvalue="Python.neotool" />
+        <item index="4" class="java.lang.String" itemvalue="Python.neolib" />
       </list>
     </recent_temporary>
   </component>
@@ -629,25 +642,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1280" y="0" width="1280" height="1400" extended-state="0" />
-    <editor active="false" />
+    <frame x="2552" y="387" width="2064" height="1168" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27868852" sideWeight="0.43318486" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17964073" sideWeight="0.42083898" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.49483308" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45546088" sideWeight="0.35235235" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969603" sideWeight="0.49682036" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289166" sideWeight="0.4920509" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29123914" sideWeight="0.7889138" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27868852" sideWeight="0.56681514" order="4" side_tool="true" content_ui="tabs" x="1934" y="119" width="474" height="545" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28599033" sideWeight="0.7889138" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17964073" sideWeight="0.57916105" order="4" side_tool="true" content_ui="tabs" x="1934" y="119" width="474" height="545" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289166" sideWeight="0.49523053" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34777424" sideWeight="0.43812233" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32424006" sideWeight="0.6236089" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32173914" sideWeight="0.6236089" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32777232" sideWeight="0.49296874" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754537" sideWeight="0.49296874" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -731,22 +744,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>801</line>
+          <line>802</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>774</line>
+          <line>775</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>776</line>
+          <line>777</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>782</line>
+          <line>783</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -766,7 +779,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>161</line>
+          <line>162</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -816,82 +829,82 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>117</line>
+          <line>118</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>112</line>
+          <line>113</line>
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>331</line>
+          <line>354</line>
           <option name="timeStamp" value="160" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>335</line>
+          <line>358</line>
           <option name="timeStamp" value="161" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>417</line>
+          <line>440</line>
           <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>425</line>
+          <line>448</line>
           <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>457</line>
+          <line>480</line>
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>485</line>
+          <line>508</line>
           <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>477</line>
+          <line>500</line>
           <option name="timeStamp" value="168" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>505</line>
+          <line>528</line>
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>83</line>
+          <line>84</line>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>84</line>
+          <line>85</line>
           <option name="timeStamp" value="174" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>626</line>
+          <line>650</line>
           <option name="timeStamp" value="176" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>672</line>
+          <line>696</line>
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>666</line>
+          <line>690</line>
           <option name="timeStamp" value="179" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>821</line>
+          <line>854</line>
           <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -906,8 +919,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
-          <line>828</line>
+          <line>861</line>
           <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
+          <line>581</line>
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
+          <line>798</line>
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/makeDb4ADTS.py</url>
+          <line>343</line>
+          <option name="timeStamp" value="208" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -917,7 +945,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="204" />
+      <option name="time" value="210" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -926,36 +954,22 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/neotool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2546">
-          <caret line="134" column="40" selection-start-line="134" selection-start-column="40" selection-end-line="134" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#5439#8650#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/makeDb4ADTS.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <element signature="e#168#2235#0" expanded="false" />
-            <element signature="e#3692#4101#0" expanded="false" />
-            <element signature="e#15614#15776#0" expanded="false" />
-            <element signature="e#20684#21032#0" expanded="false" />
-            <marker date="1475802348779" expanded="false" signature="15803:16505" ph="..." />
-            <marker date="1475802348779" expanded="true" signature="29923:30043" ph="..." />
+            <element signature="e#180#2247#0" expanded="false" />
+            <element signature="e#3704#4113#0" expanded="false" />
+            <element signature="e#9791#10339#0" expanded="false" />
+            <element signature="e#10380#11893#0" expanded="false" />
+            <element signature="e#16139#16301#0" expanded="false" />
+            <element signature="e#21209#21557#0" expanded="false" />
+            <element signature="e#24099#27941#0" expanded="false" />
+            <element signature="e#27999#30258#0" expanded="false" />
+            <marker date="1476435498396" expanded="false" signature="16328:17030" ph="..." />
+            <marker date="1476435498396" expanded="true" signature="31232:31352" ph="..." />
           </folding>
         </state>
       </provider>
@@ -986,11 +1000,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3#13#0" expanded="true" />
+            <element signature="e#3#13#0" expanded="false" />
             <element signature="e#68#761#0" expanded="false" />
             <element signature="e#127#307#0" expanded="false" />
             <element signature="e#808#1020#0" expanded="false" />
             <element signature="e#1583#1611#0" expanded="false" />
+            <element signature="e#4771#5724#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -999,9 +1014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" column="16" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#21#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1035,7 +1047,7 @@
         <state relative-caret-position="8740">
           <caret line="460" column="61" selection-start-line="460" selection-start-column="61" selection-end-line="460" selection-end-column="61" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
             <element signature="e#5439#8650#0" expanded="false" />
           </folding>
         </state>
@@ -1047,12 +1059,16 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <element signature="e#168#2235#0" expanded="false" />
-            <element signature="e#3692#4101#0" expanded="false" />
-            <element signature="e#15614#15776#0" expanded="false" />
-            <element signature="e#20684#21032#0" expanded="false" />
-            <marker date="1475802348779" expanded="false" signature="15803:16505" ph="..." />
-            <marker date="1475802348779" expanded="true" signature="29923:30043" ph="..." />
+            <element signature="e#180#2247#0" expanded="false" />
+            <element signature="e#3704#4113#0" expanded="false" />
+            <element signature="e#9791#10339#0" expanded="false" />
+            <element signature="e#10380#11893#0" expanded="false" />
+            <element signature="e#16139#16301#0" expanded="false" />
+            <element signature="e#21209#21557#0" expanded="false" />
+            <element signature="e#24099#27941#0" expanded="false" />
+            <element signature="e#27999#30258#0" expanded="false" />
+            <marker date="1476435498396" expanded="false" signature="16328:17030" ph="..." />
+            <marker date="1476435498396" expanded="true" signature="31232:31352" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1099,11 +1115,12 @@
         <state relative-caret-position="418">
           <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding>
-            <element signature="e#3#13#0" expanded="true" />
+            <element signature="e#3#13#0" expanded="false" />
             <element signature="e#68#761#0" expanded="false" />
             <element signature="e#127#307#0" expanded="false" />
             <element signature="e#808#1020#0" expanded="false" />
             <element signature="e#1583#1611#0" expanded="false" />
+            <element signature="e#4771#5724#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1144,20 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../python35/Lib/site-packages/pymysql/err.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../python35/Lib/site-packages/pymysql/cursors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -1186,26 +1189,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adts/TABLE.SQL">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simulADTS.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15694">
           <caret line="1349" column="6" selection-start-line="1349" selection-start-column="6" selection-end-line="1349" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-            <element signature="e#533#3268#0" expanded="false" />
-            <element signature="e#3328#3832#0" expanded="false" />
-            <element signature="e#3900#7267#0" expanded="false" />
-            <element signature="e#7325#8165#0" expanded="false" />
-            <element signature="e#33052#45975#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1213,7 +1200,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1221,8 +1207,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
           <caret line="41" column="22" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rsc/out.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rsc/interface.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1444">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rsc/inputMenu.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adts/profile.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../python35/Lib/shutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2033">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neotool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4329">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
-            <element signature="e#0#21#0" expanded="false" />
+            <element signature="e#0#9#0" expanded="false" />
+            <element signature="e#5439#8650#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neolib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="198" column="31" selection-start-line="198" selection-start-column="31" selection-end-line="198" selection-end-column="31" />
+          <folding>
+            <element signature="e#3#13#0" expanded="false" />
+            <element signature="e#68#761#0" expanded="false" />
+            <element signature="e#127#307#0" expanded="false" />
+            <element signature="e#808#1020#0" expanded="false" />
+            <element signature="e#1583#1611#0" expanded="false" />
+            <element signature="e#4771#5724#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1231,78 +1275,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rsc/out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rsc/interface.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1444">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../python35/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="308" column="0" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
+        <state relative-caret-position="5453">
+          <caret line="287" column="54" selection-start-line="287" selection-start-column="54" selection-end-line="287" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/neotool.py">
+    <entry file="file://$PROJECT_DIR$/echoclient.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="239" column="8" selection-start-line="239" selection-start-column="8" selection-end-line="239" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#5439#8650#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adts/dbTableName.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adts/cmdmappingTable.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rsc/inputMenu.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adts/modulelist4ADTS">
+    <entry file="file://$PROJECT_DIR$/out.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1318,50 +1310,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adts/profile.txt">
+    <entry file="file://$PROJECT_DIR$/adts/dbTableName.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adts/tableList.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/makeDb4ADTS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="936" column="8" selection-start-line="936" selection-start-column="8" selection-end-line="936" selection-end-column="43" />
-          <folding>
-            <element signature="e#1#10#0" expanded="true" />
-            <element signature="e#168#2235#0" expanded="false" />
-            <element signature="e#3692#4101#0" expanded="false" />
-            <element signature="e#15614#15776#0" expanded="false" />
-            <element signature="e#20684#21032#0" expanded="false" />
-            <marker date="1475802348779" expanded="false" signature="15803:16505" ph="..." />
-            <marker date="1475802348779" expanded="true" signature="29923:30043" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../python35/Lib/shutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+        <state relative-caret-position="171">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="634" column="0" selection-start-line="634" selection-start-column="0" selection-end-line="634" selection-end-column="0" />
+        <state relative-caret-position="178">
+          <caret line="635" column="12" selection-start-line="635" selection-start-column="12" selection-end-line="635" selection-end-column="12" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <element signature="e#560#1288#0" expanded="false" />
@@ -1369,16 +1329,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/neolib.py">
+    <entry file="file://$PROJECT_DIR$/rsc/TABLE.SQL">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="278" column="10" selection-start-line="278" selection-start-column="10" selection-end-line="278" selection-end-column="10" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adts/cmdmappingTable.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adts/modulelist4ADTS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adts/TABLE.SQL">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="203" column="51" selection-start-line="203" selection-start-column="51" selection-end-line="203" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/adts/tableList.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../python35/Lib/site-packages/pymysql/err.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../python35/Lib/site-packages/pymysql/cursors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makeDb4ADTS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="226" column="35" selection-start-line="226" selection-start-column="35" selection-end-line="226" selection-end-column="35" />
           <folding>
-            <element signature="e#3#13#0" expanded="true" />
-            <element signature="e#68#761#0" expanded="false" />
-            <element signature="e#127#307#0" expanded="false" />
-            <element signature="e#808#1020#0" expanded="false" />
-            <element signature="e#1583#1611#0" expanded="false" />
+            <element signature="e#1#10#0" expanded="true" />
+            <element signature="e#180#2247#0" expanded="false" />
+            <element signature="e#3704#4113#0" expanded="false" />
+            <element signature="e#9791#10339#0" expanded="false" />
+            <element signature="e#10380#11893#0" expanded="false" />
+            <element signature="e#16139#16301#0" expanded="false" />
+            <element signature="e#21209#21557#0" expanded="false" />
+            <element signature="e#24099#27941#0" expanded="false" />
+            <element signature="e#27999#30258#0" expanded="false" />
+            <marker date="1476435498396" expanded="false" signature="16328:17030" ph="..." />
+            <marker date="1476435498396" expanded="true" signature="31232:31352" ph="..." />
           </folding>
         </state>
       </provider>

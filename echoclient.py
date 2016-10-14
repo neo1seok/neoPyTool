@@ -12,7 +12,7 @@ port = 5510
 # connection to hostname on the port.
 s.connect((host, port))
 
-s.send()
+s.send('test'.encode())
 # Receive no more than 1024 bytes
 tm = s.recv(1024)
 

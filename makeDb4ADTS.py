@@ -12,6 +12,7 @@ import neolib4Win
 import os
 import  shutil
 import ntpath
+import time
 
 class dbHandleing:
 	def __init__(self,**kwargs):
@@ -312,6 +313,9 @@ class MakeEnvSetting(BaseTableInput):
 			("DEVICE_MODEL", "v241"),
 			("script_file", "smatro_sc.py"),
 			("class_main_process", "mainprocess_smartro"),
+			("CHANNEL_MAIN", "1"),
+			("CHANNEL_DONGLE", "2"),
+			("CHANNEL_POS", "3"),
 		])
 
 
@@ -322,6 +326,25 @@ class MakeEnvSetting(BaseTableInput):
 
 		None
 
+class MakeChannel(BaseTableInput):
+	dsttable = "channel"
+	colline = "chn_uid, type, discription, port, classname"
+	prefix = "chn"
+	def processInserValues(self):
+		mapEnv =[
+			('UART 0',"UART", 4),
+			('TCP 1',"TCP", 8055),
+			('UART 2', "UART", 5),
+			('TCP 2', "TCP", 8056),
+		]
+
+
+
+		for name,type,port in mapEnv:
+			self.appendLine(name=name,type = type,port= port)
+
+
+		None
 class MakePacketDateType(BaseTableInput):
 	dsttable = "packet_data_type"
 	colline = "name, length, variation, value_encoding, char_range, fixed_value, param, param_ext"
@@ -555,7 +578,8 @@ class MakeScenarioLine(BaseTableInput):
 					None
 				index += 1
 				continue
-
+			if newinst == "INPUT_DIRECT, CALL_SCENARIO":
+				None
 			self.appendLine(sce_uid=sce_uid,method=newinst,index=index,title=title,param=param,param_ext=param_ext	)
 			index+=1
 
@@ -759,20 +783,25 @@ class DropAndCreateTable(BaseMySQLRunnable):
 	def doRun(self):
 		name = input("Are u sure for drop and create? yes or no ")
 
-		tables = re.split(r',\s',"data_value_table, env_setting, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, testing_info")
+		if name != 'yes': exit()
+
+		tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, testing_info")
 		deleteSqlrArray = []
 		for tmp in tables:
-			deleteSqlrArray.append("drop table  %s;\n"%tmp)
+			#deleteSqlrArray.append("drop table  %s;\n"%tmp)
+			sql = "drop table  %s;\n" % tmp
+			try:
+				self.dstdbHD.excute(sql)
+				time.sleep(0.3)
+			except Exception as e:
+				print(e)
 
-		sql = "".join(deleteSqlrArray)
+		#sql = "".join(deleteSqlrArray)
 
 
 
-		if name != 'yes' : exit()
-		try:
-			self.dstdbHD.excute(sql)
-		except Exception as e:
-			print(e)
+
+
 
 		sql = neolib.StrFromFile('adts/TABLE.SQL',enc='euc-kr')
 		self.dstdbHD.excute(sql)
@@ -816,6 +845,10 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 			if result != None :
 				newtype = 'int'
 				strinit = ''
+			if type == 'datetime':
+				newtype = 'DateTime'
+				strinit = '= new DateTime();'
+
 
 
 			return "\tpublic %s %s %s;"% (newtype,name,strinit)
@@ -1072,17 +1105,40 @@ class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
 
 		#self.strlines =
 
+class InsertWholeDB(neolib.NeoRunnableClasss):
+	def doRun(self):
+		#DropAndCreateTable(exit=False).Run()
+
+		MakeEnvSetting(exit=False).Run()
+		MakeChannel(exit=False).Run()
+
+		MakePacketDateType(exit=False).Run()
+		MakePacket(exit=False).Run()
+		MakePacketDataUnit(exit=False).Run()
+
+		MakeScenarioByProfile(exit=False).Run()
+		MakeScenarioLineByProfile(exit=False).Run()
+
+		MakeScenario(deleteTable=False, exit=False).Run()
+		MakeScenarioLine(deleteTable=False, exit=False).Run()
+		MakeDataValueTable(exit=False).Run()
+
+
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
+#DropAndCreateTable(exit = False).Run()
+#DropAndCreateTable(exit = True).Run()
+
+InsertWholeDB().Run()
 
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()
 
-MakeDataFieldsClass().Run()
+#MakeDataFieldsClass().Run()
 
-#DropAndCreateTable(exit = False).Run()
+
 
 #MakeScriptSentenceFromMySQL().Run()
 #MakeScriptSentenceFromMySQL().Run()
@@ -1097,19 +1153,7 @@ MakeDataFieldsClass().Run()
 
 #DropAndCreateTable(exit = False).Run()
 
-MakeEnvSetting(exit = False).Run()
-MakePacketDateType(exit = False).Run()
-MakePacket(exit = False).Run()
-MakePacketDataUnit(exit = False).Run()
 
-
-
-MakeScenarioByProfile(exit = False).Run()
-MakeScenarioLineByProfile(exit = False).Run()
-
-MakeScenario(deleteTable = False,exit = False).Run()
-MakeScenarioLine(deleteTable = False,exit = False).Run()
-MakeDataValueTable(exit = False).Run()
 
 
 #MakeScenarioDBFromOldDB().Run()
