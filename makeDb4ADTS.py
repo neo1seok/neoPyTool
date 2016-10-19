@@ -240,6 +240,7 @@ class BaseTableInput(BaseMySQLRunnable):
 	dsttable = "";
 	prefix = ""
 	colline = ""
+	dispalaytitle ="시나리오 상태"
 	def makeMap4Protocol(self):
 		mapprotocol = self.olddbHD.select(	"SELECT seq, uid, protocol, direction, servicecode, data, devtype FROM maindev_protocol where devtype = 'V100_EN07'")
 		self.mapOldDBMainProtocol = collections.OrderedDict([(row['protocol'] + row['direction'],row) for row in mapprotocol])
@@ -318,6 +319,16 @@ class MakeEnvSetting(BaseTableInput):
 			("CHANNEL_POS", "3"),
 		])
 
+		mapdefvalue = self.olddbHD.select("SELECT profileid, value FROM profile_config_maininfo where devtype = 'V100_EN07';")
+
+		for row in mapdefvalue:
+			profileid = row['profileid']
+			value = row['value']
+
+			mapEnv[profileid] = value
+
+
+
 
 
 		for key,val in mapEnv.items():
@@ -328,7 +339,7 @@ class MakeEnvSetting(BaseTableInput):
 
 class MakeChannel(BaseTableInput):
 	dsttable = "channel"
-	colline = "chn_uid, type, discription, port, classname"
+	colline = "type, discription, port, classname"
 	prefix = "chn"
 	def processInserValues(self):
 		mapEnv =[
@@ -547,9 +558,21 @@ class MakeScenarioLine(BaseTableInput):
 			scriptid = tmprow['scriptid']
 			protocol = tmprow['protocol']
 			sce_uid = mapdstScenario[scriptid]['sce_uid']
+			prevsce_uid = ""
+			if prevscriptid in mapdstScenario:
+				prevsce_uid = mapdstScenario[prevscriptid]['sce_uid']
 
 			if scriptid != prevscriptid:
+				if prevsce_uid  != "":
+					self.appendLine(sce_uid=prevsce_uid, index=index, method='PRINT_TITLE', title=self.dispalaytitle, param='주 동작 종료')
+
 				index = 0
+				self.appendLine(sce_uid=sce_uid, index=index, method='PRINT_TITLE', title=self.dispalaytitle,param = '주 동작 시작')
+				index += 1
+
+
+
+
 			prevscriptid = scriptid
 			if instruction not in mapret: continue
 
@@ -582,6 +605,10 @@ class MakeScenarioLine(BaseTableInput):
 				None
 			self.appendLine(sce_uid=sce_uid,method=newinst,index=index,title=title,param=param,param_ext=param_ext	)
 			index+=1
+
+
+		self.appendLine(sce_uid=sce_uid, index=index, method='PRINT_TITLE', title=self.dispalaytitle,
+							param='주 동작 종료')
 
 	def processInserToDBa(self):
 		lastseq = self.dstdbHD.lastSeq(self.dsttable)
@@ -735,15 +762,30 @@ class MakeScenarioLineByProfile(MakeScenarioLine):
 
 			print("%s(%s)\nSET:%s\nRESET:%s\n"%(profileName,sce_uid,setInput,resetInput))
 			index = 0
+
+			self.appendLine(sce_uid=sce_uid, method="PRINT_TITLE", index=index, title=self.dispalaytitle, param='사전 설정 시작')
+			index += 1
+
 			for tmp in setInput.split('\n'):
 				if tmp == '' : continue
-				self.appendLine(sce_uid=sce_uid, method="INPUT_KEYPAD", index=index, title='', param=tmp)
+				self.appendLine(sce_uid=sce_uid, method="INPUT_KEYPAD", index=index, title='키패드 입력', param=tmp)
 				index += 1
+
+			self.appendLine(sce_uid=sce_uid, method="PRINT_TITLE", index=index, title=self.dispalaytitle, param='사전 설정 종료')
+			index += 1
+
+			index = 0
+
+			self.appendLine(sce_uid=sce_uid_reset, method="PRINT_TITLE", index=index, title=self.dispalaytitle, param='사전 재설정 시작')
+			index += 1
 
 			for tmp in resetInput.split('\n'):
 				if tmp == '': continue
-				self.appendLine(sce_uid=sce_uid_reset, method="INPUT_KEYPAD", index=index, title='', param=tmp)
+				self.appendLine(sce_uid=sce_uid_reset, method="INPUT_KEYPAD", index=index, title='키패드 입력', param=tmp)
 				index += 1
+
+			self.appendLine(sce_uid=sce_uid_reset, method="PRINT_TITLE", index=index, title=self.dispalaytitle, param='사전 재설정 종료')
+			index += 1
 
 
 
@@ -805,6 +847,7 @@ class DropAndCreateTable(BaseMySQLRunnable):
 
 		sql = neolib.StrFromFile('adts/TABLE.SQL',enc='euc-kr')
 		self.dstdbHD.excute(sql)
+		time.sleep(0.3)
 
 		None
 
@@ -1107,10 +1150,12 @@ class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
 
 class InsertWholeDB(neolib.NeoRunnableClasss):
 	def doRun(self):
-		#DropAndCreateTable(exit=False).Run()
+		DropAndCreateTable(exit=False).Run()
 
 		MakeEnvSetting(exit=False).Run()
+
 		MakeChannel(exit=False).Run()
+
 
 		MakePacketDateType(exit=False).Run()
 		MakePacket(exit=False).Run()
@@ -1129,7 +1174,7 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 """
 #DropAndCreateTable(exit = False).Run()
 #DropAndCreateTable(exit = True).Run()
-
+#MakeEnvSetting().Run()
 InsertWholeDB().Run()
 
 #AnalyzeInterface().Run()
