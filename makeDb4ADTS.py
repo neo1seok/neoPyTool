@@ -105,6 +105,10 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 
 
+	def setDefArges(self):
+		super(BaseMySQLRunnable, self).setDefArges()
+		self.defMapArgs.update({'dbaddress': 'localhost'})
+
 	def test(self,**kwargs):
 		for key,value in kwargs.items():
 			print(key,value)
@@ -118,14 +122,14 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 		# self.test2(aaa='1',aaa2='2')
 
-
+		self.dbaddress = self.mapArgs['dbaddress']
 		self.listmap = []
 
 
-
+		print("dst db:"+self.dbaddress)
 		self.olddbHD = dbHandleing(host='localhost', port=3306, user='neo1seok', passwd='tofhdna1pi',db='test_smartro', charset='utf8')
-		#self.dstdbHD = dbHandleing(host='192.168.0.75', port=3306, user='ictk', passwd='#ictk1234',	  db='adts', charset='utf8')
-		self.dstdbHD = dbHandleing(host='localhost', port=3306, user='ictk', passwd='#ictk1234', db='adts',	   charset='utf8')
+		self.dstdbHD = dbHandleing(host=self.dbaddress, port=3306, user='ictk', passwd='#ictk1234',	  db='adts', charset='utf8')
+		#self.dstdbHD = dbHandleing(host='localhost', port=3306, user='ictk', passwd='#ictk1234', db='adts',	   charset='utf8')
 		self.strlines = ""
 
 		None
@@ -314,9 +318,10 @@ class MakeEnvSetting(BaseTableInput):
 			("DEVICE_MODEL", "v241"),
 			("script_file", "smatro_sc.py"),
 			("class_main_process", "mainprocess_smartro"),
-			("CHANNEL_MAIN", "1"),
-			("CHANNEL_DONGLE", "2"),
-			("CHANNEL_POS", "3"),
+			("CHANNEL_MAIN", "chn_1"),
+			("CHANNEL_DONGLE", "chn_2"),
+			("CHANNEL_POS", "chn_3"),
+
 		])
 
 		mapdefvalue = self.olddbHD.select("SELECT profileid, value FROM profile_config_maininfo where devtype = 'V100_EN07';")
@@ -339,20 +344,20 @@ class MakeEnvSetting(BaseTableInput):
 
 class MakeChannel(BaseTableInput):
 	dsttable = "channel"
-	colline = "type, discription, port, classname"
+	colline = "type, discription, param, classname"
 	prefix = "chn"
 	def processInserValues(self):
 		mapEnv =[
-			('UART 0',"UART", 4),
-			('TCP 1',"TCP", 8055),
-			('UART 2', "UART", 5),
-			('TCP 2', "TCP", 8056),
+			('UART 0',"UART", json.dumps({"PORTNAME":"//.//COM08","BAUDRATE":38400}, ensure_ascii=False)),
+			('TCP 1',"TCP", json.dumps({"PORT":8055}, ensure_ascii=False)),
+			('UART 2', "UART", json.dumps({"PORTNAME":"//.//COM09","BAUDRATE":38400}, ensure_ascii=False)),
+			('TCP 2', "TCP", json.dumps({"PORT":8056},ensure_ascii=False)),
 		]
 
 
 
-		for name,type,port in mapEnv:
-			self.appendLine(name=name,type = type,port= port)
+		for name,type,param in mapEnv:
+			self.appendLine(name=name,type = type,param= param)
 
 
 		None
@@ -518,13 +523,14 @@ class MakeScenario(BaseTableInput):
 
 		for key,row in listmapcriptsub.items():
 			objective = row['objective']
+			title = row['title']
 			profilename = row['profilename']
 
 			sce_uid = mapScenario[profilename]['sce_uid'];
 			sce_uid_reset = mapScenario[profilename + " RESET"]['sce_uid'];
+			discription = title if title != '' else objective
 
-
-			self.appendLine(name=key,discription=objective,classname='SMARTRO_SC',sce_uid_profile=sce_uid, sce_uid_profile_reset=sce_uid_reset)
+			self.appendLine(name=key,discription=discription,classname='SMARTRO_SC',sce_uid_profile=sce_uid, sce_uid_profile_reset=sce_uid_reset)
 
 
 
@@ -533,7 +539,8 @@ class MakeScenario(BaseTableInput):
 class MakeScenarioLine(BaseTableInput):
 	dsttable = "scenario_line"
 	prefix = "scl"
-	colline = "sce_uid, index, method, title, param, param_ext, pck_uid,comment"
+	#colline = "sce_uid, index, method, title, param, param_ext, pck_uid,comment"
+	colline = "sce_uid, index, method, title, param, param_ext, comment"
 
 	def processInserValues(self):
 
@@ -585,19 +592,22 @@ class MakeScenarioLine(BaseTableInput):
 				map = self.ConvertFromSentence(collections.OrderedDict(), param)[0]
 				param = json.dumps(map, ensure_ascii=False)
 
+
 				if "수신" in instruction:
 					packetname = protocol + " 수신"
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
-					self.appendLine(sce_uid=sce_uid, index=index, method ='RECV' ,title='수신', param='$PORT00')
+					param_ext = "{'pck_uid':'%s'}" % pck_uid
+					self.appendLine(sce_uid=sce_uid, index=index, method ='RECV' ,title='수신', param="$MAP_ENV['CHANNEL_MAIN']")
 					index+=1
-					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,pck_uid=pck_uid,comment= param )
+					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,param_ext=param_ext,comment= param )
 					None
 				elif "송신" in instruction:
 					packetname = protocol + " 송신"
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
-					self.appendLine(sce_uid=sce_uid, index=index, method='MAKE_PACKET', title=title, param=packetname ,pck_uid=pck_uid,comment=param)
+					param_ext = "{'pck_uid':'%s'}" % pck_uid
+					self.appendLine(sce_uid=sce_uid, index=index, method='MAKE_PACKET', title=title, param=packetname ,param_ext=param_ext,comment=param)
 					index += 1
-					self.appendLine(sce_uid=sce_uid, index=index, method='SEND', title='송신', param='$PORT00')
+					self.appendLine(sce_uid=sce_uid, index=index, method='SEND', title='송신', param="$MAP_ENV['CHANNEL_MAIN']")
 					None
 				index += 1
 				continue
@@ -668,7 +678,7 @@ class MakeDataValueTable(BaseTableInput):
 	colline = "scl_uid, pdt_uid, value, param, param_ext,comment"
 
 	def processInserValues(self):
-		listscl = self.dstdbHD.select("SELECT * FROM adts.scenario_line where pck_uid != '';")
+		listscl = self.dstdbHD.select("SELECT * FROM adts.scenario_line where method in ('CONFIRM_PACKET','MAKE_PACKET');")
 		listpacketData = self.dstdbHD.selectToMap("name","SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value, param, param_ext, updt_date, reg_date, comment FROM adts.packet_data_type;")
 
 		for row in listscl:
@@ -825,7 +835,7 @@ class DropAndCreateTable(BaseMySQLRunnable):
 	def doRun(self):
 		name = input("Are u sure for drop and create? yes or no ")
 
-		if name != 'yes': exit()
+		if name != 'yes': return
 
 		tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, testing_info")
 		deleteSqlrArray = []
@@ -890,7 +900,7 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 				strinit = ''
 			if type == 'datetime':
 				newtype = 'DateTime'
-				strinit = '= new DateTime();'
+				strinit = '= new DateTime()'
 
 
 
@@ -1149,24 +1159,34 @@ class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
 		#self.strlines =
 
 class InsertWholeDB(neolib.NeoRunnableClasss):
+
+	def setDefArges(self):
+		super(InsertWholeDB, self).setDefArges()
+		self.defMapArgs.update({'dbaddress': 'localhost'})
+
+
 	def doRun(self):
-		DropAndCreateTable(exit=False).Run()
-
-		MakeEnvSetting(exit=False).Run()
-
-		MakeChannel(exit=False).Run()
+		dbaddress = self.mapArgs['dbaddress']
 
 
-		MakePacketDateType(exit=False).Run()
-		MakePacket(exit=False).Run()
-		MakePacketDataUnit(exit=False).Run()
+		DropAndCreateTable(exit=False,dbaddress =dbaddress).Run()
 
-		MakeScenarioByProfile(exit=False).Run()
-		MakeScenarioLineByProfile(exit=False).Run()
 
-		MakeScenario(deleteTable=False, exit=False).Run()
-		MakeScenarioLine(deleteTable=False, exit=False).Run()
-		MakeDataValueTable(exit=False).Run()
+		MakeChannel(exit=False,dbaddress =dbaddress).Run()
+
+		MakeEnvSetting(exit=False, dbaddress=dbaddress).Run()
+
+
+		MakePacketDateType(exit=False,dbaddress =dbaddress).Run()
+		MakePacket(exit=False,dbaddress =dbaddress).Run()
+		MakePacketDataUnit(exit=False,dbaddress =dbaddress).Run()
+
+		MakeScenarioByProfile(exit=False,dbaddress =dbaddress).Run()
+		MakeScenarioLineByProfile(exit=False,dbaddress =dbaddress).Run()
+
+		MakeScenario(deleteTable=False, exit=False,dbaddress =dbaddress).Run()
+		MakeScenarioLine(deleteTable=False, exit=False,dbaddress =dbaddress).Run()
+		MakeDataValueTable(exit=False,dbaddress =dbaddress).Run()
 
 
 """
@@ -1175,13 +1195,18 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 #DropAndCreateTable(exit = False).Run()
 #DropAndCreateTable(exit = True).Run()
 #MakeEnvSetting().Run()
-InsertWholeDB().Run()
+#MakeDataFieldsClass().Run()
+MakeChannel(exit=False,).Run()
+MakeChannel(dbaddress ="192.168.0.75").Run()
 
+
+InsertWholeDB(exit=False).Run()
+InsertWholeDB(dbaddress="192.168.0.75").Run()
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()
 
-#MakeDataFieldsClass().Run()
+
 
 
 

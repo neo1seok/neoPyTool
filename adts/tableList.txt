@@ -41,7 +41,6 @@ SCENARIO_LINE	seq	int(11)
 	title	text
 	param	text
 	param_ext	text
-	pck_uid	varchar(20)
 	updt_date	datetime
 	reg_date	datetime
 	comment	text
@@ -102,9 +101,10 @@ MAIN_PROCESS	seq	int(11)
 	comment	text
 CHANNEL	seq	int(11)
 	chn_uid	varchar(20)
+	name	varchar(10)
 	type	varchar(10)
-	discription	text
-	port	int(11)
+	discription	varchar(20)
+	param	varchar(64)
 	classname	varchar(64)
 	updt_date	datetime
 	reg_date	datetime
