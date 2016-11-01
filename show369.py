@@ -523,15 +523,15 @@ while True:
 		log = "{0} tktime:{1} doRun \n".format(datetime.datetime.now().isoformat(), 0)
 		try:
 			HTTPCLient369().doRun()
-		except Exception as e:
-			log += "{0} HTTPCLient369 Exception:{1}  \n".format(datetime.datetime.now().isoformat(), e)
+		except :
+			log += "{0} HTTPCLient369 ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
 
 
 
 		try:
 			GetLateestWebtoon().doRun(isAll)
-		except  Exception as e:
-			log += "{0} GetLateestWebtoon Exception:{1}  \n".format(datetime.datetime.now().isoformat(), e)
+		except  :
+			log += "{0} GetLateestWebtoon ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
 
 		takentime = 0
 
