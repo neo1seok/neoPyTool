@@ -15,7 +15,7 @@ ENV_SETTING	seq	int(11)
 	comment	text
 SCENARIO_GROUP	seq	int(11)
 	scg_uid	varchar(20)
-	sce_uid	varchar(20)
+	scg_uid_parent	varchar(20)
 	name	varchar(64)
 	discription	text
 	updt_date	datetime
@@ -26,8 +26,8 @@ SCENARIO	seq	int(11)
 	scg_uid	varchar(20)
 	name	varchar(64)
 	discription	text
-	sce_uid_profile	varchar(20)
-	sce_uid_profile_reset	varchar(20)
+	param	varchar(64)
+	param_ext	text
 	classname	varchar(64)
 	type	varchar(10)
 	updt_date	datetime
@@ -39,7 +39,7 @@ SCENARIO_LINE	seq	int(11)
 	index	int(11)
 	method	varchar(64)
 	title	text
-	param	text
+	param	varchar(64)
 	param_ext	text
 	updt_date	datetime
 	reg_date	datetime
@@ -71,8 +71,9 @@ PACKET_DATA_TYPE	seq	int(11)
 	value_encoding	varchar(10)
 	char_range	varchar(10)
 	fixed_value	varchar(10)
-	param	text
-	param_ext	text
+	option	varchar(64)
+	make_param	text
+	confirm_param	text
 	updt_date	datetime
 	reg_date	datetime
 	comment	text
@@ -81,7 +82,7 @@ DATA_VALUE_TABLE	seq	int(11)
 	scl_uid	varchar(20)
 	pdt_uid	varchar(20)
 	value	text
-	param	text
+	param	varchar(64)
 	param_ext	text
 	updt_date	datetime
 	reg_date	datetime
@@ -94,7 +95,7 @@ MAIN_PROCESS	seq	int(11)
 	name	varchar(64)
 	discription	text
 	method	varchar(64)
-	param	text
+	param	varchar(64)
 	param_ext	text
 	updt_date	datetime
 	reg_date	datetime
