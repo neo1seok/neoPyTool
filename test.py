@@ -631,9 +631,15 @@ class Runnable369Profile(neolib.NeoRunnableClasss):
 		# 	mapProfile[tmp[1]] = (tmp[0],extprofile)
 
 		print(mapProfile)
+class Test:
+	def __init__(self):
+		print('TEST')
+		None
+
+klass = globals()["Test"]
+instance = klass()
 
 
-print(b'aabb')
 exit()
 neolib.removeEmptyFolder("D:/내문서")
 exit()

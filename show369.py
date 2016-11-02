@@ -10,209 +10,6 @@ import  json
 import codecs
 import base64
 
-class HTTPCLient369_OLD():
-	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
-	urlNickList = 'http://localhost/show369/nicklist.php'
-	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="([a-zA-Z0-9/.:]+)"\s+alt="([a-zA-Z0-9]+)"\s*/>'
-
-	kkjjiimg = "2m2szTIpIW";
-	dayimg = "1RWbHAyiXm";
-	nightimg = "1m9RfmwuNy";
-	endimgnightimg = "26kx0amYpu";
-
-	fmt = '<img src="http://369am.diskn.com/%s" width = "300"/> <br />\n'
-	contents = ''
-
-	listfile = 'list.html'
-	listimgfile = 'imglist.html'
-
-	mapname = {kkjjiimg: "꼭지",
-				   dayimg: "주간",
-				   nightimg: "야간",
-				   endimgnightimg: "마지막",
-				   }
-
-
-	def __init__(self, dst):
-		print('__init__')
-		self.dstpath = dst
-		print('dstpath:' + self.dstpath)
-
-		d = datetime.datetime.now()
-		self.dstfile = 'list.' + d.strftime('%Y%m%d') + '.txt'
-		print(d.strftime('%Y/%m/%d'))
-
-		self.contents = ""
-
-
-		self.append('<!DOCTYPE html>');
-		self.append('<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">');
-		self.append('<meta charset="utf-8" />');
-		self.append(
-			'<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height">');
-		self.append('<head>');
-		self.append('<link rel="stylesheet" type="text/css" href="css/style.css">');
-		self.append('</head>');
-
-		self.nowdate = d.strftime('%Y/%m/%d  %H:%M:%S');
-
-		self.append('<h1>{0}</h1>'.format(d.strftime('%Y/%m/%d  %H:%M:%S')))
-		self.simplelist = d.strftime('%Y/%m/%d %H:%M:%S') +"\r\n"
-
-	def __del__(self):
-		gc.collect()
-		print('__del__')
-
-
-
-	def append(self, str):
-		self.contents += str
-		self.contents += "\r\n"
-
-	def geturlcontents(self):
-		nicklist = requests.get(self.urlNickList)
-		contents = nicklist.text.encode().decode('utf-8-sig')
-		#self.mapname =  json.loads(contents)
-		print(self.mapname)
-
-		r = requests.get(self.url)
-		self.results = re.findall(self.patt, r.text)
-
-	def makecontents(self):
-
-		self.realarray = []
-		self.maparray = {}
-
-		etcinfo = ''
-		id = ''
-
-		isavail = False
-
-		for vars in self.results:
-			id = vars[1]
-			srcname = vars[0]
-
-			self.maparray[id] = srcname;
-			if id == self.dayimg:
-				isavail = True
-			if id == self.endimgnightimg:
-				self.realarray.append(id)
-				break;
-
-			if isavail:
-				self.realarray.append(id)
-
-		self.ids = ''
-		for key in self.realarray:
-			id = key
-			self.ids += id
-			self.ids += ','
-
-
-
-
-	def makecontents_old(self):
-		self.imglist = self.contents
-		self.txtlist = self.contents
-
-
-		self.realarray = []
-		self.maparray  = {}
-
-		etcinfo = ''
-		id = ''
-
-		isavail = False
-
-
-
-		for vars in self.results:
-			id = vars[1]
-			srcname = vars[0]
-
-			self.maparray[id] = srcname;
-			if id == self.dayimg:
-				isavail = True
-			if id == self.endimgnightimg:
-				self.realarray.append(id)
-				break;
-
-			if isavail :
-				self.realarray.append(id)
-
-
-		self.ids = ''
-		for key  in self.realarray:
-			id = key
-			self.ids += id
-			self.ids += ','
-			srcname = self.maparray[key]
-
-			etcinfo = ''
-
-			if id in self.mapname.keys():
-				etcinfo = ":"
-				etcinfo += self.mapname[id]
-
-			self.imglist += "<p><a href='inputname.php?id={0}'>{0}:{1}</a></p>".format(id, etcinfo)
-			#self.imglist += self.fmt % id
-			self.imglist += "\r\n"
-
-
-			self.txtlist += "<p><a><a href='{2}'>{0}</a>{1}</p>".format(id, etcinfo,srcname)
-			self.simplelist += "{0}{1}\r\n".format(id, etcinfo)
-			self.txtlist += "\r\n"
-
-		self.txtlist += "<p><a><a href='%s'>전체리스트보기</a></p>"%self.listimgfile
-
-		self.simplelist += "\r\n"
-		self.simplelist += "\r\n"
-		self.simplelist += "\r\n"
-
-	def writecontents(self):
-		print(self.urlUpdateStamp +'?ids=' +self.ids)
-		result = requests.get(self.urlUpdateStamp +'?ids=' +self.ids)
-		print(result.text)
-
-		return
-
-
-		f = open(self.listfile, 'wb')
-		f.write(self.txtlist.encode())
-		f.close()
-
-		f = open(self.listimgfile, 'wb')
-		f.write(self.imglist.encode())
-		f.close()
-
-		f = open(self.dstfile, 'ab')
-		f.write(self.simplelist.encode())
-		f.close()
-
-
-
-	def copyfiles(self):
-		return
-		shutil.copyfile(self.listfile, self.dstpath +"/"+self.listfile)
-		shutil.copyfile(self.listimgfile, self.dstpath + "/" + self.listimgfile)
-		print(self.dstfile)
-
-	def doRun(self):
-
-		self.geturlcontents()
-
-		self.makecontents()
-
-		self.writecontents()
-
-		self.copyfiles()
-
-		# print(imglist)
-
-	def test(self):
-		print('test')
-
 class HTTPCLient369():
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
@@ -248,7 +45,11 @@ class HTTPCLient369():
 	def geturlcontents(self):
 		r = requests.get(self.url)
 		#print(r.text)
-		self.results = re.findall(self.patt, r.text)
+
+
+		self.strTodayList = self.getTodayListBlock(r.text)
+		self.results = re.findall(self.patt, self.strTodayList)
+
 
 		strprfBlock = self.getProfileBlock(r.text)
 		self.mapProfile = self.extractProfileMap(strprfBlock)
@@ -301,6 +102,14 @@ class HTTPCLient369():
 		self.bencodeProfile = base64.urlsafe_b64encode(injson.encode()).decode()
 		#print(self.bencodeProfile)
 
+	def getTodayListBlock(self,str):
+
+		startIndex = 0
+		endindex = 0;
+		for match in re.finditer(self.pattStartPrfofile, str):
+			startIndex = match.span()[1]
+		# print(match.span())
+		return str[0:startIndex]
 
 	def getProfileBlock(self,str):
 		startIndex = 0

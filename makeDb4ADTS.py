@@ -376,7 +376,7 @@ class MakePacketDateType(BaseTableInput):
 
 		self.appendLine(name="STX", length="1", value_encoding='HEX', fixed_value="02")
 		self.appendLine(name="ETX", length="1", value_encoding='HEX', fixed_value="03")
-		self.appendLine(name="CRC", length="2", value_encoding='HEX',make_param="{'method':'CRC'}",confirm_param="{'method':'CRC'}")
+		self.appendLine(name="CRC", length="4", value_encoding='HEX',make_param=json.dumps({'variable':'value','method':'CRC','order':'2'}),confirm_param="")
 
 		for key, value in self.mapOldDBMainType.items():
 
@@ -406,13 +406,15 @@ class MakePacketDateType(BaseTableInput):
 
 		if 'V' in types:
 			strv = 'TRUE'
+			mapConfirmParam['variable'] = 'length'
 			mapConfirmParam['method']='CALC_LENGTH'
 
 		order = '0'
 		value = ''
 		if name == '전문길이':
 			order = '1'
-			mapMakeParam["run_pos"] = "END_RUN"
+			mapMakeParam["order"] = '1'
+			mapConfirmParam['variable'] = 'value'
 			mapMakeParam['method'] = "MAKE_LENGTH"
 
 
@@ -454,7 +456,7 @@ class MakePacketDateType(BaseTableInput):
 class MakePacket(BaseTableInput):
 	dsttable = "packet";
 	prefix = "pck"
-	colline = "name, type, discription,  make_class, confirm_class"
+	colline = "name, type, discription,  packet_class"
 	def makePacketName(self,protocol,direction):
 		tail = '수신' if direction == 'D2A'  else '송신'
 
@@ -467,14 +469,13 @@ class MakePacket(BaseTableInput):
 			name = self.makePacketName(protocol,direction)
 
 			if name in ["STMS/ALIVE 수신", "STMS/ALIVE 송신"]:
-				self.appendLine(name=name, type="MAIN", make_class="MAKE_PACKET_MAIN_STMSALIVE",
-								confirm_class="CONFRIM_PACKET_MAIN_STMSALIVE")
+				self.appendLine(name=name, type="MAIN", packet_class="PACKET_MAIN_STMSALIVE")
 				continue
 
 
 
 
-			self.appendLine(name=name,type="MAIN",make_class="MAKE_PACKET_MAIN", confirm_class="CONFRIM_PACKET_MAIN")
+			self.appendLine(name=name,type="MAIN",packet_class="PACKET_MAIN")
 
 		None
 
@@ -484,7 +485,8 @@ class MakePacketDataUnit(MakePacket):
 	prefix = "pdu"
 
 	def processInserValues(self):
-		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription,  make_class, confirm_class FROM adts.packet;")
+		#make_class, confirm_class
+		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription,  packet_class FROM adts.packet;")
 		self.mapType = self.dstdbHD.selectToMap("name", "SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value,  updt_date, reg_date, comment FROM adts.packet_data_type;")
 		for key, row in self.mapOldDBMainProtocol.items():
 			index = 0;
@@ -581,7 +583,7 @@ class MakeScenarioLine(BaseTableInput):
 		self.listmapcript = json.loads(strjson);
 
 		mapdstScenario = self.dstdbHD.selectToMap('name',"SELECT * FROM adts.scenario;")
-		mapmapmethodline = self.dstdbHD.selectToMap('name',"SELECT seq, pck_uid, name, type, discription,  make_class, confirm_class, updt_date, reg_date, comment FROM adts.packet;")
+		mapmapmethodline = self.dstdbHD.selectToMap('name',"SELECT seq, pck_uid, name, type, discription,  packet_class, updt_date, reg_date, comment FROM adts.packet;")
 
 
 		mapret =  self.makeMapCmdFromInputSrc()
@@ -1349,15 +1351,8 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
-#DropAndCreateTable(exit = False).Run()
-#DropAndCreateTable(exit = True).Run()
-#MakeEnvSetting().Run()
 #MakeDataFieldsClass().Run()
-#MakeChannel(exit=False,).Run()
-#MakeChannel(dbaddress ="192.168.0.75").Run()
 
-#MakeScenarioEtc(deleteTable=False, exit=False).Run()
-#MakeScenarioLineEtc(deleteTable=False).Run()
 InsertWholeDB(exit=False).Run()
 #MakeScenarioGroup().Run()
 

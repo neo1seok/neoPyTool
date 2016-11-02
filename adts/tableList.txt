@@ -49,8 +49,7 @@ PACKET	seq	int(11)
 	name	varchar(64)
 	type	varchar(64)
 	discription	text
-	make_class	varchar(64)
-	confirm_class	varchar(64)
+	packet_class	varchar(64)
 	updt_date	datetime
 	reg_date	datetime
 	comment	text

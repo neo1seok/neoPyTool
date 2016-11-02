@@ -12800,3 +12800,5 @@
 2016-09-23T08:54:45.098537 HTTPCLient369 Exception:No connection adapters were found for 'ahttps://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'  
 2016-09-23T08:54:55.315121 tktime:0 doRun 
 2016-09-23T08:54:55.318121 HTTPCLient369 Exception:No connection adapters were found for 'ahttps://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'  
+2016-11-01T18:06:55.101752 tktime:0 doRun 
+2016-11-01T18:17:57.017611 tktime:0 doRun 
