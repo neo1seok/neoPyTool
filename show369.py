@@ -13,7 +13,7 @@ import base64
 class HTTPCLient369():
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="([a-zA-Z0-9/.:]+)"\s+alt="([a-zA-Z0-9]+)"\s*/>'
+	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>'
 
 	pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
 	pattEndPrfofile = r'<\s*/\s*div\s*>'
@@ -44,11 +44,15 @@ class HTTPCLient369():
 
 	def geturlcontents(self):
 		r = requests.get(self.url)
-		#print(r.text)
+		self.availableContets =  self.getAvailabeContents(r.text)
+
+		print(self.availableContets)
+
 
 
 		self.strTodayList = self.getTodayListBlock(r.text)
-		self.results = re.findall(self.patt, self.strTodayList)
+		#print(self.strTodayList)
+		self.results = re.findall(self.patt, self.availableContets)
 
 
 		strprfBlock = self.getProfileBlock(r.text)
@@ -101,6 +105,24 @@ class HTTPCLient369():
 
 		self.bencodeProfile = base64.urlsafe_b64encode(injson.encode()).decode()
 		#print(self.bencodeProfile)
+
+	def getAvailabeContents(self, str):
+		try:
+			startIndex = str.index("<!-- 본문 내용 시작 { -->")
+			endIndex = str.index("<!-- } 본문 내용 끝 -->")
+			return str[startIndex:endIndex]
+		except:
+			startIndex = -1
+			endIndex = -1
+
+
+
+
+		for match in re.finditer(self.patt, str):
+			if startIndex < 0 : startIndex = match.span()[0]
+			endIndex = match.span()[1]
+
+		return str[startIndex:endIndex]
 
 	def getTodayListBlock(self,str):
 

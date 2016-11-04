@@ -414,7 +414,7 @@ class MakePacketDateType(BaseTableInput):
 		if name == '전문길이':
 			order = '1'
 			mapMakeParam["order"] = '1'
-			mapConfirmParam['variable'] = 'value'
+			mapMakeParam['variable'] = 'value'
 			mapMakeParam['method'] = "MAKE_LENGTH"
 
 
@@ -1353,10 +1353,10 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 """
 #MakeDataFieldsClass().Run()
 
-InsertWholeDB(exit=False).Run()
+#InsertWholeDB(exit=False).Run()
 #MakeScenarioGroup().Run()
 
-#InsertWholeDB(dbaddress="192.168.0.75").Run()
+InsertWholeDB(dbaddress="192.168.0.75").Run()
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()

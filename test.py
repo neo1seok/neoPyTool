@@ -638,6 +638,8 @@ class Test:
 
 klass = globals()["Test"]
 instance = klass()
+r = requests.get("http://purryfwends.com/article/240/Graphic/warning-graphic-content-naked-man-attempts-suicide-by-lion-cage-turtle-chopped-in-half-revenge-bites-man-compilation")
+print(r.text)
 
 
 exit()

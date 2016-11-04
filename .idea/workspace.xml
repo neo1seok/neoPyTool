@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c4612636-58be-42c2-ab2e-ee528cd652e6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adts/TABLE.SQL" afterPath="$PROJECT_DIR$/adts/TABLE.SQL" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adts/tableList.txt" afterPath="$PROJECT_DIR$/adts/tableList.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/makeDb4ADTS.py" afterPath="$PROJECT_DIR$/makeDb4ADTS.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.log" afterPath="$PROJECT_DIR$/out.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/show369.py" afterPath="$PROJECT_DIR$/show369.py" />
@@ -31,22 +29,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="makeDb4ADTS.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="makeDb4ADTS.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/makeDb4ADTS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="1343" column="0" selection-start-line="1343" selection-start-column="0" selection-end-line="1343" selection-end-column="0" />
+            <state relative-caret-position="194">
+              <caret line="1346" column="81" selection-start-line="1346" selection-start-column="81" selection-end-line="1346" selection-end-column="81" />
               <folding>
                 <element signature="e#1#10#0" expanded="true" />
                 <element signature="e#180#2247#0" expanded="false" />
                 <element signature="e#5258#5502#0" expanded="false" />
                 <element signature="e#5645#6176#0" expanded="false" />
-                <element signature="e#18522#18684#0" expanded="false" />
-                <element signature="e#27748#28096#0" expanded="false" />
-                <element signature="e#28163#28837#0" expanded="false" />
-                <element signature="e#30655#34497#0" expanded="false" />
-                <marker date="1478087674000" expanded="false" signature="18711:19413" ph="..." />
-                <marker date="1478087674000" expanded="true" signature="38428:38548" ph="..." />
+                <element signature="e#18519#18681#0" expanded="false" />
+                <element signature="e#27745#28093#0" expanded="false" />
+                <element signature="e#28160#28834#0" expanded="false" />
+                <element signature="e#30652#34494#0" expanded="false" />
+                <marker date="1478246665487" expanded="false" signature="18708:19410" ph="..." />
+                <marker date="1478246665487" expanded="true" signature="38425:38545" ph="..." />
               </folding>
             </state>
           </provider>
@@ -55,8 +53,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="640" column="0" selection-start-line="640" selection-start-column="0" selection-end-line="640" selection-end-column="0" />
+            <state relative-caret-position="658">
+              <caret line="645" column="34" selection-start-line="645" selection-start-column="34" selection-end-line="645" selection-end-column="34" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#560#1288#0" expanded="false" />
@@ -65,14 +63,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show369.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show369.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/show369.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="71" column="29" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="29" />
+            <state relative-caret-position="276">
+              <caret line="19" column="105" selection-start-line="19" selection-start-column="105" selection-end-line="19" selection-end-column="105" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="re.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../python35/Lib/re.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="204" column="4" selection-start-line="204" selection-start-column="4" selection-end-line="204" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,20 +91,6 @@
             <state relative-caret-position="-114">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="neolib.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/neolib.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-              <folding>
-                <element signature="e#3#13#0" expanded="true" />
-                <element signature="e#809#1021#0" expanded="false" />
-                <element signature="e#4772#5725#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -199,18 +193,16 @@
         <option value="$PROJECT_DIR$/adts/TABLE.SQL" />
         <option value="$PROJECT_DIR$/neolib.py" />
         <option value="$PROJECT_DIR$/bletest.py" />
-        <option value="$PROJECT_DIR$/show369.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/adts/tableList.txt" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/makeDb4ADTS.py" />
+        <option value="$PROJECT_DIR$/show369.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="2576" />
-    <option name="height" value="1416" />
+    <option name="width" value="1280" />
+    <option name="height" value="1400" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -335,7 +327,7 @@
       <recent name="C:\APP\PYTOOL" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.makeDb4ADTS">
+  <component name="RunManager" selected="Python.show369">
     <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -564,9 +556,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.makeDb4ADTS" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test" />
-        <item index="2" class="java.lang.String" itemvalue="Python.show369" />
+        <item index="0" class="java.lang.String" itemvalue="Python.show369" />
+        <item index="1" class="java.lang.String" itemvalue="Python.makeDb4ADTS" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test" />
         <item index="3" class="java.lang.String" itemvalue="Python.bletest" />
         <item index="4" class="java.lang.String" itemvalue="Python.echoclient" />
       </list>
@@ -634,20 +626,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1280" height="1400" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11605723" sideWeight="0.47821352" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23934427" sideWeight="0.4772462" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.49483308" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45546088" sideWeight="0.35235235" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754537" sideWeight="0.49296874" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969603" sideWeight="0.49682036" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289166" sideWeight="0.4920509" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28448948" sideWeight="0.7889138" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11605723" sideWeight="0.5217865" order="4" side_tool="true" content_ui="tabs" x="1934" y="119" width="474" height="545" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28448948" sideWeight="0.7889138" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23934427" sideWeight="0.5227538" order="4" side_tool="true" content_ui="tabs" x="1934" y="119" width="474" height="545" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289166" sideWeight="0.49523053" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34777424" sideWeight="0.43812233" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31965274" sideWeight="0.6236089" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32359904" sideWeight="0.6236089" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -736,27 +728,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>808</line>
+          <line>810</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>781</line>
+          <line>783</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>783</line>
+          <line>785</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
-          <line>789</line>
+          <line>791</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>223</line>
+          <line>245</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -791,32 +783,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>335</line>
+          <line>357</line>
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>342</line>
+          <line>364</line>
           <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>150</line>
+          <line>172</line>
           <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>93</line>
+          <line>97</line>
           <option name="timeStamp" value="124" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>101</line>
+          <line>105</line>
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -971,7 +958,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/show369.py</url>
-          <line>49</line>
+          <line>52</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -984,6 +971,21 @@
           <line>638</line>
           <option name="timeStamp" value="224" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/show369.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/show369.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/show369.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="227" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -992,7 +994,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="225" />
+      <option name="time" value="229" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -1001,13 +1003,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pythonshell.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1020,7 +1015,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3#13#0" expanded="true" />
+            <element signature="e#3#13#0" expanded="false" />
             <element signature="e#809#1021#0" expanded="false" />
             <element signature="e#4772#5725#0" expanded="false" />
           </folding>
@@ -1076,12 +1071,12 @@
             <element signature="e#180#2247#0" expanded="false" />
             <element signature="e#5258#5502#0" expanded="false" />
             <element signature="e#5645#6176#0" expanded="false" />
-            <element signature="e#18522#18684#0" expanded="false" />
-            <element signature="e#27748#28096#0" expanded="false" />
-            <element signature="e#28163#28837#0" expanded="false" />
-            <element signature="e#30655#34497#0" expanded="false" />
-            <marker date="1478087674000" expanded="false" signature="18711:19413" ph="..." />
-            <marker date="1478087674000" expanded="true" signature="38428:38548" ph="..." />
+            <element signature="e#18519#18681#0" expanded="false" />
+            <element signature="e#27745#28093#0" expanded="false" />
+            <element signature="e#28160#28834#0" expanded="false" />
+            <element signature="e#30652#34494#0" expanded="false" />
+            <marker date="1478246665487" expanded="false" signature="18708:19410" ph="..." />
+            <marker date="1478246665487" expanded="true" signature="38425:38545" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1130,7 +1125,7 @@
         <state relative-caret-position="418">
           <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding>
-            <element signature="e#3#13#0" expanded="true" />
+            <element signature="e#3#13#0" expanded="false" />
             <element signature="e#809#1021#0" expanded="false" />
             <element signature="e#4772#5725#0" expanded="false" />
           </folding>
@@ -1330,7 +1325,7 @@
         <state relative-caret-position="291">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <element signature="e#3#13#0" expanded="true" />
+            <element signature="e#3#13#0" expanded="false" />
             <element signature="e#809#1021#0" expanded="false" />
             <element signature="e#4772#5725#0" expanded="false" />
           </folding>
@@ -1369,27 +1364,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/show369.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="71" column="29" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="640" column="0" selection-start-line="640" selection-start-column="0" selection-end-line="640" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#560#1288#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/adts/tableList.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
@@ -1406,21 +1380,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="645" column="34" selection-start-line="645" selection-start-column="34" selection-end-line="645" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#560#1288#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/makeDb4ADTS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="1343" column="0" selection-start-line="1343" selection-start-column="0" selection-end-line="1343" selection-end-column="0" />
+        <state relative-caret-position="194">
+          <caret line="1346" column="81" selection-start-line="1346" selection-start-column="81" selection-end-line="1346" selection-end-column="81" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
             <element signature="e#180#2247#0" expanded="false" />
             <element signature="e#5258#5502#0" expanded="false" />
             <element signature="e#5645#6176#0" expanded="false" />
-            <element signature="e#18522#18684#0" expanded="false" />
-            <element signature="e#27748#28096#0" expanded="false" />
-            <element signature="e#28163#28837#0" expanded="false" />
-            <element signature="e#30655#34497#0" expanded="false" />
-            <marker date="1478087674000" expanded="false" signature="18711:19413" ph="..." />
-            <marker date="1478087674000" expanded="true" signature="38428:38548" ph="..." />
+            <element signature="e#18519#18681#0" expanded="false" />
+            <element signature="e#27745#28093#0" expanded="false" />
+            <element signature="e#28160#28834#0" expanded="false" />
+            <element signature="e#30652#34494#0" expanded="false" />
+            <marker date="1478246665487" expanded="false" signature="18708:19410" ph="..." />
+            <marker date="1478246665487" expanded="true" signature="38425:38545" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../python35/Lib/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="204" column="4" selection-start-line="204" selection-start-column="4" selection-end-line="204" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show369.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="19" column="105" selection-start-line="19" selection-start-column="105" selection-end-line="19" selection-end-column="105" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
