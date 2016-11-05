@@ -47,7 +47,7 @@ class BaseClient():
 class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="([a-zA-Z0-9/.:]+)"\s+alt="([a-zA-Z0-9]+)"\s*/>'
+	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>'
 
 	pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
 	pattEndPrfofile = r'<\s*/\s*div\s*>'
@@ -79,8 +79,16 @@ class HTTPCLient369(BaseClient):
 
 	def geturlcontents(self):
 		r = requests.get(self.url)
-		#print(r.text)
-		self.results = re.findall(self.patt, r.text)
+		self.availableContets =  self.getAvailabeContents(r.text)
+
+		print(self.availableContets)
+
+
+
+		self.strTodayList = self.getTodayListBlock(r.text)
+		#print(self.strTodayList)
+		self.results = re.findall(self.patt, self.availableContets)
+
 
 		strprfBlock = self.getProfileBlock(r.text)
 		self.mapProfile = self.extractProfileMap(strprfBlock)
@@ -133,6 +141,32 @@ class HTTPCLient369(BaseClient):
 		self.bencodeProfile = base64.urlsafe_b64encode(injson.encode()).decode()
 		#print(self.bencodeProfile)
 
+	def getAvailabeContents(self, str):
+		try:
+			startIndex = str.index("<!-- 본문 내용 시작 { -->")
+			endIndex = str.index("<!-- } 본문 내용 끝 -->")
+			return str[startIndex:endIndex]
+		except:
+			startIndex = -1
+			endIndex = -1
+
+
+
+
+		for match in re.finditer(self.patt, str):
+			if startIndex < 0 : startIndex = match.span()[0]
+			endIndex = match.span()[1]
+
+		return str[startIndex:endIndex]
+
+	def getTodayListBlock(self,str):
+
+		startIndex = 0
+		endindex = 0;
+		for match in re.finditer(self.pattStartPrfofile, str):
+			startIndex = match.span()[1]
+		# print(match.span())
+		return str[0:startIndex]
 
 	def getProfileBlock(self,str):
 		startIndex = 0
@@ -363,15 +397,15 @@ while True:
 		log = "{0} tktime:{1} doRun \n".format(datetime.datetime.now().isoformat(), 0)
 		try:
 			HTTPCLient369().doRun()
-		except Exception as e:
-			log += "{0} HTTPCLient369 Exception:{1}  \n".format(datetime.datetime.now().isoformat(), e)
+		except :
+			log += "{0} HTTPCLient369 ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
 
 
 
 		try:
 			GetLateestWebtoon().doRun(isAll)
-		except  Exception as e:
-			log += "{0} GetLateestWebtoon Exception:{1}  \n".format(datetime.datetime.now().isoformat(), e)
+		except  :
+			log += "{0} GetLateestWebtoon ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
 
 		takentime = 0
 

@@ -105,6 +105,10 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 
 
+	def setDefArges(self):
+		super(BaseMySQLRunnable, self).setDefArges()
+		self.defMapArgs.update({'dbaddress': 'localhost'})
+
 	def test(self,**kwargs):
 		for key,value in kwargs.items():
 			print(key,value)
@@ -118,14 +122,14 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 		# self.test2(aaa='1',aaa2='2')
 
-
+		self.dbaddress = self.mapArgs['dbaddress']
 		self.listmap = []
 
 
-
+		print("dst db:"+self.dbaddress)
 		self.olddbHD = dbHandleing(host='localhost', port=3306, user='neo1seok', passwd='tofhdna1pi',db='test_smartro', charset='utf8')
-		#self.dstdbHD = dbHandleing(host='192.168.0.75', port=3306, user='ictk', passwd='#ictk1234',	  db='adts', charset='utf8')
-		self.dstdbHD = dbHandleing(host='localhost', port=3306, user='ictk', passwd='#ictk1234', db='adts',	   charset='utf8')
+		self.dstdbHD = dbHandleing(host=self.dbaddress, port=3306, user='ictk', passwd='#ictk1234',	  db='adts', charset='utf8')
+		#self.dstdbHD = dbHandleing(host='localhost', port=3306, user='ictk', passwd='#ictk1234', db='adts',	   charset='utf8')
 		self.strlines = ""
 
 		None
@@ -285,7 +289,10 @@ class BaseTableInput(BaseMySQLRunnable):
 
 		self.processInserToDB()
 
+		self.processAfterDB()
+
 		None
+
 
 	def makeMapCmdFromTxt(self,strtxt):
 
@@ -302,6 +309,9 @@ class BaseTableInput(BaseMySQLRunnable):
 		lastseq = self.dstdbHD.lastSeq(self.dsttable)
 		self.dstdbHD.insertList(self.dsttable, self.prefix, self.listmap, lastseq)
 
+	def processAfterDB(self):
+		None
+
 
 class MakeEnvSetting(BaseTableInput):
 	dsttable = "env_setting"
@@ -314,9 +324,10 @@ class MakeEnvSetting(BaseTableInput):
 			("DEVICE_MODEL", "v241"),
 			("script_file", "smatro_sc.py"),
 			("class_main_process", "mainprocess_smartro"),
-			("CHANNEL_MAIN", "1"),
-			("CHANNEL_DONGLE", "2"),
-			("CHANNEL_POS", "3"),
+			("CHANNEL_MAIN", "chn_2"),
+			("CHANNEL_DONGLE", "chn_2"),
+			("CHANNEL_POS", "chn_3"),
+
 		])
 
 		mapdefvalue = self.olddbHD.select("SELECT profileid, value FROM profile_config_maininfo where devtype = 'V100_EN07';")
@@ -339,33 +350,33 @@ class MakeEnvSetting(BaseTableInput):
 
 class MakeChannel(BaseTableInput):
 	dsttable = "channel"
-	colline = "type, discription, port, classname"
+	colline = "type, discription, param, classname"
 	prefix = "chn"
 	def processInserValues(self):
 		mapEnv =[
-			('UART 0',"UART", 4),
-			('TCP 1',"TCP", 8055),
-			('UART 2', "UART", 5),
-			('TCP 2', "TCP", 8056),
+			('UART 0',"UART", json.dumps({"PORTNAME":"COM4","BAUDRATE":38400}, ensure_ascii=False)),
+			('TCP 1',"TCPSERVER", json.dumps({"PORT":5510}, ensure_ascii=False)),
+			('UART 2', "UART", json.dumps({"PORTNAME":"//.//COM09","BAUDRATE":38400}, ensure_ascii=False)),
+			('TCP 2', "TCPSERVER", json.dumps({"PORT":8056},ensure_ascii=False)),
 		]
 
 
 
-		for name,type,port in mapEnv:
-			self.appendLine(name=name,type = type,port= port)
+		for name,type,param in mapEnv:
+			self.appendLine(name=name,type = type,param= param)
 
 
 		None
 class MakePacketDateType(BaseTableInput):
 	dsttable = "packet_data_type"
-	colline = "name, length, variation, value_encoding, char_range, fixed_value, param, param_ext"
+	colline = "name, length, variation, value_encoding, char_range, fixed_value, option, make_param,confirm_param"
 	prefix = "pdt"
 
 	def processInserValues(self):
 
 		self.appendLine(name="STX", length="1", value_encoding='HEX', fixed_value="02")
 		self.appendLine(name="ETX", length="1", value_encoding='HEX', fixed_value="03")
-		self.appendLine(name="CRC", length="2", value_encoding='HEX')
+		self.appendLine(name="CRC", length="4", value_encoding='HEX',make_param=json.dumps({'variable':'value','method':'CRC','order':'2'}),confirm_param="")
 
 		for key, value in self.mapOldDBMainType.items():
 
@@ -373,6 +384,11 @@ class MakePacketDateType(BaseTableInput):
 			self.processDataTypes('',value)
 
 		None
+	def getStrMap(self,map):
+		strparam = ''
+		if len(map) > 0:
+			strparam = json.dumps(map, ensure_ascii=False)
+		return strparam
 
 
 	def processDataTypes(self, servicecode,datamap):
@@ -383,14 +399,24 @@ class MakePacketDateType(BaseTableInput):
 
 		types = options.split('|')
 		strv = ''
-		if 'V' in types:                strv = 'TRUE'
+
 		mapparam = collections.OrderedDict()
+		mapMakeParam = collections.OrderedDict()
+		mapConfirmParam = collections.OrderedDict()
+
+		if 'V' in types:
+			strv = 'TRUE'
+			mapConfirmParam['variable'] = 'length'
+			mapConfirmParam['method']='CALC_LENGTH'
 
 		order = '0'
 		value = ''
 		if name == '전문길이':
 			order = '1'
-			mapparam["RUN_POS"] = "END_RUN"
+			mapMakeParam["order"] = '1'
+			mapMakeParam['variable'] = 'value'
+			mapMakeParam['method'] = "MAKE_LENGTH"
+
 
 		elif name == 'Message Type':
 			value = servicecode[0:4]
@@ -416,18 +442,21 @@ class MakePacketDateType(BaseTableInput):
 		if 'SI' in types:
 			mapparam["START_TAG"] = "SI"
 			#self.appendLine(name="SI", length="1", encoding='HEX', value="0F",param=strparam,)
-		strparam = ''
-		if len(mapparam) > 0:
-			strparam = json.dumps(mapparam, ensure_ascii=False)
+
+		strMakeparam = self.getStrMap(mapMakeParam)
+		strConfirmparam = self.getStrMap(mapConfirmParam)
+
+		strparam = self.getStrMap(mapparam)
+
 
 		self.appendLine(name=name, length=length, variation=strv, value_encoding='ASCII', char_range=chartype, fixed_value=value,
-						param=strparam, param_ext=order)
+						option=strparam, make_param=strMakeparam,confirm_param=strConfirmparam)
 
 
 class MakePacket(BaseTableInput):
 	dsttable = "packet";
 	prefix = "pck"
-	colline = "name, type, discription,  make_class, confirm_class"
+	colline = "name, type, discription,  packet_class"
 	def makePacketName(self,protocol,direction):
 		tail = '수신' if direction == 'D2A'  else '송신'
 
@@ -439,7 +468,14 @@ class MakePacket(BaseTableInput):
 			direction = value['direction']
 			name = self.makePacketName(protocol,direction)
 
-			self.appendLine(name=name,type="MAIN",make_class="MAKE_PACKET_MAIN", confirm_class="CONFRIM_PACKET_MAIN")
+			if name in ["STMS/ALIVE 수신", "STMS/ALIVE 송신"]:
+				self.appendLine(name=name, type="MAIN", packet_class="PACKET_MAIN_STMSALIVE")
+				continue
+
+
+
+
+			self.appendLine(name=name,type="MAIN",packet_class="PACKET_MAIN")
 
 		None
 
@@ -449,8 +485,9 @@ class MakePacketDataUnit(MakePacket):
 	prefix = "pdu"
 
 	def processInserValues(self):
-		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription,  make_class, confirm_class FROM adts.packet;")
-		self.mapType = self.dstdbHD.selectToMap("name", "SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value, param, param_ext, updt_date, reg_date, comment FROM adts.packet_data_type;")
+		#make_class, confirm_class
+		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription,  packet_class FROM adts.packet;")
+		self.mapType = self.dstdbHD.selectToMap("name", "SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value,  updt_date, reg_date, comment FROM adts.packet_data_type;")
 		for key, row in self.mapOldDBMainProtocol.items():
 			index = 0;
 			datas = row['data']
@@ -506,7 +543,7 @@ class MakePacketDataUnit(MakePacket):
 class MakeScenario(BaseTableInput):
 	dsttable = "scenario"
 	prefix = "sce"
-	colline = "scg_uid, name, discription, sce_uid_profile, sce_uid_profile_reset,  classname,comment"
+	colline = "scg_uid, name, discription, param, param_ext, type, classname,comment"
 
 	def processInserValues(self):
 		listmapcriptsub = self.olddbHD.selectToMap('scriptid',
@@ -518,13 +555,16 @@ class MakeScenario(BaseTableInput):
 
 		for key,row in listmapcriptsub.items():
 			objective = row['objective']
+			title = row['title']
 			profilename = row['profilename']
 
 			sce_uid = mapScenario[profilename]['sce_uid'];
 			sce_uid_reset = mapScenario[profilename + " RESET"]['sce_uid'];
+			discription = title if title != '' else objective
 
+			param_ext = json.dumps({"sce_uid_profile": sce_uid, "sce_uid_profile_reset": sce_uid_reset})
 
-			self.appendLine(name=key,discription=objective,classname='SMARTRO_SC',sce_uid_profile=sce_uid, sce_uid_profile_reset=sce_uid_reset)
+			self.appendLine(name=key,discription=discription,classname='SMARTRO_SC',param_ext=param_ext)
 
 
 
@@ -533,7 +573,8 @@ class MakeScenario(BaseTableInput):
 class MakeScenarioLine(BaseTableInput):
 	dsttable = "scenario_line"
 	prefix = "scl"
-	colline = "sce_uid, index, method, title, param, param_ext, pck_uid,comment"
+	#colline = "sce_uid, index, method, title, param, param_ext, pck_uid,comment"
+	colline = "sce_uid, index, method, title, param, param_ext, comment"
 
 	def processInserValues(self):
 
@@ -542,7 +583,7 @@ class MakeScenarioLine(BaseTableInput):
 		self.listmapcript = json.loads(strjson);
 
 		mapdstScenario = self.dstdbHD.selectToMap('name',"SELECT * FROM adts.scenario;")
-		mapmapmethodline = self.dstdbHD.selectToMap('name',"SELECT seq, pck_uid, name, type, discription,  make_class, confirm_class, updt_date, reg_date, comment FROM adts.packet;")
+		mapmapmethodline = self.dstdbHD.selectToMap('name',"SELECT seq, pck_uid, name, type, discription,  packet_class, updt_date, reg_date, comment FROM adts.packet;")
 
 
 		mapret =  self.makeMapCmdFromInputSrc()
@@ -581,23 +622,30 @@ class MakeScenarioLine(BaseTableInput):
 			title = self.ConvertValue(title, tmprow, input_value)
 			param = self.ConvertValue(param, tmprow, input_value)
 
+			if param_ext == 'N': param_ext =''
+
 			if "전문" in instruction:
 				map = self.ConvertFromSentence(collections.OrderedDict(), param)[0]
 				param = json.dumps(map, ensure_ascii=False)
 
+
 				if "수신" in instruction:
 					packetname = protocol + " 수신"
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
-					self.appendLine(sce_uid=sce_uid, index=index, method ='RECV' ,title='수신', param='$PORT00')
+					param_ext = "{'pck_uid':'%s'}" % pck_uid
+					param_ext = param_ext.replace("'","\"")
+					self.appendLine(sce_uid=sce_uid, index=index, method ='RECV' ,title='수신', param="$MAP_ENV['CHANNEL_MAIN']")
 					index+=1
-					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,pck_uid=pck_uid,comment= param )
+					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,param_ext=param_ext,comment= param )
 					None
 				elif "송신" in instruction:
 					packetname = protocol + " 송신"
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
-					self.appendLine(sce_uid=sce_uid, index=index, method='MAKE_PACKET', title=title, param=packetname ,pck_uid=pck_uid,comment=param)
+					param_ext = "{'pck_uid':'%s'}" % pck_uid
+					param_ext = param_ext.replace("'", "\"")
+					self.appendLine(sce_uid=sce_uid, index=index, method='MAKE_PACKET', title=title, param=packetname ,param_ext=param_ext,comment=param)
 					index += 1
-					self.appendLine(sce_uid=sce_uid, index=index, method='SEND', title='송신', param='$PORT00')
+					self.appendLine(sce_uid=sce_uid, index=index, method='SEND', title='송신', param="$MAP_ENV['CHANNEL_MAIN']")
 					None
 				index += 1
 				continue
@@ -661,6 +709,108 @@ class MakeScenarioLine(BaseTableInput):
 
 		return
 
+class MakeScenarioGroup(BaseTableInput):
+	dsttable = "scenario_group"
+	prefix = "scg"
+	colline = "scg_uid_parent, name, discription,comment"
+
+	def processInserValues(self):
+		patter = r'([A-Z]{3}\.[A-Z]{1})\.\d{3}\.\d{2}'
+
+		mapSubScript = self.olddbHD.selectToMap('scriptid',
+		"""
+		SELECT seq, uid, scriptid, title, script, objective, category, subcategory, caseid, testcase, profilename, devtype
+		FROM test_smartro.script_sublist where devtype = 'V100_EN07';
+		""" )
+
+		listdistict = self.olddbHD.select("SELECT distinct category		FROM test_smartro.script_sublist where devtype = 'V100_EN07';")
+
+		mapScenario = self.dstdbHD.select( "SELECT * FROM adts.scenario where type != 'profile';")
+		seq = 1;
+		mapcategory = {}
+		for rows in listdistict:
+			category = rows['category']
+			mapcategory[category] = 'scg_'+str(seq)
+			category = re.sub(r'\d{2}\.(.+)', r'\1', category)
+			self.appendLine(name=category)
+			seq+=1
+
+		self.mapADD = {}
+		for row in mapScenario:
+			key = row['name']
+			sce_uid = row['sce_uid']
+			subcategory= mapSubScript[key]['subcategory']
+			subcategory = re.sub(r'\d{2}\.\d{2}\.(.+)',r'\1',subcategory)
+			category = mapSubScript[key]['category']
+			testcase = mapSubScript[key]['testcase']
+
+			name = re.sub(patter,r'\1',key)
+			if name not in self.mapADD:
+
+				scg_uid_parent = mapcategory[category]
+				self.appendLine(scg_uid_parent=scg_uid_parent,name=subcategory, discription=testcase,comment=name)
+				self.mapADD[name] = ('scg_'+str(seq), [])
+				seq += 1
+
+			self.mapADD[name][1].append(sce_uid)
+
+			None
+		#	self.appendLine(name=key,discription="")
+
+
+
+		None
+
+	def processAfterDB(self):
+
+		for key,values in self.mapADD.items():
+			scg_uid, uids =values
+			for uid in uids:
+				sql = "UPDATE adts.scenario SET  scg_uid = '%s' WHERE sce_uid = '%s'"%(scg_uid,uid)
+				print(sql)
+				self.dstdbHD.excute(sql)
+			None
+
+
+
+
+
+
+		None
+class MakeScenarioEtc(BaseTableInput):
+	dsttable = "scenario"
+	prefix = "sce"
+	colline = "scg_uid, name, discription,  classname,comment"
+
+	def processInserValues(self):
+		retdb = self.dstdbHD.select(
+			"SELECT seq, sce_uid, scg_uid, name, discription, classname, type, updt_date, reg_date, comment FROM adts.scenario where name = 'DEVTEST';")
+		if len(retdb) >0 : return
+		self.appendLine(name='DEVTEST', scg_uid='scg_1',discription='단말 접속 설정', classname='SMARTRO_SC' )
+
+
+class MakeScenarioLineEtc(BaseTableInput):
+	dsttable = "scenario_line"
+	prefix = "scl"
+	colline = "sce_uid, index, method, title, param, param_ext, comment"
+
+	def processInserValues(self):
+		retdb = self.dstdbHD.select("SELECT seq, sce_uid, scg_uid, name, discription, classname, type, updt_date, reg_date, comment FROM adts.scenario where name = 'DEVTEST';")
+		retmap = retdb[0]
+		sce_uid = retmap['sce_uid']
+		index = 0
+		self.appendLine(sce_uid=sce_uid, index=index, method='PRINT_TITLE', title=self.dispalaytitle,param = '주 동작 시작')
+		index+=1
+
+		self.appendLine(sce_uid=sce_uid, method="DEVTEST", index=index, title="신호대기중",param="$MAP_ENV['CHANNEL_MAIN']")
+		index += 1
+
+		self.appendLine(sce_uid=sce_uid, index=index, method='PRINT_TITLE', title=self.dispalaytitle,						param='주 동작 종료')
+		index += 1
+
+
+
+
 
 class MakeDataValueTable(BaseTableInput):
 	dsttable = "data_value_table"
@@ -668,13 +818,27 @@ class MakeDataValueTable(BaseTableInput):
 	colline = "scl_uid, pdt_uid, value, param, param_ext,comment"
 
 	def processInserValues(self):
-		listscl = self.dstdbHD.select("SELECT * FROM adts.scenario_line where pck_uid != '';")
-		listpacketData = self.dstdbHD.selectToMap("name","SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value, param, param_ext, updt_date, reg_date, comment FROM adts.packet_data_type;")
+		listscl = self.dstdbHD.select("SELECT * FROM adts.scenario_line where method in ('CONFIRM_PACKET','MAKE_PACKET');")
+		listpacketData = self.dstdbHD.selectToMap("name","SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value, option, updt_date, reg_date, comment FROM adts.packet_data_type;")
 
 		for row in listscl:
-			param = row['comment']
+			comment = row['comment']
 			scl_uid = row['scl_uid']
-			mapdddd = json.loads(param,object_pairs_hook=collections.OrderedDict)
+			param = row['param']
+			mapdddd = json.loads(comment,object_pairs_hook=collections.OrderedDict)
+
+			mapLength = {}
+
+			mapLength['makepacket_method'] = 'MakeProtocolLength'
+
+			if param in ['STMS/ALIVE 수신','STMS/ALIVE 송신']:
+				mapLength['makepacket_method'] = 'MakeProtocolLength_STMS'
+				None
+
+			#self.appendLine(scl_uid=scl_uid, pdt_uid='pdt_3', value=value, param_ext='', comment='CRC')
+			#self.appendLine(scl_uid=scl_uid, pdt_uid='pdt_4', value=value, param_ext='',comment = '전문길이')
+
+
 			print(param)
 			print(mapdddd)
 			print()
@@ -825,7 +989,7 @@ class DropAndCreateTable(BaseMySQLRunnable):
 	def doRun(self):
 		name = input("Are u sure for drop and create? yes or no ")
 
-		if name != 'yes': exit()
+		if name != 'yes': return
 
 		tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, testing_info")
 		deleteSqlrArray = []
@@ -890,7 +1054,7 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 				strinit = ''
 			if type == 'datetime':
 				newtype = 'DateTime'
-				strinit = '= new DateTime();'
+				strinit = '= new DateTime()'
 
 
 
@@ -1149,39 +1313,55 @@ class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
 		#self.strlines =
 
 class InsertWholeDB(neolib.NeoRunnableClasss):
+
+	def setDefArges(self):
+		super(InsertWholeDB, self).setDefArges()
+		self.defMapArgs.update({'dbaddress': 'localhost'})
+
+
 	def doRun(self):
-		DropAndCreateTable(exit=False).Run()
-
-		MakeEnvSetting(exit=False).Run()
-
-		MakeChannel(exit=False).Run()
+		dbaddress = self.mapArgs['dbaddress']
 
 
-		MakePacketDateType(exit=False).Run()
-		MakePacket(exit=False).Run()
-		MakePacketDataUnit(exit=False).Run()
+		DropAndCreateTable(exit=False,dbaddress =dbaddress).Run()
 
-		MakeScenarioByProfile(exit=False).Run()
-		MakeScenarioLineByProfile(exit=False).Run()
 
-		MakeScenario(deleteTable=False, exit=False).Run()
-		MakeScenarioLine(deleteTable=False, exit=False).Run()
-		MakeDataValueTable(exit=False).Run()
+		MakeChannel(exit=False,dbaddress =dbaddress).Run()
+
+		MakeEnvSetting(exit=False, dbaddress=dbaddress).Run()
+
+
+		MakePacketDateType(exit=False,dbaddress =dbaddress).Run()
+		MakePacket(exit=False,dbaddress =dbaddress).Run()
+		MakePacketDataUnit(exit=False,dbaddress =dbaddress).Run()
+
+		MakeScenarioByProfile(exit=False,dbaddress =dbaddress).Run()
+		MakeScenarioLineByProfile(exit=False,dbaddress =dbaddress).Run()
+
+		MakeScenario(deleteTable=False, exit=False,dbaddress =dbaddress).Run()
+		MakeScenarioLine(deleteTable=False, exit=False,dbaddress =dbaddress).Run()
+		MakeScenarioGroup(deleteTable=False, exit=False,dbaddress =dbaddress).Run()
+
+		MakeDataValueTable(exit=False,dbaddress =dbaddress).Run()
+
+		MakeScenarioEtc(deleteTable=False, exit=False,dbaddress =dbaddress).Run()
+		MakeScenarioLineEtc(deleteTable=False, exit=False, dbaddress=dbaddress).Run()
 
 
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
-#DropAndCreateTable(exit = False).Run()
-#DropAndCreateTable(exit = True).Run()
-#MakeEnvSetting().Run()
-InsertWholeDB().Run()
+#MakeDataFieldsClass().Run()
 
+#InsertWholeDB(exit=False).Run()
+#MakeScenarioGroup().Run()
+
+InsertWholeDB(dbaddress="192.168.0.75").Run()
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()
 
-#MakeDataFieldsClass().Run()
+
 
 
 

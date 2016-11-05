@@ -632,7 +632,15 @@ class Runnable369Profile(neolib.NeoRunnableClasss):
 		# 	mapProfile[tmp[1]] = (tmp[0],extprofile)
 
 		print(mapProfile)
+class Test:
+	def __init__(self):
+		print('TEST')
+		None
 
+klass = globals()["Test"]
+instance = klass()
+r = requests.get("http://purryfwends.com/article/240/Graphic/warning-graphic-content-naked-man-attempts-suicide-by-lion-cage-turtle-chopped-in-half-revenge-bites-man-compilation")
+print(r.text)
 
 import logging
 from logging import handlers
