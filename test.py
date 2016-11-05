@@ -40,6 +40,7 @@ import neolib4Win
 
 #import test.sample
 import uuid
+import logging
 
 class ChanageMp3Title(neolib.NeoRunnableClasss):
 	maptitle = {'데려다줄래': '01', 'L.I.E': '02', '알면서': '03', 'HELLO(하니SOLO)': '04', 'CREAM': '05', '3%(솔지SOLO)': '06',
@@ -632,6 +633,37 @@ class Runnable369Profile(neolib.NeoRunnableClasss):
 
 		print(mapProfile)
 
+
+import logging
+from logging import handlers
+
+handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
+
+
+# create logger
+logger = logging.getLogger('show369')
+logger.setLevel(logging.DEBUG)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+handler.setFormatter(formatter)
+# add ch to logger
+logger.addHandler(ch)
+logger.addHandler(handler)
+
+# 'application' code
+logger.debug('debug message')
+logger.info('info message')
+logger.warn('warn message')
+logger.error('error message')
+logger.critical('critical message')
 
 print(b'aabb')
 exit()
