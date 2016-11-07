@@ -9,8 +9,42 @@ import  json
 
 import codecs
 import base64
+import logging
+from logging import handlers
 
-class HTTPCLient369():
+
+
+
+class BaseClient():
+	def __init__(self,loggename):
+
+		handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
+
+		# create logger
+		self.logger = logging.getLogger(loggename)
+		self.logger.setLevel(logging.DEBUG)
+
+		# create console handler and set level to debug
+		ch = logging.StreamHandler()
+		ch.setLevel(logging.DEBUG)
+
+		# create formatter
+		formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+		# add formatter to ch
+		ch.setFormatter(formatter)
+		handler.setFormatter(formatter)
+		# add ch to logger
+		self.logger.addHandler(ch)
+		self.logger.addHandler(handler)
+
+		self.logger.debug("%s __init__",self.__class__.__name__)
+
+
+
+
+
+class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
 	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>'
@@ -26,6 +60,7 @@ class HTTPCLient369():
 
 
 	def __init__(self):
+		super(HTTPCLient369, self).__init__('show369')
 		print('__init__')
 		d = datetime.datetime.now()
 		self.dstfile = 'list.' + d.strftime('%Y%m%d') + '.txt'
@@ -101,7 +136,7 @@ class HTTPCLient369():
 
 
 		injson = json.dumps(mapFinal,ensure_ascii=False)
-		print(injson)
+		self.logger.debug("injson : %s",injson)
 
 		self.bencodeProfile = base64.urlsafe_b64encode(injson.encode()).decode()
 		#print(self.bencodeProfile)
@@ -180,10 +215,13 @@ class HTTPCLient369():
 
 	def doRun(self):
 
+		self.logger.info('geturlcontents')
 		self.geturlcontents()
 
+		self.logger.info('makecontents')
 		self.makecontents()
 
+		self.logger.info('updatecontents')
 		self.updatecontents()
 
 
@@ -193,7 +231,7 @@ class HTTPCLient369():
 		print('test')
 		None
 
-class GetLateestWebtoon():
+class GetLateestWebtoon(BaseClient):
 	webtoonurlfmt = "http://comic.naver.com/webtoon/list.nhn?titleId={0}"
 	urlGetTodayWebToon = "http://localhost/webtoon/webtoon.php?option=todaylist"
 	urlGetAllWebToon = "http://localhost/webtoon/webtoon.php?option=alllist"
@@ -201,6 +239,7 @@ class GetLateestWebtoon():
 
 
 	def __init__(self):
+		super(GetLateestWebtoon, self).__init__('webtoon')
 		print('GetLateestWebtoon')
 
 
@@ -288,7 +327,11 @@ class GetLateestWebtoon():
 		if isAll == 'true':
 			url = self.urlGetAllWebToon
 
+
+		self.logger.info('getList')
 		self.getList(url)
+
+		self.logger.info('update list')
 		for key in self.todaylist:
 			value = self.getTopId(key)
 			mapTopid[key] = value
