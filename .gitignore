@@ -2,6 +2,7 @@
 *.obj
 log.txt
 .idea/
+__pycache__/
 .svn*
 obj/
 bin/
