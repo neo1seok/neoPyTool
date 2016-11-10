@@ -1,45 +1,11 @@
+import collections
 import os
 import re
-import shutil
-import socket
-import win32api
-import win32gui
-import win32con
-import time
-import datetime
-import sys
-import glob
-
-#import json
-
-import win32clipboard
-import neolib
-import base64
-import pymysql
-import http.client
-
-import hashlib
-import gzip
-import random
-import ssl
-import string
-
-import pymysql
-import sys
-
-import requests
 
 import  simplejson as json
-import collections
 
-import neolib4Win
-
+import neolib.neolib as neolib
 from makeDb4ADTS import BaseMySQLRunnable
-
-
-
-
-
 
 
 class MakeScriptSentenceFromMySQL(BaseMySQLRunnable):

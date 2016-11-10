@@ -1,4 +1,4 @@
-import neolib
+import neolib.neolib as neolib
 import re
 import sys
 

@@ -142,9 +142,10 @@ PRIMARY KEY (`seq`,`dvt_uid`)
 
 
 
-CREATE TABLE `TESTING_INFO` (
+CREATE TABLE `TEST_INFO` (
 		`seq` int(11) NOT NULL COMMENT '순번',
 		`tsi_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`sce_uid` varchar(20) NOT NULL COMMENT '시나리오 고유 아이디',
 		`name` varchar(64) NOT NULL COMMENT '테스트 이름',
 		`discription` text NOT NULL COMMENT '테스트 목적',
 		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
@@ -171,11 +172,12 @@ PRIMARY KEY (`seq`,`tse_uid`)
 CREATE TABLE `TEST_RESULT` (
 		`seq` int(11) NOT NULL COMMENT '순번',
 		`tsr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
+		`scl_uid` varchar(20)  COMMENT '',
 		`tsi_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
 		`title` varchar(64) DEFAULT NULL COMMENT '테스트 이름',
 		`data` text DEFAULT NULL COMMENT '테스트 목적',
 		`result` varchar(20) DEFAULT NULL COMMENT '',
-		`erroinfo` text  COMMENT '',
+		`error` text  COMMENT '',
 		`takentime` int(11) DEFAULT NULL COMMENT '',
 		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
 		`reg_date` datetime NOT NULL COMMENT '등록일자',
@@ -189,9 +191,13 @@ CREATE TABLE `DATA_RESULT` (
 		`seq` int(11) NOT NULL COMMENT '순번',
 		`dtr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
 		`tsr_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
-		`scl_uid` varchar(20) NOT NULL COMMENT '',
 		`pdt_uid` varchar(20) NOT NULL COMMENT '',
-		`value` text DEFAULT NULL COMMENT '',
+		`expected_value` text DEFAULT NULL COMMENT '',
+		`value` text DEFAULT NULL COMMENT '받은 값',
+		`expected_buffer` text DEFAULT NULL COMMENT '받은 버퍼 (hexstr)',
+		`buffer` text DEFAULT NULL COMMENT '',
+		`result` varchar(20) DEFAULT NULL COMMENT '',
+		`error` text DEFAULT NULL COMMENT '',
 		`etc` text DEFAULT NULL COMMENT '',
 		`updt_date` datetime NOT NULL COMMENT '업데이트일자',
 		`reg_date` datetime NOT NULL COMMENT '등록일자',

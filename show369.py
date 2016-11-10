@@ -81,7 +81,7 @@ class HTTPCLient369(BaseClient):
 		r = requests.get(self.url)
 		self.availableContets =  self.getAvailabeContents(r.text)
 
-		print(self.availableContets)
+		print(r.text)
 
 
 
