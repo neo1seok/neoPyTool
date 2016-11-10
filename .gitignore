@@ -1,6 +1,8 @@
 *.pyc
 *.obj
 log.txt
+out.*
+*.log
 .idea/
 __pycache__/
 .svn*
