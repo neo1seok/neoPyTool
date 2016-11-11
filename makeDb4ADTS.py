@@ -1008,7 +1008,12 @@ class MakeScenarioLineByProfile(MakeScenarioLine):
 		None
 
 
+class MakeMainProcess(MakeScenarioLine):
+	dsttable = "main_process"
+	prefix = "mpr"
+	colline = "scl_uid, pdt_uid, value, param, param_ext,comment"
 
+	None
 class BASE_PACKET_PROCESS:
 
 	listMap = {}
@@ -1479,7 +1484,7 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
-#MakeCreateTableFor().Run()
+MakeCreateTableFor().Run()
 #MakeDataFieldsClass().Run()
 
 #MakeScenarioLine().Run()
