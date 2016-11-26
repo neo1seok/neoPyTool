@@ -1,18 +1,15 @@
-
+import collections
+import os
 import re
-
-
-import neolib
+import  shutil
+import time
 
 import pymysql
 import  simplejson as json
-import collections
 
-import neolib4Win
-import os
-import  shutil
-import ntpath
-import time
+import neolib.neolib as neolib
+import neolib.neolib4Win as neolib4Win
+import xlrd
 
 class dbHandleing:
 	def __init__(self,**kwargs):
@@ -172,36 +169,6 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 	sentencepatt = r'G([0-9]+):(F|T):([0-9A-Za-z가-힣^.,_$=\-+()*\^ ]*)\^\\'
 
-	def makeMapJustValue(self, result_list):
-		mapresultvalus = collections.OrderedDict()
-		for id, VFT, value in result_list:
-			strid = str(int(id))
-			name = self.mapOldDBMainType[strid]['name']
-
-
-			sepoptions = self.mapOldDBMainType[strid]['options'].split('|')
-
-			if name in self.ignorenames:
-				continue
-			if VFT == 'T':
-				value = 'EMPTY' if 'O' not in sepoptions else 'REMOVE'
-
-			mapresultvalus[name] = value
-
-			None
-
-		return mapresultvalus
-
-
-	def ConvertFromSentence(self,mapresultvalus,sentence):
-
-		result_list = re.findall(self.sentencepatt, sentence)
-
-		remove = re.sub(self.sentencepatt, "", sentence)
-
-		for k,v in self.makeMapJustValue(result_list).items():
-			mapresultvalus[k] = v;
-		return (mapresultvalus,remove)
 
 	def getValue(self, key, maps):
 		if key not in maps: return ''
@@ -312,10 +279,23 @@ class BaseTableInput(BaseMySQLRunnable):
 	def processAfterDB(self):
 		None
 
+	def getOptions(self, types, defoption = ""):
+
+		if 'F' not in types:
+			if 'SI' not in types:
+				return "FS"
+			# self.appendLine(name="FS", length="1", encoding='HEX', value="1C",param=strparam,)
+			strscript = 'CALCL_ENGTH'
+
+		if 'SI' in types:
+			return "SI"
+
+		return defoption
+
 
 class MakeEnvSetting(BaseTableInput):
 	dsttable = "env_setting"
-	colline = "tsi_uid, item, value"
+	colline = "item, value"
 	prefix = "ens"
 
 	def processInserValues(self):
@@ -376,12 +356,20 @@ class MakePacketDateType(BaseTableInput):
 
 		self.appendLine(name="STX", length="1", value_encoding='HEX', fixed_value="02")
 		self.appendLine(name="ETX", length="1", value_encoding='HEX', fixed_value="03")
-		self.appendLine(name="CRC", length="4", value_encoding='HEX',make_param=json.dumps({'variable':'value','method':'CRC','order':'2'}),confirm_param="")
+		self.appendLine(name="CRC", length="4", value_encoding='ASCII',make_param=json.dumps({'variable':'value','method':'CRC','order':'2'}),confirm_param="")
 
 		for key, value in self.mapOldDBMainType.items():
-
 			self.index = 0
 			self.processDataTypes('',value)
+
+
+		self.appendLine(name="CRC_STMS", length="7", value_encoding='ASCII',
+						make_param=json.dumps({'variable': 'value', 'method': 'CRC_STMS', 'order': '2'}), confirm_param="")
+
+		self.appendLine(name="전문길이_STMS", length="4", value_encoding='ASCII',
+						make_param="",confirm_param="")
+
+
 
 		None
 	def getStrMap(self,map):
@@ -431,17 +419,19 @@ class MakePacketDateType(BaseTableInput):
 
 			option = '{"TYPE":"OPTION"}'
 		# return
+		retoption = self.getOptions(types, "")
+		if retoption != '':
+			mapparam["START_TAG"] = self.getOptions(types,"")
 
-
-		if 'F' not in types:
-			if 'SI' not in types:
-				mapparam["START_TAG"] = "FS"
-				#self.appendLine(name="FS", length="1", encoding='HEX', value="1C",param=strparam,)
-			strscript = 'CALCL_ENGTH'
-
-		if 'SI' in types:
-			mapparam["START_TAG"] = "SI"
-			#self.appendLine(name="SI", length="1", encoding='HEX', value="0F",param=strparam,)
+		# if 'F' not in types:
+		# 	if 'SI' not in types:
+		# 		mapparam["START_TAG"] = "FS"
+		# 		#self.appendLine(name="FS", length="1", encoding='HEX', value="1C",param=strparam,)
+		# 	strscript = 'CALCL_ENGTH'
+		#
+		# if 'SI' in types:
+		# 	mapparam["START_TAG"] = "SI"
+		# 	#self.appendLine(name="SI", length="1", encoding='HEX', value="0F",param=strparam,)
 
 		strMakeparam = self.getStrMap(mapMakeParam)
 		strConfirmparam = self.getStrMap(mapConfirmParam)
@@ -488,6 +478,8 @@ class MakePacketDataUnit(MakePacket):
 		#make_class, confirm_class
 		mapPacket = self.dstdbHD.selectToMap("name","SELECT seq, pck_uid, name, type, discription,  packet_class FROM adts.packet;")
 		self.mapType = self.dstdbHD.selectToMap("name", "SELECT seq, pdt_uid, name, length, variation, value_encoding, char_range, fixed_value,  updt_date, reg_date, comment FROM adts.packet_data_type;")
+
+		print([ key for key,value in self.mapType.items()])
 		for key, row in self.mapOldDBMainProtocol.items():
 			index = 0;
 			datas = row['data']
@@ -514,18 +506,30 @@ class MakePacketDataUnit(MakePacket):
 
 				elif typename == '거래구분코드':
 					value = servicecode[4:6]
+				if packetName.startswith('STMS'):
+					if typename == '전문길이':
+						typename = typename+'_STMS'
+
+
+
+
 
 				self.appendSel(pck_uid, typename,value)
 
 			self.appendSel(pck_uid, 'ETX')
-			self.appendSel(pck_uid, 'CRC')
+			if not packetName.startswith('STMS'):
+				self.appendSel(pck_uid, 'CRC')
+			else:
+				self.appendSel(pck_uid, 'CRC_STMS' )
 
 
 
 		None
 
 	def appendSel(self,pck_uid,typename,defvalue=''):
-		print(typename)
+	#	print(typename)
+	#	print( self.mapType[typename])
+
 		pdt_uid = self.mapType[typename]['pdt_uid']
 		self.appendLine(pck_uid=pck_uid, index=self.index, pdt_uid=pdt_uid, def_value=defvalue,comment=typename)
 		self.index += 1
@@ -575,6 +579,50 @@ class MakeScenarioLine(BaseTableInput):
 	prefix = "scl"
 	#colline = "sce_uid, index, method, title, param, param_ext, pck_uid,comment"
 	colline = "sce_uid, index, method, title, param, param_ext, comment"
+
+	def makeMapJustValue(self, result_list):
+		mapresultvalus = collections.OrderedDict()
+		for id, VFT, value in result_list:
+			strid = str(int(id))
+			name = self.mapOldDBMainType[strid]['name']
+
+
+			sepoptions = self.mapOldDBMainType[strid]['options'].split('|')
+
+			if name in self.ignorenames:
+				continue
+
+			retoption = self.getOptions(sepoptions)
+
+
+
+			if VFT == 'T':
+				value = 'EMPTY' if 'O' not in sepoptions else 'REMOVE'
+				if value == 'EMPTY':
+					if retoption == "FS" :
+						value = ''
+					else :
+						value = 'REMOVE'
+
+
+
+			mapresultvalus[name] = value
+
+			None
+
+		return mapresultvalus
+
+
+	def ConvertFromSentence(self,mapresultvalus,sentence):
+
+		result_list = re.findall(self.sentencepatt, sentence)
+
+		remove = re.sub(self.sentencepatt, "", sentence)
+
+		for k,v in self.makeMapJustValue(result_list).items():
+			mapresultvalus[k] = v;
+		return (mapresultvalus,remove)
+
 
 	def processInserValues(self):
 
@@ -638,6 +686,7 @@ class MakeScenarioLine(BaseTableInput):
 					index+=1
 					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,param_ext=param_ext,comment= param )
 					None
+
 				elif "송신" in instruction:
 					packetname = protocol + " 송신"
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
@@ -959,7 +1008,12 @@ class MakeScenarioLineByProfile(MakeScenarioLine):
 		None
 
 
+class MakeMainProcess(MakeScenarioLine):
+	dsttable = "main_process"
+	prefix = "mpr"
+	colline = "scl_uid, pdt_uid, value, param, param_ext,comment"
 
+	None
 class BASE_PACKET_PROCESS:
 
 	listMap = {}
@@ -991,7 +1045,7 @@ class DropAndCreateTable(BaseMySQLRunnable):
 
 		if name != 'yes': return
 
-		tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, testing_info")
+		tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, test_info,test_env")
 		deleteSqlrArray = []
 		for tmp in tables:
 			#deleteSqlrArray.append("drop table  %s;\n"%tmp)
@@ -1030,22 +1084,63 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 	fmtfieldForm = "\tpublic {0} {1} {2};"
 	#0:typename 1:fieldname 2: initial
 
-	def makeMapFromTxt(self,strtxt):
-		ret = neolib.MakeDoubleListFromTxt(strtxt)
-		maplist = {}
-		listaa = []
+	xlsDbFile = "D:/PROJECT/toolrnd/DeviceTesterSystem/DOCS/DB설계서_161107.xlsx"
 
+
+	def makeMapFromDoubllist(self,ret):
+		maplist =  collections.OrderedDict()
+		listaa = []
 		for tmp in ret:
 			if tmp[0] != '':
 				listaa = []
 				maplist[tmp[0]] = listaa
 			print(tmp)
-			listaa.append((tmp[1],tmp[2]))
+			listaa.append(tuple(tmp[1:6]))
 		return maplist
+
+	def makeMapFromTxt(self,strtxt):
+		ret = neolib.MakeDoubleListFromTxt(strtxt)
+
+		return  self.makeMapFromDoubllist(ret)
+
+	def makeMapFromExcel(self,srcxlsfile):
+
+		#fname = 'D:/PROJECT/toolrnd/DeviceTesterSystem/DOCS/DB설계서_161107.xlsx'
+
+		# Open the workbook
+		xl_workbook = xlrd.open_workbook(srcxlsfile)
+		sheet_names = xl_workbook.sheet_names()
+		print('Sheet Names', sheet_names)
+		xl_sheet = xl_workbook.sheet_by_name('TABLE정보')
+		print('Sheet name: %s' % xl_sheet.name)
+		# Or grab the first sheet by index
+		#  (sheets are zero-indexed)
+		#
+		# xl_sheet = xl_workbook.sheet_by_index(0)
+		# print ('Sheet name: %s' % xl_sheet.name)
+
+		# Pull the first row by index
+		#  (rows/columns are also zero-indexed)
+		#
+		# row = xl_sheet.row(1)  # 1st row
+		# rows = [tmp for tmp in xl_sheet.get_rows()][2:]
+		# print(rows)
+		# print([[tmp.value for tmp in row][1:] for row in [tmp for tmp in xl_sheet.get_rows()][2:]])
+		# for row in rows:
+		# 	print([tmp.value for tmp in row][1:])
+		# # print("\t".join(vals.value for vals in [tmp.value	for tmp in row][1]))
+		rows = [tmp for tmp in xl_sheet.get_rows()][3:]
+
+
+		ret = [ tuple([tmp.value for tmp in row][1:]) for row in rows]
+
+		return self.makeMapFromDoubllist(ret)
+
+		return
 
 	def doRun(self):
 		def convType(row ):
-			name, type = row
+			name, type, nullinfo, comment,pki = row
 			newtype = 'string'
 			strinit = '= ""'
 			result = re.match(r'int\(\d+\)',type)
@@ -1054,17 +1149,21 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 				strinit = ''
 			if type == 'datetime':
 				newtype = 'DateTime'
-				strinit = '= new DateTime()'
+				strinit = '= DateTime.Now'
 
 
 
 			return "\tpublic %s %s %s;"% (newtype,name,strinit)
-		ret = self.makeMapFromTxt("adts/tableList.txt")
+		#ret = self.makeMapFromTxt("adts/tableList.txt")
+		ret = self.makeMapFromExcel(self.xlsDbFile)
+
+
 		print(ret)
 		self.strlines = ''
 		classconv = neolib.ConvStringForm(intype='und', outtype='cam')
 		for key, fields in ret.items():
 			#listmethod = ["\tpublic string %s ;" % name for name,type in fields]
+
 			listmethod = list(map(convType,fields))
 			classname = classconv.ConvertString(key)
 			self.strlines += "public class {0} {{\n{1} \n}}\n".format(classname, "\n".join(listmethod))
@@ -1076,7 +1175,41 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 		#
 		# neolib4Win.SetClipBoard(str)
 
+class MakeCreateTableFor(MakeDataFieldsClass):
+	createTableForm ="""
+CREATE TABLE `{0}` (
+{1}
+PRIMARY KEY ({2})
+ ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+	"""
+#0:tablename 1:fields info 2:pri key array
+	fieldForm ="	`{0}` {1} {2} COMMENT '{3}',"
+#0:name 1:type 2:null type 3:comment
 
+	def doRun(self):
+		ret = self.makeMapFromExcel(self.xlsDbFile)
+
+		def convType(row):
+			name, type ,nullinfo,comment,pki = row
+
+			return self.fieldForm.format(name, type ,nullinfo,comment)
+
+
+		for key, fields in ret.items():
+			#print(list(filter(lambda x: x[4] =='PRI', fields)))
+			listpki = ["`"+name +"`" for name, type, nullinfo, comment, pki in filter(lambda x: x[4] == 'PRI', fields)]
+
+			listmethod = list(map(convType, fields))
+			self.strlines += self.createTableForm.format(key, "\n".join(listmethod),",".join(listpki))
+
+
+		neolib.StrToFile(self.strlines,"adts/TABLE.SQL")
+
+
+
+
+
+		None
 
 '''
 이 클래스는
@@ -1351,12 +1484,15 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
+MakeCreateTableFor().Run()
 #MakeDataFieldsClass().Run()
 
-#InsertWholeDB(exit=False).Run()
+#MakeScenarioLine().Run()
+
+InsertWholeDB(exit=False).Run()
 #MakeScenarioGroup().Run()
 
-InsertWholeDB(dbaddress="192.168.0.75").Run()
+#InsertWholeDB(dbaddress="192.168.0.75").Run()
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()

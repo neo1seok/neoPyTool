@@ -1,7 +1,7 @@
 import win32clipboard
 import win32process
 import win32api
-import neolib
+import neolib.neolib as neolib
 
 def GetClipBoard():
 	try:

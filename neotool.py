@@ -1,11 +1,12 @@
-import re
-import win32gui
-import time
 import datetime
-import neolib
+import re
 import sys
+import time
 import win32api
-import neolib4Win
+import win32gui
+
+import neolib.neolib as neolib
+import neolib.neolib4Win as neolib4Win
 
 
 class BaseRunClass(neolib.NeoRunnableClasss):
