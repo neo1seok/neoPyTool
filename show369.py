@@ -11,7 +11,7 @@ import codecs
 import base64
 import logging
 from logging import handlers
-
+import neolib.neolib as neolib
 
 
 
@@ -40,22 +40,37 @@ class BaseClient():
 
 		self.logger.debug("%s __init__",self.__class__.__name__)
 
+	def doRun(self):
+		None
+	def procExcept(self,ex):
+		print(ex)
+		self.logger.debug("except:%s",ex)
+		None
+	def Run(self):
+		try:
+			self.doRun()
+		except Exception as ex:
+			self.procExcept(ex)
+
 
 
 
 
 class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
+	#urlUpdateStamp = 'http://neo1seok.iptime.org/show369/updatestamp.php'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>'
+	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([가-힣]*)\s*<\s*br\s*/\s*>'
 
-	pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
-	pattEndPrfofile = r'<\s*/\s*div\s*>'
-	pattProfile = r'<img src="http://369am.diskn.com/[a-zA-Z0-9]+" alt="([a-zA-Z0-9]+)" />\s*([가-힣]+)(<img src="http://369am.diskn.com/[a-zA-Z0-9]+" alt="([a-zA-Z0-9]+)" />)*'
+	#pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
+	#pattEndPrfofile = r'<\s*/\s*div\s*>'
+	#pattProfile = r'<img src="http://369am.diskn.com/[a-zA-Z0-9]+" alt="([a-zA-Z0-9]+)" />\s*([가-힣]+)(<img src="http://369am.diskn.com/[a-zA-Z0-9]+" alt="([a-zA-Z0-9]+)" />)*'
 	contents = ''
 	dayimg = "1RWbHAyiXm";
 	nightimg = "1m9RfmwuNy";
 	endimgnightimg = "26kx0amYpu";
+
+
 
 
 
@@ -79,19 +94,22 @@ class HTTPCLient369(BaseClient):
 
 	def geturlcontents(self):
 		r = requests.get(self.url)
+		neolib.StrToFile(r.text,'org.html')
 		self.availableContets =  self.getAvailabeContents(r.text)
+
+		neolib.StrToFile(self.availableContets, 'avail.html')
 
 		print(r.text)
 
 
 
-		self.strTodayList = self.getTodayListBlock(r.text)
+		#self.strTodayList = self.getTodayListBlock(r.text)
 		#print(self.strTodayList)
 		self.results = re.findall(self.patt, self.availableContets)
 
 
-		strprfBlock = self.getProfileBlock(r.text)
-		self.mapProfile = self.extractProfileMap(strprfBlock)
+		#strprfBlock = self.getProfileBlock(r.text)
+		#self.mapProfile = self.extractProfileMap(strprfBlock)
 
 
 
@@ -108,25 +126,30 @@ class HTTPCLient369(BaseClient):
 
 		isavail = False
 
-		for vars in self.results:
-			id = vars[1]
-			srcname = vars[0]
+		self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
 
-			self.maparray[id] = srcname;
-			if id == self.dayimg:
-				isavail = True
-			if id == self.endimgnightimg:
-				self.realarray.append(id)
-				break;
 
-			if isavail:
-				self.realarray.append(id)
+		self.mapProfile = {vars[2]:(vars[1],"") for vars in self.results if	  vars[2] != ''}
+		# for vars in self.results:
+		# 	id = vars[1]
+		# 	srcname = vars[0]
+		# 	name = vars[2]
+        #
+		# 	self.maparray[id] = srcname;
+		# 	if id == self.dayimg:
+		# 		isavail = True
+		# 	if id == self.endimgnightimg:
+		# 		self.realarray.append(id)
+		# 		break;
+        #
+		# 	if isavail:
+		# 		self.realarray.append(id)
 
-		self.ids = ''
-		for key in self.realarray:
-			id = key
-			self.ids += id
-			self.ids += ','
+		# self.ids = ''
+		# for key in self.realarray:
+		# 	id = key
+		# 	self.ids += id
+		# 	self.ids += ','
 
 		mapFinal = {}
 
@@ -236,7 +259,7 @@ class GetLateestWebtoon(BaseClient):
 	urlGetTodayWebToon = "http://localhost/webtoon/webtoon.php?option=todaylist"
 	urlGetAllWebToon = "http://localhost/webtoon/webtoon.php?option=alllist"
 	urlUpdateTopIds = "http://localhost/webtoon/webtoon.php?option=updatetopids"
-
+	isAll = True
 
 	def __init__(self):
 		super(GetLateestWebtoon, self).__init__('webtoon')
@@ -321,10 +344,10 @@ class GetLateestWebtoon(BaseClient):
 		self.doRun('true')
 		value = self.getTopId('22897');
 
-	def doRun(self,isAll):
+	def doRun(self):
 		mapTopid = {}
 		url = self.urlGetTodayWebToon
-		if isAll == 'true':
+		if self.isAll == 'true':
 			url = self.urlGetAllWebToon
 
 
@@ -396,14 +419,14 @@ while True:
 	if takentime> maxtime:
 		log = "{0} tktime:{1} doRun \n".format(datetime.datetime.now().isoformat(), 0)
 		try:
-			HTTPCLient369().doRun()
+			HTTPCLient369().Run()
 		except :
 			log += "{0} HTTPCLient369 ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
 
 
 
 		try:
-			GetLateestWebtoon().doRun(isAll)
+			GetLateestWebtoon().Run()
 		except  :
 			log += "{0} GetLateestWebtoon ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
 
