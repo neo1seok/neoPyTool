@@ -10,7 +10,7 @@ import socket
 import sys
 import win32api
 import win32gui
-
+import inspect
 import requests
 import  simplejson as json
 import win32con
@@ -24,7 +24,31 @@ import neolib.neolib as neolib
 import xlrd
 
 
+class TestClass:
 
+	aab = ''
+	def test(self):
+		None
+	def test2(self):
+		None
+	def test3(self,a,c,d):
+		None
+
+	def Show(self,a,b,c):
+		sig = inspect.signature(self.Show)
+		print(str(sig))
+		# args, _, _, values = inspect.getargvalues(frame)
+		# print(args)
+		# print(dir(self))
+		# method_list = [func for func in dir(self) if callable(getattr(self, func))]
+		# print(method_list)
+		None
+
+print(re.match(r'asdsa',"adsaf"))
+
+print( globals()['TestClass'])
+
+TestClass().Show(1,2,3)
 
 exit()
 
