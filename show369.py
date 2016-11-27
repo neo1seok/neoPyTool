@@ -128,7 +128,7 @@ class HTTPCLient369(BaseClient):
 
 		self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
 
-
+		self.ids = ''
 		self.mapProfile = {vars[2]:(vars[1],"") for vars in self.results if	  vars[2] != ''}
 		# for vars in self.results:
 		# 	id = vars[1]
