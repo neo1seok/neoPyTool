@@ -60,7 +60,7 @@ class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	#urlUpdateStamp = 'http://neo1seok.iptime.org/show369/updatestamp.php'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([가-힣]*)\s*<\s*br\s*/\s*>'
+	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([가-힣]*)\s*(<\s*br\s*/\s*>)*'
 
 	#pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
 	#pattEndPrfofile = r'<\s*/\s*div\s*>'
@@ -99,13 +99,14 @@ class HTTPCLient369(BaseClient):
 
 		neolib.StrToFile(self.availableContets, 'avail.html')
 
-		print(r.text)
+		#print(r.text)
 
 
 
 		#self.strTodayList = self.getTodayListBlock(r.text)
 		#print(self.strTodayList)
 		self.results = re.findall(self.patt, self.availableContets)
+		print(self.results)
 
 
 		#strprfBlock = self.getProfileBlock(r.text)
@@ -128,7 +129,8 @@ class HTTPCLient369(BaseClient):
 
 		self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
 
-		self.ids = ''
+		self.ids = ','.join(self.realarray)
+		self.logger.debug("ids : %s", self.ids)
 		self.mapProfile = {vars[2]:(vars[1],"") for vars in self.results if	  vars[2] != ''}
 		# for vars in self.results:
 		# 	id = vars[1]
