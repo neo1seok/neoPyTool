@@ -1,6 +1,6 @@
 *.pyc
 *.obj
-log.txt
+log.txt*
 out.*
 *.log
 .idea/
@@ -49,6 +49,8 @@ log/
 *.cd
 *.randomlog
 *.pch
+*.log
+*.old
 .svn/
 debug/
 release/
