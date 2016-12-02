@@ -10,6 +10,7 @@ import  json
 import codecs
 import base64
 import logging
+import collections
 from logging import handlers
 import neolib.neolib as neolib
 
@@ -60,7 +61,8 @@ class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	#urlUpdateStamp = 'http://neo1seok.iptime.org/show369/updatestamp.php'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([가-힣]*)\s*(<\s*br\s*/\s*>)*'
+	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([가-힣]*)\s*(?:<\s*br\s*/\s*>)*'
+	pattProfile = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*(?:<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>)*\s*([가-힣]+)\s*(?:(?:<\s*br\s*/\s*>\s*)|(?:\s*<\s*/\s*div\s*>\s*))*'
 
 	#pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
 	#pattEndPrfofile = r'<\s*/\s*div\s*>'
@@ -69,6 +71,9 @@ class HTTPCLient369(BaseClient):
 	dayimg = "1RWbHAyiXm";
 	nightimg = "1m9RfmwuNy";
 	endimgnightimg = "26kx0amYpu";
+
+	startimgs = ["2RUmSzvODG","2RUmSzzYke","26rw4O6dii","36kEwWsZXO"]
+	cmtiltleimgs = ["0mMWMdnZH8", "26rl66FLlq", "0mMNVe9jGU", "2m7RtK36ku", "1Rc4IsIr6i", "0RjX72E3cU", "1Rc4Is9Anq", "16zDuGCLf2",	 "26rl669Sk0", "1Rc4IsDBGW", "0mMNVeHhU8", "2m7RtKAy0O", "1mEuhUD6mu", "0RjX72Kdtx", "2RUY9J4jYG"]
 
 
 
@@ -105,8 +110,6 @@ class HTTPCLient369(BaseClient):
 
 		#self.strTodayList = self.getTodayListBlock(r.text)
 		#print(self.strTodayList)
-		self.results = re.findall(self.patt, self.availableContets)
-		print(self.results)
 
 
 		#strprfBlock = self.getProfileBlock(r.text)
@@ -119,6 +122,9 @@ class HTTPCLient369(BaseClient):
 
 	def makecontents(self):
 
+		self.results = re.findall(self.patt, self.availableContets)
+		print(self.results)
+
 		self.realarray = []
 		self.maparray = {}
 
@@ -126,45 +132,62 @@ class HTTPCLient369(BaseClient):
 		id = ''
 
 		isavail = False
+		self.realarray = []
+		for vars in self.results:
+			imgsrc,imgid,title = vars
+			if title != '' and title not in [ self.dayimg ,self.nightimg]:continue
+			if imgid in self.cmtiltleimgs: break
+			self.realarray.append(imgid)
 
-		self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
+		#self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
 
 		self.ids = ','.join(self.realarray)
 		self.logger.debug("ids : %s", self.ids)
-		self.mapProfile = {vars[2]:(vars[1],"") for vars in self.results if	  vars[2] != ''}
-		# for vars in self.results:
-		# 	id = vars[1]
-		# 	srcname = vars[0]
-		# 	name = vars[2]
-        #
-		# 	self.maparray[id] = srcname;
-		# 	if id == self.dayimg:
-		# 		isavail = True
-		# 	if id == self.endimgnightimg:
-		# 		self.realarray.append(id)
-		# 		break;
-        #
-		# 	if isavail:
-		# 		self.realarray.append(id)
 
-		# self.ids = ''
-		# for key in self.realarray:
-		# 	id = key
-		# 	self.ids += id
-		# 	self.ids += ','
+	def makeProfile(self):
+		self.resultsProfile = re.findall(self.pattProfile, self.availableContets)
+		self.mapProfile = collections.OrderedDict()
+		totalignorimgs = []
+
+		totalignorimgs.extend(self.cmtiltleimgs)
+		totalignorimgs.extend(self.startimgs)
+		totalignorimgs.append(self.dayimg)
+		totalignorimgs.append(self.nightimg)
+
+		for vars in self.resultsProfile:
+			imgsrc = vars[0]
+			imgid = vars[1]
+			imgsrc2 = vars[2]
+			imgid2= vars[3]
+			title = vars[4]
+			if imgid in totalignorimgs: continue
+			if imgid2 in totalignorimgs: continue
+
+			self.mapProfile[title] = (imgid,imgid2)
+
+
+
+
+		print(self.mapProfile)
+		#self.mapProfile = {vars[2]: (vars[1], "") for vars in self.results if vars[2] != ''}
+
+
+	def makeTotalContents(self):
+
 
 		mapFinal = {}
 
 		mapFinal['ids'] = self.realarray
 		mapFinal['profile'] = self.mapProfile
 
-
-
-		injson = json.dumps(mapFinal,ensure_ascii=False)
-		self.logger.debug("injson : %s",injson)
+		injson = json.dumps(mapFinal, ensure_ascii=False)
+		self.logger.debug("injson : %s", injson)
 
 		self.bencodeProfile = base64.urlsafe_b64encode(injson.encode()).decode()
-		#print(self.bencodeProfile)
+
+	# print(self.bencodeProfile)
+
+
 
 	def getAvailabeContents(self, str):
 		try:
@@ -245,6 +268,13 @@ class HTTPCLient369(BaseClient):
 
 		self.logger.info('makecontents')
 		self.makecontents()
+
+		self.logger.info('makeProfile')
+		self.makeProfile()
+
+		self.logger.info('makeTotalContents')
+		self.makeTotalContents()
+
 
 		self.logger.info('updatecontents')
 		self.updatecontents()

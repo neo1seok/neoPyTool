@@ -311,7 +311,7 @@ class MakeEnvSelection(BaseTableInput):
 
 class MakeEnvSetting(BaseTableInput):
 	dsttable = "env_setting"
-	colline = "esl_uid,item, value"
+	colline = "esl_uid,item, value,comment"
 	prefix = "ens"
 
 	def processInserValues(self):
@@ -334,11 +334,10 @@ FROM env_selection;
 
 		None
 	def InsertEnvSetting(self,name,esl_uid):
+
 		mapEnv = collections.OrderedDict([
 			("DEVICE_TYPE", name),
-			("DEVICE_MODEL", "v241"),
-			("script_file", "smatro_sc.py"),
-			("class_main_process", "mainprocess_smartro"),
+			("DEVICE_MODEL", "T224"),
 			("CHANNEL_MAIN", "chn_2"),
 			("CHANNEL_DONGLE", "chn_2"),
 			("CHANNEL_POS", "chn_3"),
@@ -355,6 +354,12 @@ FROM env_selection;
 		mapdefvalue = self.olddbHD.select(
 			"SELECT profileid, value FROM profile_config_maininfo where devtype = '%s';"%name)
 
+		mapdefvaluesce = self.olddbHD.select(
+			"""
+			SELECT instruction, scenario, optionscenario, devtype
+FROM test_smartro.maindev_scenario where keypadtype = 'T224' and devtype = 'V100_EN07';
+			""")
+
 		for row in mapdefvalue:
 			profileid = row['profileid']
 			value = row['value']
@@ -363,6 +368,13 @@ FROM env_selection;
 
 		for key, val in mapEnv.items():
 			self.appendLine(item=key, value=val,esl_uid=esl_uid)
+
+		for row in mapdefvaluesce:
+			instruction = row['instruction']
+			scenario = row['scenario']
+			optionscenario = row['optionscenario']
+			self.appendLine(item=instruction, value=scenario, esl_uid=esl_uid,comment =optionscenario )
+
 
 
 
@@ -686,6 +698,9 @@ class MakeScenarioLine(BaseTableInput):
 			protocol = tmprow['protocol']
 			sce_uid = mapdstScenario[scriptid]['sce_uid']
 			prevsce_uid = ""
+			if instruction == '숫자':
+				None
+
 			if prevscriptid in mapdstScenario:
 				prevsce_uid = mapdstScenario[prevscriptid]['sce_uid']
 
@@ -1599,12 +1614,22 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 
 #MakeCreateTableFor(exit=False).Run()
 #MakeDataFieldsClass(exit=True).Run()
-MakeEnvSelection(exit=False,dbaddress="192.168.0.75").Run()
-MakeEnvSetting(exit=True, dbaddress="192.168.0.75").Run()
+
+#MakeEnvSelection(exit=False).Run()
+#MakeEnvSetting(exit=True).Run()
+
+dbaddress= 'localhost'
+#dbaddress= '192.168.0.75'
+
+
+#MakeEnvSelection(exit=False,dbaddress=dbaddress).Run()
+#MakeEnvSetting(exit=False, dbaddress=dbaddress).Run()
+#MakeScenarioLine(dbaddress=dbaddress).Run()
 #MakeScenarioLine().Run()
 
 InsertWholeDB(exit=False).Run()
-#InsertWholeDB(dbaddress="192.168.0.75").Run()
+InsertWholeDB(dbaddress="192.168.0.75").Run()
+
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()

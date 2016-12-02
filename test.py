@@ -44,6 +44,11 @@ class TestClass:
 		# print(method_list)
 		None
 
+import urllib.request
+
+
+
+exit()
 print(re.match(r'asdsa',"adsaf"))
 
 print( globals()['TestClass'])

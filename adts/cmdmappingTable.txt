@@ -18,7 +18,7 @@ condition	취소금액 입력	INPUT_KEYPAD	{0}	{1}|입력	N	["instruction","sent
 condition	지역번호 입력	INPUT_KEYPAD	{0}	{1}|입력	N	["instruction","sentence"]
 condition	전화번호 입력	INPUT_KEYPAD	{0}	{1}|입력	N	["instruction","sentence"]
 condition	숫자+입력	INPUT_KEYPAD	{0}	{1}|입력	N	["instruction","sentence"]
-condition	숫자	INPUT_KEYPAD	{0}	{0}	N	["instruction","sentence"]
+condition	숫자	INPUT_KEYPAD	{0}	{1}	N	["instruction","sentence"]
 condition	0	INPUT_KEYPAD	{0}	{0}	N	["instruction","sentence"]
 condition	000	INPUT_KEYPAD	{0}	{0}	N	["instruction","sentence"]
 condition	특수	INPUT_KEYPAD	{0}	{0}	N	["instruction","sentence"]
