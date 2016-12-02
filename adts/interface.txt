@@ -1,0 +1,312 @@
+using CommLib.DB;
+using NeoLib.DBHandling;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CommLib.Interface{
+
+
+
+
+	/// <summary>
+	/// 모든 인터페이스의 기본 적으로 들어가야 하는 메쏘드를 정의한 인터페이스
+	/// // 신원석(neo1seok) 2016-10-17 :
+	/// </summary>
+    public interface IBase {
+		void SetParam(string paramname, object value);
+        object CmdETC(string cmd,params object[] args);
+        void Invoke();
+		void Test();
+    }
+
+	public interface IScriptClass : IBase
+	{
+		string RunMethod(string methodname, params object[] args);
+		string RunMethodNoParam(string methodname);
+	}
+
+	public interface IScriptHandler : IBase
+	{
+		void InitScript();
+
+		void AddLibraryDirectory(string path);
+		void SetScriptDirectory(string dir);
+
+		void SetMainController(IBase iblase);
+
+		void CompileScriptFile(string scriptFile);
+		void CompileScriptString(string scriptString);
+		IScriptClass CreateScriptClass(string classname);
+
+
+		//void SetClassInstance(dynamic classInstance);
+
+		bool IS_COMPILED { get; }
+
+		//IScriptHandler CloneWithSameSettings();
+	}
+
+
+	/// <summary>
+	/// python 스크립트를 핸들링 하는 인터페이스
+	/// 주로 MainCotroller 에서 사용되며
+	/// MainCotroller의 내부 인터페이스를 읽어서 다른 모듈을 사용할 수 있다.
+	/// </summary>
+	public interface IMainScriptHandler : IScriptHandler
+	{
+
+
+		//void SetPacketInfo(string packetclass,string JsonlistPacketInfo);
+
+		dynamic CreateClassMain(string classname);
+
+		void SetMethod(string method, string param, string param_ext);
+
+
+
+		string RESULT { get; }
+		string LASTERROR { get; }
+
+
+
+
+		/// <summary>
+		/// PYTHON 내부에서 시나리오 라인에 대한 실행을 시킬 경우
+		/// 리턴 값이 false 일 경우는 C#프레임 기본 정의된 값이 실행 되고
+		/// true일 경우는 PYTHON내부에 정의 된 값시 실행 된다.
+		/// </summary>
+		/// <param name="strjsonSlineMap"></param>
+		/// <returns></returns>
+		bool extentSceinarioLine(string strjsonSlineMap);
+
+
+	}
+	/// <summary>
+	/// 실제 메인 프레임 역할을 하고 실제
+	/// 동작을 실행하는 클래스의 인터페이스
+	/// 아웃라인 동작을 하며 세부적인 동작은
+	/// 스크립트에서 실행한다.
+	/// DB핸들은 내부에서만 할수 있고,
+	/// 외부 사용이 가능한 핸들이 존재하며
+	/// 해당 인스턴스를 스크립트 안으로 전달하여
+	/// 스크립트 안에서 나머지 핸들링을사용할수 있다.
+	/// </summary>
+	public interface IMainController : IBase
+    {
+
+		//#IList<string> PROCESS_SCENARIO { get; }
+
+		void InitScript();
+
+		void AddRunScenario(string sce_uid);
+		string CUR_SCEINARIO  { get; }
+
+		IDeviceInputHandler DEVICE_INPUT_HANDLER { get; }
+		IDisplayHandler DISPLAY_HANDLER { get; }
+		ILOGHandler LOG_HANDLER { get; }
+		IPacketHandler PACKET_HANDLER { get; }
+		IDBHandler DB_HANDLER { get; }
+		IMainScriptHandler SCRIPT_HANDLER { get; }
+
+		IIOHandler SelectIOHandler(string channeID);
+
+
+		IDictionary<string, string> MAP_ENV { get; }
+
+		IDictionary<string, string> LINE_INFO { get; }
+
+		void LoadConfig(string configJsonFile);
+
+		void InvokeAsync();
+		void Start();
+		void Stop();
+		void Pause();
+
+		bool IS_PAUSING { get; }
+		//IList<IDictionary<string, string>> PACKET_INFO { get; }
+		//IList<IDictionary<string, string>> DATA_VALUE_TABLE { get; }
+
+
+
+
+    }
+
+	public interface IMainController4Receive : IBase
+	{
+
+
+	}
+
+	/// <summary>
+	/// 단말기와 실제 연결을 담당하는 클래스의 인터페이스
+	/// 해당 인터페이스는 가장 기본적인 연결,연결 끊기,읽기,쓰기 등
+	/// 기본적인 메쏘드만을 제공하며
+	/// 동작을 위한 세부적인 구현은 스크립트안에서 구현하게 된다.
+	/// 또한 어떤 연결인가의 선택은 IMainController 내부적으로 DB값에 의해
+	/// 선택되어 전달된다.
+	/// </summary>
+	public interface IIOHandler : IBase
+	{
+		void Connect();
+		void Close();
+
+		void Write(string hexStrbuffer);
+		string Read(int readsize);
+
+		bool ISOPEN { get; }
+
+		string TYPE { get; }
+		int TIMEOUT { get; set; }
+
+	}
+
+	/// <summary>
+	/// 단말기중 실제 입력을 담당하는 클래스의 인터페이스
+	/// 물리적 입력 도구일때는 실제 UART같은 형태로
+	/// 명령을 내리는 역할을 하며,
+	/// 수동입력일 경우에는 화면에 어떤 입력을 해야할 지를 보여주는
+	/// 기능을 담당한다.
+	/// </summary>
+    public interface IDeviceInputHandler : IBase
+    {
+        void SetInput(string input);
+
+    }
+
+	/// <summary>
+	/// 시나리오 라인이 동작할때 현재 동작 내용을 보여주는 클래스의 인터페이스
+	/// </summary>
+	public interface IDisplayHandler : IBase
+	{
+		void SetTitle(string msg);
+		void SetContents(string msg);
+		void SetState(string msg);
+		string[] FIELDS{get;}
+
+	}
+	/// <summary>
+	/// DB핸들링을 담당하는 클래스의 인터페이스
+	/// 기본 연결 ,해제,Query,실행등의 기능이 있으며,
+	/// 해당 테이블 별로 ITableHandler<ㅆ>의 인터페이스를 리턴하는 프로퍼티가 있다.
+	///
+	/// </summary>
+    public interface IDBHandler : IBase
+    {
+		DataTable Query(string sql);
+		void SetRowObj2String(Func<object, string> func);
+		IList<IDictionary<string, string>> QueryMap(string sql);
+		string QueryJsonMap(string sql);
+		void Excute(string sql);
+		void Connect();
+		void Close();
+
+
+		ITableHandler[] TABLES{get;}
+		ITableHandler this[TABLE_NAMES tablenames] { get; }
+
+
+
+		ITableHandler<EnvSetting> ENV_SETTING { get; }
+		ITableHandler<Channel> CHANNEL { get; }
+		ITableHandler<ScenarioGroup> SCENARIO_GROUP { get; }
+		ITableHandler<Scenario> SCENARIO { get; }
+		ITableHandler<ScenarioLine> SCENARIO_LINE { get; }
+		ITableHandler<Packet> PACKET { get; }
+		ITableHandler<PacketDataType> PACKET_DATA_TYPE { get; }
+		ITableHandler<PacketDataUnit> PACKET_DATA_UNIT { get; }
+		ITableHandler<DataValueTable> DATA_VALUE_TABLE { get; }
+		ITableHandler<TestInfo> TEST_INFO { get; }
+		ITableHandler<TestResult> TEST_RESULT { get; }
+		ITableHandler<DataResult> DATA_RESULT { get; }
+
+
+
+
+
+    }
+
+
+	/// <summary>
+	/// 각 TABLE의 기본적인 동작 메쏘드가 있음.
+	/// </summary>
+    public interface ITableHandler : IBase
+    {
+		DataTable Query(string cols, string wherefmt, params  string[] args);
+
+		void Insert(IList<IDictionary<string, object>> list);
+		void Update(int seq, IDictionary<string, object> mapvalue);
+		void Update(string uid, IDictionary<string, object> mapvalue);
+
+		void InsertJson(string jsonlist);
+		void UpdatetJson(int seq, string jsonmap);
+		void UpdatetJson(string uid, string jsonmap);
+
+
+		void Delete(IList<string> uids);
+		void Delete(IList<int> seqs);
+		void DeleteALL();
+
+		string GetUID(int seq);
+		string UID_NAME { get; }
+		int GetLastSeq();
+    }
+	/// <summary>
+	/// 각 TABLE의 정해진 필드값을 제너릭으로 리턴하는 메쏘드가 있는 인터페이스
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+    public interface ITableHandler<T> : ITableHandler  where T:class
+    {
+
+
+
+		void Insert(IList<T> list);
+
+		void Update(T value); //seq or uid is key
+
+
+		RowResult<T> GetRows(string colname, string value);
+
+		RowResult<T> GetRows(string uid);
+
+		RowResult<T> Select(string cols, string wherefmt, params  string[] args);
+
+
+    }
+
+
+    public interface ILOGHandler : IBase
+    {
+        void Write();
+
+    }
+
+
+
+    public interface IPacketHandler : IBase
+    {
+
+		void InputPacketInfo(IList<IDictionary<string, string>> packetInfo);
+		void InputPacketInfoJson(string packetInfoJson);
+        void MakePacket();
+		void ConfirmPacket(string strHexReceivedPacket);
+		IList<IDictionary<string, string>> RESULT { get; }
+		string RESULTJSON { get; }
+
+
+    }
+	public interface IMakePacketHandler : IPacketHandler
+	{
+		byte[] BUFFER{get;}
+	}
+	public interface IAnalyzePacketHandler : IPacketHandler
+	{
+		byte[] BUFFER { set; }
+	}
+
+
+
+}

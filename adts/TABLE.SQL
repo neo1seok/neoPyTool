@@ -1,228 +1,213 @@
+
+CREATE TABLE `ENV_SELECTION` (
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`esl_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`name` varchar(64) NOT NULL COMMENT '',
+	`discription` text DEFAULT NULL COMMENT 'ê°’',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`esl_uid`)
+ ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+	
 CREATE TABLE `ENV_SETTING` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`ens_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`item` varchar(64) NOT NULL COMMENT '¾ÆÀÌÅÛ',
-		`value` text NOT NULL COMMENT '°ª',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`ens_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`ens_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`esl_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`item` varchar(64) NOT NULL COMMENT 'ì•„ì´í…œ',
+	`value` text NOT NULL COMMENT 'ê°’',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`ens_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `CHANNEL` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`chn_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`name` varchar(10) NOT NULL COMMENT 'Ã¤³Î ÀÌ¸§',
-		`type` varchar(10) NOT NULL COMMENT 'Ã¤³Î Å¸ÀÔ',
-		`discription` varchar(20) DEFAULT NULL COMMENT '¼³¸í',
-		`param` varchar(64) DEFAULT NULL COMMENT 'Ã¤³Î ÆÄ¶ó¸ŞÅÍ(json)',
-		`classname` varchar(64) DEFAULT NULL COMMENT 'Å¬·¡½º ÀÌ¸§',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`chn_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`chn_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`name` varchar(10) NOT NULL COMMENT 'ì±„ë„ ì´ë¦„',
+	`type` varchar(10) NOT NULL COMMENT 'ì±„ë„ íƒ€ì…',
+	`discription` varchar(20) DEFAULT NULL COMMENT 'ì„¤ëª…',
+	`param` varchar(64) DEFAULT NULL COMMENT 'ì±„ë„ íŒŒë¼ë©”í„°(json)',
+	`classname` varchar(64) DEFAULT NULL COMMENT 'í´ë˜ìŠ¤ ì´ë¦„',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`chn_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `SCENARIO_GROUP` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`scg_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`scg_uid_parent` varchar(20) NOT NULL COMMENT 'ºÎ¸ğ °íÀ¯¾ÆÀÌµğ',
-		`name` varchar(64) NOT NULL COMMENT '½Ã³ª¸®¿À ±×·ìÀÌ¸§',
-		`discription` text DEFAULT NULL COMMENT '¼³¸í',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`scg_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`scg_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`scg_uid_parent` varchar(20) NOT NULL COMMENT 'ë¶€ëª¨ ê³ ìœ ì•„ì´ë””',
+	`name` varchar(64) NOT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ê·¸ë£¹ì´ë¦„',
+	`discription` text DEFAULT NULL COMMENT 'ì„¤ëª…',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`scg_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `SCENARIO` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`sce_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`scg_uid` varchar(20) NOT NULL COMMENT '½Ã³ª¸®¿À ±×·ì°íÀ¯ ¾ÆÀÌµğ',
-		`name` varchar(64) NOT NULL COMMENT '½Ã³ª¸®¿À ÀÌ¸§',
-		`discription` text DEFAULT NULL COMMENT '¼³¸í',
-		`param` varchar(64) DEFAULT NULL COMMENT '¸Ş¼ÒµåÀÇ ÆÄ¶ó¸ŞÅÍ',
-		`param_ext` text DEFAULT NULL COMMENT 'Ãß°¡ ÆÄ¶ó¸ŞÅÍ(json or "")',
-		`classname` varchar(64) NOT NULL COMMENT 'Å¬·¡½º ÀÌ¸§',
-		`type` varchar(10) DEFAULT NULL COMMENT '½Ã³ª¸®¿À Á¾·ù(Profile or null)',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`sce_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`sce_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`scg_uid` varchar(20) NOT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ê·¸ë£¹ê³ ìœ  ì•„ì´ë””',
+	`name` varchar(64) NOT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ì´ë¦„',
+	`discription` text DEFAULT NULL COMMENT 'ì„¤ëª…',
+	`param` varchar(64) DEFAULT NULL COMMENT 'ë©”ì†Œë“œì˜ íŒŒë¼ë©”í„°',
+	`param_ext` text DEFAULT NULL COMMENT 'ì¶”ê°€ íŒŒë¼ë©”í„°(json or "")',
+	`classname` varchar(64) NOT NULL COMMENT 'í´ë˜ìŠ¤ ì´ë¦„',
+	`type` varchar(10) DEFAULT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ì¢…ë¥˜(Profile or null)',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`sce_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `SCENARIO_LINE` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`scl_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`sce_uid` varchar(20) NOT NULL COMMENT '½Ã³ª¸®¿À °íÀ¯ ¾ÆÀÌµğ',
-		`index` int(11) NOT NULL COMMENT 'ÀÎµ¦½º ',
-		`method` varchar(64) NOT NULL COMMENT '½ÇÇà ¸Ş¼Òµå ÀÌ¸§',
-		`title` text DEFAULT NULL COMMENT 'È­¸é¿¡ ³ª¿À´Â ¹®ÀÚ¿­',
-		`param` varchar(64) DEFAULT NULL COMMENT '¸Ş¼ÒµåÀÇ ÆÄ¶ó¸ŞÅÍ',
-		`param_ext` text DEFAULT NULL COMMENT 'Ãß°¡ ÆÄ¶ó¸ŞÅÍ(json or "")',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`scl_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`scl_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`sce_uid` varchar(20) NOT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ê³ ìœ  ì•„ì´ë””',
+	`index` int(11) NOT NULL COMMENT 'ì¸ë±ìŠ¤ ',
+	`method` varchar(64) NOT NULL COMMENT 'ì‹¤í–‰ ë©”ì†Œë“œ ì´ë¦„',
+	`title` text DEFAULT NULL COMMENT 'í™”ë©´ì— ë‚˜ì˜¤ëŠ” ë¬¸ìì—´',
+	`param` varchar(64) DEFAULT NULL COMMENT 'ë©”ì†Œë“œì˜ íŒŒë¼ë©”í„°',
+	`param_ext` text DEFAULT NULL COMMENT 'ì¶”ê°€ íŒŒë¼ë©”í„°(json or "")',
+	`pck_uid` varchar(20) DEFAULT NULL COMMENT 'íŒ¨í‚·ë°ì´í„° ê³ ìœ  ì•„ì´ë””',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`scl_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `PACKET` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`pck_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`name` varchar(64) NOT NULL COMMENT 'ÆĞÅ¶ ÀÌ¸§',
-		`type` varchar(64) DEFAULT NULL COMMENT 'ÆĞÅ¶ Á¾·ù',
-		`discription` text NOT NULL COMMENT '¼³¸í',
-		`packet_class` varchar(64) NOT NULL COMMENT 'Å¬·¡½º ÀÌ¸§',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`pck_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`pck_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`name` varchar(64) NOT NULL COMMENT 'íŒ¨í‚· ì´ë¦„',
+	`type` varchar(64) DEFAULT NULL COMMENT 'íŒ¨í‚· ì¢…ë¥˜',
+	`discription` text NOT NULL COMMENT 'ì„¤ëª…',
+	`packet_class` varchar(64) NOT NULL COMMENT 'í´ë˜ìŠ¤ ì´ë¦„',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`pck_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `PACKET_DATA_TYPE` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`pdt_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`name` varchar(64) NOT NULL COMMENT 'ÆĞÅ¶ À¯´Ö ÀÌ¸§',
-		`length` int(11) NOT NULL COMMENT 'ÆĞÅ¶ À¯´ÖÀÇ Å©±â',
-		`variation` varchar(10)  COMMENT '°¡º¯',
-		`value_encoding` varchar(10) NOT NULL COMMENT 'ÀÎÄÚµù',
-		`char_range` varchar(10)  COMMENT '¹®ÀÚ¹üÀ§',
-		`fixed_value` varchar(10)  COMMENT '°íÁ¤°ª',
-		`option` varchar(64) DEFAULT NULL COMMENT '¸Ş¼ÒµåÀÇ ÆÄ¶ó¸ŞÅÍ',
-		`make_param` text DEFAULT NULL COMMENT 'ÆĞÅ¶ »ı¼º °ü·Ã ÆÄ¶ó¸ŞÅÍ(json or "")',
-		`confirm_param` text DEFAULT NULL COMMENT 'ÆĞÅ¶ °ËÁõ °ü·Ã ÆÄ¶ó¸ŞÅÍ(json or "")',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`pdt_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`pdt_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`name` varchar(64) NOT NULL COMMENT 'íŒ¨í‚· ìœ ë‹› ì´ë¦„',
+	`length` int(11) NOT NULL COMMENT 'íŒ¨í‚· ìœ ë‹›ì˜ í¬ê¸°',
+	`variation` varchar(10)  COMMENT 'ê°€ë³€',
+	`value_encoding` varchar(10) NOT NULL COMMENT 'ì¸ì½”ë”©',
+	`char_range` varchar(10)  COMMENT 'ë¬¸ìë²”ìœ„',
+	`fixed_value` varchar(10)  COMMENT 'ê³ ì •ê°’',
+	`option` varchar(64) DEFAULT NULL COMMENT 'ë©”ì†Œë“œì˜ íŒŒë¼ë©”í„°',
+	`make_param` text DEFAULT NULL COMMENT 'íŒ¨í‚· ìƒì„± ê´€ë ¨ íŒŒë¼ë©”í„°(json or "")',
+	`confirm_param` text DEFAULT NULL COMMENT 'íŒ¨í‚· ê²€ì¦ ê´€ë ¨ íŒŒë¼ë©”í„°(json or "")',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`pdt_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `PACKET_DATA_UNIT` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`pdu_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`pck_uid` varchar(20) NOT NULL COMMENT 'ÆĞÅ¶ °íÀ¯ ¾ÆÀÌµğ',
-		`index` int(11) NOT NULL COMMENT '´ÜÀ§ ½Ã³ª¸®¿ÀÀÇ ÀÎµ¦½º ',
-		`pdt_uid` varchar(20) NOT NULL COMMENT 'ÆĞÅ¶ Å¸ÀÔ °íÀ¯¾ÆÀÌµğ',
-		`def_value` varchar(10)  COMMENT '°íÁ¤°ª',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`pdu_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`pdu_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`pck_uid` varchar(20) NOT NULL COMMENT 'íŒ¨í‚· ê³ ìœ  ì•„ì´ë””',
+	`index` int(11) NOT NULL COMMENT 'ë‹¨ìœ„ ì‹œë‚˜ë¦¬ì˜¤ì˜ ì¸ë±ìŠ¤ ',
+	`pdt_uid` varchar(20) NOT NULL COMMENT 'íŒ¨í‚· íƒ€ì… ê³ ìœ ì•„ì´ë””',
+	`def_value` varchar(10)  COMMENT 'ê³ ì •ê°’',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`pdu_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `DATA_VALUE_TABLE` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`dvt_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`scl_uid` varchar(20) DEFAULT NULL COMMENT '½Ã³ª¸®¿À ¶óÀÎÀÇ °íÀ¯ ¾ÆÀÌµğ',
-		`pdt_uid` varchar(20) NOT NULL COMMENT 'ÆäÅ¶µ¥ÀÌÅÍÅ¸ÀÔÀÇ °íÀ¯¾ÆÀÌµğ',
-		`value` text DEFAULT NULL COMMENT '¼³¸í',
-		`param` varchar(64) DEFAULT NULL COMMENT '¸Ş¼ÒµåÀÇ ÆÄ¶ó¸ŞÅÍ',
-		`param_ext` text DEFAULT NULL COMMENT 'Ãß°¡ ÆÄ¶ó¸ŞÅÍ(json or "")',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`dvt_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`dvt_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`scl_uid` varchar(20) DEFAULT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ë¼ì¸ì˜ ê³ ìœ  ì•„ì´ë””',
+	`pdt_uid` varchar(20) NOT NULL COMMENT 'í˜í‚·ë°ì´í„°íƒ€ì…ì˜ ê³ ìœ ì•„ì´ë””',
+	`value` text DEFAULT NULL COMMENT 'ì„¤ëª…',
+	`param` varchar(64) DEFAULT NULL COMMENT 'ë©”ì†Œë“œì˜ íŒŒë¼ë©”í„°',
+	`param_ext` text DEFAULT NULL COMMENT 'ì¶”ê°€ íŒŒë¼ë©”í„°(json or "")',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`dvt_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `TEST_INFO` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`tsi_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`sce_uid` varchar(20) NOT NULL COMMENT '½Ã³ª¸®¿À °íÀ¯ ¾ÆÀÌµğ',
-		`name` varchar(64) NOT NULL COMMENT 'Å×½ºÆ® ÀÌ¸§',
-		`discription` text NOT NULL COMMENT 'Å×½ºÆ® ¸ñÀû',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`tsi_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`tsi_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`sce_uid` varchar(20) NOT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ê³ ìœ  ì•„ì´ë””',
+	`name` varchar(64) NOT NULL COMMENT 'í…ŒìŠ¤íŠ¸ ì´ë¦„',
+	`discription` text NOT NULL COMMENT 'í…ŒìŠ¤íŠ¸ ëª©ì ',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`tsi_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `TEST_ENV` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`tse_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`item` varchar(64) NOT NULL COMMENT '¾ÆÀÌÅÛ',
-		`value` text NOT NULL COMMENT '°ª',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`tse_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`tse_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`item` varchar(64) NOT NULL COMMENT 'ì•„ì´í…œ',
+	`value` text NOT NULL COMMENT 'ê°’',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`tse_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `TEST_RESULT` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`tsr_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`scl_uid` varchar(20)  COMMENT '',
-		`tsi_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`title` varchar(64) DEFAULT NULL COMMENT 'Å×½ºÆ® ÀÌ¸§',
-		`data` text DEFAULT NULL COMMENT 'Å×½ºÆ® ¸ñÀû',
-		`result` varchar(20) DEFAULT NULL COMMENT '',
-		`error` text  COMMENT '',
-		`takentime` int(11) DEFAULT NULL COMMENT '',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`tsr_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`tsr_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`scl_uid` varchar(20)  COMMENT '',
+	`tsi_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`title` varchar(64) DEFAULT NULL COMMENT 'í…ŒìŠ¤íŠ¸ ì´ë¦„',
+	`data` text DEFAULT NULL COMMENT 'í…ŒìŠ¤íŠ¸ ëª©ì ',
+	`result` varchar(20) DEFAULT NULL COMMENT '',
+	`error` text  COMMENT '',
+	`takentime` int(11) DEFAULT NULL COMMENT '',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`tsr_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `DATA_RESULT` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`dtr_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`tsr_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`pdt_uid` varchar(20) NOT NULL COMMENT '',
-		`expected_value` text DEFAULT NULL COMMENT '',
-		`value` text DEFAULT NULL COMMENT '¹ŞÀº °ª',
-		`expected_buffer` text DEFAULT NULL COMMENT '¹ŞÀº ¹öÆÛ (hexstr)',
-		`buffer` text DEFAULT NULL COMMENT '',
-		`result` varchar(20) DEFAULT NULL COMMENT '',
-		`error` text DEFAULT NULL COMMENT '',
-		`etc` text DEFAULT NULL COMMENT '',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`dtr_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`dtr_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`tsr_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`pdt_uid` varchar(20) NOT NULL COMMENT '',
+	`expected_value` text DEFAULT NULL COMMENT '',
+	`value` text DEFAULT NULL COMMENT 'ë°›ì€ ê°’',
+	`buff` text DEFAULT NULL COMMENT '',
+	`result` varchar(20) DEFAULT NULL COMMENT '',
+	`error` text DEFAULT NULL COMMENT '',
+	`etc` text DEFAULT NULL COMMENT '',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`dtr_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	
 CREATE TABLE `MAIN_PROCESS` (
-		`seq` int(11) NOT NULL COMMENT '¼ø¹ø',
-		`mpr_uid` varchar(20) NOT NULL COMMENT '°íÀ¯ ¾ÆÀÌµğ',
-		`sce_uid` varchar(20) DEFAULT NULL COMMENT '½Ã³ª¸®¿À °íÀ¯ ¾ÆÀÌµğ',
-		`index` int(11) NOT NULL COMMENT '',
-		`type` varchar(10) DEFAULT NULL COMMENT '',
-		`name` varchar(64) NOT NULL COMMENT '½Ã³ª¸®¿À ÀÌ¸§',
-		`discription` text DEFAULT NULL COMMENT '¼³¸í',
-		`method` varchar(64) NOT NULL COMMENT '',
-		`param` varchar(64) DEFAULT NULL COMMENT '¸Ş¼ÒµåÀÇ ÆÄ¶ó¸ŞÅÍ',
-		`param_ext` text DEFAULT NULL COMMENT 'Ãß°¡ ÆÄ¶ó¸ŞÅÍ',
-		`updt_date` datetime NOT NULL COMMENT '¾÷µ¥ÀÌÆ®ÀÏÀÚ',
-		`reg_date` datetime NOT NULL COMMENT 'µî·ÏÀÏÀÚ',
-		`comment` text DEFAULT NULL COMMENT '±âÅ¸Á¤º¸',
-PRIMARY KEY (`seq`,`mpr_uid`) 
+	`seq` int(11) NOT NULL COMMENT 'ìˆœë²ˆ',
+	`mpr_uid` varchar(20) NOT NULL COMMENT 'ê³ ìœ  ì•„ì´ë””',
+	`sce_uid` varchar(20) DEFAULT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ê³ ìœ  ì•„ì´ë””',
+	`index` int(11) NOT NULL COMMENT '',
+	`type` varchar(10) DEFAULT NULL COMMENT '',
+	`name` varchar(64) NOT NULL COMMENT 'ì‹œë‚˜ë¦¬ì˜¤ ì´ë¦„',
+	`discription` text DEFAULT NULL COMMENT 'ì„¤ëª…',
+	`method` varchar(64) NOT NULL COMMENT '',
+	`param` varchar(64) DEFAULT NULL COMMENT 'ë©”ì†Œë“œì˜ íŒŒë¼ë©”í„°',
+	`param_ext` text DEFAULT NULL COMMENT 'ì¶”ê°€ íŒŒë¼ë©”í„°',
+	`updt_date` datetime NOT NULL COMMENT 'ì—…ë°ì´íŠ¸ì¼ì',
+	`reg_date` datetime NOT NULL COMMENT 'ë“±ë¡ì¼ì',
+	`comment` text DEFAULT NULL COMMENT 'ê¸°íƒ€ì •ë³´',
+PRIMARY KEY (`seq`,`mpr_uid`)
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-
+	

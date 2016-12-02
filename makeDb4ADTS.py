@@ -258,6 +258,11 @@ class BaseTableInput(BaseMySQLRunnable):
 
 		self.processAfterDB()
 
+		time.sleep(0.3)
+
+
+
+
 		None
 
 
@@ -292,25 +297,68 @@ class BaseTableInput(BaseMySQLRunnable):
 
 		return defoption
 
+class MakeEnvSelection(BaseTableInput):
+	dsttable = "env_selection"
+	colline = "name,discription"
+	prefix = "esl"
+
+	def processInserValues(self):
+		self.appendLine(name='V100_EN07', discription='스마트로 V100_EN07 단말기 테스트 ')
+		self.appendLine(name='V100_EN09', discription='스마트로 V100_EN09 단말기 테스트 ')
+
+		None
+
 
 class MakeEnvSetting(BaseTableInput):
 	dsttable = "env_setting"
-	colline = "item, value"
+	colline = "esl_uid,item, value,comment"
 	prefix = "ens"
 
 	def processInserValues(self):
+		eslmaps = self.dstdbHD.select("""
+SELECT seq, esl_uid, name, discription, updt_date, reg_date, comment
+FROM env_selection;
+		""")
+
+		for maps in eslmaps:
+			name = maps['name']
+			esl_uid = maps['esl_uid']
+
+			self.InsertEnvSetting(name,esl_uid)
+
+			None
+
+
+
+
+
+		None
+	def InsertEnvSetting(self,name,esl_uid):
+
 		mapEnv = collections.OrderedDict([
-			("DEVICE_TYPE", "V100_EN07"),
-			("DEVICE_MODEL", "v241"),
-			("script_file", "smatro_sc.py"),
-			("class_main_process", "mainprocess_smartro"),
+			("DEVICE_TYPE", name),
+			("DEVICE_MODEL", "T224"),
 			("CHANNEL_MAIN", "chn_2"),
 			("CHANNEL_DONGLE", "chn_2"),
 			("CHANNEL_POS", "chn_3"),
+			("CRYPTO_CNF_PATH", 'C:/TMP/SMARTRO/INISAFESem.cnf'),
+			("SIGNPADE_PATH", 'D:/PROJECT/toolrnd/DeviceTesterSystem/script/smt_signpad.dll'),
 
 		])
 
-		mapdefvalue = self.olddbHD.select("SELECT profileid, value FROM profile_config_maininfo where devtype = 'V100_EN07';")
+		if self.dbaddress == "192.168.0.75":
+			mapEnv[
+				"CRYPTO_CNF_PATH"] = 'E:/SMARTRO/ETC_Projects/toolrnd/DeviceTesterSystem/ISEM_Files/conf/INISAFESem.cnf'
+			mapEnv["SIGNPADE_PATH"] = 'E:/SMARTRO/ETC_Projects/toolrnd/DeviceTesterSystem/script/smt_signpad.dll'
+
+		mapdefvalue = self.olddbHD.select(
+			"SELECT profileid, value FROM profile_config_maininfo where devtype = '%s';"%name)
+
+		mapdefvaluesce = self.olddbHD.select(
+			"""
+			SELECT instruction, scenario, optionscenario, devtype
+FROM test_smartro.maindev_scenario where keypadtype = 'T224' and devtype = 'V100_EN07';
+			""")
 
 		for row in mapdefvalue:
 			profileid = row['profileid']
@@ -318,15 +366,17 @@ class MakeEnvSetting(BaseTableInput):
 
 			mapEnv[profileid] = value
 
+		for key, val in mapEnv.items():
+			self.appendLine(item=key, value=val,esl_uid=esl_uid)
+
+		for row in mapdefvaluesce:
+			instruction = row['instruction']
+			scenario = row['scenario']
+			optionscenario = row['optionscenario']
+			self.appendLine(item=instruction, value=scenario, esl_uid=esl_uid,comment =optionscenario )
 
 
 
-
-		for key,val in mapEnv.items():
-			self.appendLine(item=key,value = val)
-
-
-		None
 
 class MakeChannel(BaseTableInput):
 	dsttable = "channel"
@@ -578,7 +628,7 @@ class MakeScenarioLine(BaseTableInput):
 	dsttable = "scenario_line"
 	prefix = "scl"
 	#colline = "sce_uid, index, method, title, param, param_ext, pck_uid,comment"
-	colline = "sce_uid, index, method, title, param, param_ext, comment"
+	colline = "sce_uid, index, method, title, param, param_ext,pck_uid, comment"
 
 	def makeMapJustValue(self, result_list):
 		mapresultvalus = collections.OrderedDict()
@@ -648,6 +698,9 @@ class MakeScenarioLine(BaseTableInput):
 			protocol = tmprow['protocol']
 			sce_uid = mapdstScenario[scriptid]['sce_uid']
 			prevsce_uid = ""
+			if instruction == '숫자':
+				None
+
 			if prevscriptid in mapdstScenario:
 				prevsce_uid = mapdstScenario[prevscriptid]['sce_uid']
 
@@ -682,9 +735,11 @@ class MakeScenarioLine(BaseTableInput):
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
 					param_ext = "{'pck_uid':'%s'}" % pck_uid
 					param_ext = param_ext.replace("'","\"")
+					param_ext = ''
+
 					self.appendLine(sce_uid=sce_uid, index=index, method ='RECV' ,title='수신', param="$MAP_ENV['CHANNEL_MAIN']")
 					index+=1
-					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,param_ext=param_ext,comment= param )
+					self.appendLine(sce_uid=sce_uid, index=index, method='CONFIRM_PACKET', title=title, param=packetname ,param_ext=param_ext,pck_uid = pck_uid,comment= param )
 					None
 
 				elif "송신" in instruction:
@@ -692,7 +747,9 @@ class MakeScenarioLine(BaseTableInput):
 					pck_uid = mapmapmethodline[packetname]['pck_uid']
 					param_ext = "{'pck_uid':'%s'}" % pck_uid
 					param_ext = param_ext.replace("'", "\"")
-					self.appendLine(sce_uid=sce_uid, index=index, method='MAKE_PACKET', title=title, param=packetname ,param_ext=param_ext,comment=param)
+					param_ext = ''
+
+					self.appendLine(sce_uid=sce_uid, index=index, method='MAKE_PACKET', title=title, param=packetname ,param_ext=param_ext,pck_uid = pck_uid,comment=param)
 					index += 1
 					self.appendLine(sce_uid=sce_uid, index=index, method='SEND', title='송신', param="$MAP_ENV['CHANNEL_MAIN']")
 					None
@@ -1044,26 +1101,37 @@ class DropAndCreateTable(BaseMySQLRunnable):
 		name = input("Are u sure for drop and create? yes or no ")
 
 		if name != 'yes': return
+		#
+		# tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, test_info,test_env")
+		# deleteSqlrArray = []
+		# for tmp in tables:
+		# 	#deleteSqlrArray.append("drop table  %s;\n"%tmp)
+		# 	sql = "drop table  %s;\n" % tmp
+		# 	try:
+		# 		self.dstdbHD.excute(sql)
+		# 		time.sleep(0.3)
+		# 	except Exception as e:
+		# 		print(e)
+		#
+		# # #sql = "".join(deleteSqlrArray)
 
-		tables = re.split(r',\s',"channel, data_result, data_value_table, env_setting, main_process, packet, packet_data_type, packet_data_unit, scenario, scenario_group, scenario_line, test_result, test_info,test_env")
+
+
+
+		strtxt = neolib.StrFromFile('adts/DROP.SQL', enc='utf-8')
+		tables = re.split(r';\s',  strtxt)
 		deleteSqlrArray = []
 		for tmp in tables:
-			#deleteSqlrArray.append("drop table  %s;\n"%tmp)
-			sql = "drop table  %s;\n" % tmp
+			# deleteSqlrArray.append("drop table  %s;\n"%tmp)
+			sql = tmp
 			try:
 				self.dstdbHD.excute(sql)
 				time.sleep(0.3)
 			except Exception as e:
 				print(e)
 
-		#sql = "".join(deleteSqlrArray)
 
-
-
-
-
-
-		sql = neolib.StrFromFile('adts/TABLE.SQL',enc='euc-kr')
+		sql = neolib.StrFromFile('adts/TABLE.SQL',enc='utf-8')
 		self.dstdbHD.excute(sql)
 		time.sleep(0.3)
 
@@ -1084,8 +1152,8 @@ class MakeDataFieldsClass(neolib4Win.NeoAnalyzeClasss):
 	fmtfieldForm = "\tpublic {0} {1} {2};"
 	#0:typename 1:fieldname 2: initial
 
-	xlsDbFile = "D:/PROJECT/toolrnd/DeviceTesterSystem/DOCS/DB설계서_161107.xlsx"
-
+	#xlsDbFile = "D:/PROJECT/toolrnd/DeviceTesterSystem/DOCS/DB설계서_161107.xlsx"
+	xlsDbFile = "D:/PROJECT/자동단말기검수/DOCS/설계서/DB설계서_161123.xlsx"
 
 	def makeMapFromDoubllist(self,ret):
 		maplist =  collections.OrderedDict()
@@ -1183,27 +1251,44 @@ PRIMARY KEY ({2})
  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 	"""
 #0:tablename 1:fields info 2:pri key array
+
 	fieldForm ="	`{0}` {1} {2} COMMENT '{3}',"
 #0:name 1:type 2:null type 3:comment
 
+
+	dropTableForm = """
+	DROP TABLE {0};
+	"""
+
 	def doRun(self):
 		ret = self.makeMapFromExcel(self.xlsDbFile)
+		self.strlines = self.makeSqlDropAndCreate(ret,self.createTableForm,self.fieldForm)
+		neolib.StrToFile(self.strlines, "adts/TABLE.SQL")
+		self.strlines = self.makeSqlDropAndCreate(ret, self.dropTableForm, '')
+		neolib.StrToFile(self.strlines, "adts/DROP.SQL")
+
+		None
+
+	def makeSqlDropAndCreate(self,ret,mainFmt,fieldForm):
+
 
 		def convType(row):
 			name, type ,nullinfo,comment,pki = row
+			return fieldForm.format(name, type ,nullinfo,comment)
 
-			return self.fieldForm.format(name, type ,nullinfo,comment)
-
-
+		strlines = ""
 		for key, fields in ret.items():
 			#print(list(filter(lambda x: x[4] =='PRI', fields)))
 			listpki = ["`"+name +"`" for name, type, nullinfo, comment, pki in filter(lambda x: x[4] == 'PRI', fields)]
 
 			listmethod = list(map(convType, fields))
-			self.strlines += self.createTableForm.format(key, "\n".join(listmethod),",".join(listpki))
+			strlines += mainFmt.format(key, "\n".join(listmethod),",".join(listpki))
+
+		return strlines
 
 
-		neolib.StrToFile(self.strlines,"adts/TABLE.SQL")
+
+
 
 
 
@@ -1211,6 +1296,42 @@ PRIMARY KEY ({2})
 
 		None
 
+class MakeNameFieldsClass(MakeDataFieldsClass):
+
+	###mainfmt ="{0}\t{1}"
+	mainfmt ='''<td valign="top">
+<div style="margin: 25px;padding: 10px;border-radius: 10px;width:200px;height: auto;border:1px solid #000;color:white;background:#5b9bd5;">
+<h4 style="margin: 1px">{0}</h4>
+{1}
+</div></td>'''
+	#fieldfmt = "{0}"
+	fieldfmt = '''{0}</br>'''
+
+	sep = ""
+	def doRun(self):
+
+		ret = self.makeMapFromExcel(self.xlsDbFile)
+		self.strlines  += '''<table width="300" height="200"  align="left" style='background-color:#f0fff0; filter: alpha(opacity=50); border:1 solid #009900; background-image :url(img/hobbang.gif);'>'''
+
+		self.strlines += '''<tr>'''
+		idx = 0
+		for key, fields in ret.items():
+			strarray = [self.fieldfmt.format(tmp[0]) for tmp in fields]
+			islinesep = idx%3 == 0
+			if islinesep :
+				if islinesep: self.strlines += '''</tr>'''
+				self.strlines += '''<tr>'''
+			strline = self.mainfmt.format(key, self.sep.join(strarray))
+			self.strlines += strline
+
+
+			idx+=1
+		if islinesep: self.strlines += '''</tr>'''
+		self.strlines += ''' </table>'''
+
+		neolib.StrToFile(self.strlines,"adts/tables.html")
+
+		None
 '''
 이 클래스는
 modulelist4ADTS.txt로 부터 모듈 구분, 프리픽스,모듈 이름 등을 얻어온후
@@ -1359,8 +1480,11 @@ class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
 	patterninterface = r'public\s+interface\s+([\w\d_<>]+)\s*(?::\s*([\w\d_<>]+)\s*)*\{([^{}]*)\}'
 	patternmethod = r'(\w+)\s*(\s|[\[\]]{2})\s*([\w\d_]+)\(([^\(\)]*)\);'
 	patternparam = r'(?:(params|ref)\s+)*([\w]+)(\s|[\[\]]{2})\s*([\w]+)'
-	patternReserve = r'\{\s*(get|set)\s*;\s*\}'
+	patternProperty = r'(\w+)\s+([\w\d_]+)\s*\{\s*(get|set)\s*;\s*\}'
 	patternReserveReverse = r"TAG:(get|set)"
+	patterRemoveComment = r'\s*//(.+)\n'
+
+
 	mapcount = {1:0,2:1,3:3}
 	def levelProc(self,str,level):
 
@@ -1388,7 +1512,7 @@ class AnalyzeInterface(neolib4Win.NeoAnalyzeClasss):
 		#strorgtxt = strorgtxt.replace("\r","")
 		#strorgtxt = strorgtxt.replace("\n", "")
 
-		strorgtxt = re.sub(self.patternReserve,r"TAG:\1",strorgtxt)
+		strorgtxt = re.sub(self.patternProperty,r"TAG:\1",strorgtxt)
 
 		results = re.findall(self.patterninterface,strorgtxt)
 		print(results)
@@ -1461,6 +1585,8 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 
 		MakeChannel(exit=False,dbaddress =dbaddress).Run()
 
+		MakeEnvSelection(exit=False,dbaddress =dbaddress).Run()
+
 		MakeEnvSetting(exit=False, dbaddress=dbaddress).Run()
 
 
@@ -1484,15 +1610,26 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 """
 이 클래스는 프로파일 세팅을 시나리오로 만드는 클래스 이다.
 """
-MakeCreateTableFor().Run()
-#MakeDataFieldsClass().Run()
+#MakeNameFieldsClass().Run()
 
+#MakeCreateTableFor(exit=False).Run()
+#MakeDataFieldsClass(exit=True).Run()
+
+#MakeEnvSelection(exit=False).Run()
+#MakeEnvSetting(exit=True).Run()
+
+dbaddress= 'localhost'
+#dbaddress= '192.168.0.75'
+
+
+#MakeEnvSelection(exit=False,dbaddress=dbaddress).Run()
+#MakeEnvSetting(exit=False, dbaddress=dbaddress).Run()
+#MakeScenarioLine(dbaddress=dbaddress).Run()
 #MakeScenarioLine().Run()
 
 InsertWholeDB(exit=False).Run()
-#MakeScenarioGroup().Run()
+InsertWholeDB(dbaddress="192.168.0.75").Run()
 
-#InsertWholeDB(dbaddress="192.168.0.75").Run()
 #AnalyzeInterface().Run()
 
 #MakeCSharpProject().Run()
