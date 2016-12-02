@@ -412,6 +412,49 @@ class GetLateestWebtoon(BaseClient):
 		print('test')
 		None
 
+class LoopProcess(BaseClient):
+	waittime = 20
+	takentime = 1
+	maxtime = 1;
+	unittile = 5;
+
+	def __init__(self,waittime):
+		super(LoopProcess, self).__init__('LoopProcess')
+		print('LoopProcess')
+		self.waittime = waittime
+
+
+	def doRun(self):
+
+		self.takentime = self.waittime * 60 + 1;
+		self.maxtime = self.waittime * 60
+
+		while True:
+			self.takentime += self.unittile;
+			log = "{0} tktime:{1} \n".format(datetime.datetime.now().isoformat(), self.takentime)
+			self.logger.debug(log)
+
+			if self.takentime > self.maxtime:
+				self.takentime = 0
+				try:
+					HTTPCLient369().Run()
+				except:
+					log = "{0} HTTPCLient369 ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
+					self.logger.fatal(log)
+
+				try:
+					GetLateestWebtoon().Run()
+				except:
+
+					log = "{0} GetLateestWebtoon ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
+					self.logger.fatal(log)
+
+
+
+
+			time.sleep(self.unittile)
+
+
 if __name__ != '__main__':
 	exit()
 
@@ -419,7 +462,7 @@ if __name__ != '__main__':
 #exit()
 
 dstpath = ''
-waittime = 20
+waittime = 1
 takentime = 1
 maxtime = 1;
 unittile = 10;
@@ -439,40 +482,16 @@ if len(sys.argv) > 3:
 
 print("datpath:{0} \r\nwaittime:{1} min".format(dstpath,waittime))
 
-
+LoopProcess(waittime).Run()
 #HTTPCLient369().doRun()
 #exit()
-takentime = waittime * 60 + 1;
+
+
 
 log = ''
 
 
 
-while True:
 
-	if takentime> maxtime:
-		log = "{0} tktime:{1} doRun \n".format(datetime.datetime.now().isoformat(), 0)
-		try:
-			HTTPCLient369().Run()
-		except :
-			log += "{0} HTTPCLient369 ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
-
-
-
-		try:
-			GetLateestWebtoon().Run()
-		except  :
-			log += "{0} GetLateestWebtoon ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
-
-		takentime = 0
-
-	print(log);
-	f = open("out.log", 'ab')
-	f.write(log.encode())
-	f.close()
-
-	time.sleep(unittile)
-	takentime += unittile;
-	log = "{0} tktime:{1} \n".format(datetime.datetime.now().isoformat(), takentime)
 
 
