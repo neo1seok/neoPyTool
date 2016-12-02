@@ -416,7 +416,7 @@ class LoopProcess(BaseClient):
 	waittime = 20
 	takentime = 1
 	maxtime = 1;
-	unittile = 5;
+	unittile = 60;
 
 	def __init__(self,waittime):
 		super(LoopProcess, self).__init__('LoopProcess')
