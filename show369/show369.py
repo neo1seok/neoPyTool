@@ -62,7 +62,7 @@ class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 	#urlUpdateStamp = 'http://neo1seok.iptime.org/show369/updatestamp.php'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
-	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([가-힣]*)\s*(?:<\s*br\s*/\s*>)*'
+	patt = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*([^<]*)\s*(?:<\s*br\s*/\s*>)*'
 	pattProfile = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*(?:<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>)*\s*([가-힣]+)\s*(?:(?:<\s*br\s*/\s*>\s*)|(?:\s*<\s*/\s*div\s*>\s*))*'
 
 	#pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
@@ -136,8 +136,9 @@ class HTTPCLient369(BaseClient):
 		self.realarray = []
 		for vars in self.results:
 			imgsrc,imgid,title = vars
-			if title != '' and title not in [ self.dayimg ,self.nightimg]:continue
 			if imgid in self.cmtiltleimgs: break
+			if title != '' and imgid not in [ self.dayimg ,self.nightimg]:continue
+			print(title,imgid)
 			self.realarray.append(imgid)
 
 		#self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
