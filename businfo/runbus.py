@@ -58,9 +58,9 @@ if __name__ != '__main__':
 
 
 
-MakeJsonFormFromText().Run()
+#MakeJsonFormFromText().Run()
 
-#TestOpeAPI().Run();
+TestOpeAPI().Run()
 
 
 
