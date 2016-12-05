@@ -435,8 +435,10 @@ class LoopProcess(BaseClient):
 		handleebtoon = GetLateestWebtoon()
 
 		listHandler = [handle369,handleebtoon]
+		start = -2000000;
 		while True:
 
+			self.takentime = time.clock() - start;
 			if self.takentime > self.maxtime:
 				start = time.clock()
 				for tmp in listHandler:
@@ -448,7 +450,7 @@ class LoopProcess(BaseClient):
 
 
 
-			self.takentime = time.clock() - start;
+
 			self.logger.debug("LOOP tktime:{0} {1}".format(self.takentime,self.maxtime))
 			time.sleep(self.unittile)
 
