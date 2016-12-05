@@ -439,7 +439,7 @@ class LoopProcess(BaseClient):
 		while True:
 
 			self.takentime = time.clock() - start;
-			self.logger.debug("%d %d",self.takentime,start)
+			self.logger.debug("%d %d %d",time.clock(),self.takentime,start)
 
 			if self.takentime > self.maxtime:
 				start = time.clock()
