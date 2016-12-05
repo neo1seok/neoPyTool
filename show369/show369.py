@@ -440,7 +440,8 @@ class LoopProcess(BaseClient):
 		while True:
 
 			self.takentime = self.getCurTime() - start;
-			self.logger.debug("%d %d %d",self.getCurTime(),self.takentime,start)
+			#self.logger.debug("%d %d %d",self.getCurTime(),self.takentime,start)
+			self.logger.debug("LOOP tktime:{0} {1}".format(self.takentime, self.maxtime))
 
 			if self.takentime > self.maxtime:
 				start = self.getCurTime()
@@ -454,7 +455,7 @@ class LoopProcess(BaseClient):
 
 
 
-			self.logger.debug("LOOP tktime:{0} {1}".format(self.takentime,self.maxtime))
+
 			time.sleep(self.unittile)
 
 
