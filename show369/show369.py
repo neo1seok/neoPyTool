@@ -446,13 +446,9 @@ class LoopProcess(BaseClient):
 					try:
 						tmp.Run();
 					except:
-						tmp.loggename
 						self.logger.fatal("{0}  ValueError:{1}  \n".format(tmp.__name__,0))
 
-
 			self.takentime = time.clock() - start;
-
-
 			time.sleep(self.unittile)
 
 
