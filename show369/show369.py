@@ -426,7 +426,8 @@ class LoopProcess(BaseClient):
 		print('LoopProcess')
 		self.waittime = waittime
 
-
+	def getCurTime(self):
+		return time.time()
 	def doRun(self):
 
 		self.maxtime = self.waittime * 60
@@ -438,11 +439,11 @@ class LoopProcess(BaseClient):
 		start = -1*self.maxtime;
 		while True:
 
-			self.takentime = time.clock() - start;
-			self.logger.debug("%d %d %d",time.clock(),self.takentime,start)
+			self.takentime = self.getCurTime() - start;
+			self.logger.debug("%d %d %d",self.getCurTime(),self.takentime,start)
 
 			if self.takentime > self.maxtime:
-				start = time.clock()
+				start = self.getCurTime()
 				for tmp in listHandler:
 					try:
 						tmp.Run();
