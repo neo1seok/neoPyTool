@@ -6,7 +6,7 @@ import sys
 import time
 import gc
 import  json
-
+import time
 import codecs
 import base64
 import logging
@@ -19,9 +19,12 @@ import neolib.neolib as neolib
 
 class BaseClient():
 	def __init__(self,loggename):
+		self.init(loggename)
 
+
+	def init(self,loggename):
 		handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
-
+		self.loggename =loggename
 		# create logger
 		self.logger = logging.getLogger(loggename)
 		self.logger.setLevel(logging.DEBUG)
@@ -40,7 +43,7 @@ class BaseClient():
 		self.logger.addHandler(ch)
 		self.logger.addHandler(handler)
 
-		self.logger.debug("%s __init__",self.__class__.__name__)
+		self.logger.debug("%s __init__", self.__class__.__name__)
 
 	def doRun(self):
 		None
@@ -50,6 +53,7 @@ class BaseClient():
 		None
 	def Run(self):
 		try:
+			self.logger.debug("%s Run", self.__class__.__name__)
 			self.doRun()
 		except Exception as ex:
 			self.procExcept(ex)
@@ -81,15 +85,15 @@ class HTTPCLient369(BaseClient):
 
 
 	def __init__(self):
-		super(HTTPCLient369, self).__init__('show369')
+		self.init('show369')
 		print('__init__')
 		d = datetime.datetime.now()
 		self.dstfile = 'list.' + d.strftime('%Y%m%d') + '.txt'
 		print(d.strftime('%Y/%m/%d'))
 
-	def __del__(self):
-		gc.collect()
-		print('__del__')
+	# def __del__(self):
+	# 	gc.collect()
+	# 	print('__del__')
 
 
 
@@ -233,23 +237,22 @@ class HTTPCLient369(BaseClient):
 		#print(str[0:endindex])
 
 		return str[0:endindex]
-
 	def extractProfileMap(self,str):
 
-		str = str.replace("\r", "");
-		str = str.replace("\n", "");
+			str = str.replace("\r", "");
+			str = str.replace("\n", "");
 
-		list = re.split(r'<br\s*/\s*>', str)
+			list = re.split(r'<br\s*/\s*>', str)
 
-		rearrstr = '\n'.join(list)
+			rearrstr = '\n'.join(list)
 
-		mapProfile = {}
-		for tmp in re.findall(self.pattProfile, rearrstr):
-			extprofile = ''
-			if (len(tmp) == 4):
-				extprofile = tmp[3]
-			mapProfile[tmp[1]] = (tmp[0], extprofile)
-		return mapProfile
+			mapProfile = {}
+			for tmp in re.findall(self.pattProfile, rearrstr):
+				extprofile = ''
+				if (len(tmp) == 4):
+					extprofile = tmp[3]
+				mapProfile[tmp[1]] = (tmp[0], extprofile)
+			return mapProfile
 
 
 
@@ -296,13 +299,13 @@ class GetLateestWebtoon(BaseClient):
 	isAll = True
 
 	def __init__(self):
-		super(GetLateestWebtoon, self).__init__('webtoon')
+		self.init('webtoon')
 		print('GetLateestWebtoon')
 
-
-	def __del__(self):
-		gc.collect()
-		print('__del__')
+	#
+	# def __del__(self):
+	# 	gc.collect()
+	# 	print('__del__')
 
 
 	def reff(self):
@@ -416,7 +419,7 @@ class LoopProcess(BaseClient):
 	waittime = 20
 	takentime = 1
 	maxtime = 1;
-	unittile = 60;
+	unittile = 10;
 
 	def __init__(self,waittime):
 		super(LoopProcess, self).__init__('LoopProcess')
@@ -426,30 +429,28 @@ class LoopProcess(BaseClient):
 
 	def doRun(self):
 
-		self.takentime = self.waittime * 60 + 1;
 		self.maxtime = self.waittime * 60
+		self.takentime = self.maxtime+1
+		handle369 = HTTPCLient369()
+		handleebtoon = GetLateestWebtoon()
+
+		listHandler = [handle369,handleebtoon]
 
 		while True:
-			self.takentime += self.unittile;
-			log = "{0} tktime:{1} \n".format(datetime.datetime.now().isoformat(), self.takentime)
-			self.logger.debug(log)
+
+			self.logger.debug("LOOP tktime:{0} {1}".format(self.takentime,self.maxtime))
 
 			if self.takentime > self.maxtime:
-				self.takentime = 0
-				try:
-					HTTPCLient369().Run()
-				except:
-					log = "{0} HTTPCLient369 ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
-					self.logger.fatal(log)
-
-				try:
-					GetLateestWebtoon().Run()
-				except:
-
-					log = "{0} GetLateestWebtoon ValueError:{1}  \n".format(datetime.datetime.now().isoformat(), 0)
-					self.logger.fatal(log)
+				start = time.clock()
+				for tmp in listHandler:
+					try:
+						tmp.Run();
+					except:
+						tmp.loggename
+						self.logger.fatal("{0}  ValueError:{1}  \n".format(tmp.__name__,0))
 
 
+			self.takentime = time.clock() - start;
 
 
 			time.sleep(self.unittile)
@@ -462,7 +463,7 @@ if __name__ != '__main__':
 #exit()
 
 dstpath = ''
-waittime = 1
+waittime = 0.1
 takentime = 1
 maxtime = 1;
 unittile = 10;
