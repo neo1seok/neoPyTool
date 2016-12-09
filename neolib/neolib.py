@@ -99,6 +99,22 @@ def listarg2Map(list):
 		i=i+1
 	return maparg
 
+def getMapsFromArgs(argv):
+	length = len(argv)
+	print(argv)
+
+	maps = {tmp[1:]: '' for tmp in argv if tmp.startswith('-')}
+
+	for key, val in maps.items():
+		idx = argv.index('-' + key)
+		print(idx)
+		if idx + 1 >= length: continue
+		if argv[idx + 1].startswith('-'): continue
+
+		maps[key] = argv[idx + 1]
+
+
+	return maps
 
 def HexString2ByteArray(hexstr) :
 	return bytes.fromhex(hexstr)
