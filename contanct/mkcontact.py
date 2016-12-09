@@ -49,10 +49,23 @@ print('Sheet name: %s' % xl_sheet.name)
 # # print("\t".join(vals.value for vals in [tmp.value	for tmp in row][1]))
 rows = []
 for tmp in [aaa for aaa in xl_sheet.get_rows()][3:]:
+
 	rows.append([ col.value for col in tmp[1:10]])
 	rows.append([col.value for col in tmp[10:19]])
 
+def fnfilter(aaa):
 
+	if ''.join([str(tmp) for tmp in aaa]) == '' :return  False
+	print(type(aaa[0]) ,float)
+	if type(aaa[0]) != float  :return  False
+
+	return True
+rows = list(filter( fnfilter,rows))
+def numeric_compare(x, y):
+
+	return x[0] - y[0]
+
+sorted(rows, cmp=numeric_compare)
 print(rows)
 #ret = [tuple([tmp.value for tmp in row][1:]) for row in rows]
 
