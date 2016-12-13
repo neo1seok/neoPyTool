@@ -4,19 +4,22 @@
 import  re
 import subprocess
 import os
-
+import sys
 class NeoRunnableClasss:
 	isJustRunThisClass = True
 
 	def __init__(self,**kwargs):
 		self.mapArgs = {}
+		self.maps = getMapsFromArgs(sys.argv)
 		self.setDefArges()
+
 
 		print("__init__",self.__class__)
 
 		self.mapArgs.update(self.defMapArgs)
 		for key,vlaue in kwargs.items():
 			self.mapArgs[key] = vlaue
+
 	# def __init__(self):
 	# 	None
 	def setDefArges(self):
