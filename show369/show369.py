@@ -259,9 +259,10 @@ class HTTPCLient369(BaseClient):
 
 	def updatecontents(self):
 		url = self.urlUpdateStamp + '?ids=' + self.ids + '&base64=' + self.bencodeProfile
-		print(url)
+		#print(url)
 		result = requests.get(url)
-		print(result.text)
+		self.logger.debug("url : %s res: %s  "%( url,result.text))
+		#print(result.text)
 
 
 
@@ -270,19 +271,24 @@ class HTTPCLient369(BaseClient):
 
 		self.logger.info('geturlcontents')
 		self.geturlcontents()
+		self.logger.info('geturlcontents Done')
 
 		self.logger.info('makecontents')
 		self.makecontents()
+		self.logger.info('makecontents Done')
 
 		self.logger.info('makeProfile')
 		self.makeProfile()
+		self.logger.info('makeProfile Done')
 
 		self.logger.info('makeTotalContents')
 		self.makeTotalContents()
+		self.logger.info('makeTotalContents Done')
 
 
 		self.logger.info('updatecontents')
 		self.updatecontents()
+		self.logger.info('updatecontents Done')
 
 
 		# print(imglist)
@@ -390,21 +396,25 @@ class GetLateestWebtoon(BaseClient):
 
 		self.logger.info('getList')
 		self.getList(url)
+		self.logger.info('getList Done')
 
 		self.logger.info('update list')
 		for key in self.todaylist:
 			value = self.getTopId(key)
 			mapTopid[key] = value
 		injson = json.dumps(mapTopid)
-		print(injson)
+		#print(injson)
 
 		bencode = base64.urlsafe_b64encode(injson.encode()).decode()
-		print(bencode)
+		#print(bencode)
 		
 		url = self.urlUpdateTopIds + "&json=" + bencode
-		print(url)
+		#print(url)
 		r = requests.get(url)
 		print(r.text)
+		self.logger.debug("url:{0} ret:{1}".format(url,r.text))
+
+		self.logger.info('update list Done')
 
 
 
@@ -419,12 +429,14 @@ class LoopProcess(BaseClient):
 	waittime = 20
 	takentime = 1
 	maxtime = 1;
-	unittile = 10;
+	unittime = 10;
 
-	def __init__(self,waittime):
+	def __init__(self,waittime,unittime):
 		super(LoopProcess, self).__init__('LoopProcess')
-		print('LoopProcess')
 		self.waittime = waittime
+		self.unittime =unittime
+		self.logger.info("LoopProcess waittime:{0} min".format(waittime))
+
 
 	def getCurTime(self):
 		return time.time()
@@ -447,47 +459,38 @@ class LoopProcess(BaseClient):
 				start = self.getCurTime()
 				for tmp in listHandler:
 					try:
+						self.logger.info("RUN CLASSNAME:{0} ".format(tmp.__class__))
 						tmp.Run();
 					except:
 						self.logger.fatal("{0}  ValueError:{1}  \n".format(tmp.__name__,0))
 				continue
 
-
-
-
-
-			time.sleep(self.unittile)
+			time.sleep(self.unittime)
 
 
 
 if __name__ != '__main__':
 	exit()
-
+maparg = neolib.getMapsFromArgs(sys.argv)
 #GetLateestWebtoon().doRun_test()
 #exit()
 
-dstpath = ''
+
 waittime = 0.1
 takentime = 1
 maxtime = 1;
-unittile = 10;
+unittime = 10;
 isAll = 'false'
-if len(sys.argv) > 1:
-	dstpath = sys.argv[1]
-	print(sys.argv[1])
+print(maparg.keys())
+if 'waittime' in maparg.keys() :
+	waittime = int(maparg['waittime'])
 
-if len(sys.argv) > 2:
-	waittime = int(sys.argv[2])
+if 'unittime' in maparg.keys() :
+	unittime = int(maparg['unittime'])
 
-	maxtime = waittime * 60
-	print(waittime)
 
-if len(sys.argv) > 3:
-	isAll = sys.argv[3]
 
-print("datpath:{0} \r\nwaittime:{1} min".format(dstpath,waittime))
-
-LoopProcess(waittime).Run()
+LoopProcess(waittime,unittime).Run()
 #HTTPCLient369().doRun()
 #exit()
 

@@ -15,7 +15,7 @@ from logging import handlers
 import xlrd
 import neolib.neolib as neolib
 
-
+import operator
 
 if __name__ != '__main__':
 	exit()
@@ -56,17 +56,19 @@ for tmp in [aaa for aaa in xl_sheet.get_rows()][3:]:
 def fnfilter(aaa):
 
 	if ''.join([str(tmp) for tmp in aaa]) == '' :return  False
-	print(type(aaa[0]) ,float)
+
 	if type(aaa[0]) != float  :return  False
 
 	return True
 rows = list(filter( fnfilter,rows))
-def numeric_compare(x, y):
 
-	return x[0] - y[0]
+newlist = sorted(rows, key=operator.itemgetter(0))
 
-sorted(rows, cmp=numeric_compare)
-print(rows)
+for tmp in newlist:
+	print (tmp[4])
+#fdasfaf = sorted([5, 2, 4, 1, 3], cmp=numeric_compare)
+#fdasfaf = sorted(rows, cmp=numeric_compare)
+print(newlist)
 #ret = [tuple([tmp.value for tmp in row][1:]) for row in rows]
 
 # print(sys.argv)
