@@ -19,12 +19,41 @@ import neolib.neolib as neolib
 
 class BaseClient():
 	def __init__(self,loggename):
-		self.init(loggename)
+		#self.init(loggename)
+
+		self.handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
+		self.init(loggename,self.handler)
+		#self.logger = self.createLogger(loggename, self.handler)
 
 
-	def init(self,loggename):
-		handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
-		self.loggename =loggename
+	def init(self,loggename,handler):
+		self.logger = self.createLogger(loggename,handler)
+
+		# self.loggename =loggename
+		# # create logger
+		# self.logger = logging.getLogger(loggename)
+		# self.logger.setLevel(logging.DEBUG)
+		#
+		# # create console handler and set level to debug
+		# ch = logging.StreamHandler()
+		# ch.setLevel(logging.DEBUG)
+		#
+		# # create formatter
+		# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+		#
+		# # add formatter to ch
+		# ch.setFormatter(formatter)
+		# handler.setFormatter(formatter)
+		# # add ch to logger
+		# self.logger.addHandler(ch)
+		# self.logger.addHandler(handler)
+
+		self.logger.debug("%s __init__", self.__class__.__name__)
+
+	def createLogger(self,loggename,handler):
+
+		#handler = handlers.TimedRotatingFileHandler(filename=loggename + ".txt", when='D')
+		self.loggename = loggename
 		# create logger
 		self.logger = logging.getLogger(loggename)
 		self.logger.setLevel(logging.DEBUG)
@@ -42,8 +71,8 @@ class BaseClient():
 		# add ch to logger
 		self.logger.addHandler(ch)
 		self.logger.addHandler(handler)
+		return self.logger
 
-		self.logger.debug("%s __init__", self.__class__.__name__)
 
 	def doRun(self):
 		None
@@ -83,9 +112,8 @@ class HTTPCLient369(BaseClient):
 
 
 
-
-	def __init__(self):
-		self.init('show369')
+	def __init__(self,handler):
+		self.init('show369',handler)
 		print('__init__')
 		d = datetime.datetime.now()
 		self.dstfile = 'list.' + d.strftime('%Y%m%d') + '.txt'
@@ -304,8 +332,8 @@ class GetLateestWebtoon(BaseClient):
 	urlUpdateTopIds = "http://localhost/webtoon/webtoon.php?option=updatetopids"
 	isAll = True
 
-	def __init__(self):
-		self.init('webtoon')
+	def __init__(self,handler):
+		self.init('webtoon',handler)
 		print('GetLateestWebtoon')
 
 	#
@@ -433,6 +461,7 @@ class LoopProcess(BaseClient):
 
 	def __init__(self,waittime,unittime):
 		super(LoopProcess, self).__init__('LoopProcess')
+
 		self.waittime = waittime
 		self.unittime =unittime
 		self.logger.info("LoopProcess waittime:{0} min".format(waittime))
@@ -444,8 +473,8 @@ class LoopProcess(BaseClient):
 
 		self.maxtime = self.waittime * 60
 		self.takentime = self.maxtime+1
-		handle369 = HTTPCLient369()
-		handleebtoon = GetLateestWebtoon()
+		handle369 = HTTPCLient369(self.handler)
+		handleebtoon = GetLateestWebtoon(self.handler)
 
 		listHandler = [handle369,handleebtoon]
 		start = -1*self.maxtime;
@@ -462,7 +491,7 @@ class LoopProcess(BaseClient):
 						self.logger.info("RUN CLASSNAME:{0} ".format(tmp.__class__))
 						tmp.Run();
 					except:
-						self.logger.fatal("{0}  ValueError:{1}  \n".format(tmp.__name__,0))
+						self.logger.debug("{0}  ValueError:{1}  \n".format(tmp.__name__,0))
 				continue
 
 			time.sleep(self.unittime)
