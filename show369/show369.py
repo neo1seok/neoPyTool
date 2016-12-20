@@ -14,7 +14,7 @@ import collections
 from logging import handlers
 import neolib.neolib as neolib
 
-
+import hashlib
 
 
 class BaseClient():
@@ -76,6 +76,7 @@ class BaseClient():
 
 	def doRun(self):
 		None
+
 	def procExcept(self,ex):
 		print(ex)
 		self.logger.debug("except:%s",ex)
@@ -176,6 +177,11 @@ class HTTPCLient369(BaseClient):
 		#self.realarray = [vars[1] for vars in self.results if vars[2] == '' or vars[1] in [ self.dayimg ,self.nightimg] ]
 
 		self.ids = ','.join(self.realarray)
+		m = hashlib.sha256()
+		m.update(self.ids.encode())
+		reshash = m.digest()
+
+		self.hashuids = neolib.ByteArray2HexString(reshash)
 		self.logger.debug("ids : %s", self.ids)
 
 	def makeProfile(self):
@@ -212,7 +218,9 @@ class HTTPCLient369(BaseClient):
 		mapFinal = {}
 
 		mapFinal['ids'] = self.realarray
+		mapFinal['hashuids'] = self.hashuids
 		mapFinal['profile'] = self.mapProfile
+
 
 		injson = json.dumps(mapFinal, ensure_ascii=False)
 		self.logger.debug("injson : %s", injson)
