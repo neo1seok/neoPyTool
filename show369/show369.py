@@ -491,7 +491,7 @@ class LoopProcess(BaseClient):
 
 			self.takentime = self.getCurTime() - start;
 			#self.logger.debug("%d %d %d",self.getCurTime(),self.takentime,start)
-			self.logger.debug("LOOP tktime:{0} {1}".format(self.takentime, self.maxtime))
+			self.logger.debug("LOOP VER:{2} tktime:{0} {1} ".format(self.takentime, self.maxtime,self.version))
 
 			if self.takentime > self.maxtime:
 				start = self.getCurTime()
