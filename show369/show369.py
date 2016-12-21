@@ -466,13 +466,14 @@ class LoopProcess(BaseClient):
 	takentime = 1
 	maxtime = 1;
 	unittime = 10;
+	version = 1.0
 
 	def __init__(self,waittime,unittime):
 		super(LoopProcess, self).__init__('LoopProcess')
 
 		self.waittime = waittime
 		self.unittime =unittime
-		self.logger.info("LoopProcess waittime:{0} min".format(waittime))
+		self.logger.info("LoopProcess waittime:{0} min VER:{1}".format(waittime,self.version))
 
 
 	def getCurTime(self):

@@ -48,7 +48,10 @@ import urllib.request
 from Crypto.Hash import SHA256
 
 #import winrandom
+import sysconfig
+print(sysconfig.get_config_vars())
 
+exit()
 str = neolib.StrFromFile('rsc/계좌.txt')
 lines = str.split('\r\n')
 listlist = [ [cols for cols in tmp.split('\t')  ] for tmp in str.split('\r\n') ]
