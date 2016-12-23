@@ -5,9 +5,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # get local machine name
 #host = socket.gethostname()
-host = "192.168.0.76"
+host = "192.168.0.103"
 
-port = 5510
+#port = 5510
+port = 51717
 
 # connection to hostname on the port.
 s.connect((host, port))
