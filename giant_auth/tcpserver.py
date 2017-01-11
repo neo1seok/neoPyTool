@@ -4,7 +4,7 @@ import neolib.neolib as neolib
 import http
 import  simplejson as json
 import socket
-
+import http.client
 # create a socket object
 class HandleClient:
 	def __init__(self):
@@ -25,8 +25,8 @@ class HandleClient:
 
 		}
 		#conn = http.client.HTTPConnection('localhost:8080')
-
 		self.conn = http.client.HTTPConnection('localhost:8080')
+
 
 	def reqGet(self,mapvValue):
 		jsonbase = json.dumps({"cmd": self.cmdname, "mapvValue": mapvValue})
@@ -169,8 +169,8 @@ class HandleClient:
 		dres = self.doProc(self.maketoBuff(0x15,neolib.HexString2ByteArray("EF3540954ED55F6F10C5173CB6EC27E5")))
 
 
-HandleClient().Test()
-exit()
+#HandleClient().Test()
+#exit()
 
 serversocket = socket.socket(
 			socket.AF_INET, socket.SOCK_STREAM)
@@ -190,7 +190,7 @@ while True:
 	# establish a connection
 	print('waiting')
 	clientsocket,addr = serversocket.accept()
-	handle = HandleClient(0)
+	handle = HandleClient()
 	print("Got a connection from %s" % str(addr))
 	while True:
 		try:
@@ -199,6 +199,7 @@ while True:
 
 			if buff == b'':
 				break
+
 			handle.doProc(buff)
 
 
