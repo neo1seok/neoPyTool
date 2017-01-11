@@ -200,17 +200,15 @@ while True:
 			if buff == b'':
 				break
 
-			handle.doProc(buff)
+			sndbuff = handle.doProc(buff)
 
-
-
-
+			print(sndbuff)
 
 
 
 
 			time.sleep(0.1)
-			clientsocket.send(buff)
+			clientsocket.send(sndbuff)
 			time.sleep(0.1)
 		except Exception as ext:
 			print(ext)
