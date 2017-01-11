@@ -8,7 +8,7 @@ serversocket = socket.socket(
 # get local machine name
 host = '0.0.0.0'
 
-port = 9999
+port = 5511
 
 # bind to the port
 serversocket.bind((host, port))
@@ -20,8 +20,18 @@ while True:
 	# establish a connection
 	print('waiting')
 	clientsocket,addr = serversocket.accept()
-
 	print("Got a connection from %s" % str(addr))
-	currentTime = time.ctime(time.time()) + "\r\n"
-	clientsocket.send(currentTime.encode('ascii'))
+	while True:
+		try:
+			buff = clientsocket.recv(128)
+			print(buff)
+			if buff == b'':
+				break
+
+			time.sleep(0.1)
+			clientsocket.send(buff)
+			time.sleep(0.1)
+		except Exception as ext:
+			print(ext)
+			break
 	clientsocket.close()
