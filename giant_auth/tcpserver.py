@@ -152,10 +152,10 @@ class HandleClient:
 
 		mac = data[0:32]
 		self.mapSrv = self.reqGet({"uid":self.uid,"mac": neolib.ByteArray2HexString(mac)})
-		bupdate = b'0x00'
+		bupdate = b'\x00'
 
 		if self.mapSrv["result"] == "OK" and self.mapSrv['update'] == 'OK':
-			bupdate = b'0x01'
+			bupdate = b'\x01'
 
 
 		return bupdate
