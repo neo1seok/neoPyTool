@@ -35,7 +35,7 @@ class HandleClient:
 		self.logger.debug("%s __init__", self.__class__.__name__)
 
 		#self.conn = http.client.HTTPConnection('localhost:8080')
-		self.conn = http.client.HTTPConnection('35.163.249.213:8080')
+
 
 	def createLogger(self,loggename,handler):
 
@@ -253,6 +253,7 @@ class HandleClient:
 			clientsocket, addr = serversocket.accept()
 			#handle = HandleClient()
 			self.logger.debug("Got a connection from %s" % str(addr))
+			self.conn = http.client.HTTPConnection('localhost:8080')
 			while True:
 				try:
 					buff = clientsocket.recv(1024)
@@ -271,6 +272,7 @@ class HandleClient:
 				except Exception as ext:
 					self.logger.error("while",ext)
 					break
+			self.conn.close()
 			clientsocket.close()
 
 
@@ -278,4 +280,3 @@ class HandleClient:
 #HandleClient().Test()
 HandleClient().RunServer()
 exit()
-
