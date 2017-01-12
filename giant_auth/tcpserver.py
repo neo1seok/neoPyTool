@@ -250,6 +250,7 @@ class HandleClient:
 
 
 
-HandleClient().Test()
+#HandleClient().Test()
+HandleClient().RunServer()
 exit()
 
