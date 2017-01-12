@@ -186,7 +186,12 @@ class HandleClient:
 		stx, size, icmd, data, etx, lrc = self.parseFromBuff(buff)
 		processer = self.mapProc[icmd][0]
 		self.cmdname = self.mapProc[icmd][1]
-		resdata = processer(data)
+		resdata = b''
+		try:
+			resdata = processer(data)
+		except Exception as ext:
+			self.logger.error("%s",ext)
+
 		self.bresult = self.processResult(self.mapSrv)
 
 
@@ -195,7 +200,7 @@ class HandleClient:
 	def Test(self):
 
 
-		dres = self.doProc(self.maketoBuff(0x10,neolib.HexString2ByteArray("4C4722334455667747")))
+		dres = self.doProc(self.maketoBuff(0x10,neolib.HexString2ByteArray("4C472233445566774a")))
 		dres = self.doProc(self.maketoBuff(0x11,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
 		dres = self.doProc(self.maketoBuff(0x12,b''))
 		dres = self.doProc(self.maketoBuff(0x13,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
