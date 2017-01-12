@@ -19,8 +19,8 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # get local machine name
 #host = socket.gethostname()
-host = 'localhost'
-#host = "35.163.249.213"
+#host = 'localhost'
+host = "35.163.249.213"
 
 port = 5510
 #port = 51717
