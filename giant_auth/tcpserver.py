@@ -201,9 +201,15 @@ class HandleClient:
 
 	def NotyAppkeyresult(self,data):
 		self.logger.debug('NotyAppkeyresult')
-		result = data[0:1]
+		result = ""
+		if int.from_bytes(data[0:1], byteorder='big') == 0:
+			result = "OK"
 
-		self.mapSrv = self.reqGet({"uid":self.uid,"appid": neolib.ByteArray2HexString(result)})
+		mapa = {"uid": self.uid , "result": result}
+
+		self.mapSrv = self.reqGet(mapa)
+
+		return b''
 
 
 	def doProc(self,buff):
@@ -253,7 +259,7 @@ class HandleClient:
 
 		# queue up to 5 requests
 		serversocket.listen(5)
-
+		self.uid = ""
 		while True:
 			# establish a connection
 			self.logger.debug('waiting')
@@ -264,6 +270,15 @@ class HandleClient:
 			while True:
 				try:
 					buff = clientsocket.recv(1024)
+
+
+					#stx = int.from_bytes(buff[0:1], byteorder='big')
+					#size = int.from_bytes(buff[1:3], byteorder='big')
+
+					#remainbuff = clientsocket.recv(size)
+
+					#buff += remainbuff
+
 					self.logger.debug(neolib.ByteArray2HexString(buff))
 
 					if buff == b'':

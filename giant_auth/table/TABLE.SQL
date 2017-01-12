@@ -40,6 +40,7 @@ CREATE TABLE `session` (
 	`seq` int(11) NOT NULL COMMENT '순번',
 	`ssn_uid` varchar(20) NOT NULL COMMENT '고유 아이디',
 	`chp_uid` varchar(20) DEFAULT NULL COMMENT '',
+	`msk_uid` varchar(20) DEFAULT NULL COMMENT '',
 	`latest_msk_uid` varchar(20) DEFAULT NULL COMMENT '',
 	`challenge` varchar(64) DEFAULT NULL COMMENT '',
 	`hostchallenge` varchar(40) DEFAULT NULL COMMENT '',

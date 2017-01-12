@@ -72,15 +72,19 @@ s.connect((host, port))
 
 #s.send('test'.encode())
 # Receive no more than 1024 bytes
-buff = neolib.HexString2ByteArray('02000A104C47150000000000470340')
-s.send(buff)
-rbuff = s.recv(1024)
 
 
 
 procReqServ(0x10,"4C4715000000000047")
 #procReqServ(0x10,"4C4722334455667747")
 time.sleep(1)
+
+buff = neolib.HexString2ByteArray('02000216000317')
+s.send(buff)
+rbuff = s.recv(1024)
+print(rbuff)
+time.sleep(10)
+
 
 #procReqServ(0x11,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
 # procReqServ(0x12,"")
