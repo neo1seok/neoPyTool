@@ -1,4 +1,4 @@
-
+import sys
 import time
 import neolib.neolib as neolib
 import http
@@ -34,7 +34,8 @@ class HandleClient:
 		self.logger = self.createLogger("tcp_giant_auth", self.handler)
 		self.logger.debug("%s __init__", self.__class__.__name__)
 
-		self.conn = http.client.HTTPConnection('localhost:8080')
+		#self.conn = http.client.HTTPConnection('localhost:8080')
+		self.conn = http.client.HTTPConnection('35.163.249.213:8080')
 
 	def createLogger(self,loggename,handler):
 
@@ -206,8 +207,14 @@ class HandleClient:
 		resdata = b''
 		try:
 			resdata = processer(data)
+		except IOError as e:
+			self.logger.error("I/O error({0}): {1}".format(e.errno, e.strerror))
+		except ValueError:
+			self.logger.error("Could not convert data to an integer.")
 		except Exception as ext:
-			self.logger.error("%s",ext)
+			self.logger.error("doProc:%s", ext)
+		except:
+			self.logger.error("Unexpected error:", sys.exc_info()[0])
 
 		self.bresult = self.processResult(self.mapSrv)
 
@@ -217,8 +224,8 @@ class HandleClient:
 	def Test(self):
 
 
-		dres = self.doProc(self.maketoBuff(0x10,neolib.HexString2ByteArray("4C472233445566774a")))
-		dres = self.doProc(self.maketoBuff(0x10, neolib.HexString2ByteArray("4C4722334455667747")))
+		dres = self.doProc(self.maketoBuff(0x10,neolib.HexString2ByteArray("4C4715000000000047")))
+		#dres = self.doProc(self.maketoBuff(0x10, neolib.HexString2ByteArray("4C4722334455667747")))
 		# dres = self.doProc(self.maketoBuff(0x11,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
 		# dres = self.doProc(self.maketoBuff(0x12,b''))
 		# dres = self.doProc(self.maketoBuff(0x13,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
@@ -262,13 +269,13 @@ class HandleClient:
 					clientsocket.send(sndbuff)
 					time.sleep(0.1)
 				except Exception as ext:
-					self.logger.debug(ext)
+					self.logger.error("while",ext)
 					break
 			clientsocket.close()
 
 
 
-#HandleClient().Test()
-HandleClient().RunServer()
+HandleClient().Test()
+#HandleClient().RunServer()
 exit()
 
