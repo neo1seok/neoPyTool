@@ -62,7 +62,7 @@ class HandleClient:
 
 	def reqGet(self,mapvValue):
 		jsonbase = json.dumps({"cmd": self.cmdname, "mapvValue": mapvValue})
-		strrequest = "/giant_auth/auth?cmd=CMDBYJSON_ROW&type=debug&jsonbase64={0}".format(jsonbase)
+		strrequest = "/giant_auth/auth?cmd=CMDBYJSON_ROW&type=''&jsonbase64={0}".format(jsonbase)
 		strrequest = strrequest.replace(" ","")
 		print(strrequest)
 		self.logger.debug("strrequest:%s", strrequest)
