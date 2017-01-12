@@ -187,8 +187,11 @@ class HandleClient:
 		self.logger.debug('ReqAppKey')
 		appid = data[0:16]
 		self.mapSrv = self.reqGet({"uid":self.uid,"appid": neolib.ByteArray2HexString(appid)})
-
-		bdata = neolib.HexString2ByteArray(self.mapSrv['data'])
+		bdata = b''
+		bdata += neolib.HexString2ByteArray(self.mapSrv['app_id'])
+		bdata += neolib.HexString2ByteArray(self.mapSrv['IV'])
+		bdata += neolib.HexString2ByteArray(self.mapSrv['Cipher'])
+		bdata += neolib.HexString2ByteArray(self.mapSrv['mac'])
 
 
 		return bdata
@@ -198,6 +201,7 @@ class HandleClient:
 		result = data[0:1]
 
 		self.mapSrv = self.reqGet({"uid":self.uid,"appid": neolib.ByteArray2HexString(result)})
+
 
 	def doProc(self,buff):
 		self.bresult = b'\x00'
