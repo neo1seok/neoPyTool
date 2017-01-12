@@ -190,7 +190,7 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 	def doEnd(self):
 		self.conn.close()
 	def reqGet(self,conn,jsonbase):
-		strrequest = "/giant_auth/auth?cmd=CMDBYJSON_ROW&jsonbase64={0}".format(jsonbase)
+		strrequest = "/giant_auth/auth?cmd=CMDBYJSON_ROW&type=debug&jsonbase64={0}".format(jsonbase)
 		strrequest = strrequest.replace(" ","")
 		print(strrequest)
 		conn.request("GET", strrequest)
@@ -208,15 +208,20 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		print(conn);
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","mapvValue":{"sn":"4C4722334455667747"}}')
-		uid = 'ssn_16'#//mapvValue["uid"]
+		uid = 'ssn_1'#//mapvValue["uid"]
 		challenge = mapvValue["challenge"]
 		print(challenge)
 
 		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","mapvValue":{"uid":uid,"mac":"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5"} }))
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_HOSTCHALLENGE", "mapvValue": {"uid": uid}}))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_APP_KEY", "mapvValue": {"uid": uid,
+																						 "appid": "14A148EF48A7863A930BEF984C6411EA"}}))
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "mapvValue": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
+
+
+		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_HOSTCHALLENGE", "mapvValue": {"uid": uid}}))
+
+		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "mapvValue": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
 
 
 

@@ -18,7 +18,8 @@ class HandleClient:
 			0x12: (self.ReqHostchallenge, "REQ_HOSTCHALLENGE"),
 			0x13: (self.ReqUpdateinfo, "REQ_UPDATEINFO"),
 			0x14: (self.NotyUpdateresult, "NOTY_UPDATERESULT"),
-			0x15: (self.ReqTransferData, "REQ_TRANSFER_DATA")
+			0x15: (self.ReqAppKey, "REQ_APP_KEY"),
+			0x16: (self.NotyAppkeyresult, "NOTY_APPKEYRESULT"),
 
 		}
 
@@ -83,7 +84,7 @@ class HandleClient:
 
 	def maketoBuff(self,icmd,data):
 		resbuff = b"\x02"
-		resbuff += len(data).to_bytes(2,byteorder='big')
+		resbuff += (len(data)+1).to_bytes(2,byteorder='big')
 		resbuff += icmd.to_bytes(1, byteorder='big')
 		resbuff += data
 		resbuff += b"\x03"
@@ -91,6 +92,8 @@ class HandleClient:
 
 		return resbuff
 
+	def subStrin(selfb,buff,st,length):
+		return buff[st:st+length],st+length
 
 	def parseFromBuff(self,buff):
 		print(neolib.ByteArray2HexString(buff))
@@ -104,9 +107,11 @@ class HandleClient:
 		print(size)
 		cmd = buff[3:4]
 		icmd = int.from_bytes(cmd, byteorder='big')
-		data = buff[4:4+size]
-		etx = buff[4 + size:4 + size+1]
-		lrc = buff[4 + size+1:4 + size+2]
+		idx = 4
+		data,idx = self.subStrin(buff,idx,size-1)
+		etx, idx = self.subStrin(buff, idx,1)
+		lrc, idx = self.subStrin(buff, idx, 1)
+
 		self.logger.debug("%s", "{0},{1},{2},{3},".format(stx,icmd,etx,lrc))
 		self.logger.debug("DATA:%s",neolib.ByteArray2HexString(data))
 		return 	stx,size,icmd,data,etx,lrc
@@ -115,7 +120,7 @@ class HandleClient:
 		result = mapSrv['result']
 		error = mapSrv['error']
 		if result == 'OK':
-			return b'0x0';
+			return neolib.HexString2ByteArray("00")
 
 		if error in self.mapErro:
 			err = self.mapErro[error]
@@ -134,7 +139,11 @@ class HandleClient:
 
 		self.mapSrv = self.reqGet({"sn": neolib.ByteArray2HexString(sn)})
 		self.uid = self.mapSrv['uid']
+		result = self.mapSrv['result']
+
 		bchallenge = neolib.HexString2ByteArray(self.mapSrv['challenge'])
+
+
 		return bchallenge
 
 	def Authentication(self,data):
@@ -163,7 +172,7 @@ class HandleClient:
 		self.mapSrv = self.reqGet({"uid":self.uid,"gen_nonce": neolib.ByteArray2HexString(gen_nonce)})
 
 		bwrite_code = neolib.HexString2ByteArray(self.mapSrv['write_code'])
-		bmac = neolib.HexString2ByteArray(self.mapSrv['mac_write'])
+		bmac = neolib.HexString2ByteArray(self.mapSrv['mac'])
 
 		return bwrite_code+bmac
 	def NotyUpdateresult(self,data):
@@ -173,16 +182,24 @@ class HandleClient:
 		self.mapSrv = self.reqGet({"uid":self.uid,"result": neolib.ByteArray2HexString(result)})
 
 		return b''
-	def ReqTransferData(self,data):
-		self.logger.debug('ReqTransferData')
+	def ReqAppKey(self,data):
+		self.logger.debug('ReqAppKey')
 		appid = data[0:16]
 		self.mapSrv = self.reqGet({"uid":self.uid,"appid": neolib.ByteArray2HexString(appid)})
 
 		bdata = neolib.HexString2ByteArray(self.mapSrv['data'])
 
+
 		return bdata
+
+	def NotyAppkeyresult(self,data):
+		self.logger.debug('NotyAppkeyresult')
+		result = data[0:1]
+
+		self.mapSrv = self.reqGet({"uid":self.uid,"appid": neolib.ByteArray2HexString(result)})
+
 	def doProc(self,buff):
-		bresult = b'00'
+		self.bresult = b'\x00'
 		stx, size, icmd, data, etx, lrc = self.parseFromBuff(buff)
 		processer = self.mapProc[icmd][0]
 		self.cmdname = self.mapProc[icmd][1]
@@ -195,17 +212,18 @@ class HandleClient:
 		self.bresult = self.processResult(self.mapSrv)
 
 
-		return self.maketoBuff(icmd,bresult+resdata)
+		return self.maketoBuff(icmd,self.bresult+resdata)
 
 	def Test(self):
 
 
 		dres = self.doProc(self.maketoBuff(0x10,neolib.HexString2ByteArray("4C472233445566774a")))
-		dres = self.doProc(self.maketoBuff(0x11,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
-		dres = self.doProc(self.maketoBuff(0x12,b''))
-		dres = self.doProc(self.maketoBuff(0x13,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
-		dres = self.doProc(self.maketoBuff(0x14,neolib.HexString2ByteArray("01")))
-		dres = self.doProc(self.maketoBuff(0x15,neolib.HexString2ByteArray("EF3540954ED55F6F10C5173CB6EC27E5")))
+		dres = self.doProc(self.maketoBuff(0x10, neolib.HexString2ByteArray("4C4722334455667747")))
+		# dres = self.doProc(self.maketoBuff(0x11,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
+		# dres = self.doProc(self.maketoBuff(0x12,b''))
+		# dres = self.doProc(self.maketoBuff(0x13,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
+		# dres = self.doProc(self.maketoBuff(0x14,neolib.HexString2ByteArray("01")))
+		# dres = self.doProc(self.maketoBuff(0x15,neolib.HexString2ByteArray("EF3540954ED55F6F10C5173CB6EC27E5")))
 
 	def RunServer(self):
 		serversocket = socket.socket(
@@ -226,19 +244,19 @@ class HandleClient:
 			# establish a connection
 			self.logger.debug('waiting')
 			clientsocket, addr = serversocket.accept()
-			handle = HandleClient()
+			#handle = HandleClient()
 			self.logger.debug("Got a connection from %s" % str(addr))
 			while True:
 				try:
 					buff = clientsocket.recv(1024)
-					self.logger.debug(buff)
+					self.logger.debug(neolib.ByteArray2HexString(buff))
 
 					if buff == b'':
 						break
 
-					sndbuff = handle.doProc(buff)
+					sndbuff = self.doProc(buff)
 
-					self.logger.debug(sndbuff)
+					self.logger.debug(neolib.ByteArray2HexString(sndbuff))
 
 					time.sleep(0.1)
 					clientsocket.send(sndbuff)
