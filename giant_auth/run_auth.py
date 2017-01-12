@@ -208,20 +208,21 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		print(conn);
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","mapvValue":{"sn":"4C4722334455667747"}}')
-		uid = 'ssn_1'#//mapvValue["uid"]
+		uid = "ssn_21"#mapvValue["uid"]
 		challenge = mapvValue["challenge"]
 		print(challenge)
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","mapvValue":{"uid":uid,"mac":"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5"} }))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","mapvValue":{"uid":uid,"mac":"0AF158FA6F0D76C5FB2AFCACC2268AF2C2E3449C1D3C292F5265AC2AE4306445"} }))
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_APP_KEY", "mapvValue": {"uid": uid,
-																						 "appid": "14A148EF48A7863A930BEF984C6411EA"}}))
-
+		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_APP_KEY", "mapvValue": {"uid": uid,"appid": "14A148EF48A7863A930BEF984C6411EA"}}))
 
 
-		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_HOSTCHALLENGE", "mapvValue": {"uid": uid}}))
 
-		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "mapvValue": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
+
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_HOSTCHALLENGE", "mapvValue": {"uid": uid}}))
+
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "mapvValue": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "NOTY_UPDATERESULT", "mapvValue": {"uid": uid,"result": "OK"}}))
 
 
 

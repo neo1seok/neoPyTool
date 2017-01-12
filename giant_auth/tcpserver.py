@@ -178,9 +178,12 @@ class HandleClient:
 		return bwrite_code+bmac
 	def NotyUpdateresult(self,data):
 		self.logger.debug('NotyUpdateresult')
-		result = data[0:1]
+		result = ""
+		if int.from_bytes(data[0:1],byteorder='big') == 0:
+			result = "OK"
 
-		self.mapSrv = self.reqGet({"uid":self.uid,"result": neolib.ByteArray2HexString(result)})
+
+		self.mapSrv = self.reqGet({"uid":self.uid,"result":result})
 
 		return b''
 	def ReqAppKey(self,data):
