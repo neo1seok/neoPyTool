@@ -275,7 +275,7 @@ class HandleClient:
 
 
 
-HandleClient().Test()
-#HandleClient().RunServer()
+#HandleClient().Test()
+HandleClient().RunServer()
 exit()
 
