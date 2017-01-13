@@ -204,8 +204,8 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 	def doRun(self):
 
-		conn = http.client.HTTPConnection('localhost:8080')
-		#conn = http.client.HTTPConnection('35.163.249.213:8080')
+		#conn = http.client.HTTPConnection('localhost:8080')
+		conn = http.client.HTTPConnection('35.163.249.213:8080')
 		print(conn);
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"4C4715000000000047","masterkey_ver":"0"}}')
@@ -216,7 +216,7 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":"E64E53710C8FBEFF5642A8D0525450D41606379CA22356E23761AB2A8DB01B37"} }))
 
-		return
+		#return
 
 		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_APP_KEY", "mapvValue": {"uid": uid,"appid": "14A148EF48A7863A930BEF984C6411EA"}}))
 

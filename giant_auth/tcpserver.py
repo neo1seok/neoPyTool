@@ -7,11 +7,13 @@ import socket
 import http.client
 import requests
 import logging
+import threading
 from logging import handlers
 
 # create a socket object
+
 class HandleClient:
-	def __init__(self):
+	def __init__(self,clientsocket,logger):
 		self.mapProc = {
 			0x10: (self.ReqStartSession, "REQ_START_SESSION"),
 			0x11: (self.Authentication, "AUTHENTICATION"),
@@ -29,36 +31,10 @@ class HandleClient:
 			"NO_MASTERKEY": 0xf2,
 
 		}
-		#conn = http.client.HTTPConnection('localhost:8080')
-		self.handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
-		self.logger = self.createLogger("tcp_giant_auth", self.handler)
-		self.logger.debug("%s __init__", self.__class__.__name__)
+		self.logger = logger
+		self.clientsocket =clientsocket
+		self.conn = http.client.HTTPConnection('localhost:8080')
 
-		#self.conn = http.client.HTTPConnection('localhost:8080')
-
-
-	def createLogger(self,loggename,handler):
-
-		#handler = handlers.TimedRotatingFileHandler(filename=loggename + ".txt", when='D')
-		self.loggename = loggename
-		# create logger
-		self.logger = logging.getLogger(loggename)
-		self.logger.setLevel(logging.DEBUG)
-
-		# create console handler and set level to debug
-		ch = logging.StreamHandler()
-		ch.setLevel(logging.DEBUG)
-
-		# create formatter
-		formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-		# add formatter to ch
-		ch.setFormatter(formatter)
-		handler.setFormatter(formatter)
-		# add ch to logger
-		self.logger.addHandler(ch)
-		self.logger.addHandler(handler)
-		return self.logger
 
 	def reqGet(self,params):
 		jsonbase = json.dumps({"cmd": self.cmdname, "params": params})
@@ -250,6 +226,33 @@ class HandleClient:
 		# dres = self.doProc(self.maketoBuff(0x14,neolib.HexString2ByteArray("01")))
 		# dres = self.doProc(self.maketoBuff(0x15,neolib.HexString2ByteArray("EF3540954ED55F6F10C5173CB6EC27E5")))
 		self.conn.close()
+	def RunClient(self):
+		self.conn = http.client.HTTPConnection('localhost:8080')
+		while True:
+			try:
+				buff = self.clientsocket.recv(1024)
+
+				self.logger.debug(neolib.ByteArray2HexString(buff))
+
+				if buff == b'':
+					break
+
+				sndbuff = self.doProc(buff)
+
+				self.logger.debug(neolib.ByteArray2HexString(sndbuff))
+
+				time.sleep(0.1)
+				self.clientsocket.send(sndbuff)
+				time.sleep(0.1)
+			except Exception as ext:
+				self.logger.error("while")
+				raise
+				break
+
+		self.conn.close()
+		#self.clientsocket.close()
+
+
 
 	def RunServer(self):
 		serversocket = socket.socket(
@@ -272,39 +275,80 @@ class HandleClient:
 			clientsocket, addr = serversocket.accept()
 			#handle = HandleClient()
 			self.logger.debug("Got a connection from %s" % str(addr))
-			self.conn = http.client.HTTPConnection('localhost:8080')
-			while True:
-				try:
-					buff = clientsocket.recv(1024)
 
 
-					#stx = int.from_bytes(buff[0:1], byteorder='big')
-					#size = int.from_bytes(buff[1:3], byteorder='big')
 
-					#remainbuff = clientsocket.recv(size)
+class HandleServer:
+	def __init__(self):
+		# conn = http.client.HTTPConnection('localhost:8080')
+		self.handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
+		self.logger = self.createLogger("tcp_giant_auth", self.handler)
+		self.logger.debug("%s __init__", self.__class__.__name__)
 
-					#buff += remainbuff
-
-					self.logger.debug(neolib.ByteArray2HexString(buff))
-
-					if buff == b'':
-						break
-
-					sndbuff = self.doProc(buff)
-
-					self.logger.debug(neolib.ByteArray2HexString(sndbuff))
-
-					time.sleep(0.1)
-					clientsocket.send(sndbuff)
-					time.sleep(0.1)
-				except Exception as ext:
-					self.logger.error("while",ext)
-					break
-			self.conn.close()
-			clientsocket.close()
+	# self.conn = http.client.HTTPConnection('localhost:8080')
 
 
+	def createLogger(self, loggename, handler):
+		# handler = handlers.TimedRotatingFileHandler(filename=loggename + ".txt", when='D')
+		self.loggename = loggename
+		# create logger
+		self.logger = logging.getLogger(loggename)
+		self.logger.setLevel(logging.DEBUG)
+
+		# create console handler and set level to debug
+		ch = logging.StreamHandler()
+		ch.setLevel(logging.DEBUG)
+
+		# create formatter
+		formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+		# add formatter to ch
+		ch.setFormatter(formatter)
+		handler.setFormatter(formatter)
+		# add ch to logger
+		self.logger.addHandler(ch)
+		self.logger.addHandler(handler)
+		return self.logger
+	def worker(self,clientsocket, addr,idx):
+
+		handleClient = HandleClient(clientsocket,self.logger)
+		handleClient.RunClient();
+		del (self.threads[idx])
+		self.clientsocket.close()
+		#self.threads.remove(t)
+
+
+
+
+		None
+
+
+	def RunServer(self):
+		idx = 0
+		self.threads = {}
+		serversocket = socket.socket(
+			socket.AF_INET, socket.SOCK_STREAM)
+		# get local machine name
+		host = '0.0.0.0'
+		port = 5510
+		# bind to the port
+		serversocket.bind((host, port))
+		# queue up to 5 requests
+		serversocket.listen(50)
+
+		while True:
+			# establish a connection
+			self.logger.debug('waiting')
+			self.clientsocket, addr = serversocket.accept()
+			#handle = HandleClient()
+			self.logger.debug("Got a connection from %s , thread num:%d" % (str(addr),len(self.threads)+1))
+			t = threading.Thread(target=self.worker,args= (self.clientsocket, addr,idx))
+			self.logger.debug(t)
+			self.threads[idx]= t
+			t.start()
+			idx += 1
 
 #HandleClient().Test()
-HandleClient().RunServer()
+#HandleClient().RunServer()
+HandleServer().RunServer()
 exit()
