@@ -190,7 +190,7 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 	def doEnd(self):
 		self.conn.close()
 	def reqGet(self,conn,jsonbase):
-		strrequest = "/giant_auth/auth?cmd=CMDBYJSON_ROW&type=debug&jsonbase64={0}".format(jsonbase)
+		strrequest = "/giant_auth/auth?json={0}".format(jsonbase)
 		strrequest = strrequest.replace(" ","")
 		print(strrequest)
 		conn.request("GET", strrequest)
@@ -200,7 +200,7 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		data1 = resp.read()
 		print(data1.decode())
 		res = json.loads(data1.decode());
-		return res['mapvValue']
+		return res['params']
 
 	def doRun(self):
 
@@ -208,13 +208,13 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		#conn = http.client.HTTPConnection('35.163.249.213:8080')
 		print(conn);
 
-		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","mapvValue":{"sn":"4C4715000000000047","masterkey_ver":"0"}}')
+		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"4C4715000000000047","masterkey_ver":"0"}}')
 		#uid = "ssn_31"#mapvValue["uid"]
 		uid = mapvValue["uid"]
 		challenge = mapvValue["challenge"]
 		print(challenge)
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","mapvValue":{"uid":uid,"mac":"E64E53710C8FBEFF5642A8D0525450D41606379CA22356E23761AB2A8DB01B37"} }))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":"E64E53710C8FBEFF5642A8D0525450D41606379CA22356E23761AB2A8DB01B37"} }))
 
 		return
 
@@ -223,10 +223,10 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_HOSTCHALLENGE", "mapvValue": {"uid": uid}}))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_HOSTCHALLENGE", "params": {"uid": uid}}))
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "mapvValue": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
-		mapvValue = self.reqGet(conn, json.dumps({"cmd": "NOTY_UPDATERESULT", "mapvValue": {"uid": uid,"result": "OK"}}))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "params": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd": "NOTY_UPDATERESULT", "params": {"uid": uid,"result": "OK"}}))
 
 
 

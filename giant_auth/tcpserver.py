@@ -60,9 +60,9 @@ class HandleClient:
 		self.logger.addHandler(handler)
 		return self.logger
 
-	def reqGet(self,mapvValue):
-		jsonbase = json.dumps({"cmd": self.cmdname, "mapvValue": mapvValue})
-		strrequest = "/giant_auth/auth?cmd=CMDBYJSON_ROW&type=''&jsonbase64={0}".format(jsonbase)
+	def reqGet(self,params):
+		jsonbase = json.dumps({"cmd": self.cmdname, "params": params})
+		strrequest = "/giant_auth/auth?json={0}".format(jsonbase)
 		strrequest = strrequest.replace(" ","")
 		print(strrequest)
 		self.logger.debug("strrequest:%s", strrequest)
@@ -75,7 +75,7 @@ class HandleClient:
 		print(data1.decode())
 		self.logger.debug("res:%s", data1.decode())
 		res = json.loads(data1.decode());
-		return res['mapvValue']
+		return res['params']
 
 	def LRC(self,buff,st,ed):
 		res = 0;
@@ -222,12 +222,17 @@ class HandleClient:
 			resdata = processer(data)
 		except IOError as e:
 			self.logger.error("I/O error({0}): {1}".format(e.errno, e.strerror))
+			return b''
 		except ValueError:
 			self.logger.error("Could not convert data to an integer.")
+			return b''
 		except Exception as ext:
 			self.logger.error("doProc:%s", ext)
+			return b''
 		except:
 			self.logger.error("Unexpected error:", sys.exc_info()[0])
+			return b''
+
 
 		self.bresult = self.processResult(self.mapSrv)
 
@@ -236,7 +241,7 @@ class HandleClient:
 
 	def Test(self):
 
-
+		self.conn = http.client.HTTPConnection('localhost:8080')
 		dres = self.doProc(self.maketoBuff(0x10,neolib.HexString2ByteArray("4C4715000000000047")))
 		#dres = self.doProc(self.maketoBuff(0x10, neolib.HexString2ByteArray("4C4722334455667747")))
 		# dres = self.doProc(self.maketoBuff(0x11,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
@@ -244,6 +249,7 @@ class HandleClient:
 		# dres = self.doProc(self.maketoBuff(0x13,neolib.HexString2ByteArray("14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")))
 		# dres = self.doProc(self.maketoBuff(0x14,neolib.HexString2ByteArray("01")))
 		# dres = self.doProc(self.maketoBuff(0x15,neolib.HexString2ByteArray("EF3540954ED55F6F10C5173CB6EC27E5")))
+		self.conn.close()
 
 	def RunServer(self):
 		serversocket = socket.socket(

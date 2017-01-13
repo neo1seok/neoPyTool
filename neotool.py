@@ -30,7 +30,7 @@ class BaseRunClass(neolib.NeoRunnableClasss):
 
 class SetClipBoard(BaseRunClass):
 	mapstr = {"greeting": "안녕하십니까? ICTK 신원석입니다.\r\n\r\n\r\n오늘도 좋은 하루 되십시오.\r\n감사합니다.",
-			  "greeting2": "툴RND팀 신원석입니다.\r\n\r\n\r\n수고하십시오.",
+			  "greeting2": "개발1실 신원석입니다.\r\n\r\n\r\n수고하십시오.",
 			  "deftype": "// 신원석(neo1seok) {0:%Y-%m-%d} : ".format(datetime.datetime.now())}
 
 	def doRun(self):
