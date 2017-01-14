@@ -5,7 +5,6 @@ import http
 import  simplejson as json
 import socket
 import http.client
-import requests
 import logging
 import threading
 from logging import handlers

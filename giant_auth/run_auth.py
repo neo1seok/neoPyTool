@@ -1,9 +1,8 @@
 import hashlib
 import base64
 import gzip
-
+import http.client
 import http
-import requests
 import socket
 
 import  simplejson as json
@@ -204,8 +203,9 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 	def doRun(self):
 
-		#conn = http.client.HTTPConnection('localhost:8080')
-		conn = http.client.HTTPConnection('35.163.249.213:8080')
+		conn = http.client.HTTPConnection('localhost:8080')
+		#conn = http.client.HTTPConnection('35.163.249.213:8080')
+		#conn = http.client.HTTPConnection('203.187.186.136:40480')
 		print(conn);
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"4C4715000000000047","masterkey_ver":"0"}}')
