@@ -5,8 +5,52 @@ import http.client
 import http
 import socket
 
+
 import  simplejson as json
 import neolib.neolib as neolib
+
+
+def HexStrSubStr(org, index, count):
+	return org[2 * index:2 * (index + count)]
+
+
+def DeriveKey(MasterKey, sectorID, SN):
+	if len(SN) != 9 * 2:
+		return "";
+
+	SN01 = HexStrSubStr(SN, 0, 2);
+	SN8 = HexStrSubStr(SN, 8, 1);
+
+	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(48) + SN;
+	return SHA256(shaInput)
+
+
+def ZeroHexStr(count):
+	return "00" * count;
+
+
+def CalcMAC(key, strChallenge, sectorID, SN):
+	if len(SN) != 9 * 2:
+		return "";
+
+	SN01 = HexStrSubStr(SN, 0, 2)
+	SN23 = HexStrSubStr(SN, 2, 2)
+	SN47 = HexStrSubStr(SN, 4, 4)
+	SN8 = HexStrSubStr(SN, 8, 1)
+
+	Zero11 = "0000000000000000000000";
+
+	shaInput = key + strChallenge + "0840" + sectorID + Zero11 + SN8 + SN47 + SN01 + SN23;
+
+	return SHA256(shaInput)
+
+
+def SHA256(shaInput):
+	m = hashlib.sha256()
+	m.update(neolib.HexString2ByteArray(shaInput))
+	reshash = m.digest()
+
+	return neolib.ByteArray2HexString(reshash)
 
 class TestGiant2ClientRunnable(neolib.NeoRunnableClasss):
 	sndjson = [
@@ -208,15 +252,21 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		#conn = http.client.HTTPConnection('203.187.186.136:40480')
 		print(conn);
 
-		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"4C4715000000000047","masterkey_ver":"0"}}')
+		sn = "4C4715000000000047"
+
+		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"%s","masterkey_ver":"0"}}'%sn)
+		challenge = mapvValue["challenge"]
+		derifiedKey = DeriveKey("66B6243D539EC04C96DDB6C2C9B109A977056C9D1061DF957955D43153E6F3A1", "0000", sn)
+		mac = CalcMAC(derifiedKey,challenge,"0000",sn)
+
 		#uid = "ssn_31"#mapvValue["uid"]
 		uid = mapvValue["uid"]
-		challenge = mapvValue["challenge"]
+
 		print(challenge)
 
-		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":"E64E53710C8FBEFF5642A8D0525450D41606379CA22356E23761AB2A8DB01B37"} }))
+		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":mac} }))
 
-		#return
+		return
 
 		#mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_APP_KEY", "mapvValue": {"uid": uid,"appid": "14A148EF48A7863A930BEF984C6411EA"}}))
 
@@ -227,11 +277,6 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 		mapvValue = self.reqGet(conn, json.dumps({"cmd": "REQ_UPDATEINFO", "params": {"uid": uid,"gen_nonce":"73FDDB80C9A738EBFABD52092CC8902AE42216C355A00808D5C6EE5D9FA9F500"}}))
 		mapvValue = self.reqGet(conn, json.dumps({"cmd": "NOTY_UPDATERESULT", "params": {"uid": uid,"result": "OK"}}))
-
-
-
-
-
 
 
 
