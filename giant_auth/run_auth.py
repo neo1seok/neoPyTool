@@ -12,6 +12,54 @@ import neolib.neolib as neolib
 
 
 
+def DeriveKey(MasterKey, sectorID, SN):
+	if len(SN) != 9 * 2:
+		return "";
+
+	SN01 = HexStrSubStr(SN, 0, 2);
+	SN8 = HexStrSubStr(SN, 8, 1);
+
+	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(25) + SN+ZeroHexStr(23);
+	return SHA256(shaInput)
+
+def DeriveKey_old(MasterKey, sectorID, SN):
+	if len(SN) != 9 * 2:
+		return "";
+
+	SN01 = HexStrSubStr(SN, 0, 2);
+	SN8 = HexStrSubStr(SN, 8, 1);
+
+	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(48) + SN;
+	return SHA256(shaInput)
+
+
+def ZeroHexStr(count):
+	return "00" * count;
+
+
+def CalcMAC(key, strChallenge, sectorID, SN):
+	if len(SN) != 9 * 2:
+		return "";
+
+	SN01 = HexStrSubStr(SN, 0, 2)
+	SN23 = HexStrSubStr(SN, 2, 2)
+	SN47 = HexStrSubStr(SN, 4, 4)
+	SN8 = HexStrSubStr(SN, 8, 1)
+
+	Zero11 = "0000000000000000000000";
+
+	shaInput = key + strChallenge + "0840" + sectorID + Zero11 + SN8 + SN47 + SN01 + SN23;
+
+	return SHA256(shaInput)
+
+
+def SHA256(shaInput):
+	m = hashlib.sha256()
+	m.update(neolib.HexString2ByteArray(shaInput))
+	reshash = m.digest()
+
+	return neolib.ByteArray2HexString(reshash)
+
 class TestGiant2ClientRunnable(neolib.NeoRunnableClasss):
 	sndjson = [
 		{"cmd": "REQ_SESSION", "crc16": "", "mapvValue": {}},
@@ -204,6 +252,7 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		print(data1.decode())
 		res = json.loads(data1.decode());
 		return res['params']
+	def calcMacFrmMstKey(self,sn,masterkey,challenge):
 
 	def doRun_test(self):
 		challenge = "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5"
@@ -224,6 +273,19 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 
 
+		#sn = "4C471F000000000047"
+		#challenge = "5AA45AA105ADBC28B58305DD7242F6EE28CB5351FA6ADE7C80D34725C22B373E"
+		derifiedKey = DeriveKey(masterkey, "0000", sn)
+		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
+		return mac
+		print(mac)
+
+		derifiedKey = DeriveKey_old("00112233445566778899AABBCCDDEEFFAFAEADACABAAA9A8A7A6A5A4A3A2A1A0", "0000", sn)
+		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
+		print(mac)
+
+
+
 	def doRun(self):
 
 
@@ -235,16 +297,17 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		sn = "4C4715000000000047"
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"%s"}}'%sn)
+
+
 		challenge = mapvValue["challenge"]
 		derifiedKey = commcalc.DeriveKey("78BB743DEA740DAF1ADEC5BC82729992DE59F90E0B4276D65DB18DFEED500F3E", "0000", sn)
 		mac = commcalc.CalcMAC(derifiedKey,challenge,"0000",sn)
 
-		#uid = "ssn_31"#mapvValue["uid"]
+		mac = self.calcMacFrmMstKey(sn, "66B6243D539EC04C96DDB6C2C9B109A977056C9D1061DF957955D43153E6F3A1",challenge)
 		uid = mapvValue["uid"]
 
-		print(challenge)
-
 		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":mac} }))
+
 
 		return
 
