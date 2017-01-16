@@ -4,53 +4,13 @@ import gzip
 import http.client
 import http
 import socket
-
+import giant_auth.commcalc as commcalc
 
 import  simplejson as json
 import neolib.neolib as neolib
 
 
-def HexStrSubStr(org, index, count):
-	return org[2 * index:2 * (index + count)]
 
-
-def DeriveKey(MasterKey, sectorID, SN):
-	if len(SN) != 9 * 2:
-		return "";
-
-	SN01 = HexStrSubStr(SN, 0, 2);
-	SN8 = HexStrSubStr(SN, 8, 1);
-
-	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(48) + SN;
-	return SHA256(shaInput)
-
-
-def ZeroHexStr(count):
-	return "00" * count;
-
-
-def CalcMAC(key, strChallenge, sectorID, SN):
-	if len(SN) != 9 * 2:
-		return "";
-
-	SN01 = HexStrSubStr(SN, 0, 2)
-	SN23 = HexStrSubStr(SN, 2, 2)
-	SN47 = HexStrSubStr(SN, 4, 4)
-	SN8 = HexStrSubStr(SN, 8, 1)
-
-	Zero11 = "0000000000000000000000";
-
-	shaInput = key + strChallenge + "0840" + sectorID + Zero11 + SN8 + SN47 + SN01 + SN23;
-
-	return SHA256(shaInput)
-
-
-def SHA256(shaInput):
-	m = hashlib.sha256()
-	m.update(neolib.HexString2ByteArray(shaInput))
-	reshash = m.digest()
-
-	return neolib.ByteArray2HexString(reshash)
 
 class TestGiant2ClientRunnable(neolib.NeoRunnableClasss):
 	sndjson = [
@@ -245,19 +205,39 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		res = json.loads(data1.decode());
 		return res['params']
 
+	def doRun_test(self):
+		challenge = "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5"
+		mac = self.CalcMamFromMasterKey(challenge,"2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5")
+		mac = self.CalcMamFromMasterKey(challenge, "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5")
+		mac = self.CalcMamFromMasterKey(challenge, "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5")
+		mac = self.CalcMamFromMasterKey(challenge, "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5")
+		mac = self.CalcMamFromMasterKey(challenge, "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5")
+		mac = self.CalcMamFromMasterKey(challenge, "5464303E75C043F66AA1917096F1093D51FD85AA8A4D255165D5BDC066FA9781")
+		mac = self.CalcMamFromMasterKey(challenge, "3E14F3F2DF953FB5C438D817CD8D3582C654450F328D74EB3246DA50D2858039")
+		mac = self.CalcMamFromMasterKey(challenge, "504660EB9A711EDAB51C62D36BCC8C76C95FF2A7004E9BF212433D6A0E65B5B9")
+		mac = self.CalcMamFromMasterKey(challenge, "FDE7D21497D623C6A5F3F0238DA59590E0A2E5F459BFEF3C1249467DBCAF58D1")
+		mac = self.CalcMamFromMasterKey(challenge, "00112233445566778899AABBCCDDEEFFAFAEADACABAAA9A8A7A6A5A4A3A2A1A0")
+
+
+
+		None
+
+
+
 	def doRun(self):
 
-		conn = http.client.HTTPConnection('localhost:8080')
+
+		#conn = http.client.HTTPConnection('localhost:8080')
 		#conn = http.client.HTTPConnection('35.163.249.213:8080')
-		#conn = http.client.HTTPConnection('203.187.186.136:40480')
+		conn = http.client.HTTPConnection('203.187.186.136:40480')
 		print(conn);
 
 		sn = "4C4715000000000047"
 
-		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"%s","masterkey_ver":"0"}}'%sn)
+		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"%s"}}'%sn)
 		challenge = mapvValue["challenge"]
-		derifiedKey = DeriveKey("66B6243D539EC04C96DDB6C2C9B109A977056C9D1061DF957955D43153E6F3A1", "0000", sn)
-		mac = CalcMAC(derifiedKey,challenge,"0000",sn)
+		derifiedKey = commcalc.DeriveKey("78BB743DEA740DAF1ADEC5BC82729992DE59F90E0B4276D65DB18DFEED500F3E", "0000", sn)
+		mac = commcalc.CalcMAC(derifiedKey,challenge,"0000",sn)
 
 		#uid = "ssn_31"#mapvValue["uid"]
 		uid = mapvValue["uid"]
