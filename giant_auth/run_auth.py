@@ -21,6 +21,16 @@ def DeriveKey(MasterKey, sectorID, SN):
 	SN01 = HexStrSubStr(SN, 0, 2);
 	SN8 = HexStrSubStr(SN, 8, 1);
 
+	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(25) + SN+ZeroHexStr(23);
+	return SHA256(shaInput)
+
+def DeriveKey_old(MasterKey, sectorID, SN):
+	if len(SN) != 9 * 2:
+		return "";
+
+	SN01 = HexStrSubStr(SN, 0, 2);
+	SN8 = HexStrSubStr(SN, 8, 1);
+
 	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(48) + SN;
 	return SHA256(shaInput)
 
@@ -244,6 +254,20 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		print(data1.decode())
 		res = json.loads(data1.decode());
 		return res['params']
+	def calcMacFrmMstKey(self,sn,masterkey,challenge):
+
+		#sn = "4C471F000000000047"
+		#challenge = "5AA45AA105ADBC28B58305DD7242F6EE28CB5351FA6ADE7C80D34725C22B373E"
+		derifiedKey = DeriveKey(masterkey, "0000", sn)
+		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
+		return mac
+		print(mac)
+
+		derifiedKey = DeriveKey_old("00112233445566778899AABBCCDDEEFFAFAEADACABAAA9A8A7A6A5A4A3A2A1A0", "0000", sn)
+		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
+		print(mac)
+
+
 
 	def doRun(self):
 
@@ -255,16 +279,15 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		sn = "4C4715000000000047"
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"%s","masterkey_ver":"0"}}'%sn)
-		challenge = mapvValue["challenge"]
-		derifiedKey = DeriveKey("66B6243D539EC04C96DDB6C2C9B109A977056C9D1061DF957955D43153E6F3A1", "0000", sn)
-		mac = CalcMAC(derifiedKey,challenge,"0000",sn)
 
-		#uid = "ssn_31"#mapvValue["uid"]
+
+		challenge = mapvValue["challenge"]
+
+		mac = self.calcMacFrmMstKey(sn, "66B6243D539EC04C96DDB6C2C9B109A977056C9D1061DF957955D43153E6F3A1",challenge)
 		uid = mapvValue["uid"]
 
-		print(challenge)
-
 		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":mac} }))
+
 
 		return
 
