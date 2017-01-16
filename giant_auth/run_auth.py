@@ -9,6 +9,7 @@ import giant_auth.commcalc as commcalc
 import  simplejson as json
 import neolib.neolib as neolib
 
+import compileall
 
 
 
@@ -16,8 +17,8 @@ def DeriveKey(MasterKey, sectorID, SN):
 	if len(SN) != 9 * 2:
 		return "";
 
-	SN01 = HexStrSubStr(SN, 0, 2);
-	SN8 = HexStrSubStr(SN, 8, 1);
+	SN01 = commcalc.HexStrSubStr(SN, 0, 2);
+	SN8 = commcalc.HexStrSubStr(SN, 8, 1);
 
 	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(25) + SN+ZeroHexStr(23);
 	return SHA256(shaInput)
@@ -26,8 +27,8 @@ def DeriveKey_old(MasterKey, sectorID, SN):
 	if len(SN) != 9 * 2:
 		return "";
 
-	SN01 = HexStrSubStr(SN, 0, 2);
-	SN8 = HexStrSubStr(SN, 8, 1);
+	SN01 = commcalc.HexStrSubStr(SN, 0, 2);
+	SN8 = commcalc.HexStrSubStr(SN, 8, 1);
 
 	shaInput = MasterKey + "1C" + "04" + sectorID + SN8 + SN01 + ZeroHexStr(48) + SN;
 	return SHA256(shaInput)
@@ -41,10 +42,10 @@ def CalcMAC(key, strChallenge, sectorID, SN):
 	if len(SN) != 9 * 2:
 		return "";
 
-	SN01 = HexStrSubStr(SN, 0, 2)
-	SN23 = HexStrSubStr(SN, 2, 2)
-	SN47 = HexStrSubStr(SN, 4, 4)
-	SN8 = HexStrSubStr(SN, 8, 1)
+	SN01 = commcalc.HexStrSubStr(SN, 0, 2)
+	SN23 = commcalc.HexStrSubStr(SN, 2, 2)
+	SN47 = commcalc.HexStrSubStr(SN, 4, 4)
+	SN8 = commcalc.HexStrSubStr(SN, 8, 1)
 
 	Zero11 = "0000000000000000000000";
 
@@ -253,6 +254,16 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 		res = json.loads(data1.decode());
 		return res['params']
 	def calcMacFrmMstKey(self,sn,masterkey,challenge):
+		# sn = "4C471F000000000047"
+		# challenge = "5AA45AA105ADBC28B58305DD7242F6EE28CB5351FA6ADE7C80D34725C22B373E"
+		derifiedKey = DeriveKey(masterkey, "0000", sn)
+		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
+		return mac
+		print(mac)
+
+		derifiedKey = DeriveKey_old("00112233445566778899AABBCCDDEEFFAFAEADACABAAA9A8A7A6A5A4A3A2A1A0", "0000", sn)
+		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
+		print(mac)
 
 	def doRun_test(self):
 		challenge = "2F9005AE9C1F0662E88DBA4DEE582A601547AE3F83005C3C4F26FF9C21FAD2C5"
@@ -273,16 +284,7 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 
 
-		#sn = "4C471F000000000047"
-		#challenge = "5AA45AA105ADBC28B58305DD7242F6EE28CB5351FA6ADE7C80D34725C22B373E"
-		derifiedKey = DeriveKey(masterkey, "0000", sn)
-		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
-		return mac
-		print(mac)
 
-		derifiedKey = DeriveKey_old("00112233445566778899AABBCCDDEEFFAFAEADACABAAA9A8A7A6A5A4A3A2A1A0", "0000", sn)
-		mac = CalcMAC(derifiedKey, challenge, "0000", sn)
-		print(mac)
 
 
 
