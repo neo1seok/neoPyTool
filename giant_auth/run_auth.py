@@ -271,9 +271,11 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 	def doRun(self):
 
-		conn = http.client.HTTPConnection('localhost:8080')
+		#conn = http.client.HTTPConnection('localhost:8080')
 		#conn = http.client.HTTPConnection('35.163.249.213:8080')
+
 		#conn = http.client.HTTPConnection('203.187.186.136:40480')
+		conn = http.client.HTTPConnection('dev.ictk.com:8080')
 		print(conn);
 
 		sn = "4C4715000000000047"

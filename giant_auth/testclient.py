@@ -4,7 +4,14 @@ import time
 import threading
 
 class TestClient(neolib.NeoRunnableClasss):
+	def __init__(self):
+		#self.hostport = ('203.187.186.136', 40410)
+		#self.hostport = ('localhost', 5510)
+		#self.hostport = ('192.168.0.77', 5510)
+		self.hostport = ('dev.ictk.com', 5510)
+		self.threads = {}
 
+		None
 	def parseFromBuff(self,buff):
 		print(neolib.ByteArray2HexString(buff))
 		lrc = self.LRC(buff, 0, len(buff) - 1)
@@ -49,12 +56,12 @@ class TestClient(neolib.NeoRunnableClasss):
 		return
 	def procReqServ(self,s,icmd,hexstrdat):
 		buff = self.maketoBuff(icmd,	  neolib.HexString2ByteArray(hexstrdat))
-		print("snd",neolib.ByteArray2HexString(buff))
+		print(threading.current_thread(),"snd",neolib.ByteArray2HexString(buff))
 		s.send(buff)
 		rbuff = s.recv(1024)
 		res = self.parseFromBuff(rbuff)
-		print("rcv",neolib.ByteArray2HexString(rbuff))
-		print("res", res)
+		print(threading.current_thread(),"rcv",neolib.ByteArray2HexString(rbuff))
+		print(threading.current_thread(),"res", res)
 
 
 
@@ -81,25 +88,25 @@ class TestClient(neolib.NeoRunnableClasss):
 		#time.sleep(10)
 
 		self.procReqServ(s,0x11,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
-		# procReqServ(0x12,"")
-		# procReqServ(0x13,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
-		# procReqServ(0x14,"01")
-		#self.procReqServ(s,0x15,"EF3540954ED55F6F10C5173CB6EC27E5")
+		self.procReqServ(s,0x12,"")
+		self.procReqServ(s,0x13,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
+		self.procReqServ(s,0x14,"01")
+		self.procReqServ(s,0x15,"EF3540954ED55F6F10C5173CB6EC27E5")
 
 
 
 		s.close()
 	def worker(self):
-		hostport = ('203.187.186.136', 40410)
-		#hostport = ('localhost', 5510)
-		self.procSerrv(hostport)
+		self.procSerrv(self.hostport)
 		None
 	def doRun(self):
 		for idx in range(1):
 			t = threading.Thread(target=self.worker)
+			self.threads[idx] = t
 			t.start()
 
 		while 1:
+			time.sleep(1)
 			None
 
 		None

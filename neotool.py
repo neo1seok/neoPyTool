@@ -5,6 +5,7 @@ import time
 import win32api
 import win32gui
 
+
 import neolib.neolib as neolib
 import neolib.neolib4Win as neolib4Win
 
@@ -15,10 +16,12 @@ class BaseRunClass(neolib.NeoRunnableClasss):
 	objects = {}
 
 	def __init__(self, maparg):
+
 		self.maparg = maparg
 		self.InitValue()
 
 	def InitValue(self):
+		parser = optparse.OptionParser('usage %prog -i <input_file>')
 		None
 	#
 	# def doRun(self):

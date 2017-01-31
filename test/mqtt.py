@@ -20,18 +20,18 @@ client.connect("192.168.0.103", 1883, 60)
 
 #client.loop_start()
 
-client.subscribe('paho/fuck2')
+#client.subscribe('paho/fuck2')
 
 idx = 0
 # while True:
 # 	idx += 1
 
-# while True:
-# 	client.publish("paho/fuck", "test publish %d"%idx)
-# 	client.publish("paho/fuck3", "test publish %d" % idx)
-#
-# 	idx += 1
-# 	time.sleep(1)
+while True:
+	client.publish("paho/fuck", "test publish %d"%idx)
+	client.publish("paho/fuck3", "test publish %d" % idx)
+
+	idx += 1
+	time.sleep(1)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
