@@ -21,7 +21,7 @@ class BaseRunClass(neolib.NeoRunnableClasss):
 		self.InitValue()
 
 	def InitValue(self):
-		parser = optparse.OptionParser('usage %prog -i <input_file>')
+		#parser = optparse.OptionParser('usage %prog -i <input_file>')
 		None
 	#
 	# def doRun(self):

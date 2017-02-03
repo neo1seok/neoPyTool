@@ -81,12 +81,12 @@ class TestClient(neolib.NeoRunnableClasss):
 		#s.send('test'.encode())
 		# Receive no more than 1024 bytes
 
-		self.procReqServ(0x10,"4C4715000000000047")
+		#self.procReqServ(0x10,"4C4715000000000047")
 #procReqServ(0x10,"4C4722334455667747")
 		time.sleep(0.1)
 
 
-		self.procReqServ(0x11,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
+		#self.procReqServ(0x11,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
 # procReqServ(0x12,"")
 # procReqServ(0x13,"14A148EF48A7863A930BEF984C6411E3EF3540954ED55F6F10C5173CB6EC27E5")
 # procReqServ(0x14,"01")
@@ -108,7 +108,7 @@ class TestClient(neolib.NeoRunnableClasss):
 		self.procSerrv(self.hostport)
 		None
 	def doRun(self):
-		for idx in range(1):
+		for idx in range(10):
 			t = threading.Thread(target=self.worker)
 			self.threads[idx] = t
 			t.start()

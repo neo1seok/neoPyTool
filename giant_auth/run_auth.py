@@ -4,11 +4,12 @@ import gzip
 import http.client
 import http
 import socket
-
+import giant_auth.commcalc as commcalc
 
 import  simplejson as json
 import neolib.neolib as neolib
 
+from urllib.parse import quote,unquote,quote_plus
 
 def HexStrSubStr(org, index, count):
 	return org[2 * index:2 * (index + count)]
@@ -243,8 +244,11 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 	def doEnd(self):
 		self.conn.close()
 	def reqGet(self,conn,jsonbase):
+		jsonbase = quote(jsonbase)
 		strrequest = "/giant_auth/auth?json={0}".format(jsonbase)
 		strrequest = strrequest.replace(" ","")
+
+
 		print(strrequest)
 		conn.request("GET", strrequest)
 		resp = conn.getresponse()
@@ -292,14 +296,16 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 	def doRun(self):
 
-		#conn = http.client.HTTPConnection('localhost:8080')
+		conn = http.client.HTTPConnection('localhost:8080')
 		#conn = http.client.HTTPConnection('35.163.249.213:8080')
 
 		#conn = http.client.HTTPConnection('203.187.186.136:40480')
-		conn = http.client.HTTPConnection('dev.ictk.com:8080')
+		#conn = http.client.HTTPConnection('dev.ictk.com:8080')
 		print(conn);
 
 		sn = "4C4715000000000047"
+
+
 
 		mapvValue = self.reqGet(conn,'{"cmd":"REQ_START_SESSION","params":{"sn":"%s"}}'%sn)
 
@@ -310,6 +316,8 @@ class TestHTTPCLient(TestGiant2ClientRunnable):
 
 		mac = self.calcMacFrmMstKey(sn, "66B6243D539EC04C96DDB6C2C9B109A977056C9D1061DF957955D43153E6F3A1",challenge)
 		uid = mapvValue["uid"]
+		f = {'eventName': 'myEvent', 'eventDescription': "cool event"}
+
 
 		mapvValue = self.reqGet(conn, json.dumps({"cmd":"AUTHENTICATION","params":{"uid":uid,"mac":mac} }))
 

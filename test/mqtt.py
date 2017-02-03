@@ -1,5 +1,7 @@
 import paho.mqtt.client as mqtt
 import time
+import ssl
+
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
@@ -13,6 +15,12 @@ def on_message(client, userdata, msg):
 	print(msg.topic+" ########"+str(msg.payload))
 
 client = mqtt.Client(client_id="cl3",protocol=mqtt.MQTTv31)
+
+client.tls_set(ca_certs='D:\PROJECT\RASPBERRY\ca.crt',tls_version=ssl.PROTOCOL_TLSv1)
+
+
+
+
 client.on_connect = on_connect
 client.on_message = on_message
 
