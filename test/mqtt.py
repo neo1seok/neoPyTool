@@ -16,7 +16,7 @@ def on_message(client, userdata, msg):
 
 client = mqtt.Client(client_id="cl3",protocol=mqtt.MQTTv31)
 
-client.tls_set(ca_certs='D:\PROJECT\RASPBERRY\ca.crt',tls_version=ssl.PROTOCOL_TLSv1)
+#client.tls_set(ca_certs='D:\PROJECT\RASPBERRY\ca.crt',tls_version=ssl.PROTOCOL_TLSv1)
 
 
 
@@ -37,6 +37,7 @@ idx = 0
 while True:
 	client.publish("paho/fuck", "test publish %d"%idx)
 	client.publish("paho/fuck3", "test publish %d" % idx)
+
 
 	idx += 1
 	time.sleep(1)

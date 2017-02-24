@@ -4,8 +4,9 @@ import time
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-
-        self.write("Hello, world")
+        for tmp in range(10):
+            self.write("Hello, world")
+            time.sleep(0.510)
         #time.sleep(10)
 
 def make_app():

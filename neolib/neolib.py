@@ -301,7 +301,10 @@ def removeEmptyFolder(basedir):
 						os.rmdir(tmp)
 
 
-
+def get_safe_mapvalue(maparg,key):
+	if key in maparg:
+		return maparg[key]
+	return ''
 
 						# if __name__ != '__main__':
 # 	exit()

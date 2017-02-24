@@ -9,6 +9,15 @@ import win32gui
 import neolib.neolib as neolib
 import neolib.neolib4Win as neolib4Win
 
+import win32api
+import inspect
+import requests
+import simplejson as json
+import win32gui
+import win32con
+import time
+from  math import cos, sin, pi
+
 
 class BaseRunClass(neolib.NeoRunnableClasss):
 	class_name = ""
@@ -263,6 +272,16 @@ class ConvDefineStringClipBoard(ConvertBaseClipboard):
 class PuttyRunNMove(BaseRunClass):
 	cmd = 'putty.exe -load linux77'
 	totalPuttyNum = 6;
+
+	def InitValue(self):
+		#parser = optparse.OptionParser('usage %prog -i <input_file>'
+		# )
+
+		self.session =neolib.get_safe_mapvalue(self.maparg,'session')
+		self.cmd = 'putty.exe -load %s'%self.session
+
+		None
+
 	def refCode(self):
 		print(__name__)
 
@@ -398,6 +417,10 @@ class PuttyRunNMove(BaseRunClass):
 
 
 class PuttyKIll(PuttyRunNMove):
+	def InitValue(self):
+		print("PuttyKIll")
+
+		None
 
 	def doRun(self):
 		for hWnd in self.getExitedPuttyHandle():
@@ -408,6 +431,65 @@ class PuttyKIll(PuttyRunNMove):
 
 		None
 
+
+class drawMousePos(BaseRunClass):
+	def InitValue(self):
+
+
+		# points = [pos,(pos[0]-100,pos[1]-100),(pos[0]-100,pos[1]+100),(pos[0]+100,pos[1]+100),(pos[0]+100,pos[1]-100)]
+		self.points = self.make_circle(100,100)
+		self.pointssmall = self.make_circle(10, 100)
+		# self.pointssmall = []
+		# r = 100;
+		# unitrad = 2 * pi / 100.0
+		#
+		# for idx in range(100):
+		# 	rad = idx * unitrad
+		# 	posunit = (int(r * cos(rad) ), int(r * sin(rad)))
+		# 	self.points.append(posunit)
+		# r = 10;
+		# for idx in range(100):
+		# 	rad = idx * unitrad
+		# 	posunit = (int(r * cos(rad) ), int(r * sin(rad)))
+		# 	self.pointssmall.append(posunit)
+
+		None
+	def accept_plus(self,ss):
+		if ss < 0: return 0
+		return ss
+	def make_circle(self,r,unitnum):
+		points = []
+		unitrad = 2 * pi / unitnum
+		for idx in range(100):
+			rad = idx * unitrad
+			posunit = (int(r * cos(rad) ), int(r * sin(rad)))
+			points.append(posunit)
+		return points
+
+
+
+	def shift_points(self,points,shiftpos):
+		(mx,my)=shiftpos
+		return [(self.accept_plus(x + mx), self.accept_plus(y + my)) for (x, y) in points]
+
+	def doRun(self):
+		(mx,my) = win32gui.GetCursorPos()
+		#print(self.points)
+		self.points = self.shift_points(self.points,(mx,my))
+		self.pointssmall = self.shift_points(self.pointssmall, (mx, my))
+
+		#print(self.points)
+		dc = win32gui.GetDC(None)
+		hpen = win32gui.CreatePen(win32con.PS_SOLID, 3, win32api.RGB(255, 0, 0))
+		horg = win32gui.SelectObject(dc, hpen)
+		win32gui.Polyline(dc, self.points)
+		win32gui.Polyline(dc, self.pointssmall)
+		win32gui.SelectObject(dc, horg)
+		win32gui.DeleteObject(hpen)
+		win32gui.ReleaseDC(None, dc)
+
+		time.sleep(1)
+		win32gui.InvalidateRect(None, None, True)
 
 
 print("start")
@@ -421,21 +503,23 @@ maparg = neolib.listarg2Map(sys.argv)
 
 
 
-mapfunction = {"strcpy": SetClipBoard(maparg),
-			   "conv2java": ConvertMapCs2Java(maparg),
-			   "makeNormalTxt": MakeNormalTxtInClipBoard(maparg),
-				"convuplow": ConvUpperLowInClipBoard(maparg),
-			   "convdeftype":ConvDefineStringClipBoard(maparg),
-				"puttyrun":PuttyRunNMove(maparg),
-			   "puttykill":PuttyKIll(maparg)
+mapfunction = {"strcpy": SetClipBoard,
+			   "conv2java": ConvertMapCs2Java,
+			   "makeNormalTxt": MakeNormalTxtInClipBoard,
+				"convuplow": ConvUpperLowInClipBoard,
+			   "convdeftype":ConvDefineStringClipBoard,
+				"puttyrun":PuttyRunNMove,
+			   "puttykill":PuttyKIll,
+				"drawMousePos":drawMousePos,
 
 			   }
 
 
+
 cmd = maparg["rt"]
 print(maparg)
-mapfunction[cmd]
-mapfunction[cmd].doRun()
+runobj = mapfunction[cmd](maparg)
+runobj.doRun()
 time.sleep(0.5)  # delays for 5 seconds
 exit()
 i = 5
