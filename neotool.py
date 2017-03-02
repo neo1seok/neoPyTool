@@ -17,7 +17,9 @@ import win32gui
 import win32con
 import time
 from  math import cos, sin, pi
-
+from time import ctime
+import ntplib
+from time import ctime
 
 class BaseRunClass(neolib.NeoRunnableClasss):
 	class_name = ""
@@ -491,39 +493,93 @@ class drawMousePos(BaseRunClass):
 		time.sleep(1)
 		win32gui.InvalidateRect(None, None, True)
 
+class UpdaateSystemTime(BaseRunClass):
+	def doRun(self):
+		c = ntplib.NTPClient()
+		response = c.request('time.google.com', version=3)
+		
+		print(response.offset)
+		print(response.version)
+		print("서버시간:",ctime(response.tx_time))
+		print("시스템시간:",ctime(time.time()))
+		
+		neolib4Win._win_set_time(datetime.datetime.fromtimestamp(int(response.tx_time+response.root_delay)).timetuple())
+		print("시스템시간:",ctime(time.time()))
+		
+		print(response.tx_time-time.time())
+
+
+		print(ntplib.leap_to_text(response.leap))
+
+		print(response.root_delay)
+
+		print(ntplib.ref_id_to_text(response.ref_id))
+		
+		
+	def Test(self):
+
+		time_tuple = (2008, 11, 12, 13, 51, 18, 2, 317, 0)
+
+		dt_obj = datetime.datetime(*time_tuple[0:6])
+
+		neolib4Win._win_set_time(dt_obj.timetuple())
+		  
+		#exit()
+		#print(datetime.datetime.now())
+		print(datetime.datetime.now().timetuple()[0:6])
+		#print(datetime.datetime(datetime.datetime.now().timetuple()))
+		print(time.time())
+		print(ctime())
+		self.doRun()
+		
+		# #exit()
+		# response = c.request('europe.pool.ntp.org', version=3)
+		# print(response.offset)
+		# print(response.version)
+		#
+		# print(ctime(response.tx_time))
+		# print(ctime(time.time()))
+		#
+		#
+		# print("서버시간:",datetime.datetime.fromtimestamp(int(response.tx_time)).strftime('%Y-%m-%d %H:%M:%S'))
+		# print("시스템시간:",datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S'))
+		# neolib4Win._win_set_time(datetime.datetime.fromtimestamp(int(response.tx_time)).timetuple())
+		# print("시스템시간:",datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S'))
+
+
+
+	None
 
 print("start")
 
-if __name__ != '__main__':
+if __name__ == '__main__':
+
+	maparg = neolib.listarg2Map(sys.argv)
+
+	mapfunction = {"strcpy": SetClipBoard,
+				   "conv2java": ConvertMapCs2Java,
+				   "makeNormalTxt": MakeNormalTxtInClipBoard,
+				   "convuplow": ConvUpperLowInClipBoard,
+				   "convdeftype": ConvDefineStringClipBoard,
+				   "puttyrun": PuttyRunNMove,
+				   "puttykill": PuttyKIll,
+				   "drawMousePos": drawMousePos,
+
+				   }
+
+	cmd = maparg["rt"]
+	print(maparg)
+	runobj = mapfunction[cmd](maparg)
+	runobj.doRun()
+	time.sleep(0.5)  # delays for 5 seconds
 	exit()
+	i = 5
+	while i > 0:
+		time.sleep(1)  # delays for 5 seconds
+		print(str(i) + "second left")
+		i -= 1
 
 
 
-maparg = neolib.listarg2Map(sys.argv)
 
 
-
-mapfunction = {"strcpy": SetClipBoard,
-			   "conv2java": ConvertMapCs2Java,
-			   "makeNormalTxt": MakeNormalTxtInClipBoard,
-				"convuplow": ConvUpperLowInClipBoard,
-			   "convdeftype":ConvDefineStringClipBoard,
-				"puttyrun":PuttyRunNMove,
-			   "puttykill":PuttyKIll,
-				"drawMousePos":drawMousePos,
-
-			   }
-
-
-
-cmd = maparg["rt"]
-print(maparg)
-runobj = mapfunction[cmd](maparg)
-runobj.doRun()
-time.sleep(0.5)  # delays for 5 seconds
-exit()
-i = 5
-while i > 0:
-	time.sleep(1)  # delays for 5 seconds
-	print(str(i) + "second left")
-	i -= 1

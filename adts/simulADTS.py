@@ -5,7 +5,7 @@ import re
 import  simplejson as json
 
 import neolib.neolib as neolib
-from makeDb4ADTS import BaseMySQLRunnable
+from adts.makeDb4ADTS import BaseMySQLRunnable
 
 
 class MakeScriptSentenceFromMySQL(BaseMySQLRunnable):

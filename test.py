@@ -16,7 +16,10 @@ import  simplejson as json
 import win32gui
 import win32con
 import time
+import datetime
+from datetime import date
 import threading
+import neolib.neolib4Win as neolib4Win
 from  math import cos,sin,pi
 import pickle
 
@@ -31,8 +34,28 @@ from PyCRC.CRC16SICK import CRC16SICK
 from PyCRC.CRC32 import CRC32
 from PyCRC.CRCCCITT import CRCCCITT
 
+import ntplib
+from time import ctime
+import neotool
+import pytz, datetime
+# local = pytz.timezone ("Asia/Seoul")
+# naive = datetime.datetime.now()
+# local_dt = local.localize(naive, is_dst=None)
+# utc_dt = local_dt.astimezone (pytz.utc)
+# print(utc_dt)
+# print(naive)
+#
+# print('test')
+neotool.UpdaateSystemTime(neolib.listarg2Map(sys.argv)).Test()
+exit()
+from shutil import copytree, ignore_patterns
+def copy_user(src, dst, *, follow_symlinks=True):
+	print(dst)
+	shutil.copy2(src, dst)
 
+copytree('C:\APP\PYTOOL', 'C:\Temp\copy_test', copy_function=copy_user,ignore=ignore_patterns('*.pyc', 'tmp*'))
 
+exit()
 
 def do_oth(instnace):
 	while True:
