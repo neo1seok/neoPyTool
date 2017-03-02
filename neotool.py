@@ -493,7 +493,7 @@ class drawMousePos(BaseRunClass):
 		time.sleep(1)
 		win32gui.InvalidateRect(None, None, True)
 
-class UpdaateSystemTime(BaseRunClass):
+class UpdateSystemTime(BaseRunClass):
 	def doRun(self):
 		c = ntplib.NTPClient()
 		response = c.request('time.google.com', version=3)
@@ -522,7 +522,7 @@ class UpdaateSystemTime(BaseRunClass):
 
 		dt_obj = datetime.datetime(*time_tuple[0:6])
 
-		neolib4Win._win_set_time(dt_obj.timetuple())
+		#neolib4Win._win_set_time(dt_obj.timetuple())
 		  
 		#exit()
 		#print(datetime.datetime.now())
@@ -564,7 +564,7 @@ if __name__ == '__main__':
 				   "puttyrun": PuttyRunNMove,
 				   "puttykill": PuttyKIll,
 				   "drawMousePos": drawMousePos,
-
+				   "UpdateSystemTime": UpdateSystemTime
 				   }
 
 	cmd = maparg["rt"]
