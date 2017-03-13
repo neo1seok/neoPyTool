@@ -15,7 +15,7 @@ from logging import handlers
 import neolib.neolib as neolib
 
 import hashlib
-from show369.base_client import *
+from show_daily_info.base_client import *
 
 class GetLateestWebtoon(BaseClient):
 	webtoonurlfmt = "http://comic.naver.com/webtoon/list.nhn?titleId={0}"

@@ -1,4 +1,4 @@
-from show369.base_client import *
+from show_daily_info.base_client import *
 
 class HTTPCLient369(BaseClient):
 	url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'

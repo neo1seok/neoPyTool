@@ -57,7 +57,7 @@ from blockdiag import parser, builder, drawer
 
 
 bytes = neolib.HexString2ByteArray("102300")
-",".join('{:02X}'.format(ord(x)) for x in bytes)
+print(",".join('{:02X}'.format(x) for x in bytes))
 
 exit()
 for path,dirs,files in os.walk('C:/TMP/diagrams'):

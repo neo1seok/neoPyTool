@@ -15,7 +15,7 @@ from logging import handlers
 import neolib.neolib as neolib
 
 import hashlib
-from show369.base_client import *
+from show_daily_info.base_client import *
 
 class HTTPCLientGoldFish(BaseClient):
 	'''
@@ -26,26 +26,17 @@ class HTTPCLientGoldFish(BaseClient):
 	'''
 
 	url = 'https://www.koreaspot33.com/g5/bbs/board.php?bo_table=profile&wr_id=10060&sca=%EC%95%88%EB%A7%88'
-	#urlUpdateStamp = 'http://neo1seok.iptime.org/show369/updatestamp.php'
 	urlUpdateStamp = 'http://localhost/show369/updatestamp.php'
 	patt = r'<img\s+src="(http://rmaqnddj5882.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>'
-	#pattProfile = r'<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>\s*(?:<img\s+src="(http://369am.diskn.com/[a-zA-Z0-9]{8,11})"\s+alt="([a-zA-Z0-9]{8,11})"\s*/>)*\s*([가-힣]+)\s*(?:(?:<\s*br\s*/\s*>\s*)|(?:\s*<\s*/\s*div\s*>\s*))*'
-
-	#pattStartPrfofile = r'<img\s+src="http://369am.diskn.com/1RWbHAyiXm"\s+alt="1RWbHAyiXm"\s* />\s*<\s*br\s*/\s*>'
-	#pattEndPrfofile = r'<\s*/\s*div\s*>'
-	#pattProfile = r'<img src="http://369am.diskn.com/[a-zA-Z0-9]+" alt="([a-zA-Z0-9]+)" />\s*([가-힣]+)(<img src="http://369am.diskn.com/[a-zA-Z0-9]+" alt="([a-zA-Z0-9]+)" />)*'
 	contents = ''
-	#dayimg = "1mBJeR6x80";
-	#nightimg = "1mBJeR5ruC";
-	#endimgnightimg = "0Rfw3zBOYD";
 
 	dayimgs = ["1mBJeR6x80"]
 	nightimgs = ["1mBJeR5ruC"]
 	endimgs = ["0Rfw3zBOYD"]
 
 	cmtiltleimgs = ["0Rfw3zBOYD",  #phone
-					"1mBJeR6x80",  # nightimgs
-					"1mBJeR5ruC",  # nightimgs
+#					"1mBJeR6x80",  # nightimgs#
+#					"1mBJeR5ruC",  # nightimgs
 					"36ghEurkvW","1ReOKJf21G","2RVfdCGNCK","2m6Tv7pqC8","0Rfw3zBOYD","0Rlz7xSirO","0Rfw3zBOYD","26rv6Pf4wK","1mDXKwNxe4","36m1lkiB9e","0Rfw3zBOYD","36lVOQOSdO","0Rfw3zBOYD","26t0Cme69S","0Rfw3zBOYD","26uRSmSpwC","0Rfw3zBOYD","0mOTEhBN0G","0Rfw3zBOYD","2RR0RcQS40","0Rfw3zBOYD","36isvL1yb8","0Rfw3zBOYD","171A4SYNlk","0Rfw3zBOYD","1RdasP7Viq","0Rfw3zBOYD","0RkctApf9q","0Rfw3zBOYD","36iE24Bwre","0Rfw3zBOYD","2m4WIxlAhW","0Rfw3zBOYD"]
 
 
@@ -109,8 +100,6 @@ class HTTPCLientGoldFish(BaseClient):
 		m.update(self.ids.encode())
 		reshash = m.digest()
 
-		for tmp in reshash:
-			print( ord(tmp))
 
 		self.hashuids = neolib.ByteArray2HexString(reshash)
 		self.logger.debug("ids : %s", self.ids)
@@ -150,7 +139,7 @@ class HTTPCLientGoldFish(BaseClient):
 
 		mapFinal['ids'] = self.realarray
 		mapFinal['hashuids'] = self.hashuids
-		mapFinal['profile'] = self.mapProfile
+		mapFinal['profile'] = {}
 
 
 		injson = json.dumps(mapFinal, ensure_ascii=False)
@@ -244,9 +233,9 @@ class HTTPCLientGoldFish(BaseClient):
 		self.makecontents()
 		self.logger.info('makecontents Done')
 
-		self.logger.info('makeProfile')
-		self.makeProfile()
-		self.logger.info('makeProfile Done')
+		# self.logger.info('makeProfile')
+		# self.makeProfile()
+		# self.logger.info('makeProfile Done')
 
 		self.logger.info('makeTotalContents')
 		self.makeTotalContents()

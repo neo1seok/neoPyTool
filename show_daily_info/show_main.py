@@ -15,10 +15,10 @@ from logging import handlers
 import neolib.neolib as neolib
 
 import hashlib
-from show369.base_client import *
+from show_daily_info.base_client import *
 
-from show369.show_goldfish import HTTPCLientGoldFish
-from show369.show_naverweb import GetLateestWebtoon
+from show_daily_info.show_goldfish import HTTPCLientGoldFish
+from show_daily_info.show_naverweb import GetLateestWebtoon
 
 
 
