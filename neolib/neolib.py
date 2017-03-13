@@ -4,6 +4,8 @@
 import  re
 import subprocess
 import os
+import array
+import json
 import sys
 import datetime
 class NeoRunnableClasss:
@@ -124,7 +126,7 @@ def HexString2ByteArray(hexstr) :
 	return bytes.fromhex(hexstr)
 
 def ByteArray2HexString(bytes,sep="") :
-	return  sep.join('{:02X}'.format(x) for x in bytes)
+	return sep.join('{:02X}'.format(ord(x)) for x in bytes)
 
 def HexString2Text(hexstr,enc="utf-8") :
 	return HexString2ByteArray(hexstr).decode(enc)
@@ -339,6 +341,7 @@ def _linux_set_time(time_tuple):
 
 if __name__ == '__main__':
 	print('test')
+
 						# if __name__ != '__main__':
 # 	exit()
 #

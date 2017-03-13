@@ -38,6 +38,7 @@ import ntplib
 from time import ctime
 import neotool
 import pytz, datetime
+import traceback
 # local = pytz.timezone ("Asia/Seoul")
 # naive = datetime.datetime.now()
 # local_dt = local.localize(naive, is_dst=None)
@@ -46,7 +47,60 @@ import pytz, datetime
 # print(naive)
 #
 # print('test')
-neotool.UpdaateSystemTime(neolib.listarg2Map(sys.argv)).Test()
+#neotool.UpdaateSystemTime(neolib.listarg2Map(sys.argv)).Test()
+#exit()
+import blockdiag
+
+from blockdiag import parser, builder, drawer
+
+#str = neolib.StrFromFile('C:/TMP/diagrams/background_url_image.diag')
+
+
+bytes = neolib.HexString2ByteArray("102300")
+",".join('{:02X}'.format(ord(x)) for x in bytes)
+
+exit()
+for path,dirs,files in os.walk('C:/TMP/diagrams'):
+	for tmpfile in files :
+		if ".diag" in tmpfile:
+			allpath = path+"\\"+tmpfile
+			dstfile = path+"\\"+re.sub(r'(\w+)\.diag',r'\1.png',tmpfile)
+			print(dstfile)
+			#continue
+			str = neolib.StrFromFile(allpath)
+			tree = parser.parse_string(str)
+			diagram = builder.ScreenNodeBuilder.build(tree)
+			draw = drawer.DiagramDraw('PNG', diagram, filename=dstfile)
+			draw.draw()
+			draw.save()
+
+
+bytes = neolib.HexString2ByteArray("102300")
+",".join('{:02X}'.format(ord(x)) for x in bytes)
+
+exit()
+import binascii
+
+ber = (
+"\x63\x04hell"                  # simple tag, len
+"\x64\x04hell"                  # test read length
+"\x1f\x81\x82\x82\x04\x00"      # extended tag
+"\x65\x81\x01!"                 # extended len
+"\x65\x83\x00\x00\x04!..!"      # mroe extended len
+)
+seq = (b for b in ber)
+print(type(seq))
+print(seq)
+print(next(seq))
+print(next(seq))
+rv = dict()
+
+tag = ber[0]
+print(tag,type(tag))
+tag += ber[1]
+print(tag,type(tag))
+import pprint
+pprint.pprint(rv)
 exit()
 from shutil import copytree, ignore_patterns
 def copy_user(src, dst, *, follow_symlinks=True):
