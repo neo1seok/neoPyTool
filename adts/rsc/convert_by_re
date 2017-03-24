@@ -1,0 +1,184 @@
+
+ENV_SELECTION	seq	int(11)
+		esl_uid	varchar(20)
+		name	varchar(64)
+		discription	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+ENV_SETTING	seq	int(11)
+		ens_uid	varchar(20)
+		esl_uid	varchar(20)
+		item	varchar(64)
+		value	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+CHANNEL	seq	int(11)
+		chn_uid	varchar(20)
+		name	varchar(10)
+		type	varchar(10)
+		discription	varchar(20)
+		param	varchar(64)
+		classname	varchar(64)
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+SCENARIO_GROUP	seq	int(11)
+		scg_uid	varchar(20)
+		scg_uid_parent	varchar(20)
+		name	varchar(64)
+		discription	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+SCENARIO	seq	int(11)
+		sce_uid	varchar(20)
+		scg_uid	varchar(20)
+		name	varchar(64)
+		discription	text
+		param	varchar(64)
+		param_ext	text
+		classname	varchar(64)
+		type	varchar(10)
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+SCENARIO_LINE	seq	int(11)
+		scl_uid	varchar(20)
+		sce_uid	varchar(20)
+		index	int(11)
+		method	varchar(64)
+		title	text
+		param	text
+		param_ext	text
+		pck_uid	varchar(20)
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+PACKET	seq	int(11)
+		pck_uid	varchar(20)
+		name	varchar(64)
+		type	varchar(64)
+		discription	text
+		packet_class	varchar(64)
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+PACKET_DATA_TYPE	seq	int(11)
+		pdt_uid	varchar(20)
+		name	varchar(64)
+		tag	varchar(10)
+		length	int(11)
+		variation	varchar(10)
+		value_encoding	varchar(10)
+		char_range	varchar(10)
+		fixed_value	text
+		option	varchar(64)
+		make_param	text
+		confirm_param	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+PACKET_DATA_UNIT	seq	int(11)
+		pdu_uid	varchar(20)
+		pck_uid	varchar(20)
+		index	int(11)
+		pdt_uid	varchar(20)
+		def_value	text
+		option	varchar(64)
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+DATA_VALUE_TABLE	seq	int(11)
+		dvt_uid	varchar(20)
+		scl_uid	varchar(20)
+		pdt_uid	varchar(20)
+		value	text
+		param	varchar(64)
+		param_ext	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+TEST_INFO	seq	int(11)
+		tsi_uid	varchar(20)
+		sce_uid	varchar(20)
+		name	varchar(64)
+		discription	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+TEST_ENV	seq	int(11)
+		tse_uid	varchar(20)
+		item	varchar(64)
+		value	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+TEST_RESULT	seq	int(11)
+		tsr_uid	varchar(20)
+		scl_uid	varchar(20)
+		tsi_uid	varchar(20)
+		title	varchar(64)
+		data	text
+		result	varchar(20)
+		error	text
+		takentime	int(11)
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+DATA_RESULT	seq	int(11)
+		dtr_uid	varchar(20)
+		tsr_uid	varchar(20)
+		pdt_uid	varchar(20)
+		expected_value	text
+		value	text
+		buff	text
+		result	varchar(20)
+		error	text
+		etc	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+
+
+MAIN_PROCESS	seq	int(11)
+		mpr_uid	varchar(20)
+		sce_uid	varchar(20)
+		index	int(11)
+		type	varchar(10)
+		name	varchar(64)
+		discription	text
+		method	varchar(64)
+		param	varchar(64)
+		param_ext	text
+		updt_date	datetime
+		reg_date	datetime
+		comment	text
+

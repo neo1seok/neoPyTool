@@ -303,7 +303,7 @@ PRIMARY KEY ({2})
 			listpki = ["`"+name +"`" for name, type, nullinfo, comment, pki in filter(lambda x: x[4] == 'PRI', fields)]
 
 			listmethod = list(map(convType, fields))
-			strlines += mainFmt.format(key, "\n".join(listmethod),",".join(listpki))
+			strlines += mainFmt.format(key.lower(), "\n".join(listmethod),",".join(listpki))
 
 		return strlines
 
@@ -333,9 +333,7 @@ class MakeDataFieldsClass(MakeCreateTableFor):
 
 
 
-
-
-	def doRun(self):
+	def convert(self):
 		def convType(row ):
 			name, type, nullinfo, comment,pki = row
 			newtype = 'string'
@@ -365,6 +363,9 @@ class MakeDataFieldsClass(MakeCreateTableFor):
 			classname = classconv.ConvertString(key)
 			self.strlines += "public class {0} {{\n{1} \n}}\n".format(classname, "\n".join(listmethod))
 
+	def doRun(self):
+
+		self.convert();
 		# print(str)
 		# fb = open('out.txt', 'wb')
 		# fb.write(str.encode())
