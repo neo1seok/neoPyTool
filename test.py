@@ -22,7 +22,23 @@ import threading
 import neolib.neolib4Win as neolib4Win
 from  math import cos,sin,pi
 import pickle
+import subprocess
+import neolib.neoserver
 
+
+neolib.neoserver.HandleServerWithLogging(5510,neolib.neoserver.SampleEchoHandleClient).run()
+
+exit()
+startupinfo = subprocess.STARTUPINFO()
+startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+startupinfo.wShowWindow = subprocess.SW_HIDE
+time.sleep(1)
+print('테스트')
+proc = subprocess.Popen('python C:/app/neoPyTool/test/test_kbd_mouse_event.py', startupinfo=startupinfo)
+#proc = subprocess.Popen('dir',  creationflags=subprocess.SW_HIDE, shell=True)
+proc.wait()
+
+exit()
 from smartcard.scard import *
 import smartcard.util
 
