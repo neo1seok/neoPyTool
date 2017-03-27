@@ -25,7 +25,8 @@ import pickle
 import subprocess
 import neolib.neoserver
 
-
+print(os.getenv('JAVA_HOME'))
+exit()
 neolib.neoserver.HandleServerWithLogging(5510,neolib.neoserver.SampleEchoHandleClient).run()
 
 exit()

@@ -20,8 +20,10 @@ class NeoRunnableClasss:
 		print("__init__",self.__class__)
 
 		self.mapArgs.update(self.defMapArgs)
+		self.mapArgs.update(self.maps)
 		for key,vlaue in kwargs.items():
 			self.mapArgs[key] = vlaue
+
 
 	# def __init__(self):
 	# 	None

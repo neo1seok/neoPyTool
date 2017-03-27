@@ -1,55 +1,84 @@
 import re
 import sys
 import win32api
-
+import shutil
 import neolib.neolib as neolib
 import neolib.neolib4Win as neolib4Win
-
+import win32ui
+import win32con
 
 def GetFileNameOrg(str):
-    return str
+	return str
 
 def GetFileNameByQutoType(str):
-    return re.sub(r'\\',r'\\\\\\',str)
+	return re.sub(r'\\',r'\\\\\\',str)
 
 
+class SetClipBoardPath(neolib.NeoRunnableClasss):
+	mapfunction = {"literal": lambda x: re.sub(r'\\', r'\\\\', x),
+				   "linux": lambda x: re.sub(r'\\', r'/', x),
+				   "org": lambda x: x,
+				   }
+	def doRun(self):
+		try:
+
+			value = self.mapArgs["path"]
+		except:
+			value = ""
+
+		try:
+			pffile = self.mapfunction[self.mapArgs["type"]]
+		except:
+			pffile = self.mapfunction["org"]
+
+		dststr = pffile(value)
+
+		win32api.MessageBox(0, dststr, "NEOPYTHONSHELL")
+		neolib4Win.SetClipBoard(dststr)
+
+		None
 
 
-def getMap(list):
-    
-    return []
+class BaseMoveTo(neolib.NeoRunnableClasss):
+	def InitRun(self):
+		self.src_path = self.mapArgs["path"]
+
+		None
+	def doRun(self):
+		msg = "{0}->{1}".format(self.src_path, self.dst_path)
 
 
-mapfunction = {"literal":lambda x:re.sub(r'\\',r'\\\\',x) ,
-               "linux": lambda x: re.sub(r'\\', r'/', x),
-               "org": lambda x: x,
-               }
+		if win32ui.MessageBox(msg, "NEOPYTHONSHELL", win32con.MB_YESNOCANCEL) != win32con.IDYES:
+			return
+
+		shutil.move(self.src_path, self.dst_path)
+
+		None
+
+class MoveToBest(BaseMoveTo):
+	dst_path = 'D:/down/zave/BEST'
+
+
+class MoveToGood(BaseMoveTo):
+	dst_path = 'D:/down/zave/good'
 
 
 if __name__ != '__main__':
-    exit()
+	exit()
 
+map_class ={
+	'set_clip_board_path':SetClipBoardPath,
+	'move_best':MoveToBest,
+	'move_good':MoveToGood,
 
-
-
+}
 maparg = neolib.listarg2Map(sys.argv)
+if 'cmd' not in maparg:
+	cmd = 'set_clip_board_path'
+else:
+	cmd = maparg['cmd']
 
-print(maparg)
-
-pffile = GetFileNameOrg
-
-try :
-    value = maparg["path"]
-except:
-    value = ""
-
-try:
-    pffile = mapfunction[maparg["type"]]
-except:
-    pffile = mapfunction["org"]
+map_class[cmd]().Run()
 
 
-dststr = pffile(value)
 
-win32api.MessageBox(0,dststr,"NEOPYTHONSHELL")
-neolib4Win.SetClipBoard(dststr)
