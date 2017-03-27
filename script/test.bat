@@ -1,0 +1,1 @@
+python.exe C:\APP\BIN\pythonshell.py -RT COPYPATH -WP  "%1" -LP STRFORM
