@@ -10,7 +10,7 @@ class CheckIUST100TestLog(neolib.NeoRunnableClasss):
 
 
 	def doRun(self):
-		obj1 = re.compile(r'((TEST START)\s*:\s*(.+))|((TEST RESULT)\s*:\s*(.+))')
+		obj1 = re.compile(r'((TEdST START)\s*:\s*(.+))|((TEST RESULT)\s*:\s*(.+))')
 		# obj2 = re.compile(r'TEST START\s*:\s*(.+)')
 		path = self.maparg['path']
 
