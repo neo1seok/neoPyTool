@@ -8,6 +8,13 @@ import array
 import json
 import sys
 import datetime
+class Struct:
+	def __init__(self, **entries):
+		self.__dict__.update(entries)
+
+	def get_dict(self):
+		return dict(self.__dict__)
+
 class NeoRunnableClasss:
 	isJustRunThisClass = True
 
