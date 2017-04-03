@@ -14,8 +14,8 @@ def test_input():
 
 
 cleint_test(test_scenario.list_test_kbd)
-cleint_test(test_scenario.list_test_move)
-cleint_test(test_scenario.list_test_click)
-cleint_test(test_scenario.list_test_drag)
-cleint_test(test_scenario.list_test_str_input)
+# cleint_test(test_scenario.list_test_move)
+# cleint_test(test_scenario.list_test_click)
+# cleint_test(test_scenario.list_test_drag)
+#cleint_test(test_scenario.list_test_str_input)
 

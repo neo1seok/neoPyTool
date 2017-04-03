@@ -8,7 +8,7 @@ def cleint_test(list_test):
 	# get local machine name
 	#host = socket.gethostname()
 	host = 'localhost'
-	#host = "35.163.249.213"
+	#host = "192.168.0.3"
 
 	port = 5510
 	#port = 51717
