@@ -10,6 +10,7 @@ host = 'localhost'
 
 port = 5510
 #port = 51717
+port = 9999
 
 # connection to hostname on the port.
 s.connect((host, port))
