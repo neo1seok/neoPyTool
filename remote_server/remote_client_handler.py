@@ -3,155 +3,28 @@ import neolib.neolib as neolib
 import win32api
 import win32con
 import traceback
+from remote_server.vk_info import *
+import socketserver
 
-class RemoteHandleClient(baseHandleClient):
-	VK_CODE = {
-		'backspace': 0x08,
-		'tab': 0x09,
-		'clear': 0x0C,
-		'enter': 0x0D,
-		'shift': 0x10,
-		'ctrl': 0x11,
-		'alt': 0x12,
-		'pause': 0x13,
-		'caps_lock': 0x14,
-		'esc': 0x1B,
-		'spacebar': 0x20,
-		'page_up': 0x21,
-		'page_down': 0x22,
-		'end': 0x23,
-		'home': 0x24,
-		'left_arrow': 0x25,
-		'up_arrow': 0x26,
-		'right_arrow': 0x27,
-		'down_arrow': 0x28,
-		'select': 0x29,
-		'print': 0x2A,
-		'execute': 0x2B,
-		'print_screen': 0x2C,
-		'ins': 0x2D,
-		'del': 0x2E,
-		'help': 0x2F,
-		'0': 0x30,
-		'1': 0x31,
-		'2': 0x32,
-		'3': 0x33,
-		'4': 0x34,
-		'5': 0x35,
-		'6': 0x36,
-		'7': 0x37,
-		'8': 0x38,
-		'9': 0x39,
-		'a': 0x41,
-		'b': 0x42,
-		'c': 0x43,
-		'd': 0x44,
-		'e': 0x45,
-		'f': 0x46,
-		'g': 0x47,
-		'h': 0x48,
-		'i': 0x49,
-		'j': 0x4A,
-		'k': 0x4B,
-		'l': 0x4C,
-		'm': 0x4D,
-		'n': 0x4E,
-		'o': 0x4F,
-		'p': 0x50,
-		'q': 0x51,
-		'r': 0x52,
-		's': 0x53,
-		't': 0x54,
-		'u': 0x55,
-		'v': 0x56,
-		'w': 0x57,
-		'x': 0x58,
-		'y': 0x59,
-		'z': 0x5A,
-		'numpad_0': 0x60,
-		'numpad_1': 0x61,
-		'numpad_2': 0x62,
-		'numpad_3': 0x63,
-		'numpad_4': 0x64,
-		'numpad_5': 0x65,
-		'numpad_6': 0x66,
-		'numpad_7': 0x67,
-		'numpad_8': 0x68,
-		'numpad_9': 0x69,
-		'multiply_key': 0x6A,
-		'add_key': 0x6B,
-		'separator_key': 0x6C,
-		'subtract_key': 0x6D,
-		'decimal_key': 0x6E,
-		'divide_key': 0x6F,
-		'F1': 0x70,
-		'F2': 0x71,
-		'F3': 0x72,
-		'F4': 0x73,
-		'F5': 0x74,
-		'F6': 0x75,
-		'F7': 0x76,
-		'F8': 0x77,
-		'F9': 0x78,
-		'F10': 0x79,
-		'F11': 0x7A,
-		'F12': 0x7B,
-		'F13': 0x7C,
-		'F14': 0x7D,
-		'F15': 0x7E,
-		'F16': 0x7F,
-		'F17': 0x80,
-		'F18': 0x81,
-		'F19': 0x82,
-		'F20': 0x83,
-		'F21': 0x84,
-		'F22': 0x85,
-		'F23': 0x86,
-		'F24': 0x87,
-		'num_lock': 0x90,
-		'scroll_lock': 0x91,
-		'left_shift': 0xA0,
-		'right_shift ': 0xA1,
-		'left_control': 0xA2,
-		'right_control': 0xA3,
-		'left_menu': 0xA4,
-		'right_menu': 0xA5,
-		'browser_back': 0xA6,
-		'browser_forward': 0xA7,
-		'browser_refresh': 0xA8,
-		'browser_stop': 0xA9,
-		'browser_search': 0xAA,
-		'browser_favorites': 0xAB,
-		'browser_start_and_home': 0xAC,
-		'volume_mute': 0xAD,
-		'volume_Down': 0xAE,
-		'volume_up': 0xAF,
-		'next_track': 0xB0,
-		'previous_track': 0xB1,
-		'stop_media': 0xB2,
-		'play/pause_media': 0xB3,
-		'start_mail': 0xB4,
-		'select_media': 0xB5,
-		'start_application_1': 0xB6,
-		'start_application_2': 0xB7,
-		'attn_key': 0xF6,
-		'crsel_key': 0xF7,
-		'exsel_key': 0xF8,
-		'play_key': 0xFA,
-		'zoom_key': 0xFB,
-		'clear_key': 0xFE,
-		'+': 0xBB,
-		',': 0xBC,
-		'-': 0xBD,
-		'.': 0xBE,
-		'/': 0xBF,
-		'`': 0xC0,
-		';': 0xBA,
-		'[': 0xDB,
-		'\\': 0xDC,
-		']': 0xDD,
-		"'": 0xDE,
-		'`': 0xC0}
+class MyTCPHandler(socketserver.BaseRequestHandler):
+    """
+    The request handler class for our server.
+
+    It is instantiated once per connection to the server, and must
+    override the handle() method to implement communication to the
+    client.
+    """
+
+    def handle(self):
+        # self.request is the TCP socket connected to the client
+        self.data = self.request.recv(1024).strip()
+        print("{} wrote:".format(self.client_address[0]))
+        print(self.data)
+        # just send back the same data, but upper-cased
+        self.request.sendall(self.data.upper())
+
+class RemoteHandleClient(socketserver.BaseRequestHandler):
+
 	map_kbd = {
 			' ': ('spacebar', False),
 			'!': ('1', True),
@@ -175,12 +48,16 @@ class RemoteHandleClient(baseHandleClient):
 			'<': (',', True),
 			'>': ('.', True),
 		}
+
+	def setup(self):
+		self.init()
+		pass
 	def	init(self):
 		self.map_process ={
 			'kbd_event':self.proc_kbd_event,
 			'mouse_move': self.proc_mouse_move,
-			'click': self.proc_click,
-			'press_release':self.proc_press_release,
+#			'click': self.proc_click,
+			'mouse_event':self.proc_mouse_event,
 			'input_string': self.proc_input_string
 
 		}
@@ -201,9 +78,9 @@ class RemoteHandleClient(baseHandleClient):
 
 		None
 
-	def proc_input_string(self, params):
+	def proc_input_string(self, values):
 		print(self.map_kbd)
-		string,dummy = params
+		string,dummy = values
 		for ch in string:
 
 			print(neolib.Text2HexString(ch))
@@ -214,28 +91,28 @@ class RemoteHandleClient(baseHandleClient):
 			self.proc_kbd_event((vk_code, 'up'))
 			if isshfit: self.proc_kbd_event(('shift', 'up'))
 
-	def proc_kbd_event(self,params):
-		vk_key,down_up = params
-		win32api.keybd_event(self.VK_CODE[vk_key], 0, win32con.KEYEVENTF_KEYUP  if down_up !='down' else 0, 0)
+	def proc_kbd_event(self,values):
+		vk_key,down_up = values
+		win32api.keybd_event(VK_CODE[vk_key], 0, win32con.KEYEVENTF_KEYUP  if down_up !='down' else 0, 0)
 		#time.sleep(.05)
 		None
 
-	def proc_mouse_move(self,params):
-		dx, dy = params
+	def proc_mouse_move(self,values):
+		dx, dy = values
 		x,y=win32api.GetCursorPos()
 
 		#print(x + dx, y + dy,delay/1000.0)
 		win32api.SetCursorPos((x + dx, y + dy))
 		#time.sleep(delay/1000.0)
-		# dx = params[0]
-		# dy = params[1]
+		# dx = values[0]
+		# dy = values[1]
 
 
 
 
 		None
-	def proc_click(self,params):
-		leftright ,dummy = params
+	def proc_click(self,values):
+		leftright ,dummy = values
 
 		down = win32con.MOUSEEVENTF_LEFTDOWN if leftright == 'left' else win32con.MOUSEEVENTF_RIGHTDOWN
 		up = win32con.MOUSEEVENTF_LEFTUP if leftright == 'left' else win32con.MOUSEEVENTF_RIGHTUP
@@ -244,15 +121,24 @@ class RemoteHandleClient(baseHandleClient):
 		win32api.mouse_event(down, 0, 0, 0, 0)
 		win32api.mouse_event(up, 0, 0, 0, 0)
 
-	def proc_press_release(self, params):
-		downup,leftright = params
+	def proc_mouse_event(self, values):
+		leftright,downup = values
 		if leftright == 'left':
-			event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'press' else win32con.MOUSEEVENTF_LEFTUP
+			event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'down' else win32con.MOUSEEVENTF_LEFTUP
 		else:
-			event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'press' else win32con.MOUSEEVENTF_RIGHTUP
+			event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'down' else win32con.MOUSEEVENTF_RIGHTUP
 		win32api.mouse_event(event, 0, 0, 0, 0)
 
 		None
+	def recv_from_client(self):
+		return self.request.recv(1024).strip()
+
+	def send_to_client(self,buff):
+		self.request.sendall(buff.encode())
+		#self.clientsocket.send(buff.encode())
+	def handle(self):
+		self.run()
+
 	def run(self):
 		try:
 
@@ -265,10 +151,10 @@ class RemoteHandleClient(baseHandleClient):
 					rcv_map['delay'] = 100
 				self.rcv = neolib.Struct(**rcv_map)
 				print(rcv_map)
-				#self.params = neolib.Struct(**self.rcv.params)
+				#self.values = neolib.Struct(**self.rcv.values)
 
 
-				self.map_process[self.rcv.cmd](self.rcv.params)
+				self.map_process[self.rcv.cmd](self.rcv.values)
 				time.sleep(self.rcv.delay/1000.0)
 
 			self.snd.result = 'ok'
@@ -289,26 +175,22 @@ class RemoteHandleClient(baseHandleClient):
 		finally:
 			self.send_to_client(json.dumps(self.snd.get_dict()))
 
-	def recv_from_client(self):
-		return self.clientsocket.recv(512)
 
-	def send_to_client(self,buff):
-		self.clientsocket.send(buff.encode())
 
 
 class TestRemoteHandleClientWithOutSocket(RemoteHandleClient):
 	'''
-		rcv = {'cmd':'kbd',	'params':	[('shift','down'),('a','down'),('a','up'),('shift','up')]}
+		rcv = {'cmd':'kbd',	'values':	[('shift','down'),('a','down'),('a','up'),('shift','up')]}
 
 		rcv = {'cmd':'mouse_down',
-		'params':(100,100)
+		'values':(100,100)
 		}
 
 		rcv = {'cmd':'mouse_move',
-		'params':(100,100)
+		'values':(100,100)
 					}
 		rcv = {'cmd':'mouse_up',
-		'params':[(100,100)]
+		'values':[(100,100)]
 		}
 
 		snd= {
@@ -337,26 +219,26 @@ class TestRemoteHandleClientWithOutSocket(RemoteHandleClient):
 	# 	rcv_map =[]
 	#
 	# 	for i in range(10):
-	# 		rcv_map.append({'cmd': 'mouse_move', 'params': (1, 1)})
+	# 		rcv_map.append({'cmd': 'mouse_move', 'values': (1, 1)})
 	# 	self.rcv_buff = json.dumps(rcv_map)
 	# 	self.run()
 	#
 	# def test_click(self):
-	# 	self.rcv_buff = json.dumps(	[{'cmd': 'click', 'params': 'right'}])
+	# 	self.rcv_buff = json.dumps(	[{'cmd': 'click', 'values': 'right'}])
 	# 	self.run()
 	#
 	# def test_drag(self):
 	#
 	# 	rcv_map = []
-	# 	rcv_map.append({'cmd': 'press_release', 'params': ('press','left')})
+	# 	rcv_map.append({'cmd': 'mouse_event', 'values': ('down','left')})
 	# 	for i in range(10):
-	# 		rcv_map.append({'cmd': 'mouse_move', 'params': (10, 10), 'delay': 100})
+	# 		rcv_map.append({'cmd': 'mouse_move', 'values': (10, 10), 'delay': 100})
 	#
-	# 	rcv_map.append({'cmd': 'press_release', 'params': ('release','left')})
+	# 	rcv_map.append({'cmd': 'mouse_event', 'values': ('release','left')})
 	# 	self.rcv_buff = json.dumps(rcv_map)
 	# 	self.run()
 	# def test_input_string(self):
-	# 	self.rcv_buff = json.dumps([{'cmd': 'input_string', 'params': 'RIGHT'}])
+	# 	self.rcv_buff = json.dumps([{'cmd': 'input_string', 'values': 'RIGHT'}])
 	# 	self.run()
 	#
 	#
@@ -375,25 +257,32 @@ class TestRemoteHandleClientWithOutSocket(RemoteHandleClient):
 		None
 
 class RemoteHandleClientWithOutRealInput(RemoteHandleClient):
-	def proc_input_string(self, params):
-		print('proc_input_string',params)
+	def proc_input_string(self, values):
+		print('proc_input_string',values)
 		None
 
 
-	def proc_kbd_event(self,params):
-		print('proc_kbd_event', params)
+	def proc_kbd_event(self,values):
+		print('proc_kbd_event', values)
 		None
 
-	def proc_click(self,params):
-		print('proc_click', params)
+	def proc_click(self,values):
+		print('proc_click', values)
 		None
 
-	def proc_press_release(self, params):
-		print('proc_press_release', params)
+	def proc_mouse_event(self, values):
+		print('proc_mouse_event', values)
 
 		None
-	def proc_mouse_move(self,params):
-		print('proc_mouse_move', params)
+	def proc_mouse_move(self,values):
+		print('proc_mouse_move', values)
 		None
 if __name__ == '__main__':
-	HandleServerWithLogging(5510, RemoteHandleClient).run()
+	#HandleServerWithLogging(5510, RemoteHandleClient).run()
+	# Create the server, binding to localhost on port 9999
+	print('START_SERVER')
+	server = NeoTCPServer(( "localhost", 5510), RemoteHandleClient)
+
+	# Activate the server; this will keep running until you
+	# interrupt the program with Ctrl-C
+	server.serve_forever()

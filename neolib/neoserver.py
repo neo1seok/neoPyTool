@@ -8,8 +8,21 @@ import http.client
 import logging
 import threading
 from logging import handlers
-
+import socketserver
 # create a socket object
+class NeoTCPServer(socketserver.TCPServer):
+	def __init__(self, server_address, RequestHandlerClass, bind_and_activate=True):
+		self.debug = self.def_debug
+		host,port = server_address
+		self.init()
+		self.debug("%s __init__", self.__class__.__name__)
+		self.debug("WAITING %s %d", host,port)
+		socketserver.TCPServer.__init__(self, server_address, RequestHandlerClass)
+		None
+	def def_debug(self, fmt, *args):
+		print(fmt % (*args,))
+	def init(self):
+		None
 class baseHandleClient:
 	def __init__(self, clientsocket):
 		self.clientsocket = clientsocket
