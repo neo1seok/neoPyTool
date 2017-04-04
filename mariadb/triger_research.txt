@@ -1,0 +1,31 @@
+drop table `board`;
+
+CREATE TABLE `board` (
+`seq` int(11) default 0,
+`brd_uid` varchar(20) default '',
+`writer` varchar(20) NOT NULL,
+`title` varchar(100) NOT NULL,
+`content` mediumtext,
+`pwd` varchar(20) NOT NULL,
+`hit` decimal(5,0) NOT NULL,
+`groups` decimal(10,0) NOT NULL,
+`step` decimal(3,0) NOT NULL,
+`level` decimal(3,0) NOT NULL,
+`bname` varchar(10) NOT NULL,
+`updatedate` datetime default NULL,
+`regdate` datetime default NULL,
+PRIMARY KEY (`seq`,`brd_uid`)
+) ENGINE=InnoDB DEFAULT CHARSE
+delete from board;
+
+SELECT seq, brd_uid, writer, title, content, pwd, hit, groups, step, level, bname, updatedate, regdate
+FROM test_board.board;
+
+drop TRIGGER task_creation_timestamp;
+CREATE TRIGGER task_creation_timestamp BEFORE INSERT ON board
+FOR EACH ROW
+BEGIN
+SET @lastseq=1;
+SELECT seq+1 INTO @lastseq  FROM board order by seq desc limit 1;
+SET NEW.regdate = NOW(),NEW.updatedate = NOW(),NEW.seq=@lastseq,NEW.brd_uid =CONCAT('brd_',@lastseq),NEW.writer =CONCAT(NEW.seq) ;
+END

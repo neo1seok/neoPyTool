@@ -22,7 +22,9 @@ class HTTPCLient369(BaseClient):
 
 
 
-	def __init__(self ,handler):
+	def __init__(self ,handler=None):
+		if handler == None:
+			handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
 		self.init('show369' ,handler)
 		print('__init__')
 		d = datetime.datetime.now()
@@ -239,3 +241,6 @@ class HTTPCLient369(BaseClient):
 		print('test')
 		None
 
+if __name__ == '__main__':
+	handleGoldFish = HTTPCLient369()
+	handleGoldFish.Run()
