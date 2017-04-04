@@ -1,1 +1,1 @@
-python.exe remote_client_handler.py
+pythonw.exe remote_client_handler.py
