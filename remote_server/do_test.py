@@ -11,8 +11,8 @@ def test_input():
 	classdebug.test(test_scenario.list_test_str_input)
 
 
-#address = '192.168.0.3'
-address = 'localhost'
+address = '192.168.0.3'
+#address = 'localhost'
 
 cleint_test(address,test_scenario.list_test_kbd)
 #cleint_test(address,test_scenario.list_test_move)

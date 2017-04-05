@@ -281,7 +281,7 @@ if __name__ == '__main__':
 	#HandleServerWithLogging(5510, RemoteHandleClient).run()
 	# Create the server, binding to localhost on port 9999
 	print('START_SERVER')
-	server = NeoTCPServer(( "localhost", 5510), RemoteHandleClient)
+	server = NeoTCPServer(( "0.0.0.0", 5510), RemoteHandleClient)
 
 	# Activate the server; this will keep running until you
 	# interrupt the program with Ctrl-C
