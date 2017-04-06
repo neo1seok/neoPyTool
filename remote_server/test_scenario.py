@@ -1,31 +1,39 @@
+import simplejson as json
+list_test_kbd = [ 				 {'cmd' :'kbd_event',	'values':	('ctrl' ,'down')},
+								  {'cmd': 'kbd_event',	'values' :('a' ,'down')},
+								  {'cmd': 'kbd_event', 'values' :('a' ,'up')},
+								  {'cmd': 'kbd_event', 'values' :('ctrl' ,'up')}]
 
-list_test_kbd = [ 				 {'cmd' :'kbd_event',	'params':	('ctrl' ,'down')},
-								  {'cmd': 'kbd_event',	'params' :('a' ,'down')},
-								  {'cmd': 'kbd_event', 'params' :('a' ,'up')},
-								  {'cmd': 'kbd_event', 'params' :('ctrl' ,'up')}]
+list_test_drag = [ 				{'cmd': 'mouse_event', 'values': ('left','down' )},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_move', 'values': (10, 10)},
+								  {'cmd': 'mouse_event', 'values': ( 'left','up')}]
 
-list_test_drag = [ 				{'cmd': 'press_release', 'params': ('press' ,'left')},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'mouse_move', 'params': (10, 10)},
-								  {'cmd': 'press_release', 'params': ('release', 'left')}]
+list_test_move = [ 				  {'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)},
+									{'cmd': 'mouse_move', 'values': (10, 10)}		 ]
 
-list_test_move = [ 				  {'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)},
-									{'cmd': 'mouse_move', 'params': (10, 10)}		 ]
+list_test_click =				[ 				{'cmd': 'mouse_event', 'values': ('left','down' )},
+								  {'cmd': 'mouse_event', 'values': ( 'left','up')}]
 
-list_test_click =				[{'cmd': 'click', 'params': ('left' ,'')}]
-list_test_click_right =				[{'cmd': 'click', 'params': ('right' ,'')}]
-list_test_str_input = [{'cmd': 'input_string', 'params': ('abcdefghijklmnopqrstuvz','')}]
+list_test_click_right =				[ {'cmd': 'mouse_event', 'values': ('right','down' )},
+								  {'cmd': 'mouse_event', 'values': ( 'right','up')}]
+
+
+list_test_str_input = [{'cmd': 'input_string', 'values': ('abcdefghijklmnopqrstuvz','')}]
+
+if __name__ == '__main__':
+	print(json.dumps(list_test_kbd))
