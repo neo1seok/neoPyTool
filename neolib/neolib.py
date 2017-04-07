@@ -15,6 +15,10 @@ class Struct:
 	def get_dict(self):
 		return dict(self.__dict__)
 
+	def from_dict(self,dict):
+		self.__dict__.update(dict)
+
+
 class NeoRunnableClasss:
 	isJustRunThisClass = True
 
@@ -143,6 +147,7 @@ def HexString2Text(hexstr,enc="utf-8") :
 
 def Text2HexString(str,enc="utf-8",sep="") :
 	return ByteArray2HexString(str.encode(enc),sep)
+
 
 
 
@@ -348,6 +353,14 @@ def _linux_set_time(time_tuple):
 
 	# http://linux.die.net/man/3/clock_settime
 	librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
+
+
+def sha_256(sha_input):
+	m = hashlib.sha256()
+	m.update(neolib.HexString2ByteArray(sha_input))
+	reshash = m.digest()
+
+	return neolib.ByteArray2HexString(reshash)
 
 if __name__ == '__main__':
 	print('test')
