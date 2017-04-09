@@ -1,107 +1,49 @@
-from  neolib.neoserver import *
-import neolib.neolib as neolib
-import win32api
-import win32con
-import traceback
-from remote_server.vk_info import *
+from remote_server.event_haldler import *
 import socketserver
-#
-# class MyTCPHandler(socketserver.BaseRequestHandler):
-#     """
-#     The request handler class for our server.
-#
-#     It is instantiated once per connection to the server, and must
-#     override the handle() method to implement communication to the
-#     client.
-#     """
-#
-#     def handle(self):
-#         # self.request is the TCP socket connected to the client
-#         self.data = self.request.recv(1024).strip()
-#         print("{} wrote:".format(self.client_address[0]))
-#         print(self.data)
-#         # just send back the same data, but upper-cased
-#         self.request.sendall(self.data.upper())
 
 class RemoteHandleClient(socketserver.BaseRequestHandler):
 
-	map_kbd = {
-			' ': ('spacebar', False),
-			'!': ('1', True),
-			'@': ('2', True),
-			'{': ('[', True),
-			'?': ('/', True),
-			':': (';', True),
-			'"': ('\'', True),
-			'}': (']', True),
-			'#': ('3', True),
-			'$': ('4', True),
-			'%': ('5', True),
-			'^': ('6', True),
-			'&': ('7', True),
-			'*': ('8', True),
-			'(': ('9', True),
-			')': ('0', True),
-			'_': ('-', True),
-			'=': ('+', True),
-			'~': ('`', True),
-			'<': (',', True),
-			'>': ('.', True),
-		}
+
 
 	def setup(self):
 		self.init()
 		pass
 	def	init(self):
 		self.map_process ={
-			'kbd_event':self.proc_kbd_event,
-			'mouse_move': self.proc_mouse_move,
-#			'click': self.proc_click,
-			'mouse_event':self.proc_mouse_event,
-			'mouse_event_list': self.proc_mouse_event_list,
+# 			'kbd_event':self.proc_kbd_event,
+# 			'mouse_move': self.proc_mouse_move,
+# #			'click': self.proc_click,
+# 			'mouse_event':self.proc_mouse_event,
+			'input_event': self.proc_input_event,
 
 			'input_string': self.proc_input_string,
-			"mouse_move_abs":self.proc_mouse_move_abs,
+#			"mouse_move_abs":self.proc_mouse_move_abs,
 			"set_size": self.proc_set_size
 
 		}
-		for idx in range(26):
-			ch_cap = bytes([ord('A') + idx])
-			ch = bytes([ord(ch_cap) + 0x20])
-			self.map_kbd[ch_cap.decode()] = (ch.decode(), True)
-			self.map_kbd[ch.decode()] = (ch.decode(), False)
-			# print([tmp  for tmp in str(ch)])
-			# print([tmp for tmp in ch.decode()])
 
-			#print(type(str(ch)))
 
 		self.snd = neolib.Struct(**{'err':'',	'result':''})
 
-		self.x_res = win32api.GetSystemMetrics(0)
-		self.y_res = win32api.GetSystemMetrics(1)
 
-		self.map_event = {
-			'down': win32con.MOUSEEVENTF_LEFTDOWN,
-			'up': win32con.MOUSEEVENTF_LEFTUP,
-			'rdown': win32con.MOUSEEVENTF_RIGHTDOWN,
-			'rup': win32con.MOUSEEVENTF_RIGHTUP,
-		}
-
+		self.event_handler = EventHandler()
 		None
 
+
 	def proc_input_string(self, values):
-		print(self.map_kbd)
+		#print(self.map_kbd)
 		for value in values:
 			string,dummy = value
-			for ch in string:
-
-				print(neolib.Text2HexString(ch))
-				vk_code,isshfit = self.map_kbd[ch]
-				print(vk_code,isshfit)
-				if isshfit : self.proc_kbd_event(('shift','down'))
-				self.proc_kbd_event((vk_code,'down'))
-				self.proc_kbd_event((vk_code, 'up'))
-				if isshfit: self.proc_kbd_event(('shift', 'up'))
+			self.event_handler.input_string(string)
+			# for ch in string:
+			#
+			# 	print(neolib.Text2HexString(ch))
+			# 	vk_code,isshfit = self.event_handler.map_kbd[ch]
+			# 	print(vk_code,isshfit)
+			# 	if isshfit : self.proc_kbd_event(('shift','down'))
+			# 	self.proc_kbd_event((vk_code,'down'))
+			# 	self.proc_kbd_event((vk_code, 'up'))
+			# 	if isshfit: self.proc_kbd_event(('shift', 'up'))
 
 	def proc_kbd_event(self,values):
 		for value in values:
@@ -111,7 +53,8 @@ class RemoteHandleClient(socketserver.BaseRequestHandler):
 		None
 
 	def proc_set_size(self, values):
-		self.width,self.height = values[0]
+
+		self.event_handler.set_size(values[0])
 
 
 	def proc_mouse_move_abs(self,values):
@@ -167,35 +110,19 @@ class RemoteHandleClient(socketserver.BaseRequestHandler):
 			win32api.mouse_event(event, 0, 0, 0, 0)
 
 		None
-	def get_point(self,pointvalue):
-		x = pointvalue&0xffff
-		y = (pointvalue>>16)&0xffff
 
-		ratex = x / self.width
-		ratey = y /self.height
-		curx = int(self.x_res * ratex)
-		cury = int(self.y_res * ratey)
 
 		# print(x + dx, y + dy,delay/1000.0)
 
 
-		return curx,cury
-	def proc_mouse_event_list(self,values):
 
+
+	def proc_input_event(self, values):
 		for value in values:
-			eventname, pointvalue = value
-			x,y = self.get_point(pointvalue)
-			print(x,y)
-			win32api.SetCursorPos((x, y))
+			eventname= value[0]
+			self.event_handler.run(eventname, value[1:],self.rcv.delay)
 
-			if eventname in self.map_event:
-				event =self.map_event[eventname]
-				win32api.mouse_event(event, 0, 0, 0, 0)
-			time.sleep(self.rcv.delay / 1000.0)
-			# if leftright == 'left':
-			# 	event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'down' else win32con.MOUSEEVENTF_LEFTUP
-			# else:
-			# 	event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'down' else win32con.MOUSEEVENTF_RIGHTUP
+
 
 
 	def recv_from_client(self):
@@ -250,6 +177,7 @@ class RemoteHandleClient(socketserver.BaseRequestHandler):
 		except Exception as ext:
 			print('Exception',ext)
 			formatted_lines = traceback.format_exc().splitlines()
+			print('Exception', ext,formatted_lines)
 			self.snd.result = 'fail'
 			self.snd.err = str(ext) +''.join(formatted_lines)
 			raise ext
@@ -339,6 +267,12 @@ class TestRemoteHandleClientWithOutSocket(RemoteHandleClient):
 		None
 
 class RemoteHandleClientWithOutRealInput(RemoteHandleClient):
+
+	def init(self):
+		RemoteHandleClient.init(self)
+		self.event_handler = EventHandlerWithOutRealInput()
+		None
+
 	def print_values(self,):
 		None
 
@@ -366,8 +300,8 @@ class RemoteHandleClientWithOutRealInput(RemoteHandleClient):
 	def proc_mouse_move_abs(self,values):
 
 		None
-	def proc_mouse_event_list(self,values):
-		None
+	# def proc_mouse_event_list(self,values):
+	# 	None
 if __name__ == '__main__':
 	#HandleServerWithLogging(5510, RemoteHandleClient).run()
 	# Create the server, binding to localhost on port 9999

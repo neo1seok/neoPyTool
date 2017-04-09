@@ -14,8 +14,16 @@ def test_input():
 
 address = '192.168.0.3'
 address = 'localhost'
+cleint_test(address,test_scenario.list_test_kbd)
+cleint_test(address,test_scenario.list_test_drag)
+cleint_test(address,test_scenario.list_test_down_move_rdownrup)
+cleint_test(address,test_scenario.list_test_move)
+cleint_test(address,test_scenario.list_test_click)
+cleint_test(address,test_scenario.list_test_click_right)
+cleint_test(address,test_scenario.list_test_str_input)
 
-cleint_test(address,test_scenario.mouse_event_list_move)
+exit()
+cleint_test(address,test_scenario.mouse_event_list)
 exit()
 cleint_test(address,test_scenario.list_test_kbd)
 time.sleep(1)
