@@ -4,6 +4,7 @@ import win32api
 import win32con
 import traceback
 from remote_server.vk_info import *
+
 import socketserver
 
 class EventHandler():
@@ -34,6 +35,9 @@ class EventHandler():
 	def __init__(self):
 		self.x_res = win32api.GetSystemMetrics(0)
 		self.y_res = win32api.GetSystemMetrics(1)
+		print(self.x_res,self.y_res)
+
+
 
 		self.map_mouse_event = {
 			'ldown': win32con.MOUSEEVENTF_LEFTDOWN,
@@ -66,7 +70,43 @@ class EventHandler():
 			# print([tmp for tmp in ch.decode()])
 
 			#print(type(str(ch)))
+		self.calc_rects_from_screen(5)
+		self.oldidx = -1
+		print(len(self.split_rect))
+		self.accum_delay = 0;
 		None
+
+	def calc_rects_from_screen(self,unitpixelc):
+		xnum = int(self.x_res/unitpixelc) + 1 if self.x_res% unitpixelc !=0 else 0
+		ynum = int(self.y_res/unitpixelc) + 1 if self.y_res% unitpixelc !=0 else 0
+		split_rect = []
+		startx ,starty = (0,0)
+
+		for yidx in range(ynum):
+			startx = 0
+			for xindx in range(xnum):
+				split_rect.append( (startx,starty,startx+unitpixelc,starty+unitpixelc))
+				startx += unitpixelc
+			starty += unitpixelc
+		self.split_rect =	split_rect
+
+	def is_rect(self,x,y,rect):
+		l,t,r,b = rect
+		if x < l  or x >=r: return False
+		if y < t or y >= b: return False
+		return True
+
+
+	def find_idex_from_rects(self,x,y):
+		indexs = []
+		idx = 0
+		for rect in self.split_rect:
+			if self.is_rect(x,y,rect):
+				indexs.append(rect)
+				return idx
+			idx += 1
+		return -1
+
 
 	def set_cursor_pos(self, x, y):
 		win32api.SetCursorPos((x, y))
@@ -78,6 +118,7 @@ class EventHandler():
 		win32api.keybd_event(VK_CODE[vk_key], 0, event, 0)
 
 	def input_string(self, string):
+		self.oldidx = -1
 		for ch in string:
 			print(neolib.Text2HexString(ch))
 			vk_code,isshfit = self.map_kbd[ch]
@@ -91,6 +132,7 @@ class EventHandler():
 		x, y = param
 		#x,y = self.get_point(pointvalue)
 		print(x,y)
+		self.oldidx = -1
 		if x != -1 and  y != -1:
 			x, y = self.get_point(x, y)
 			self.set_cursor_pos(x,y)
@@ -101,8 +143,14 @@ class EventHandler():
 	def proc_move(self,eventname,param):
 		x, y = param
 		x, y = self.get_point(x,y)
+		# idx = self.find_idex_from_rects(x,y)
+		# print(x, y, idx)
+		# if self.oldidx == idx:
+		# self.set_cursor_pos(x, y)
+		#
+		# self.oldidx = idx
 		#x,y = self.get_point(pointvalue)
-		print(x,y)
+
 		self.set_cursor_pos(x,y)
 	def proc_keydownup(self,eventname,param):
 		self.kbd_event(param[0],eventname)
@@ -113,27 +161,11 @@ class EventHandler():
 		event_proc = self.map_event_proc[eventname]
 		print('event proc name',event_proc.__name__)
 		event_proc(eventname,param)
-		#
-		# x,y = param
-		#
-		# #x,y = self.get_point(pointvalue)
-		# print(x,y)
-		# self.set_cursor_pos(x,y)
-		# # win32api.SetCursorPos((x, y))
-		#
-		# if eventname in self.map_event:
-		# 	event =self.map_event[eventname]
-		# 	self.mouse_event(event)
 		time.sleep(delay / 1000.0)
-		# if leftright == 'left':
-		# 	event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'ldown' else win32con.MOUSEEVENTF_LEFTUP
-		# else:
-		# 	event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'ldown' else win32con.MOUSEEVENTF_RIGHTUP
 
 		None
 
 	def get_point(self,x,y):
-
 		ratex = x / self.width
 		ratey = y /self.height
 		curx = int(self.x_res * ratex)
@@ -142,11 +174,14 @@ class EventHandler():
 
 	def set_size(self,value):
 		self.width,self.height = value
+		self.accum_delay  = 0
 
 class EventHandlerWithOutRealInput(EventHandler):
 	def set_cursor_pos(self, x, y):
 		# win32api.SetCursorPos((x, y))
-		print(x,y)
+		#print(x,y)
+		print('SetCursorPos')
+		None
 
 	def mouse_event(self, event):
 		#win32api.mouse_event(event, 0, 0, 0, 0)
@@ -154,3 +189,11 @@ class EventHandlerWithOutRealInput(EventHandler):
 
 	def kbd_event(self, vk_key, down_up):
 		None
+
+
+if __name__ == '__main__':
+	obj = EventHandlerWithOutRealInput()
+	#obj.calc_rects_from_screen(10)
+	print(len(obj.split_rect))
+	idx = obj.find_idex_from_rects(1536, 864)
+	print(obj.split_rect[idx])
