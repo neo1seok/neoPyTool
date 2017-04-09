@@ -5,23 +5,23 @@ import win32con
 import traceback
 from remote_server.vk_info import *
 import socketserver
-
-class MyTCPHandler(socketserver.BaseRequestHandler):
-    """
-    The request handler class for our server.
-
-    It is instantiated once per connection to the server, and must
-    override the handle() method to implement communication to the
-    client.
-    """
-
-    def handle(self):
-        # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(1024).strip()
-        print("{} wrote:".format(self.client_address[0]))
-        print(self.data)
-        # just send back the same data, but upper-cased
-        self.request.sendall(self.data.upper())
+#
+# class MyTCPHandler(socketserver.BaseRequestHandler):
+#     """
+#     The request handler class for our server.
+#
+#     It is instantiated once per connection to the server, and must
+#     override the handle() method to implement communication to the
+#     client.
+#     """
+#
+#     def handle(self):
+#         # self.request is the TCP socket connected to the client
+#         self.data = self.request.recv(1024).strip()
+#         print("{} wrote:".format(self.client_address[0]))
+#         print(self.data)
+#         # just send back the same data, but upper-cased
+#         self.request.sendall(self.data.upper())
 
 class RemoteHandleClient(socketserver.BaseRequestHandler):
 
@@ -58,7 +58,11 @@ class RemoteHandleClient(socketserver.BaseRequestHandler):
 			'mouse_move': self.proc_mouse_move,
 #			'click': self.proc_click,
 			'mouse_event':self.proc_mouse_event,
-			'input_string': self.proc_input_string
+			'mouse_event_list': self.proc_mouse_event_list,
+
+			'input_string': self.proc_input_string,
+			"mouse_move_abs":self.proc_mouse_move_abs,
+			"set_size": self.proc_set_size
 
 		}
 		for idx in range(26):
@@ -76,101 +80,179 @@ class RemoteHandleClient(socketserver.BaseRequestHandler):
 		self.x_res = win32api.GetSystemMetrics(0)
 		self.y_res = win32api.GetSystemMetrics(1)
 
+		self.map_event = {
+			'down': win32con.MOUSEEVENTF_LEFTDOWN,
+			'up': win32con.MOUSEEVENTF_LEFTUP,
+			'rdown': win32con.MOUSEEVENTF_RIGHTDOWN,
+			'rup': win32con.MOUSEEVENTF_RIGHTUP,
+		}
+
 		None
 
 	def proc_input_string(self, values):
 		print(self.map_kbd)
-		string,dummy = values
-		for ch in string:
+		for value in values:
+			string,dummy = value
+			for ch in string:
 
-			print(neolib.Text2HexString(ch))
-			vk_code,isshfit = self.map_kbd[ch]
-			print(vk_code,isshfit)
-			if isshfit : self.proc_kbd_event(('shift','down'))
-			self.proc_kbd_event((vk_code,'down'))
-			self.proc_kbd_event((vk_code, 'up'))
-			if isshfit: self.proc_kbd_event(('shift', 'up'))
+				print(neolib.Text2HexString(ch))
+				vk_code,isshfit = self.map_kbd[ch]
+				print(vk_code,isshfit)
+				if isshfit : self.proc_kbd_event(('shift','down'))
+				self.proc_kbd_event((vk_code,'down'))
+				self.proc_kbd_event((vk_code, 'up'))
+				if isshfit: self.proc_kbd_event(('shift', 'up'))
 
 	def proc_kbd_event(self,values):
-		vk_key,down_up = values
-		win32api.keybd_event(VK_CODE[vk_key], 0, win32con.KEYEVENTF_KEYUP  if down_up !='down' else 0, 0)
+		for value in values:
+			vk_key,down_up = value
+			win32api.keybd_event(VK_CODE[vk_key], 0, win32con.KEYEVENTF_KEYUP  if down_up !='down' else 0, 0)
 		#time.sleep(.05)
 		None
 
-	def proc_mouse_move(self,values):
-		dx, dy = values
-		x,y=win32api.GetCursorPos()
+	def proc_set_size(self, values):
+		self.width,self.height = values[0]
 
-		#print(x + dx, y + dy,delay/1000.0)
-		win32api.SetCursorPos((x + dx, y + dy))
-		#time.sleep(delay/1000.0)
-		# dx = values[0]
-		# dy = values[1]
+
+	def proc_mouse_move_abs(self,values):
+		for value in values:
+			for tmp in value:
+				dx, dy,width,height = tmp
+			#curx,cury=win32api.GetCursorPos()
+			ratex = dx/width
+			ratey = dy/height
+			curx = int(self.x_res*ratex)
+			cury = int(self.y_res*ratey)
+
+			#print(x + dx, y + dy,delay/1000.0)
+			win32api.SetCursorPos((curx, cury))
+			#time.sleep(delay/1000.0)
+			# dx = values[0]
+			# dy = values[1]
+
+	def proc_mouse_move(self,values):
+		for value in values:
+			dx, dy = value
+			curx,cury=win32api.GetCursorPos()
+
+
+			#print(x + dx, y + dy,delay/1000.0)
+			win32api.SetCursorPos((curx + dx, curx + dy))
+			#time.sleep(delay/1000.0)
+			# dx = values[0]
+			# dy = values[1]
 
 
 
 
 		None
 	def proc_click(self,values):
-		leftright ,dummy = values
+		for value in values:
+			leftright ,dummy = value
 
-		down = win32con.MOUSEEVENTF_LEFTDOWN if leftright == 'left' else win32con.MOUSEEVENTF_RIGHTDOWN
-		up = win32con.MOUSEEVENTF_LEFTUP if leftright == 'left' else win32con.MOUSEEVENTF_RIGHTUP
+			down = win32con.MOUSEEVENTF_LEFTDOWN if leftright == 'left' else win32con.MOUSEEVENTF_RIGHTDOWN
+			up = win32con.MOUSEEVENTF_LEFTUP if leftright == 'left' else win32con.MOUSEEVENTF_RIGHTUP
 
-		print(down,up)
-		win32api.mouse_event(down, 0, 0, 0, 0)
-		win32api.mouse_event(up, 0, 0, 0, 0)
+			print(down,up)
+			win32api.mouse_event(down, 0, 0, 0, 0)
+			win32api.mouse_event(up, 0, 0, 0, 0)
 
 	def proc_mouse_event(self, values):
-		leftright,downup = values
-		if leftright == 'left':
-			event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'down' else win32con.MOUSEEVENTF_LEFTUP
-		else:
-			event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'down' else win32con.MOUSEEVENTF_RIGHTUP
-		win32api.mouse_event(event, 0, 0, 0, 0)
+		for value in values:
+			leftright,downup = value
+			if leftright == 'left':
+				event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'down' else win32con.MOUSEEVENTF_LEFTUP
+			else:
+				event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'down' else win32con.MOUSEEVENTF_RIGHTUP
+			win32api.mouse_event(event, 0, 0, 0, 0)
 
 		None
+	def get_point(self,pointvalue):
+		x = pointvalue&0xffff
+		y = (pointvalue>>16)&0xffff
+
+		ratex = x / self.width
+		ratey = y /self.height
+		curx = int(self.x_res * ratex)
+		cury = int(self.y_res * ratey)
+
+		# print(x + dx, y + dy,delay/1000.0)
+
+
+		return curx,cury
+	def proc_mouse_event_list(self,values):
+
+		for value in values:
+			eventname, pointvalue = value
+			x,y = self.get_point(pointvalue)
+			print(x,y)
+			win32api.SetCursorPos((x, y))
+
+			if eventname in self.map_event:
+				event =self.map_event[eventname]
+				win32api.mouse_event(event, 0, 0, 0, 0)
+			time.sleep(self.rcv.delay / 1000.0)
+			# if leftright == 'left':
+			# 	event = win32con.MOUSEEVENTF_LEFTDOWN if downup == 'down' else win32con.MOUSEEVENTF_LEFTUP
+			# else:
+			# 	event = win32con.MOUSEEVENTF_RIGHTDOWN if downup == 'down' else win32con.MOUSEEVENTF_RIGHTUP
+
+
 	def recv_from_client(self):
-		return self.request.recv(1024).strip()
+		buff = b''
+		while True:
+			unitbuff = self.request.recv(1024)
+			buff+=unitbuff
+			if len(unitbuff) != 1024: break
+		return buff.strip()
 
 	def send_to_client(self,buff):
 		self.request.sendall(buff.encode())
 		#self.clientsocket.send(buff.encode())
 	def handle(self):
-		self.run()
-
+		print('start handle')
+		while True:
+			try:
+				self.run()
+			except:
+				break
+		print('end handle')
 	def run(self):
 		try:
 
-
+			print('receiving')
 			buff = self.recv_from_client()
+
+			print(buff)
+			if buff == b'':
+				raise Exception()
+			print('received')
 
 			list_rcv_map = json.loads(buff)
 			for rcv_map in list_rcv_map:
 				if 'delay' not in rcv_map:
 					rcv_map['delay'] = 100
 				self.rcv = neolib.Struct(**rcv_map)
-				print(rcv_map)
+				#print(rcv_map)
 				#self.values = neolib.Struct(**self.rcv.values)
 
-
-				self.map_process[self.rcv.cmd](self.rcv.values)
+				proc = self.map_process[self.rcv.cmd]
+				print("process:",proc.__name__)
+				proc(self.rcv.values)
 				time.sleep(self.rcv.delay/1000.0)
 
 			self.snd.result = 'ok'
 			self.snd.err = ''
 
-			print(buff)
-			if buff == b'':
-				raise Exception()
 
-			time.sleep(0.1)
 
-			time.sleep(0.1)
+
 		except Exception as ext:
+			print('Exception',ext)
 			formatted_lines = traceback.format_exc().splitlines()
 			self.snd.result = 'fail'
 			self.snd.err = str(ext) +''.join(formatted_lines)
+			raise ext
 
 		finally:
 			self.send_to_client(json.dumps(self.snd.get_dict()))
@@ -257,31 +339,40 @@ class TestRemoteHandleClientWithOutSocket(RemoteHandleClient):
 		None
 
 class RemoteHandleClientWithOutRealInput(RemoteHandleClient):
+	def print_values(self,):
+		None
+
 	def proc_input_string(self, values):
-		print('proc_input_string',values)
+
 		None
 
 
 	def proc_kbd_event(self,values):
-		print('proc_kbd_event', values)
+
 		None
 
 	def proc_click(self,values):
-		print('proc_click', values)
+
 		None
 
 	def proc_mouse_event(self, values):
-		print('proc_mouse_event', values)
+
 
 		None
 	def proc_mouse_move(self,values):
-		print('proc_mouse_move', values)
+
+		None
+
+	def proc_mouse_move_abs(self,values):
+
+		None
+	def proc_mouse_event_list(self,values):
 		None
 if __name__ == '__main__':
 	#HandleServerWithLogging(5510, RemoteHandleClient).run()
 	# Create the server, binding to localhost on port 9999
 	print('START_SERVER')
-	server = NeoTCPServer(( "0.0.0.0", 5510), RemoteHandleClient)
+	server = NeoTCPServer( 5510, RemoteHandleClient)
 
 	# Activate the server; this will keep running until you
 	# interrupt the program with Ctrl-C

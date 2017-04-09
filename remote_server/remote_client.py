@@ -21,6 +21,13 @@ def cleint_test(address,list_test):
 
 	s.send(json.dumps(list_test).encode())
 	tm = s.recv(1024)
+
+	s.send(json.dumps(list_test).encode())
+	tm = s.recv(1024)
+	print(tm)
+
+	s.send(json.dumps(list_test).encode())
+	tm = s.recv(1024)
 	print(tm)
 	s.close()
 
