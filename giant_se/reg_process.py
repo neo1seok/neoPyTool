@@ -14,7 +14,9 @@ class RegProcessChipSide(BaseChipSide):
 		# 	self.chip_figure.puf+Random+self.chip_figure.e_fuse
 		# )
 		# calc_puf(self.chip_figure.puf,Random,self.chip_figure.e_fuse)
-		FactoryKey = crypto_util.sha256(factorykeyid + self.comm_figure.factory_key_rtl)
+
+
+		FactoryKey = left_16_sha256(factorykeyid + self.comm_figure.factory_key_rtl)
 		hash_param = crypto_util.sha256(Nonce + FactoryKey)
 		Random_Authcode = Random+Authcode
 		self.print_view(locals(), 'FactoryKey')
@@ -29,9 +31,18 @@ class RegProcessChipSide(BaseChipSide):
 
 
 class RegProcessServerSide(BaseServerSide):
-	def prcess_trans_factory_key(self):
+	def prcess_factory_key_id(self):
 		sn = self.trans_data.get()
-		self.extract_map_auth_info_from_sn(sn)
+		company_no = self.trans_data.get()
+		#factory_key_id = self.trans_data.get()
+
+		self.auth_info = neolib.Struct(**{})
+
+		#self.extract_map_auth_info_from_sn(sn)
+		self.auth_info.sn = sn
+
+		#self.auth_info.factory_key_id = ''
+
 		# map_auth_info = self.server_figure.map_auth_info[sn]
 		# self.auth_info = neolib.Struct(**map_auth_info)
 		#
@@ -41,7 +52,7 @@ class RegProcessServerSide(BaseServerSide):
 
 		self.trans_data.put(self.auth_info.factory_key_id)
 
-	def prcess_trans_final(self):
+	def prcess_register(self):
 		Nonce = self.trans_data.get()
 		Cither = self.trans_data.get()
 		self.print_view(locals(), 'Nonce')
@@ -65,22 +76,59 @@ class RegProcessServerSide(BaseServerSide):
 
 		None
 
+class RegProcessServerSideWithWebServer(BaseServerSideWithWebServer):
+	sublet = 'reg'
+	def prcess_factory_key_id(self):
+		sn = self.trans_data.get()
+		company_no = self.trans_data.get()
+
+		result = self.req_post({"cmd":"FACTORY_KEY_ID","params":{"sn":sn,"company_no":company_no}})
+
+
+	def prcess_register(self):
+		nonce = self.trans_data.get()
+		cipher = self.trans_data.get()
+		result = self.req_post({"cmd": "REGISTER", "params": {"nonce": nonce, "cipher": cipher}})
 
 class RegProcess(BaseProcess):
 
 	def init(self):
 		BaseProcess.init(self)
-		self.server_side = RegProcessServerSide(self)
-		self.chip_side = RegProcessChipSide(self)
+		self.set_sideclass()
+		# self.server_side = RegProcessServerSide(self)
+		# self.chip_side = RegProcessChipSide(self)
 
 		self.list_process =  [
-			self.chip_side.prcess_trans_sn,
-			self.server_side.prcess_trans_factory_key,
+			self.chip_side.prcess_get_sn,
+			self.trans_company_no,
+
+			self.server_side.prcess_factory_key_id,
+			self.trans_factory_key,
 			self.chip_side.prcess_trans_nonce_cipher,
-			self.server_side.prcess_trans_final
+			self.server_side.prcess_register
 		]
 
 		None
+	def set_sideclass(self):
+		self.server_side = RegProcessServerSide(self)
+		self.chip_side = RegProcessChipSide(self)
+
+	def trans_company_no(self):
+		self.trans_data.put(self.comm_figure.company_no)
+		#self.trans_data.set(self.comm_figure.factory_key_id)
+
+	def trans_factory_key(self):
+		self.trans_data.put(self.comm_figure.factory_key_id)
+		#self.trans_data.set(self.comm_figure.factory_key_id)
+
+
+class RegProcessWithWebServer(RegProcess):
+
+	def set_sideclass(self):
+		self.server_side = RegProcessServerSideWithWebServer(self)
+		self.chip_side = RegProcessChipSide(self)
+
 
 if __name__ == '__main__':
-	RegProcess().run()
+	#RegProcess().run()
+	RegProcessWithWebServer().set_puf(crypto_util.getrandom(16)).run()
