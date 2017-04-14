@@ -125,23 +125,6 @@ def authentication_pufs_sync(count):
 
 	print(count)
 
-class AAAAAA:
-	id = 1
-	list_process = []
-	list_process1 = []
-	name = "김철수"
-	def __init__(self):
-		self.list_process.extend([2323,2323,2323,23])
-		self.list_process1.append(3222)
-		self.id += 1
-		self.name += "김철수"
-
-	def set_id(self):
-		self.id = 2222
-	def view(self):
-		print(len(self.list_process),self.list_process,self.id)
-		print(len(self.list_process1), self.list_process1, self.id)
-		print(self.name)
 
 
 
@@ -151,9 +134,6 @@ authentication_pufs(100)
 print("end")
 #authentication_pufs_sync(10)
 exit()
-for _ in range(2):
-	#AuthProcessWithWebServer().check_listcoutn()
-	AAAAAA().view()
 
 
 
