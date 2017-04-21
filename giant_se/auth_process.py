@@ -1,37 +1,5 @@
 from giant_se.base_classes import *
-
-class AuthProcessChipSide(BaseChipSide):
-
-	def prcess_trans_cipher_mac_keys_client(self):
-		Random = self.trans_data.get()
-		RandomS = self.trans_data.get()
-		puf = self.chip_figure.puf
-		Authcode = self.calc_authcode(Random)
-
-		self.print_view(locals(), 'Random')
-		self.print_view(locals(), 'RandomS')
-		self.print_view(locals(), 'Authcode')
-		self.print_view(locals(), 'puf')
-
-
-
-
-		tRandom = crypto_util.getrandom(16)
-
-		self.print_view(locals(), 'tRandom')
-
-		newRandom = mod8bits_calc(tRandom,RandomS)
-		self.print_view(locals(), 'newRandom')
-		newAuthcode = self.calc_authcode(newRandom)
-		self.print_view(locals(), 'newAuthcode')
-		hash_param = crypto_util.sha256(Random + RandomS+Authcode)
-		self.print_view(locals(), 'hash_param')
-		cipher = crypto_util.xor_calc( tRandom+newAuthcode,hash_param)
-		mac = left_16_sha256(newAuthcode+RandomS+tRandom)
-		self.print_view(locals(), 'cipher')
-		self.print_view(locals(), 'mac')
-		self.trans_data.put(cipher)
-		self.trans_data.put(mac)
+from giant_se.chip_side import *
 
 
 
@@ -55,27 +23,37 @@ class AuthProcessServerSide(BaseServerSide):
 	def prcess_authentication(self):
 		cipher = self.trans_data.get()
 		mac = self.trans_data.get()
-		self.print_view(locals(),'cipher')
-		self.print_view(locals(), 'mac')
 
-		hash_param = crypto_util.sha256(self.auth_info.random + self.RandomS + self.auth_info.authcode)
+		hash_param, tRandom, newRandom, newAuthcode, calc_mac= self.calc_auth(self.auth_info.random ,self.auth_info.authcode,self.RandomS,cipher)
+
 		self.print_view(locals(), 'hash_param')
-		tRandom_newAuthcode = crypto_util.xor_calc(cipher,hash_param)
-		self.print_view(locals(), 'tRandom_newAuthcode')
-		tRandom = crypto_util.substr(tRandom_newAuthcode, 0, 16)
-		newRandom = mod8bits_calc(tRandom,self.RandomS)
-		newAuthcode = crypto_util.substr(tRandom_newAuthcode, 16, 16)
-
+		#self.print_view(locals(), 'tRandom_newAuthcode')
 		self.print_view(locals(), 'tRandom')
 		self.print_view(locals(), 'newRandom')
 		self.print_view(locals(), 'newAuthcode')
-
-		self.auth_info.random = newRandom
-		self.auth_info.authcode = newAuthcode
-
-
-		calc_mac = left_16_sha256(newAuthcode + self.RandomS + tRandom)
 		self.print_view(locals(), 'calc_mac')
+
+		# self.print_view(locals(),'cipher')
+		# self.print_view(locals(), 'mac')
+		#
+		# hash_param = crypto_util.sha256(self.auth_info.random + self.RandomS + self.auth_info.authcode)
+		# self.print_view(locals(), 'hash_param')
+		# tRandom_newAuthcode = crypto_util.xor_calc(cipher,hash_param)
+		# self.print_view(locals(), 'tRandom_newAuthcode')
+		# tRandom = crypto_util.substr(tRandom_newAuthcode, 0, 16)
+		# newRandom = mod8bits_calc(tRandom,self.RandomS)
+		# newAuthcode = crypto_util.substr(tRandom_newAuthcode, 16, 16)
+		#
+		# self.print_view(locals(), 'tRandom')
+		# self.print_view(locals(), 'newRandom')
+		# self.print_view(locals(), 'newAuthcode')
+		#
+		# self.auth_info.random = newRandom
+		# self.auth_info.authcode = newAuthcode
+		#
+		#
+		# calc_mac = left_16_sha256(newAuthcode + self.RandomS + tRandom)
+		# self.print_view(locals(), 'calc_mac')
 
 
 
@@ -112,6 +90,7 @@ class AuthProcessServerSideWithWebServer(BaseServerSideWithWebServer):
 		cipher = self.trans_data.get()
 		mac = self.trans_data.get()
 		result = self.req_post({"cmd": "AUTHENTICATION", "params": {"cipher": cipher,"mac": mac}})
+		print(result)
 
 
 
@@ -126,14 +105,17 @@ class AuthProcess(BaseProcess):
 		self.list_process.extend(  [
 			self.chip_side.prcess_get_sn,
 			self.server_side.prcess_random_values,
-			self.chip_side.prcess_trans_cipher_mac_keys_client,
+			self.chip_side.prcess_chip_authentication,
 			self.server_side.prcess_authentication
 		])
 
 		None
 	def set_sideclass(self):
 		self.server_side = AuthProcessServerSide(self)
-		self.chip_side = AuthProcessChipSide(self)
+		#self.chip_side = AuthProcessChipSide(self)
+		self.chip_side = ChipSide(self)
+
+
 
 
 class AuthProcessWithWebServer(AuthProcess):
@@ -142,10 +124,12 @@ class AuthProcessWithWebServer(AuthProcess):
 		print("list_process count:", len(self.list_process))
 	def set_sideclass(self):
 		self.server_side = AuthProcessServerSideWithWebServer(self)
-		self.chip_side = AuthProcessChipSide(self)
+		#self.chip_side = AuthProcessChipSide(self)
+		self.chip_side = ChipSide(self)
+
 
 
 
 if __name__ == '__main__':
-	#AuthProcess().run()
-	AuthProcessWithWebServer().set_puf("BBFFCA427AFB9BD12DDBD800F1994F4B").run()
+	AuthProcess().run()
+	#AuthProcessWithWebServer().run()

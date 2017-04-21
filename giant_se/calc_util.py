@@ -15,6 +15,8 @@ def left_16(org):
 
 def left_16_sha256(org):
 	return left_16(crypto_util.sha256(org))
+def left_8_sha256(org):
+	return crypto_util.substr(crypto_util.sha256(org), 0, 8)
 
 
 def mod8bits_calc(org, hashed_value):

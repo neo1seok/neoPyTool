@@ -393,7 +393,7 @@ def create_logger(loggename,formatter = '%(threadName)s %(asctime)s - %(name)s -
 
 def json_pretty(json_obj):
 
-	return json.dumps(json_obj, sort_keys=True, indent=4, separators=(',', ': '))
+	return json.dumps(json_obj, sort_keys=True, indent=4, separators=(',', ': '),ensure_ascii=False)
 if __name__ == '__main__':
 	print('test')
 

@@ -1,0 +1,17 @@
+giant 2와 데모 서버 구성을 위한 서버 가이드 문서이다.
+
+1. 설치 프로그램
+1)mysql (or maria db)
+    : AWS 에  5.6.33 상위 버젼일 경우 문제가 발생 했었다.주의 요함
+2)Tomcat 8
+:Jdk가 깔려 있어야 한다.
+
+3)Apache 2 webserver
+;이 서버 설치를 위해선 필수적으로 php와 mysql 이 깔려야 한다.
+
+2. 구성
+입력 ->Apache 2 -> Tomcat ->DB 형태의 순서로 구성
+
+Apache 2 가 domain name 에 의해 리다이렉션을  하기도 하고,
+front end 부분의 웹을 보여주기도 하고
+tomcat의 연결을 8080 없이 연결을 하게끔 해준다.

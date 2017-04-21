@@ -17,9 +17,9 @@ class BaseRegAuth:
 
 
 	def __init__(self,logger=None):
-		self.comm_figure = neolib.Struct(**{'factory_key_rtl': ''})
-		self.chip_figure = neolib.Struct(**{'puf': '', 'e_fuse': ''})
-		self.server_figure = neolib.Struct(**{'map_auth_info': {}})
+		self.comm_figure = neolib.Struct(**{'company_no':''})
+		self.chip_figure = neolib.Struct(**{'puf': '','factory_key_rtl': ''})
+		self.server_figure = neolib.Struct(**{'map_auth_info': {},'factory_key_db':{},'map_company_no_to_factory_key_id':{}})
 
 		self.factory_key_rtl = crypto_util.getrandom(32)
 		self.factory_key_ID = crypto_util.getrandom(32)
@@ -81,9 +81,11 @@ class BaseProcess(BaseRegAuth):
 		return self
 	def run(self):
 		for proc in self.list_process:
-			print(proc.__name__)
+			print("######PROCESS:",proc.__name__)
 			proc()
-
+	def set_address(self,address):
+		self.server_side.address = address
+		return self
 
 class BaseSide():
 	def __init__(self,main_class):
@@ -138,6 +140,27 @@ class BaseServerSide(BaseSide):
 	def update_authinfo(self):
 		self.server_figure.map_auth_info[self.auth_info.sn] = self.auth_info.get_dict()
 		self.main_class.write_json(self.main_class.server_json_file,self.server_figure)
+
+	def calc_auth(self,random,authcode,random_server,cipher):
+
+		hash_param = crypto_util.sha256(random + random_server + authcode)
+		self.print_view(locals(), 'hash_param')
+		tRandom_newAuthcode = crypto_util.xor_calc(cipher, hash_param)
+		self.print_view(locals(), 'tRandom_newAuthcode')
+		tRandom = crypto_util.substr(tRandom_newAuthcode, 0, 16)
+		newRandom = mod8bits_calc(tRandom, random_server)
+		newAuthcode = crypto_util.substr(tRandom_newAuthcode, 16, 16)
+
+		self.print_view(locals(), 'tRandom')
+		self.print_view(locals(), 'newRandom')
+		self.print_view(locals(), 'newAuthcode')
+
+		#self.auth_info.random = newRandom
+		#self.auth_info.authcode = newAuthcode
+
+		calc_mac = left_16_sha256(newAuthcode + random_server + tRandom)
+		self.print_view(locals(), 'calc_mac')
+		return hash_param,tRandom,newRandom,newAuthcode,calc_mac
 class BaseServerSideWithWebServer(BaseServerSide):
 	address = 'neo1seok.pe.kr'
 	sublet = ''
@@ -158,6 +181,9 @@ class BaseServerSideWithWebServer(BaseServerSide):
 
 		return json.loads(r.text)
 
+	def set_address(self,address):
+		self.address = address
+		return self
 
 if __name__ == '__main__':
 	BaseProcess().load_figures()
