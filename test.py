@@ -25,6 +25,18 @@ import pickle
 import subprocess
 import neolib.neoserver
 
+
+
+
+class CreateVariable:
+	def Test(self):
+		print(dir(self))
+		setattr(self, "local_var",13)
+		print(dir(self))
+		print(self.local_var)
+
+CreateVariable().Test()
+exit()
 print(os.getenv('JAVA_HOME'))
 exit()
 neolib.neoserver.HandleServerWithLogging(5510,neolib.neoserver.SampleEchoHandleClient).run()

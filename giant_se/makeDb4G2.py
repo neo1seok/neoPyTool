@@ -276,27 +276,88 @@ class MakeScenario(BaseTableInput):
 	dsttable = "scenario"
 	prefix = "sce"
 	colline = "scg_uid, name, discription, param, param_ext, type, classname,comment"
-	srcxlsfile = 'rsc/시나리오.xlsx'
+	#srcxlsfile = 'rsc/시나리오.xlsx'
+	srcxlsfile = 'D:/PROJECT/GINAT_SE/DOCS/GIANT 2 검증 프로그램 시나리오 설계서 v1.0 2017-04-28.xlsx'
+	sheet_info = ['사전설정','종료설정', 'NFC READ', 'NFC REG', '기본 AUTH', 'TEST SPI']
 
-	def processInserValues(self):
+	def extract_scenario_from_xlsx(self):
 		xl_workbook = xlrd.open_workbook(self.srcxlsfile)
 		sheet_names = xl_workbook.sheet_names()
-		for sheet_name in sheet_names:
+		print(sheet_names)
+
+		xl_sheet = xl_workbook.sheet_by_name('시나리오 샘플')
+		# print('Sheet name: %s' % xl_sheet.name)
+		rows = [tmp for tmp in xl_sheet.get_rows()][1:]
+		print(rows)
+		print("rows:", rows[0])
+		lines = [tuple([tmp.value for tmp in row]) for row in rows]
+		map_scenario = collections.OrderedDict()
+
+		for line in lines:
+			print(line)
+			sce_name,title, method, param, param_ext = line
+			if sce_name != '':
+				map_scenario[sce_name] =[]
+				cur_sce_name = sce_name
+			map_scenario[cur_sce_name].append((title, method, param, param_ext,))
+
+
+		print(map_scenario)
+		return map_scenario
+
+	def processInserValues(self):
+		map_scenario = self.extract_scenario_from_xlsx()
+		idx = self.dstdbHD.lastSeq(self.dsttable) + 1
+		for sce_name,val in map_scenario.items():
+
+			type = ''
+			param_ext = ""
+			if sce_name == '사전설정':
+				type = 'profile'
+				sce_uid_profile = "{0}_{1}".format(self.prefix, idx)
+			elif sce_name == '종료설정':
+				type = 'profile'
+				sce_uid_profile_reset = "{0}_{1}".format(self.prefix, idx)
+			else:
+				param_ext = json.dumps(
+					{"sce_uid_profile": sce_uid_profile, "sce_uid_profile_reset": sce_uid_profile_reset})
+
+			self.appendLine(name=sce_name, scg_uid='scg_1', type=type, param_ext=param_ext, classname='GiantSeSC',
+							discription="", comment="")
+			idx += 1
+
+
+
+	def processInserValues_old(self):
+		xl_workbook = xlrd.open_workbook(self.srcxlsfile)
+		sheet_names = xl_workbook.sheet_names()
+
+
+
+		for sheet_name in self.sheet_info:
 			type =''
+			param_ext = ""
 			if sheet_name == '사전설정':
 				type= 'profile'
-			self.appendLine(name=sheet_name, scg_uid='scg_1',type=type,classname='GiantSeSC', discription="", comment="")
+				sce_uid_profile = "{0}_{1}".format(self.prefix, idx)
+			elif sheet_name == '종료설정':
+				type= 'profile'
+				sce_uid_profile_reset = "{0}_{1}".format(self.prefix, idx)
+			else:
+				param_ext = json.dumps(	{"sce_uid_profile": sce_uid_profile, "sce_uid_profile_reset": sce_uid_profile_reset})
+
+			self.appendLine(name=sheet_name, scg_uid='scg_1',type=type,param_ext= param_ext,classname='GiantSeSC', discription="", comment="")
+			idx += 1
 			# self.appendLine(name="G2 NFC READ 검증",scg_uid='scg_1', discription="", comment="")
 			# self.appendLine(name="G2 NFC REG 검증",scg_uid='scg_1' ,discription="", comment="")
 			# self.appendLine(name="G2 NFC AUTH 검증",scg_uid='scg_1' ,discription="", comment="")
 			# self.appendLine(name="TEST SPI 검증", scg_uid='scg_2', discription="", comment="")
 		None
 
-class MakeScenarioLine(BaseTableInput):
+class MakeScenarioLine(MakeScenario):
 	dsttable = "scenario_line"
 	prefix = "scl"
 	colline = "sce_uid, index, method, title, param, param_ext,pck_uid, comment"
-	srcxlsfile = 'rsc/시나리오.xlsx'
 	patt_json_set=r'([\w$]+):([\w$]+)'
 	def convert_param_ext(self,param_ext):
 		#print(param_ext)
@@ -315,7 +376,7 @@ class MakeScenarioLine(BaseTableInput):
 		xl_workbook = xlrd.open_workbook(self.srcxlsfile)
 		sheet_names = xl_workbook.sheet_names()
 		print('Sheet Names', sheet_names)
-		for sheet_name in sheet_names:
+		for sheet_name in self.sheet_info:
 			map_scenarioline = self.dstdbHD.select("""
 					SELECT sce_uid FROM scenario where name='{0}';
 							""".format(sheet_name))
@@ -325,12 +386,15 @@ class MakeScenarioLine(BaseTableInput):
 			xl_sheet = xl_workbook.sheet_by_name(sheet_name)
 			#print('Sheet name: %s' % xl_sheet.name)
 			rows = [tmp for tmp in xl_sheet.get_rows()][1:]
+			print(rows)
 			print("rows:",rows[0])
 			lines = [tuple([tmp.value for tmp in row]) for row in rows]
 
 			index = 0
-			print(lines)
-			for title,method,param,param_ext in lines:
+
+			for line in lines:
+				print(line)
+				title, method, param, param_ext = line
 
 				self.appendLine(sce_uid=sce_uid, index=index, title=title,method=method,param=param,param_ext=self.convert_param_ext(param_ext))
 				index += 1
@@ -686,7 +750,7 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 # MakeEnvSetting(exit=False).Run()
 # MakeScenarioGroup(exit=False).Run()
 MakeScenario(exit=False).Run()
-MakeScenarioLine(exit=False).Run()
+#MakeScenarioLine(exit=False).Run()
 
 dbaddress= 'localhost'
 #dbaddress= '192.168.0.75'
