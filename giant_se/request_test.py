@@ -104,8 +104,10 @@ def test_post_admin():
 	r = requests.post('http://neo1seok.pe.kr:8080/giant_se/admin.do', data = {'json':json.dumps(jsonvalue)})
 	print(r.text)
 #test_post_session()
+r = requests.get('http://neo1seok.pe.kr:8000')
+print(r.text,r)
 
-
+exit()
 for _ in range(100):
 	ssess = requests
 	ssess = requests.session()

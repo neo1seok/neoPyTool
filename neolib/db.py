@@ -76,7 +76,7 @@ class dbHandleing:
 			lastseq+=1
 
 		sql = sqldstfmt.format(table,prefix,",".join(arraycol),",\n".join(values))
-		#print(sql)
+		print(sql)
 		self.cur.execute(sql);
 
 		return lastseq
