@@ -6,8 +6,15 @@ import time
 import  simplejson as json
 import re
 import collections
-class TestOpeAPI(neolib.NeoRunnableClasss):
-	def doRun(self):
+import requests
+from xmljson import badgerfish as bf
+from xml.etree.ElementTree import fromstring
+from json import dumps
+
+class RunOpeAPI(neolib.NeoRunnableClasss):
+	serviceKey = 'n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
+	base_url='http://openapi.gbis.go.kr/ws/rest'
+	def doRun_old(self):
 		from urllib.request import Request, urlopen
 
 		from  urllib.parse import urlencode
@@ -29,7 +36,45 @@ class TestOpeAPI(neolib.NeoRunnableClasss):
 		print(response_body.decode())
 
 		print('test')
+	def doTemplate(self,apiname,params):
+		params['serviceKey'] = self.serviceKey
+		r = requests.get(self.base_url+'/'+apiname, params=params)
+		print(r.text)
+		
+		result = dumps(bf.data(fromstring(r.text)))
+		print(result)
 
+	def doBase(self):
+		self.doTemplate('baseinfoservice',{})
+
+	def doArraval(self):
+		self.doTemplate('busarrivalservice', {'stationId':'228000875','routeId' : '234000026'})
+		# serviceKey ='n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
+		# #http://openapi.gbis.go.kr/ws/rest/baseinfoservice?serviceKey=n3y8%2FFJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg%3D%3D
+		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station'
+		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice'
+		# url2 = 'http://openapi.gbis.go.kr/ws/busarrivalsservice/BusArrivalListRequest'
+		# #r = requests.post(url, data={'serviceKey': serviceKey,'numOfRows':'999','pageNo':'1','startPage':'1'})
+		# r = requests.get(url,params={'serviceKey': self.serviceKey,'stationId':'228000875','routeId' : '234000026'})
+		# print(r.text)
+
+	def doArravalStations(self):
+		self.doTemplate('busarrivalservice/station', {'stationId': '228000875'})
+		# serviceKey ='n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
+		# #http://openapi.gbis.go.kr/ws/rest/baseinfoservice?serviceKey=n3y8%2FFJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg%3D%3D
+		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station'
+		# #r = requests.post(url, data={'serviceKey': serviceKey,'numOfRows':'999','pageNo':'1','startPage':'1'})
+		# r = requests.get(url,params={'serviceKey': self.serviceKey,'stationId':'228000875'})
+		# print(r.text)
+	def doBusLocations(self):
+		self.doTemplate('buslocationservice', {'routeId' : '234000026'})
+
+	def doRun(self):
+		#self.doBase()
+		#self.doBusLocations()
+		#self.doArraval()
+		self.doArravalStations()
+		None
 
 class MakeJsonFormFromText(neolib.NeoRunnableClasss):
 	# filelist = [
@@ -227,18 +272,18 @@ class CreateTableAnd(neodb.MakeCreateTableFor):
 if __name__ != '__main__':
 	exit()
 
-InsertDBFromJson().Run()
-CreateTableAnd().Run()
-CheckMaxLen().Run()
+# InsertDBFromJson().Run()
+# CreateTableAnd().Run()
+# CheckMaxLen().Run()
+#
+# #CreateTableAnd().Run()
+#
+# MakeColInfoFromJson().Run()
+#
+#
+# MakeJsonFormFromText().Run()
 
-#CreateTableAnd().Run()
-
-MakeColInfoFromJson().Run()
-
-
-MakeJsonFormFromText().Run()
-
-#TestOpeAPI().Run()
+RunOpeAPI().Run()
 
 
 

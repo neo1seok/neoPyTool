@@ -13,7 +13,11 @@ def test_input():
 
 
 address = '192.168.0.3'
-address = 'localhost'
+#address = 'localhost'
+
+cleint_test(address,[ 				 {'cmd' :'input_event',	'values':	[('keydown','alt' ,), ('keydown','F4' ), ('keyup','F4' ),	 ('keyup','alt')]}])
+
+exit()
 cleint_test(address,test_scenario.list_test_kbd)
 cleint_test(address,test_scenario.list_test_drag)
 cleint_test(address,test_scenario.list_test_down_move_rdownrup)
