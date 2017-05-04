@@ -64,7 +64,7 @@ class HandleContact(neolib.NeoRunnableClasss):
 				(TARGETCOL.JOB_ADDR, ('근무지 주소 번지', lambda row: '경기도 성남시 분당구 판교로 323 3층(삼평동,벤처포럼빌딩)')),
 				(TARGETCOL.JOB_PHONENUM, ('근무처 전화', lambda row: row[COLIDX.company_phnone.value])),
 				(TARGETCOL.JOB_MAINNUM, ('회사 대표 전화', lambda row: '')),
-				(TARGETCOL.CELLPHONE, ('휴대폰', lambda row: row[COLIDX.mobile_phone.value])),
+				(TARGETCOL.CELLPHONE, ('휴대폰', lambda row: "'"+row[COLIDX.mobile_phone.value])),
 				(TARGETCOL.EMAIL, ('전자 메일 주소', lambda row: row[COLIDX.email.value])),
 				(TARGETCOL.EMAILNAME, ('전자 메일 표시 이름', lambda row: row[COLIDX.name.value] + '(ICTK)')),
 				(TARGETCOL.CATAGORY, ('범주 항목', lambda row: '직장')),
@@ -120,7 +120,7 @@ class HandleContact(neolib.NeoRunnableClasss):
 		rows1 = []
 		for tmp in [aaa for aaa in xl_sheet.get_rows()][3:]:
 			rows.append([col.value for col in tmp[1:10]])
-			rows1.append([col.value for col in tmp[10:19]])
+			rows1.append([col.value for col in tmp[10:20]])
 
 		self.fillOrder(rows)
 		self.fillOrder(rows1)

@@ -8,6 +8,9 @@ import array
 import json
 import sys
 import datetime
+import logging
+from logging import handlers
+
 class Struct:
 	def __init__(self, **entries):
 		self.__dict__.update(entries)
@@ -355,13 +358,42 @@ def _linux_set_time(time_tuple):
 	librt.clock_settime(CLOCK_REALTIME, ctypes.byref(ts))
 
 
-def sha_256(sha_input):
-	m = hashlib.sha256()
-	m.update(neolib.HexString2ByteArray(sha_input))
-	reshash = m.digest()
+def create_logger(loggename,formatter = '%(threadName)s %(asctime)s - %(name)s - %(levelname)s - %(message)s',handler=None):
+	'''
+	formatter = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+	'''
+	if handler == None:
+		handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
 
-	return neolib.ByteArray2HexString(reshash)
+	#handler = handlers.TimedRotatingFileHandler(filename=loggename + ".txt", when='D')
+	loggename = loggename
+	# create logger
+	logger = logging.getLogger(loggename)
 
+	logger.setLevel(logging.DEBUG)
+
+	# create console handler and set level to debug
+	ch = logging.StreamHandler()
+	ch.setLevel(logging.DEBUG)
+
+	# create formatter
+	formatter = logging.Formatter(formatter)
+
+	# add formatter to ch
+	ch.setFormatter(formatter)
+	handler.setFormatter(formatter)
+	# add ch to logger
+	logger.removeHandler(ch)
+	logger.removeHandler(handler)
+
+	logger.addHandler(ch)
+	logger.addHandler(handler)
+
+	return logger
+
+def json_pretty(json_obj):
+
+	return json.dumps(json_obj, sort_keys=True, indent=4, separators=(',', ': '),ensure_ascii=False)
 if __name__ == '__main__':
 	print('test')
 

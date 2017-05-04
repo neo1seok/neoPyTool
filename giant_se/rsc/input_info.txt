@@ -1,0 +1,10 @@
+group_0	puf	PUF	input
+group_0	factory_key_rtl	FACTORY KEY RTL	input
+group_0	generate	발생	button
+group_1	sn	SN	input
+group_1	get_sn	SN 값 가져오기	button
+group_2	factory_key_id	FACTORY  KEY ID	input
+group_2	get_factory_key_id	FACTORY KEY ID 가져오기	button
+group_3	nonce	NONCE	input
+group_3	cipher	CIPHER	input
+group_3	get_reg_key	등록 키 가져오기	button
