@@ -7,8 +7,8 @@ import time
 import pymysql
 import  simplejson as json
 
-import neolib.neolib as neolib
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil as neolib
+import neolib.neoutil4Win as neolib4Win
 import xlrd
 
 from  neolib.db import dbHandleing
@@ -332,8 +332,7 @@ class MakeScenario(BaseTableInput):
 		xl_workbook = xlrd.open_workbook(self.srcxlsfile)
 		sheet_names = xl_workbook.sheet_names()
 
-
-
+		idx = 0
 		for sheet_name in self.sheet_info:
 			type =''
 			param_ext = ""
@@ -372,6 +371,27 @@ class MakeScenarioLine(MakeScenario):
 
 	def processInserValues(self):
 
+		map_scenario = self.extract_scenario_from_xlsx()
+		idx = self.dstdbHD.lastSeq(self.dsttable) + 1
+		for sce_name, val in map_scenario.items():
+			map_scenarioline = self.dstdbHD.select("""
+							SELECT sce_uid FROM scenario where name='{0}';
+									""".format(sce_name))
+			sce_uid = map_scenarioline[0]['sce_uid']
+
+			#lines = [tuple([tmp.value for tmp in row]) for row in val]
+			lines =val
+			index = 0
+			for line in lines:
+				print(line)
+				title, method, param, param_ext = line
+				self.appendLine(sce_uid=sce_uid, index=index, title=title, method=method, param=param,
+								param_ext=self.convert_param_ext(param_ext))
+				index += 1
+
+
+
+	def processInserValues_OLD(self):
 
 		xl_workbook = xlrd.open_workbook(self.srcxlsfile)
 		sheet_names = xl_workbook.sheet_names()
@@ -403,6 +423,39 @@ class MakeScenarioLine(MakeScenario):
 
 		None
 
+class MakeScenarioLine4TestingPythonScript(MakeScenarioLine):
+	fmt='''
+print ''
+title='{0}'
+print 'TITLE:',title
+gscdb.setparam('{2}','{3}')
+gscdb.do_safe_method('{1}')
+
+
+	'''
+	nrm_fmt = '{1}\t{0}\t{2}\t{3}\n'
+
+	def Run(self):
+		map_scenario = self.extract_scenario_from_xlsx()
+		prof_line = map_scenario['사전설정']
+		prof_line_reset = map_scenario['종료설정']
+		del map_scenario['사전설정']
+		del map_scenario['종료설정']
+
+		for sce_name, val in map_scenario.items():
+			lines = val
+			index = 0
+			str_4_python_script_test = ''
+			totallines = []
+			totallines.extend(prof_line)
+			totallines.extend(lines)
+			totallines.extend(prof_line_reset)
+			for line in totallines:
+				print(line)
+				title, method, param, param_ext = line
+				str_4_python_script_test += self.fmt.format(title, method, param, self.convert_param_ext(param_ext))
+				index += 1
+			neolib.StrToFile(str_4_python_script_test, 'rsc/{0}.txt'.format(sce_name))
 
 class MakeScenarioGroup(BaseTableInput):
 	dsttable = "scenario_group"
@@ -749,8 +802,9 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 # MakeEnvSelection(exit=False).Run()
 # MakeEnvSetting(exit=False).Run()
 # MakeScenarioGroup(exit=False).Run()
+MakeScenarioLine4TestingPythonScript().Run()
 MakeScenario(exit=False).Run()
-#MakeScenarioLine(exit=False).Run()
+MakeScenarioLine(exit=False).Run()
 
 dbaddress= 'localhost'
 #dbaddress= '192.168.0.75'
@@ -779,7 +833,7 @@ dbaddress= 'localhost'
 #adjustProfileConfigFromMySQL().Run()
 #ProfileSettings().Run()
 
-# MakeScenario(deleteTable = False,exit = False).Run()
+#MakeScenario(deleteTable = False,exit = False).Run()
 # MakeScenarioLine(deleteTable = False,exit = False).Run()
 # exit()
 

@@ -2,8 +2,8 @@ import re
 import sys
 import win32api
 import shutil
-import neolib.neolib as neolib
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil as neolib
+import neolib.neoutil4Win as neolib4Win
 import win32ui
 import win32con
 

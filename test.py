@@ -19,7 +19,7 @@ import time
 import datetime
 from datetime import date
 import threading
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil4Win as neolib4Win
 from  math import cos,sin,pi
 import pickle
 import subprocess
@@ -55,7 +55,7 @@ exit()
 from smartcard.scard import *
 import smartcard.util
 
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 from PyCRC.CRC16 import CRC16
 from PyCRC.CRC16DNP import CRC16DNP
 from PyCRC.CRC16Kermit import CRC16Kermit

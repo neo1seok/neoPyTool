@@ -1,4 +1,4 @@
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil4Win as neolib4Win
 import re
 
 str = neolib4Win.GetClipBoard()

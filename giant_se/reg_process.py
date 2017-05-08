@@ -14,7 +14,7 @@ class RegProcessServerSide(BaseServerSide):
 
 		#factory_key_id = self.trans_data.get()
 
-		self.auth_info = neolib.Struct(**{})
+		self.auth_info = neoutil.Struct(**{})
 
 		#self.extract_map_auth_info_from_sn(sn)
 		self.auth_info.sn = sn

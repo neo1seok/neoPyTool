@@ -1,5 +1,5 @@
 from  neolib.neoserver import *
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import win32api
 import win32con
 import traceback

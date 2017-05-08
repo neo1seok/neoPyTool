@@ -4,7 +4,7 @@ import re
 
 import  simplejson as json
 
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 from adts.makeDb4ADTS import BaseMySQLRunnable
 
 

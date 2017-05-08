@@ -1,4 +1,4 @@
-from neolib import neolib
+from neolib import neoutil
 from neolib import crypto_util
 import random
 import simplejson as json
@@ -17,9 +17,9 @@ class BaseRegAuth:
 
 
 	def __init__(self,logger=None):
-		self.comm_figure = neolib.Struct(**{'company_no':''})
-		self.chip_figure = neolib.Struct(**{'puf': '','factory_key_rtl': ''})
-		self.server_figure = neolib.Struct(**{'map_auth_info': {},'factory_key_db':{},'map_company_no_to_factory_key_id':{}})
+		self.comm_figure = neoutil.Struct(**{'company_no': ''})
+		self.chip_figure = neoutil.Struct(**{'puf': '', 'factory_key_rtl': ''})
+		self.server_figure = neoutil.Struct(**{'map_auth_info': {}, 'factory_key_db':{}, 'map_company_no_to_factory_key_id':{}})
 
 		self.factory_key_rtl = crypto_util.getrandom(32)
 		self.factory_key_ID = crypto_util.getrandom(32)
@@ -37,7 +37,7 @@ class BaseRegAuth:
 
 	def write_json(self,file_name,figure):
 		print(figure.get_dict())
-		neolib.StrToFile(json.dumps(figure.get_dict(), sort_keys=True, indent=4, separators=(',', ': ')),	 file_name)
+		neoutil.StrToFile(json.dumps(figure.get_dict(), sort_keys=True, indent=4, separators=(',', ': ')), file_name)
 
 class FakeLog:
 	def debug(self,fmt,*args):
@@ -51,7 +51,7 @@ class BaseProcess(BaseRegAuth):
 	def load_figures(self):
 		for key, values in self.map_figureinfo.items():
 			figure, file = values
-			figure.from_dict(json.loads(neolib.StrFromFile(file)))
+			figure.from_dict(json.loads(neoutil.StrFromFile(file)))
 			print(figure.get_dict())
 
 
@@ -134,7 +134,7 @@ class BaseServerSide(BaseSide):
 
 	def extract_map_auth_info_from_sn(self,sn):
 		map_auth_info = self.server_figure.map_auth_info[sn]
-		self.auth_info = neolib.Struct(**map_auth_info)
+		self.auth_info = neoutil.Struct(**map_auth_info)
 		self.auth_info.sn = sn
 
 	def update_authinfo(self):

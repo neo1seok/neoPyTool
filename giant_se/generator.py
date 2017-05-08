@@ -11,7 +11,7 @@ class Generator(BaseRegAuth):
 		None
 	def write_json(self,file_name,figure):
 		print(figure.get_dict())
-		neolib.StrToFile(json.dumps(figure.get_dict(), sort_keys=True, indent=4, separators=(',', ': ')),	 file_name)
+		neoutil.StrToFile(json.dumps(figure.get_dict(), sort_keys=True, indent=4, separators=(',', ': ')), file_name)
 
 	def generate_comm(self,figure):
 		#figure.factory_key_rtl  = crypto_util.getrandom(16)

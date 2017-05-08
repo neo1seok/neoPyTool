@@ -1,5 +1,5 @@
 import hashlib
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 #import neolib
 import random
 

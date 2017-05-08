@@ -14,10 +14,10 @@ def generate_puf(count):
 		puf = crypto_util.getrandom(16)
 		list_puf.append([puf, calc_sn(puf)])
 
-	neolib.StrToFile(neolib.json_pretty(list_puf), 'rsc/pufs.json')
+	neoutil.StrToFile(neoutil.json_pretty(list_puf), 'rsc/pufs.json')
 
 def load_pufs():
-	sfdafas = neolib.StrFromFile('rsc/pufs.json')
+	sfdafas = neoutil.StrFromFile('rsc/pufs.json')
 	return json.loads(sfdafas)
 #
 # def register_pufs():
@@ -49,7 +49,7 @@ def tesf_template(que_puf,process_obj,thread_count,address='localhost'):
 
 
 	handler = handlers.TimedRotatingFileHandler(filename="log.txt", when='D')
-	logger = neolib.create_logger("tool", handler=handler)
+	logger = neoutil.create_logger("tool", handler=handler)
 	count = 0
 
 	list_submit = []
@@ -134,7 +134,7 @@ def single_test(address='localhost'):
 	AuthProcessWithWebServer().set_address(address).run()
 
 def make_input_form_json():
-	strres = neolib.StrFromFile('rsc/input_info.txt')
+	strres = neoutil.StrFromFile('rsc/input_info.txt')
 	mapobj = map(lambda x: tuple(x.split('\t')), strres.split('\r\n'))
 	result = collections.OrderedDict()
 	for row in mapobj:
@@ -151,7 +151,7 @@ def make_input_form_json():
 
 		result[group_name]['inputs'].append({'lable':lable,'id':id })
 
-	orgstr = neolib.json_pretty(result)
+	orgstr = neoutil.json_pretty(result)
 	dst = re.sub(r'"(\w+)":',r'\1:',orgstr)
 
 	print(dst)

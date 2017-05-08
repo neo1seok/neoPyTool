@@ -1,5 +1,5 @@
 import requests
-import  neolib.neolib as neolib
+import  neolib.neoutil as neolib
 import simplejson as json
 import time
 def test_get():

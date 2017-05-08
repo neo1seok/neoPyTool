@@ -5,8 +5,8 @@ import time
 import win32api
 import win32gui
 
-import neolib.neolib as neolib
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil as neolib
+import neolib.neoutil4Win as neolib4Win
 
 import win32api
 import inspect

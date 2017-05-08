@@ -1,4 +1,4 @@
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 
 class RunnableTmp(neolib.NeoRunnableClasss):
 	def doRun(self):
