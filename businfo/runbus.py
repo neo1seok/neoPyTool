@@ -9,6 +9,7 @@ import collections
 import requests
 from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
+from xml.etree.ElementTree import Element, ElementTree, SubElement, dump, parse, tostring,fromstring
 from json import dumps
 
 class RunOpeAPI(neolib.NeoRunnableClasss):
@@ -38,10 +39,14 @@ class RunOpeAPI(neolib.NeoRunnableClasss):
 		print('test')
 	def doTemplate(self,apiname,params):
 		params['serviceKey'] = self.serviceKey
-		r = requests.get(self.base_url+'/'+apiname, params=params)
+		url = self.base_url+'/'+apiname
+		print(url)
+		r = requests.get(url, params=params)
 		print(r.text)
-		
-		result = dumps(bf.data(fromstring(r.text)))
+		root = fromstring(r.text)
+		print(root)
+
+		result = neolib.json_pretty(bf.data(fromstring(r.text)))
 		print(result)
 
 	def doBase(self):

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+  <song>
+     <title>a</title>
+     <length>4:54</length>
+  </song>
+  <song>
+     <title>b</title>
+     <length>3:21</length>
+  </song>
+</test>
