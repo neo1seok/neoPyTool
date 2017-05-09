@@ -7,8 +7,8 @@ import time
 import pymysql
 import  simplejson as json
 
-import neolib.neolib as neolib
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil as neolib
+import neolib.neoutil4Win as neolib4Win
 import xlrd
 
 from  neolib.db import dbHandleing

@@ -1,7 +1,7 @@
 import win32clipboard
 import win32process
 import win32api
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import sys
 import datetime
 

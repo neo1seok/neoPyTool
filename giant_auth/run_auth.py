@@ -7,7 +7,7 @@ import socket
 import giant_auth.commcalc as commcalc
 
 import  simplejson as json
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 
 from urllib.parse import quote,unquote,quote_plus
 

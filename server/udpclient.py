@@ -1,5 +1,5 @@
 import time
-import  neolib.neolib as neolib
+import  neolib.neoutil as neolib
 from socket import *
 
 pings = 1

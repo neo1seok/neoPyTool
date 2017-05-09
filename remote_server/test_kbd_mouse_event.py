@@ -2,7 +2,7 @@ import win32clipboard
 import win32process
 import win32api
 import win32con
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import time
 
 # Giant dictonary to hold key name and VK value

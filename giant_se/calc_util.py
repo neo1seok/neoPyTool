@@ -1,4 +1,4 @@
-from neolib import neolib
+from neolib import neoutil
 from neolib import crypto_util
 
 def calc_sn( puf):
@@ -20,8 +20,8 @@ def left_8_sha256(org):
 
 
 def mod8bits_calc(org, hashed_value):
-	bytes0 = neolib.HexString2ByteArray(hashed_value)
-	bytes1 = neolib.HexString2ByteArray(org)
+	bytes0 = neoutil.HexString2ByteArray(hashed_value)
+	bytes1 = neoutil.HexString2ByteArray(org)
 	if len(bytes0) !=  len(bytes1) :
 		return None
 	lenth = len(bytes0)
@@ -33,7 +33,7 @@ def mod8bits_calc(org, hashed_value):
 		new_value+= bytes([(b0+b1)%256])
 		idx += 1
 
-	return neolib.ByteArray2HexString(new_value)
+	return neoutil.ByteArray2HexString(new_value)
 
 
 if __name__ == '__main__':

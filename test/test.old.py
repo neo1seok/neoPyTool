@@ -11,8 +11,8 @@ import uuid
 import requests
 import  simplejson as json
 
-import neolib.neolib as neolib
-import neolib.neolib4Win as neolib4Win
+import neolib.neoutil as neolib
+import neolib.neoutil4Win as neolib4Win
 
 class ChanageMp3Title(neolib.NeoRunnableClasss):
 	maptitle = {'데려다줄래': '01', 'L.I.E': '02', '알면서': '03', 'HELLO(하니SOLO)': '04', 'CREAM': '05', '3%(솔지SOLO)': '06',

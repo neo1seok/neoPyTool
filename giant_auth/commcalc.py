@@ -1,4 +1,4 @@
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import hashlib
 
 def HexStrSubStr(org, index, count):

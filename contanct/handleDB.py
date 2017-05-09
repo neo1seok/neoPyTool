@@ -15,7 +15,7 @@ from logging import handlers
 import xlrd
 import csv
 
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import neolib.db as neodb
 
 from enum import Enum

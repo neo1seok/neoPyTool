@@ -1,5 +1,5 @@
 import os
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import re
 import codecs
 from tool.util import find_files

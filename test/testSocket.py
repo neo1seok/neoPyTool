@@ -1,5 +1,5 @@
 import socket
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

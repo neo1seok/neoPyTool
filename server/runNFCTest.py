@@ -7,7 +7,7 @@ import requests
 import socket
 
 import  simplejson as json
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 
 class TestGiant2ClientRunnable(neolib.NeoRunnableClasss):
 	sndjson = [

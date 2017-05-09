@@ -1,6 +1,6 @@
 import sys
 import time
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import http
 import  simplejson as json
 import socket

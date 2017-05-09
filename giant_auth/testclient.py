@@ -1,5 +1,5 @@
 import socket
-import neolib.neolib as neolib
+import neolib.neoutil as neolib
 import time
 import threading
 
