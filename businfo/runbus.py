@@ -11,6 +11,7 @@ from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
 from xml.etree.ElementTree import Element, ElementTree, SubElement, dump, parse, tostring,fromstring
 from json import dumps
+from xml.etree import ElementTree
 
 class RunOpeAPI(neolib.NeoRunnableClasss):
 	serviceKey = 'n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
@@ -37,23 +38,25 @@ class RunOpeAPI(neolib.NeoRunnableClasss):
 		print(response_body.decode())
 
 		print('test')
-	def doTemplate(self,apiname,params):
+	def doTemplate(self,apiname,title,params):
 		params['serviceKey'] = self.serviceKey
 		url = self.base_url+'/'+apiname
 		print(url)
 		r = requests.get(url, params=params)
 		print(r.text)
+		neolib.StrToFile(r.text,'out/'+title)
 		root = fromstring(r.text)
-		print(root)
 
-		result = neolib.json_pretty(bf.data(fromstring(r.text)))
-		print(result)
+		print(root.tag)
+
+		# result = neolib.json_pretty(bf.data(fromstring(r.text)))
+		# print(result)
 
 	def doBase(self):
-		self.doTemplate('baseinfoservice',{})
+		self.doTemplate('baseinfoservice','baseinfo.xml',{})
 
 	def doArraval(self):
-		self.doTemplate('busarrivalservice', {'stationId':'228000875','routeId' : '234000026'})
+		self.doTemplate('busarrivalservice','arrival.xml', {'stationId':'228000875','routeId' : '234000026'})
 		# serviceKey ='n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
 		# #http://openapi.gbis.go.kr/ws/rest/baseinfoservice?serviceKey=n3y8%2FFJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg%3D%3D
 		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station'
@@ -64,7 +67,7 @@ class RunOpeAPI(neolib.NeoRunnableClasss):
 		# print(r.text)
 
 	def doArravalStations(self):
-		self.doTemplate('busarrivalservice/station', {'stationId': '228000875'})
+		self.doTemplate('busarrivalservice/station','arrival_stations.xml', {'stationId': '228000875'})
 		# serviceKey ='n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
 		# #http://openapi.gbis.go.kr/ws/rest/baseinfoservice?serviceKey=n3y8%2FFJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg%3D%3D
 		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station'
@@ -72,15 +75,32 @@ class RunOpeAPI(neolib.NeoRunnableClasss):
 		# r = requests.get(url,params={'serviceKey': self.serviceKey,'stationId':'228000875'})
 		# print(r.text)
 	def doBusLocations(self):
-		self.doTemplate('buslocationservice', {'routeId' : '234000026'})
+		self.doTemplate('buslocationservice','bus_location.xml', {'routeId' : '234000026'})
 
 	def doRun(self):
-		#self.doBase()
-		#self.doBusLocations()
-		#self.doArraval()
+		self.doBase()
+		self.doBusLocations()
+		self.doArraval()
 		self.doArravalStations()
 		None
 
+class ParseXml(RunOpeAPI):
+	def doTemplate(self,apiname,title,params):
+		print('title:',title)
+		fname = 'out/'+title
+		x = etree.parse(fname)
+		ads = etree.tostring(x)
+		print(ads)
+
+
+	def doTemplate_old(self,apiname,title,params):
+		print('title:',title)
+		xml_src = neolib.StrFromFile('out/'+title)
+		root = fromstring(xml_src)
+		msgBody = root.find('msgBody')
+		for child in msgBody:
+			print(child.tag)
+		print(root.find('msgBody').attrib)
 class MakeJsonFormFromText(neolib.NeoRunnableClasss):
 	# filelist = [
 	# 	'area20161202.txt',
@@ -288,7 +308,7 @@ if __name__ != '__main__':
 #
 # MakeJsonFormFromText().Run()
 
-RunOpeAPI().Run()
-
+#RunOpeAPI().Run()
+ParseXml().Run()
 
 

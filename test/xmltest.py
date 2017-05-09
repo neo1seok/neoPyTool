@@ -50,11 +50,17 @@ def TestFromString():
 		print(element.findtext("length"))
 def TestFromString2():
 	root = fromstring(xml_sro)
-	print(root)
-	for element in root.findall("note"):
-		print(element)
-		print(element.findtext("title"))
-		print(element.findtext("length"))
+	print(dir(root))
+	for child in root:
+		print(child.tag, child.attrib)
+
+	for tmp in root.keys():
+		print(dir(tmp))
+
+	# for element in root.findall("body"):
+	# 	print(element)
+	# 	print(element.findtext("title"))
+	# 	print(element.findtext("length"))
 if __name__ == '__main__':
 	#TestFromFile()
 	TestFromString2()
