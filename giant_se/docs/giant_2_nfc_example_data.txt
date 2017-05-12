@@ -1,26 +1,32 @@
 Select AID
 SCardTransmit : 0x0
         Send(0x0D) : 00A4040007D276000085010100
+                        00A4040007D276000085010100
         Recv(0x02) : 9000
 Select CC EF ID
 SCardTransmit : 0x0
         Send(0x08) : 00A4000C02E10300
+                     00A4000002E10300
         Recv(0x02) : 9000
 Read Binary
 SCardTransmit : 0x0
         Send(0x05) : 00B000000F
+        00B000000F
         Recv(0x11) : 000F2000FF00FF0406E10400FF00009000
 Select NDEF EF ID
 SCardTransmit : 0x0
-        Send(0x08) : 00A4000C02E10400
+        Send(0x08) :    00A4000C02E10400
+                        00A4000002E10400
         Recv(0x02) : 9000
 Read Binary
 SCardTransmit : 0x0
-        Send(0x05) : 00B0000002
+        Send(0x05) :    00B0000002
+                        00B0000002
         Recv(0x04) : 00359000
 Read Binary
 SCardTransmit : 0x0
         Send(0x05) : 00B0000235
+                     00B0000203
         Recv(0x37) : D1013155036465762E6963746B2E636F6D2F72642F637062646E6A61636A6470696362656765616266626962626D706965706767649000
 Select Giant II AID
 SCardTransmit : 0x0

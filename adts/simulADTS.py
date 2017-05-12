@@ -517,7 +517,7 @@ class ListFileExt(neolib.NeoRunnableClasss):
 
 
 		print(list)
-		#fb = open('out.txt', 'wb')
+		#fb = open('sample_xml.txt', 'wb')
 		#fb.write(self.strlines.encode())
 		#fb.close()
 

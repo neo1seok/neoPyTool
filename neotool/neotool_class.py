@@ -167,56 +167,36 @@ class ConvDefineStringClipBoard(ConvertBaseClipboard):
 
 		None
 
-	#
-	# def convCamelForm(self,listarray):
-	# 	newarra = []
-	# 	for tmp in listarray:
-	# 		hd = tmp[0:1].upper()
-	# 		boddy = tmp[1:].lower()
-	# 		newarra.append(hd+boddy)
-	# 	return "".join(newarra)
-	#
-	# def convUnserLine(self, listarray):
-	# 	newarra = []
-	# 	for tmp in listarray:
-	# 		newarra.append(tmp.upper())
-	# 	return "_".join(newarra)
-	#
-	# def convUnserLineLower(self, listarray):
-	# 	return self.convUnserLine(listarray).lower()
-	#
-	# def makeListFromUnderLine(self, orgstr):
-	# 	return orgstr.split("_")
-	#
-	# def makeListFromSpaceDiv(self, orgstr):
-	# 	return orgstr.split(" ")
-	#
-	# def makeListFromCamelForm(self, orgstr):
-	# 	result = re.findall(self.pattcamel,orgstr)
-	# 	for tmp in result:
-	# 		self.print_view(tmp[1])
-	# 		None
-	# 	return  list(map((lambda n:n),result))
-	# def test(self):
-	# 	res = self.convCamelForm(['abc', 'def', 'ghi'])
-	# 	self.print_view(res)
-	# 	res = self.convUnserLine(['abc', 'def', 'ghi'])
-	# 	self.print_view(res)
-	#
-	# 	res = self.convUnserLineLower(['abc', 'def', 'ghi'])
-	# 	self.print_view(res)
-	#
-	# 	resarray = self.makeListFromSpaceDiv('AAA BBB CCC')
-	# 	self.print_view(resarray)
-	#
-	# 	resarray = self.makeListFromUnderLine('AAA_BBB_CCC')
-	# 	self.print_view(resarray)
-	# 	resarray = self.makeListFromCamelForm('aaaBbbCcc')
-	# 	self.print_view(resarray)
 	def inputOptions(self):
+		None
 
+	def convContents(self):
+		self.inputOptions()
+		print("convContents:",self.dststr)
+		self.dststr = self.dststr.replace('\r\n', '\n')
+		results = re.findall(self.patttotal, self.dststr)
+
+		if len(results) == 0: return
+
+		classconv = neolib.ConvStringForm(intype=self.intype, outtype=self.outtype)
+
+		# arrfunc = self.mapMakeArray[self.intype]
+		# strfunc =self.mapMakeString[self.outtype]
+
+		retarra = []
+		for tmp in results:
+			# self.print_view(tmp[0])
+			# array = arrfunc(tmp[0])
+			# self.print_view(array)
+			# resstr = strfunc(array )
+			# self.print_view(resstr )
+			resstr = classconv.ConvertString(tmp[0])
+			retarra.append(resstr)
+		self.dststr = "\r\n".join(retarra)
+
+class ConvDefineStringClipBoardByConsole(ConvDefineStringClipBoard):
+	def inputOptions(self):
 		inindex = int((input("input type 1.space div form 2.under line form 3.camel form: ")))
-
 		mapIn = {
 			1: "spc",
 			2: "und",
@@ -242,30 +222,6 @@ class ConvDefineStringClipBoard(ConvertBaseClipboard):
 
 		self.print_view(self.intype)
 		self.print_view(self.outtype)
-
-	def convContents(self):
-		self.inputOptions()
-
-		self.dststr = self.dststr.replace('\r\n', '\n')
-		results = re.findall(self.patttotal, self.dststr)
-
-		if len(results) == 0: exit()
-
-		classconv = neolib.ConvStringForm(intype=self.intype, outtype=self.outtype)
-
-		# arrfunc = self.mapMakeArray[self.intype]
-		# strfunc =self.mapMakeString[self.outtype]
-
-		retarra = []
-		for tmp in results:
-			# self.print_view(tmp[0])
-			# array = arrfunc(tmp[0])
-			# self.print_view(array)
-			# resstr = strfunc(array )
-			# self.print_view(resstr )
-			resstr = classconv.ConvertString(tmp[0])
-			retarra.append(resstr)
-		self.dststr = "\r\n".join(retarra)
 
 
 class PuttyRunNMove(BaseRunClass):
@@ -544,7 +500,8 @@ def main_process(cmd, maparg, print_view = None,istimeer=False, ):
 				   "conv2java": ConvertMapCs2Java,
 				   "makeNormalTxt": MakeNormalTxtInClipBoard,
 				   "convuplow": ConvUpperLowInClipBoard,
-				   "convdeftype": ConvDefineStringClipBoard,
+				   "convdeftype_op": ConvDefineStringClipBoard,
+				   "convdeftype": ConvDefineStringClipBoardByConsole,
 				   "puttyrun": PuttyRunNMove,
 				   "puttykill": PuttyKIll,
 				   "drawMousePos": drawMousePos,
@@ -567,4 +524,6 @@ def new_print_view(*args):
 	print(args)
 
 if __name__ == '__main__':
-	main_process("strcpy",{"key":"greeting"},print_view=new_print_view)
+	#main_process("strcpy",{"key":"greeting"},print_view=new_print_view)
+	main_process("convdeftype_op", {"intype": "spc","outtype":"und"}, print_view=new_print_view)
+

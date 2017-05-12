@@ -28,7 +28,7 @@ for tmp in list_row:
 		map_calins[cur_clains] =[]
 	map_calins[cur_clains].append((Command, CLA, INS, P1, P2, Lc, Data, Le, DATA, SW,))
 	print(cur_clains,tmp)
-neoutil.StrToFile(neoutil.json_pretty(map_calins), "out.txt")
+neoutil.StrToFile(neoutil.json_pretty(map_calins), "sample_xml.txt")
 
 list_final =[]
 def funtion(sumstr,str):

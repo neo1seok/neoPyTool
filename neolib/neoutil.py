@@ -87,7 +87,7 @@ class NeoAnalyzeClasss(NeoRunnableClasss):
 	def SetClopBoard(self):
 		None
 	def outLog(self):
-		fb = open('out.txt', 'wb')
+		fb = open('sample_xml.txt', 'wb')
 		fb.write(self.strlines.encode())
 		fb.close()
 		self.SetClopBoard()
@@ -155,6 +155,8 @@ def Text2HexString(str,enc="utf-8",sep="") :
 
 
 def StrFromFile(filepath,enc='utf-8'):
+
+
 	fb = open(filepath,'rb')
 	rt = fb.read()
 	str = rt.decode(enc)
@@ -162,6 +164,10 @@ def StrFromFile(filepath,enc='utf-8'):
 	return str
 
 def StrToFile(str,filepath,enc='utf-8'):
+	fullpath = os.path.abspath(filepath)
+	dir_name = os.path.dirname(fullpath)
+	MakeDir(dir_name)
+
 	fb = open(filepath,'wb')
 	fb.write(str.encode(enc))
 	fb.close()

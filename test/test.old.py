@@ -71,7 +71,7 @@ class RunnableChangePath(neolib.NeoRunnableClasss):
 		path = "Z:\\Smartro\\산출물\\"
 
 		print(path)
-		fp = open(path + "out.txt", "w")
+		fp = open(path + "sample_xml.txt", "w")
 		for path, dirs, files in os.walk(path):
 			for tmpfile in files:
 				fullpath = "\\".join((path, tmpfile))
@@ -699,7 +699,7 @@ url = 'http://bit.ly/2bB1LCD'
 #url = 'https://www.doortodoor.co.kr'
 r = requests.get(url)
 print(r.text)
-fb = open('out.txt','wb')
+fb = open('sample_xml.txt','wb')
 fb.write(r.text.encode())
 fb.close()
 
@@ -715,7 +715,7 @@ exit()
 RunnableCompareMatch().Run()
 url = 'https://www.annma.net/g5/bbs/board.php?bo_table=profile&wr_id=141'
 r = requests.get(url)
-fb = open('out.txt','wb')
+fb = open('sample_xml.txt','wb')
 fb.write(r.text.encode())
 fb.close()
 
@@ -840,7 +840,7 @@ exit()
 
 basepath = 'D:\\PROJECT\\스마트로\\TEMP\\SMARTRO_new3\\SMARTRO\\bin'
 
-fp = open("D:\\PROJECT\\스마트로\\TEMP\\SMARTRO_new3\\SMARTRO\\bin\\out.txt", "w")
+fp = open("D:\\PROJECT\\스마트로\\TEMP\\SMARTRO_new3\\SMARTRO\\bin\\sample_xml.txt", "w")
 for file in glob.glob(basepath + '\\*.*'):
 	fp.write(os.path.basename(file) + "\n")
 

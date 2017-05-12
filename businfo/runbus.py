@@ -7,15 +7,24 @@ import  simplejson as json
 import re
 import collections
 import requests
-from xmljson import badgerfish as bf
+import os
+#from xmljson import badgerfish as bf
 from xml.etree.ElementTree import fromstring
 from xml.etree.ElementTree import Element, ElementTree, SubElement, dump, parse, tostring,fromstring
+
+
 from json import dumps
-from xml.etree import ElementTree
+import xml.etree.ElementTree as  etree
 
 class RunOpeAPI(neolib.NeoRunnableClasss):
 	serviceKey = 'n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
 	base_url='http://openapi.gbis.go.kr/ws/rest'
+	out_str = ''
+	station_id ='228000875'
+	route_id = '234000026' # 720-2
+	route_id = '234000047' #720
+
+
 	def doRun_old(self):
 		from urllib.request import Request, urlopen
 
@@ -44,63 +53,94 @@ class RunOpeAPI(neolib.NeoRunnableClasss):
 		print(url)
 		r = requests.get(url, params=params)
 		print(r.text)
-		neolib.StrToFile(r.text,'out/'+title)
-		root = fromstring(r.text)
+		neolib.StrToFile(r.text,'sample_xml/'+title)
 
-		print(root.tag)
+		self.proc_after(title, r.text)
+#		root = fromstring(r.text)
 
-		# result = neolib.json_pretty(bf.data(fromstring(r.text)))
-		# print(result)
+#		print(root.tag)
+
+
 
 	def doBase(self):
 		self.doTemplate('baseinfoservice','baseinfo.xml',{})
 
 	def doArraval(self):
-		self.doTemplate('busarrivalservice','arrival.xml', {'stationId':'228000875','routeId' : '234000026'})
-		# serviceKey ='n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
-		# #http://openapi.gbis.go.kr/ws/rest/baseinfoservice?serviceKey=n3y8%2FFJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg%3D%3D
-		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station'
-		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice'
-		# url2 = 'http://openapi.gbis.go.kr/ws/busarrivalsservice/BusArrivalListRequest'
-		# #r = requests.post(url, data={'serviceKey': serviceKey,'numOfRows':'999','pageNo':'1','startPage':'1'})
-		# r = requests.get(url,params={'serviceKey': self.serviceKey,'stationId':'228000875','routeId' : '234000026'})
-		# print(r.text)
+		self.doTemplate('busarrivalservice','arrival.xml', {'stationId':self.station_id,'routeId' : self.route_id})
 
 	def doArravalStations(self):
-		self.doTemplate('busarrivalservice/station','arrival_stations.xml', {'stationId': '228000875'})
-		# serviceKey ='n3y8/FJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg=='
-		# #http://openapi.gbis.go.kr/ws/rest/baseinfoservice?serviceKey=n3y8%2FFJm14PWe7TSJZCW9MPy9oRX0BKgvbJnF8SxaQCK1IFtxKb7pJUSsRSbT1eA84XdWzGbeCNkSc4lqbCHUg%3D%3D
-		# url = 'http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station'
-		# #r = requests.post(url, data={'serviceKey': serviceKey,'numOfRows':'999','pageNo':'1','startPage':'1'})
-		# r = requests.get(url,params={'serviceKey': self.serviceKey,'stationId':'228000875'})
-		# print(r.text)
+		self.doTemplate('busarrivalservice/station','arrival_stations.xml', {'stationId': self.station_id})
+
 	def doBusLocations(self):
-		self.doTemplate('buslocationservice','bus_location.xml', {'routeId' : '234000026'})
+		self.doTemplate('buslocationservice','bus_location.xml', {'routeId' : self.route_id})
+
+	def init(self):
+
+		rt_json = neolib.StrFromFile('json/route.json')
+		list_bus = json.loads(rt_json)
+		self.map_route_line = dict([(cols[0],cols )for cols in list_bus])
+
+		st_json = neolib.StrFromFile('json/station.json')
+		list_station = json.loads(st_json)
+		self.map_station = dict([(cols[0], cols) for cols in list_station])
+
+		None
+	def view(self,*args):
+		newstrarray = [str(tmp) for tmp in args]
+		self.out_str += ' '.join(newstrarray)+"\n"
+		#print(*args)
+	def view_child(self,parent,depth):
+		info = ''
+		if parent.tag == 'routeId':
+			info = '({0})'.format(self.map_route_line[parent.text][1])
+		if parent.tag == 'stationId':
+			info = '({0})'.format(self.map_station[parent.text][1])
+
+
+		self.view('\t'*depth,parent.tag,":",parent.text,info)
+		for child in parent:
+			self.view_child(child,depth+1)
+	def proc_after(self,title,result):
+		self.out_str = ''
+		self.view('title:', title)
+		root = fromstring(result)
+		self.view_child(root, 0)
+		print(self.out_str)
+		dst_path = 'out/' + title.replace('.xml', '.txt')
+		neolib.StrToFile(self.out_str, dst_path)
 
 	def doRun(self):
+		self.init()
 		self.doBase()
+
 		self.doBusLocations()
 		self.doArraval()
 		self.doArravalStations()
 		None
 
 class ParseXml(RunOpeAPI):
+
+	def doTemplate_new(self,apiname,title,params):
+		self.view('title:',title)
+		fname = 'sample_xml/'+title
+		x = parse(fname)
+#		ads = etree.tostring(x)
+#		print(ads)
+
+
+
 	def doTemplate(self,apiname,title,params):
-		print('title:',title)
-		fname = 'out/'+title
-		x = etree.parse(fname)
-		ads = etree.tostring(x)
-		print(ads)
+		xml_src = neolib.StrFromFile('sample_xml/'+title)
+
+		self.proc_after(title,xml_src)
 
 
-	def doTemplate_old(self,apiname,title,params):
-		print('title:',title)
-		xml_src = neolib.StrFromFile('out/'+title)
-		root = fromstring(xml_src)
-		msgBody = root.find('msgBody')
-		for child in msgBody:
-			print(child.tag)
-		print(root.find('msgBody').attrib)
+		# for child in root:
+		# 	print(child.tag)
+		# msgBody = root.find('msgBody')
+		# for child in msgBody:
+		# 	print(child.tag)
+		# print(root.find('msgBody').attrib)
 class MakeJsonFormFromText(neolib.NeoRunnableClasss):
 	# filelist = [
 	# 	'area20161202.txt',
@@ -308,7 +348,7 @@ if __name__ != '__main__':
 #
 # MakeJsonFormFromText().Run()
 
-#RunOpeAPI().Run()
-ParseXml().Run()
+RunOpeAPI().Run()
+#ParseXml().Run()
 
 

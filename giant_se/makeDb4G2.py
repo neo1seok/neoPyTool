@@ -40,7 +40,7 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 
 	def endRun(self):
-		# fb = open('out.txt', 'wb')
+		# fb = open('sample_xml.txt', 'wb')
 		# fb.write(self.strlines.encode())
 		# fb.close()
 		#
@@ -215,16 +215,18 @@ FROM env_selection;
 		None
 	def InsertEnvSetting(self,name,esl_uid):
 		list_env = [
-			('CC_VALUE', '000F20008000340406E10400800000',"VALUE"),
-			('AID', 'D2760000850101', "VALUE"),
-			('CC_ID', 'E103', "VALUE"),
-			('NDEF_ID', 'E104',"VALUE"),
-			('GIANT2_AID', 'D4107216700302', "VALUE"),
+			('CC_VALUE', '000F20008000340406E10400800000',"LOCAL"),
+			('AID', 'D2760000850101', "LOCAL"),
+			('CC_ID', 'E103', "LOCAL"),
+			('NDEF_ID', 'E104',"LOCAL"),
+			('GIANT2_AID', 'D4107216700302', "LOCAL"),
+			('factorykeyid', '8D39', "LOCAL"),
+
 
 		]
 
 		for item,value,type in list_env:
-			self.appendLine(item=item, value=value, esl_uid=esl_uid, comment="")
+			self.appendLine(item=item, value=value,type=type,esl_uid=esl_uid, comment="")
 
 
 
@@ -800,11 +802,11 @@ class InsertWholeDB(neolib.NeoRunnableClasss):
 #MakeDataFieldsClass(exit=True).Run()
 
 # MakeEnvSelection(exit=False).Run()
-# MakeEnvSetting(exit=False).Run()
+MakeEnvSetting(exit=False).Run()
 # MakeScenarioGroup(exit=False).Run()
-MakeScenarioLine4TestingPythonScript().Run()
-MakeScenario(exit=False).Run()
-MakeScenarioLine(exit=False).Run()
+#MakeScenarioLine4TestingPythonScript().Run()
+#MakeScenario(exit=False).Run()
+#MakeScenarioLine(exit=False).Run()
 
 dbaddress= 'localhost'
 #dbaddress= '192.168.0.75'

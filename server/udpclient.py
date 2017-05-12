@@ -29,7 +29,7 @@ while pings < 11:
         elapsed = end - start
         print(data + " " + pings + " "+ elapsed)
 
-    #If data is not received back from server, print it has timed out
+    #If data is not received back from server, print it has timed sample_xml
     except timeout:
         print('REQUEST TIMED OUT')
 

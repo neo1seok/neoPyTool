@@ -321,7 +321,7 @@ MakeDataFieldsClass
 해당 클래스는 C# 프로젝트 내에 datafield 클래스 문자열 만들어 주는 클래스 이다.
 tableList.txt 파일 은 테이블 , 필드 이름과 타입 정보가 들어 있는데(이는 엑셀로 부터 뭍여 오기 한것임)
 여기서 클래스이름을 키로 하고 필드이름 과 타입정보를 한 튜플을 배열화 한 맵정보를 만들고
-이를 다시 C#에서 사용 가능한 클래스의 문자열로 만들어 out.txt와
+이를 다시 C#에서 사용 가능한 클래스의 문자열로 만들어 sample_xml.txt와
 클립보드에 넣어 주는 클래스 이다.
  """
 class MakeDataFieldsClass(MakeCreateTableFor):
@@ -367,7 +367,7 @@ class MakeDataFieldsClass(MakeCreateTableFor):
 
 		self.convert();
 		# print(str)
-		# fb = open('out.txt', 'wb')
+		# fb = open('sample_xml.txt', 'wb')
 		# fb.write(str.encode())
 		# fb.close()
 		#

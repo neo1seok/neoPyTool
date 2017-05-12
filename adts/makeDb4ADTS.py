@@ -51,7 +51,7 @@ class BaseMySQLRunnable(neolib4Win.NeoAnalyzeClasss):
 
 
 	def endRun(self):
-		# fb = open('out.txt', 'wb')
+		# fb = open('sample_xml.txt', 'wb')
 		# fb.write(self.strlines.encode())
 		# fb.close()
 		#

@@ -24,7 +24,7 @@ while True:
 		takentime = 0
 
 	print(log);
-	f = open("out.log", 'ab')
+	f = open("sample_xml.log", 'ab')
 	f.write(log.encode())
 	f.close()
 
